@@ -1,0 +1,24 @@
+<?php
+/**
+ * Model class of the MVC Pattern
+ * 
+ * All the models of the app must inherit from this one
+ *
+ * @package Core
+ */
+
+/**
+ * Basic functionality classes
+ */
+namespace Core;
+
+/**
+ * Basic Abstract Model Class
+ */
+abstract class Model
+{
+/**
+ * Empty class
+ */
+}
+?>
