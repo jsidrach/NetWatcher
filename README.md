@@ -1,6 +1,6 @@
-# [NAME]
+# NetWatcher
 
-[NAME] is a web-based interface to manage network traffic capturer FPGAs.
+NetWatcher is a web-based interface to manage network traffic capturer FPGAs.
 
 Version
 ----
@@ -16,7 +16,7 @@ MIT
 Tech
 ----
 
-[NAME] uses a number of open source projects to work properly:
+NetWatcher uses a number of open source projects to work properly:
 
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/index.html) - great UI boilerplate for modern web apps
     * [Bootswatch](http://bootswatch.com/) - themes for Bootstrap
