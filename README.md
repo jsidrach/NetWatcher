@@ -10,7 +10,7 @@ Version
 License
 ----
 
-MIT
+[MIT](LICENSE)
 
 
 Tech
