@@ -4,7 +4,7 @@ NetWatcher is a web-based interface to manage network traffic capturer FPGAs.
 
 Version
 ----
-0.1 - Design
+0.1 - Design ([changelog](changelog.md))
 
 
 License
