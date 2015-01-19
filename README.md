@@ -68,6 +68,7 @@ $ ./scripts/do_chmod.sh
 Tools for Programming
 ----
 [Trello Board](https://trello.com/b/73kOdUNM/tfg)
+
 [PHP Code - Eclipse](http://www.eclipse.org/pdt/)
 
 Useful Commands
