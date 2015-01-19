@@ -63,7 +63,7 @@ $ ./scripts/do_chmod.sh
 
 Tools for Programming
 ----
-PHP Code - Eclipse (http://www.eclipse.org/pdt/)
+[PHP Code - Eclipse](http://www.eclipse.org/pdt/)
 
 Useful Commands
 ----
