@@ -40,7 +40,7 @@ $ ./scripts/upgrade.sh
 ```
 
 * Translations (implementing more languages)
-    * Edit ./locale/ files with a PO file editor, ex: https://poedit.net/
+    * Edit ./locale/ files with a PO file editor, ex: [POEdit](https://poedit.net)
 
 Other Scripts
 ----
