@@ -2,15 +2,19 @@
 
 [NAME] is a web-based interface to manage network traffic capturer FPGAs.
 
-### Version
+Version
+----
 0.1 - Design
+
 
 License
 ----
 
 MIT
 
-### Tech
+
+Tech
+----
 
 [NAME] uses a number of open source projects to work properly:
 
