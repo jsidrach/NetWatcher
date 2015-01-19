@@ -1,0 +1,39 @@
+# Install
+
+## Install packages and active them
+./scripts/build.sh --install
+
+## Check Active gettext
+phpinfo(): GetText Support enabled
+Status page
+
+## Install Libraries and Dependencies
+./scripts/upgrade.sh
+
+
+# Translations (Implementing more languages)
+### Edit ./locale/ files with a PO file editor:
+https://poedit.net/
+https://localise.biz/free/poedit
+
+
+# Other Scripts
+
+## Generate Documentation
+./scripts/gen_doc.sh
+
+## Check PHP files syntax
+./scripts/check_php.sh
+
+## Fix permissions
+./scripts/do_chmod.sh
+
+# Tools for Programming
+
+## PHP Code - Eclipse
+http://www.eclipse.org/pdt/
+
+# Useful Commands
+## Start/Stop Apache
+sudo service apache2 stop
+sudo service apache2 start

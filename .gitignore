@@ -1,0 +1,10 @@
+# Project files and folders
+composer.lock
+log/
+lib/vendor/
+docs/api/
+
+# Eclipse specific gitignore
+.settings/
+.project
+.buildpath

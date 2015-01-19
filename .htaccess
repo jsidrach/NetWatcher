@@ -1,0 +1,27 @@
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+
+  RewriteEngine On
+  # Name of the app (folder)
+  RewriteBase /webapp
+  
+  # Comment out to keep trailing slashes (/)
+  RewriteRule ^(.+)/$ $1 [R=307,L]
+  
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  
+  RewriteRule ^(.*)$ index.php?$1 [QSA,L]
+
+</IfModule>
+
+<Files *.php>
+    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files index.php>
+    Order Allow,Deny
+    Allow from all
+</Files>

@@ -1,0 +1,28 @@
+{
+  "name": "Network Tester",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Juan Sidrach de Cardona Mora",
+      "email": "juan.sidrach@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "config": {
+    "vendor-dir": "lib/vendor"
+   },
+  "require": {
+    "php": ">=5.5.0",
+    "twbs/bootstrap": ">=3.2.0",
+    "components/jquery": "dev-master",
+    "ifightcrime/bootstrap-growl": "dev-master"
+    
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "lib/",
+      "App\\Common\\": "app/common/"
+      }
+  }
+}

@@ -1,0 +1,165 @@
+<?php
+/**
+ * Logger class for writing output logs to their respective files
+ *
+ * Set of functions for logging different messages as a result of interaction with the app itself
+ *
+ * @package Core
+ */
+
+/**
+ * Basic functionality classes
+ */
+namespace Core;
+
+/**
+ * Logger class to log custom errors
+ */
+class Logger
+{
+
+    /**
+     * Adds a formatted text to the action log file
+     *
+     * @param string $text
+     *            Text to append to the log file
+     */
+    public static function logAction($text)
+    {
+        return self::logText('[Action] ' . $text, LOGGER_ACTION);
+    }
+
+    /**
+     * Adds a formatted text to the warning log file
+     *
+     * @param string $text
+     *            Text to append to the log file
+     */
+    public static function logWarning($text)
+    {
+        $trace = debug_backtrace();
+        $logText = '[Warning][File: ' . $trace[0]['file'] . ':' . $trace[0]['line'] . '] ' . $text;
+        return self::logText($logText, LOGGER_WARNING);
+    }
+
+    /**
+     * Custom error handler.
+     * Adds a formatted text to the error log file
+     *
+     * @param int $errno
+     *            Error number
+     * @param string $errstr
+     *            Error string
+     * @param string $errfile
+     *            Error file
+     * @param int $errline
+     *            Error line
+     * @return boolean true
+     */
+    public static function logError($errno, $errstr, $errfile, $errline)
+    {
+        $exit_now = false;
+        switch ($errno) {
+            case E_ERROR:
+                $e_type = 'E_ERROR';
+                $exit_now = true;
+                break;
+            case E_WARNING:
+                $e_type = 'E_WARNING';
+                break;
+            case E_PARSE:
+                $e_type = 'E_PARSE';
+                break;
+            case E_NOTICE:
+                $e_type = 'E_NOTICE';
+                break;
+            case E_CORE_ERROR:
+                $e_type = 'E_CORE_ERROR';
+                $exit_now = true;
+                break;
+            case E_CORE_WARNING:
+                $e_type = 'E_CORE_WARNING';
+                break;
+            case E_COMPILE_ERROR:
+                $e_type = 'E_COMPILE_ERROR';
+                $exit_now = true;
+                break;
+            case E_COMPILE_WARNING:
+                $e_type = 'E_COMPILE_WARNING';
+                break;
+            case E_USER_ERROR:
+                $e_type = 'E_USER_ERROR';
+                $exit_now = true;
+                break;
+            case E_USER_WARNING:
+                $e_type = 'E_USER_WARNING';
+                break;
+            case E_USER_NOTICE:
+                $e_type = 'E_USER_NOTICE';
+                break;
+            case E_STRICT:
+                $e_type = 'E_STRICT';
+                break;
+            case E_RECOVERABLE_ERROR:
+                $e_type = 'E_RECOVERABLE_ERROR';
+                $exit_now = true;
+                break;
+            case E_DEPRECATED:
+                $e_type = 'E_DEPRECATED';
+                break;
+            case E_USER_DEPRECATED:
+                $e_type = 'E_USER_DEPRECATED';
+                break;
+            case E_ALL:
+                $e_type = 'E_ALL';
+                $exit_now = true;
+                break;
+            default:
+                $e_type = 'E_UNKNOWN';
+                break;
+        }
+        $logText = '[Error][' . $e_type . '][File: ' . $errfile . ':' . $errline . '] ' . $errstr;
+        self::logText($logText, LOGGER_ERROR);
+        if ($exit_now) {
+            exit(1);
+        }
+        return true;
+    }
+
+    /**
+     * Custom exception handler.
+     * Adds a formatted exception to the exception log file
+     *
+     * @param exeption $exception
+     *            Exception not caught
+     */
+    public static function logException($exception)
+    {
+        $message = $exception->getMessage();
+        $code = $exception->getCode();
+        $file = $exception->getFile();
+        $line = $exception->getLine();
+        $trace = $exception->getTraceAsString();
+        $text = '[Exception][Code: ' . $code . '][File: ' . $file . ':' . $line . '][' . $trace . ']';
+        return self::logText($text, LOGGER_EXCEPTION);
+    }
+
+    /**
+     * Adds a formated text to a log file
+     *
+     * @param string $text
+     *            Text to append to the log file
+     * @param string $file
+     *            Path to the log file
+     */
+    private static function logText($text, $file)
+    {
+        /* [DD/MM/YY - HH:MM][USER]: $description */
+        $timestamp = date('d/m/y - H:i:s');
+        $log = '[' . $timestamp . ']' . $text . PHP_EOL;
+        file_put_contents($file, $log, FILE_APPEND);
+        file_put_contents(LOGGER_GENERAL, $log, FILE_APPEND);
+        return true;
+    }
+}
+?>
