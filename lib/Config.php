@@ -92,7 +92,7 @@ class Config
         /**
          * Name of the app
          */
-        define('APP_NAME', 'Network Tester');
+        define('APP_NAME', 'NetWatcher');
         
         /**
          * Number of indent ispaces
