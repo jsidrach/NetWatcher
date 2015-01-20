@@ -158,8 +158,12 @@ abstract class appView extends \Core\View
         
         /* Reads and formats the license file */
         $file = fopen(LICENSE_FILE, "r");
-        $this->pLine('<b>' . $string = trim(preg_replace('/\s+/', ' ', fgets($file))) . '</b></br>', 1);
+        /* Header */
+        $line = trim(preg_replace('/\s+/', ' ', htmlspecialchars(fgets($file))));
+        $this->pLine('<b>' . $line . '</b></br>', 1);
+        /* Body */
         while (($line = fgets($file)) !== false) {
+            $line = htmlspecialchars($line);
             $this->pline(trim(preg_replace('/\s+/', ' ', $line)) . '</br>', 0);
         }
         fclose($file);
