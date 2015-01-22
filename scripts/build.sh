@@ -1,12 +1,13 @@
 #!/bin/bash
 # Commands
+HELP_TEXT='./scripts/build.sh [-d|--doc] [-u|--upgrade] [-i|--install] [-c|--check] [-p|--permissions] [-u|--update] [-r|--clean] [-b|--backup]'
 while [[ $# > 0 ]]
   do
     key="$1"
     shift
     case $key in
       -h|--help)
-      echo './script/build.sh [-d|--doc] [-u|--upgrade] [-i|--install] [-c|--check] [-p|--permissions] [-u|--update] [-r|--clean] [-b|--backup] [-a|--all]'
+      echo $HELP_TEXT
       shift
       ;;
       -d|--doc)
@@ -18,7 +19,7 @@ while [[ $# > 0 ]]
       shift
       ;;
       -i|--install)
-      sudo apt-get install php5-common libapache2-mod-php5 php5-cli php5-xsl GraphViz curl gettext poedit git
+      ./scripts/install_dependencies.sh
       shift
       ;;
       -c|--check)
@@ -34,23 +35,17 @@ while [[ $# > 0 ]]
       shift
       ;;
       -r|--clear)
-      rm -rf log/*
-      rm -rf docs/*
+      rm -rf "log/*"
+      rm -rf "docs/*"
       shift
       ;;
       -b|--backup)
       ./scripts/backup.sh
       shift
       ;;
-      -a|--all)
-      rm -rf docs/api/*
-      ./scripts/do_chmod.sh
-      ./scripts/gen_doc.sh
-      ./scripts/check_php.sh
-      shift
-      ;;
       *)
-        shift
+      echo $HELP_TEXT
+      shift
       ;;
     esac
   done
