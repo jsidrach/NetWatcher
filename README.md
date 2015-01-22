@@ -1,17 +1,26 @@
 # NetWatcher
 
-NetWatcher is a web-based interface to manage network traffic capturer FPGAs.
+NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High Performance Computing and Networking](http://www.hpcn.es/) research group. The project has been released for educational purposes, since no new features are going to be added.
+
+## Table of contents
+
+- [Version](#version)
+- [License](#version)
+- [Tech](#tech)
+- [Installation](#installation)
+- [Documentation](#documentation)
+- [Bugs and feature requests](#bugs-and-feature-requests)
+- [Other Scripts](#other-scripts)
+
 
 Version
 ----
-0.1 - Design ([changelog](changelog.md))
+0.1 - Design Prototype ([changelog](changelog.md))
 
 
 License
 ----
-
-[MIT](LICENSE)
-
+Code released under the [MIT license](LICENSE). Docs released under Creative Commons.
 
 Tech
 ----
@@ -24,34 +33,47 @@ NetWatcher uses a number of open source projects to work properly:
 * [io.js](https://iojs.org) - evented I/O for the backend server
 * [jQuery](https://jquery.com) - JavaScript library
 * [Composer](https://getcomposer.org) - PHP library for external dependencies
-* [phpDocumentor](https://www.phpdoc.org) - documentation generator
 
 Installation
 ----
 * Download the repository and extract it. Change directory to the repository folder.
-* Install packages and active them
+* Install required packages
 ```sh
-$ ./scripts/build.sh --install
-```
-
-* Check Gettext
-    * phpinfo(): GetText Support enabled
-    * Status page
-
-* Install libraries and dependencies
-```sh
-$ ./scripts/upgrade.sh
+$ ./scripts/install_dependencies.sh
 ```
 
 * Translations (implementing more languages)
     * Edit ./locale/ files with a PO file editor, ex: [POEdit](https://poedit.net)
 
+Documentation
+----
+NetWatcher's documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/api/](docs/api/) folder as a webpage. Further documentation about the project architecture and additional reading can be found in the [docs/](docs/) folder too.
+
+Bugs and feature requests
+----
+Although no new features are going to be added, if you have found a bug and you have a *tested* fix for it, you can submit a pull request.
+
 Other Scripts
 ----
+
+* Install required packages
+```sh
+$ ./scripts/install_dependencies.sh
+```
+
+* Install/Upgrade libraries and dependencies
+```sh
+$ ./scripts/upgrade.sh
+```
 
 * Generate Documentation
 ```sh
 $ ./scripts/gen_doc.sh
+```
+
+* Update libraries and dependencies
+```sh
+$ ./lib/vendor/composer.phar update
 ```
 
 * Check PHP files syntax
@@ -59,22 +81,11 @@ $ ./scripts/gen_doc.sh
 $ ./scripts/check_php.sh
 ```
 
-
 * Fix permissions
 ```sh
 $ ./scripts/do_chmod.sh
 ```
 
-Tools for Programming
-----
-[Trello Board](https://trello.com/b/73kOdUNM/tfg)
-
-[Eclipse - PHP](http://www.eclipse.org/pdt/)
-
-Useful Commands
-----
-Start/Stop Apache
-```sh
-$ sudo service apache2 stop
-$ sudo service apache2 start
-```
+* Check Gettext
+    * phpinfo(): GetText Support enabled
+    * Status page
