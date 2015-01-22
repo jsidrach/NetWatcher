@@ -20,6 +20,8 @@ while [[ $# > 0 ]]
       ;;
       -i|--install)
       ./scripts/install_dependencies.sh
+      ./scripts/upgrade.sh
+      ./scripts/do_chmod.sh
       shift
       ;;
       -c|--check)
