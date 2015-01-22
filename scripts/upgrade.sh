@@ -1,8 +1,8 @@
 #!/bin/bash
 # Upgrades the libraries
 # Delete Libraries
-rm -rf lib/vendor
-rm -f composer.lock
+rm -rf "lib/vendor"
+rm -f "composer.lock"
 mkdir lib/vendor
 # Get Composer
 curl -sS https://getcomposer.org/installer | php -- --install-dir=lib/vendor
@@ -16,9 +16,9 @@ cp lib/vendor/components/jquery/jquery.js public/js/
 cp -rf lib/vendor/ifightcrime/bootstrap-growl/jquery.bootstrap-growl.js public/js/
 # Copy Bootstrap to public dir
 cp -rf lib/vendor/twbs/bootstrap/dist/* public/
-rm -rf public/js/bootstrap.min.js
-rm -rf public/css/bootstrap-theme.css public/css/bootstrap-theme.css.map public/css/bootstrap.css public/css/bootstrap.css.map
-rm -rf components/
+rm -rf "public/js/bootstrap.min.js"
+rm -rf "public/css/bootstrap-theme.css public/css/bootstrap-theme.css.map public/css/bootstrap.css public/css/bootstrap.css.map"
+rm -rf "components/"
 mv public/css/bootstrap-theme.min.css public/themes/
 # Bootstrap Themes
 curl -o public/themes/bootstrap.celurean.min.css http://bootswatch.com/cerulean/bootstrap.min.css
