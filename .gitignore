@@ -2,7 +2,6 @@
 composer.lock
 log/
 lib/vendor/
-docs/api/
 
 # Eclipse specific gitignore
 .settings/
