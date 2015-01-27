@@ -106,7 +106,7 @@ class Config
         /**
          * Default controller
          */
-        define('DEFAULT_CONTROLLER', 'settings');
+        define('DEFAULT_CONTROLLER', 'status');
         /**
          * Default method
          */
