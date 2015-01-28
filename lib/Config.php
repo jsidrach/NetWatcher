@@ -32,11 +32,14 @@ class Config
      * CSS Libraries
      */
     public static $CSS_LIBRARIES = array(
-        'bootstrap.min.css'
+        'bootstrap.min.css',
+        'theme',
+        'sticky-footer.css'
     );
+    /* 'theme' is the keyword for the user theme, so we can place it between other stylesheets */
 
     /**
-     * Themes
+     * User Themes
      */
     public static $CSS_THEMES = array(
         'Default' => 'bootstrap-theme.min.css',
