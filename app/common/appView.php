@@ -76,9 +76,12 @@ abstract class appView extends \Core\View
         
         $this->pLine('<!-- CSS files -->', 0);
         foreach (\Core\Config::$CSS_LIBRARIES as $cssLib) {
-            $this->pLine('<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">', 0);
+            if (!strcmp($cssLib,'theme')) {
+                $this->pLine('<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">', 0);
+            } else {
+                $this->pLine('<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">', 0);
+            }
         }
-        $this->pLine('<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">', 0);
         
         $this->pLine('<!-- JS files -->', 0);
         foreach (\Core\Config::$JS_LIBRARIES as $jsLib) {
@@ -98,9 +101,15 @@ abstract class appView extends \Core\View
         $this->pLine('<header class="navbar navbar-default navbar-static-top" id="top" role="banner">', 0);
         $this->pLine('<div class="container">', 1);
         $this->pLine('<div class="navbar-header">', 1);
-        $this->pLine('<a href="." class="navbar-brand">' . _(APP_NAME) . '</a>', 1);
+        $this->pLine('<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">', 1);
+        $this->pLine('<span class="sr-only">Toggle navigation</span>', 1);
+        $this->pLine('<span class="icon-bar"></span>', 0);
+        $this->pLine('<span class="icon-bar"></span>', 0);
+        $this->pLine('<span class="icon-bar"></span>', 0);
+        $this->pLine('</button>', - 1);
+        $this->pLine('<a href="." class="navbar-brand">' . _(APP_NAME) . '</a>', 0);
         $this->pLine('</div>', - 1);
-        $this->pLine('<nav class="collapse navbar-collapse" role="navigation">', 0);
+        $this->pLine('<nav id="navbar" class="collapse navbar-collapse" role="navigation">', 0);
         
         $this->pLine('<ul class="nav navbar-nav">', 1);
         foreach (self::$leftNavbar as $leftURL => $leftItem) {
@@ -182,8 +191,7 @@ abstract class appView extends \Core\View
         $this->pLine('</div>', - 1);
         
         $this->pLine('<!-- Footer -->', 0);
-        $this->pLine('<footer role="contentinfo">', 0);
-        $this->pLine('<div id="footer" class="navbar-fixed-bottom">', 1);
+        $this->pLine('<footer class="footer" role="contentinfo">', 0);
         $this->pLine('<div class="container">', 1);
         
         $this->pLine('<p class="muted credit">', 1);
@@ -196,7 +204,6 @@ abstract class appView extends \Core\View
         $this->pLine('<a href="" data-toggle="modal" data-target="#license">' . _('License') . '</a>', 0);
         $this->pLine('</p>', 0);
         
-        $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         
         $this->pLine('</footer>', - 1);
