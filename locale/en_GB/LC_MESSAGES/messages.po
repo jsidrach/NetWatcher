@@ -1,165 +1,158 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Network Tester\n"
-"POT-Creation-Date: 2015-01-19 09:33+0100\n"
-"PO-Revision-Date: 2015-01-19 09:33+0100\n"
+"POT-Creation-Date: 2015-01-29 15:14+0100\n"
+"PO-Revision-Date: 2015-01-29 15:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.3\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
-"X-Poedit-Basepath: /var/www/html/webapp\n"
-"X-Poedit-SearchPath-0: /var/www/html/webapp\n"
+"X-Poedit-Basepath: ../../../\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: docs\n"
+"X-Poedit-SearchPathExcluded-1: public\n"
+"X-Poedit-SearchPathExcluded-2: fpga_server/node\n"
+"X-Poedit-SearchPathExcluded-3: fpga_server/node_modules\n"
+"X-Poedit-SearchPathExcluded-4: lib/vendor\n"
 
-#: /var/www/html/webapp/app/common/appView.php:155
-#: /var/www/html/webapp/app/common/appView.php:192
+#: app/common/appView.php:164 app/common/appView.php:204
 msgid "License"
 msgstr "License"
 
-#: /var/www/html/webapp/app/common/appView.php:188
-#: /var/www/html/webapp/app/modules/status/statusView.php:32
+#: app/common/appView.php:200 app/modules/status/statusView.php:32
 msgid "Status"
 msgstr "Status"
 
-#: /var/www/html/webapp/app/common/appView.php:190
+#: app/common/appView.php:202
 msgid "Documentation"
 msgstr "Documentation"
 
-#: /var/www/html/webapp/app/modules/settings/settingsController.php:53
-#: /var/www/html/webapp/app/modules/settings/settingsView.php:32
+#: app/modules/settings/settingsController.php:53
+#: app/modules/settings/settingsView.php:32
 msgid "Settings"
 msgstr "Settings"
 
-#: /var/www/html/webapp/app/modules/settings/settingsController.php:58
+#: app/modules/settings/settingsController.php:58
 msgid "Settings saved successfully"
 msgstr "Settings saved successfully"
 
-#: /var/www/html/webapp/app/modules/settings/settingsController.php:60
+#: app/modules/settings/settingsController.php:60
 msgid "Error saving settings"
 msgstr "Error saving settings"
 
-#: /var/www/html/webapp/app/modules/settings/settingsView.php:46
+#: app/modules/settings/settingsView.php:46
 msgid "Server Settings"
 msgstr "Server Settings"
 
-#: /var/www/html/webapp/app/modules/settings/settingsView.php:48
+#: app/modules/settings/settingsView.php:48
 msgid "Server IP"
 msgstr "Server IP"
 
-#: /var/www/html/webapp/app/modules/settings/settingsView.php:55
+#: app/modules/settings/settingsView.php:55
 msgid "App Settings"
 msgstr "App Settings"
 
-#: /var/www/html/webapp/app/modules/settings/settingsView.php:58
+#: app/modules/settings/settingsView.php:58
 msgid "Language"
 msgstr "Language"
 
-#: /var/www/html/webapp/app/modules/settings/settingsView.php:73
+#: app/modules/settings/settingsView.php:73
 msgid "Theme"
 msgstr "Theme"
 
-#: /var/www/html/webapp/app/modules/settings/settingsView.php:90
+#: app/modules/settings/settingsView.php:90
 msgid "Save"
 msgstr "Save"
 
-#: /var/www/html/webapp/app/modules/status/statusView.php:72
-msgid "Total"
-msgstr "Total"
-
-#: /var/www/html/webapp/app/modules/status/statusModel.php:49
-#: /var/www/html/webapp/app/modules/status/statusModel.php:57
-#: /var/www/html/webapp/app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:49 app/modules/status/statusModel.php:57
+#: app/modules/status/statusModel.php:65
 msgid "Rewrite Module"
 msgstr "Rewrite Module"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:50
-#: /var/www/html/webapp/app/modules/status/statusModel.php:58
-#: /var/www/html/webapp/app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:50 app/modules/status/statusModel.php:58
+#: app/modules/status/statusModel.php:66
 msgid "Gettext Module"
 msgstr "Gettext Module"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:51
-#: /var/www/html/webapp/app/modules/status/statusModel.php:59
-#: /var/www/html/webapp/app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:59
+#: app/modules/status/statusModel.php:67
 msgid "Session Variables"
 msgstr "Session Variables"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:52
-#: /var/www/html/webapp/app/modules/status/statusModel.php:60
-#: /var/www/html/webapp/app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:60
+#: app/modules/status/statusModel.php:68
 msgid "Write Permissions"
 msgstr "Write Permissions"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:53
-#: /var/www/html/webapp/app/modules/status/statusModel.php:61
-#: /var/www/html/webapp/app/modules/status/statusModel.php:69
+#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:61
+#: app/modules/status/statusModel.php:69
 msgid "Remote Server"
 msgstr "Remote Server"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:54
-#: /var/www/html/webapp/app/modules/status/statusModel.php:62
-#: /var/www/html/webapp/app/modules/status/statusModel.php:70
+#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:62
+#: app/modules/status/statusModel.php:70
 msgid "FPGAs"
 msgstr "FPGAs"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:65
 msgid "URL rewrite support"
 msgstr "URL rewrite support"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:66
 msgid "Locale language support"
 msgstr "Locale language support"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:67
 msgid "Support for the usage of sessions"
 msgstr "Support for the usage of sessions"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:68
 msgid "Folder and file properties"
 msgstr "Folder and file properties"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:69
+#: app/modules/status/statusModel.php:69
 msgid "ioJS daemon"
 msgstr "ioJS daemon"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:70
+#: app/modules/status/statusModel.php:70
 msgid "FPGAs online and active"
 msgstr "FPGAs online and active"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:73
+#: app/modules/status/statusModel.php:73
 msgid "Passed"
 msgstr "Passed"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:74
+#: app/modules/status/statusModel.php:74
 msgid "Not Implemented"
 msgstr "Not Implemented"
 
-#: /var/www/html/webapp/app/modules/status/statusModel.php:75
+#: app/modules/status/statusModel.php:75
 msgid "Failed"
 msgstr "Failed"
 
-#: /var/www/html/webapp/public/404.php:5
-msgid "404 - Not Found"
-msgstr "404 - Not Found"
+#: app/modules/status/statusView.php:72
+msgid "Total"
+msgstr "Total"
 
-#: /var/www/html/webapp/public/404.php:28
-msgid "Page Not Found"
-msgstr "Page Not Found"
+#~ msgid "404 - Not Found"
+#~ msgstr "404 - Not Found"
 
-#: /var/www/html/webapp/public/404.php:29
-msgid "Error 404"
-msgstr "Error 404"
+#~ msgid "Page Not Found"
+#~ msgstr "Page Not Found"
 
-#: /var/www/html/webapp/public/404.php:32
-msgid "Sorry, an error has occured. Requested page not found!"
-msgstr "Sorry, an error has occured. Requested page not found!"
+#~ msgid "Error 404"
+#~ msgstr "Error 404"
 
-#: /var/www/html/webapp/public/404.php:35
-msgid "Take me Home"
-msgstr "Take me Home"
+#~ msgid "Sorry, an error has occured. Requested page not found!"
+#~ msgstr "Sorry, an error has occured. Requested page not found!"
+
+#~ msgid "Take me Home"
+#~ msgstr "Take me Home"
 
 #~ msgid "Example text"
 #~ msgstr "Example text"
