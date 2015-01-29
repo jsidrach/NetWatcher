@@ -15,9 +15,9 @@ cp lib/vendor/components/jquery/jquery.js public/js/
 # Growl notifications
 cp -rf lib/vendor/ifightcrime/bootstrap-growl/jquery.bootstrap-growl.js public/js/
 # Copy Bootstrap to public dir
-cp -rf lib/vendor/twbs/bootstrap/dist/* public/
+cp -rf "lib/vendor/twbs/bootstrap/dist/"* "public/"
 rm -rf "public/js/bootstrap.min.js"
-rm -rf "public/css/bootstrap-theme.css public/css/bootstrap-theme.css.map public/css/bootstrap.css public/css/bootstrap.css.map"
+rm -rf "public/css/bootstrap-theme.css" "public/css/bootstrap-theme.css.map" "public/css/bootstrap.css" "public/css/bootstrap.css.map"
 rm -rf "components/"
 mv public/css/bootstrap-theme.min.css public/themes/
 # Bootstrap Themes

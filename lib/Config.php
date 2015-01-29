@@ -243,7 +243,7 @@ class Config
         $configData = json_decode(file_get_contents(DEFAULT_CONFIG_FILE));
         
         /* Loads the css theme */
-        self::$DEFAULT_CSS_THEME = htmlspecialchars($configData->theme);
+        self::$DEFAULT_CSS_THEME = $configData->theme;
         
         /* Loads the language */
         putenv('LANG=' . self::$LANGUAGES[$configData->lang]);
@@ -253,10 +253,10 @@ class Config
         $domain = 'messages';
         bindtextdomain($domain, LOCALIZATION_DIR);
         bind_textdomain_codeset($domain, META_CHARSET);
-        self::$DEFAULT_LANG = htmlspecialchars($configData->lang);
+        self::$DEFAULT_LANG = $configData->lang;
         
         /* Loads the server ip */
-        self::$REMOTE_SERVER_IP = htmlspecialchars($configData->serverIp);
+        self::$REMOTE_SERVER_IP = $configData->serverIp;
     }
 }
 ?>
