@@ -37,8 +37,8 @@ while [[ $# > 0 ]]
       shift
       ;;
       -r|--clear)
-      rm -rf "log/*"
-      rm -rf "docs/*"
+      rm -rf "log/"*
+      rm -rf "docs/"*
       shift
       ;;
       -b|--backup)

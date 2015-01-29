@@ -30,7 +30,8 @@ NetWatcher uses a number of open source projects to work properly:
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/index.html) - great UI boilerplate for modern web apps
     * [Bootswatch](http://bootswatch.com/) - themes for Bootstrap
     * [Bootstrap Growl](https://github.com/ifightcrime/bootstrap-growl) - notifications
-* [io.js](https://iojs.org) - evented I/O for the backend server
+* [node.js](http://nodejs.org/) - evented I/O for the backend server
+* [Express](http://expressjs.com/) - web framework for node.js
 * [jQuery](https://jquery.com) - JavaScript library
 * [Composer](https://getcomposer.org) - PHP library for external dependencies
 
@@ -89,3 +90,6 @@ $ ./scripts/do_chmod.sh
 * Check Gettext
     * phpinfo(): GetText Support enabled
     * Status page
+    
+* Only localhost
+Open /etc/apache2/ports.conf, change `Listen 80` to Listen `127.0.0.1:80`
