@@ -92,4 +92,4 @@ $ ./scripts/do_chmod.sh
     * Status page
     
 * Only localhost
-Open /etc/apache2/ports.conf, change `Listen 80` to `Listen 127.0.0.1:80`
+    * Open /etc/apache2/ports.conf, change `Listen 80` to `Listen 127.0.0.1:80`
