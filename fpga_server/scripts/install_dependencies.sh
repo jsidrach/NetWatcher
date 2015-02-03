@@ -18,7 +18,6 @@ else
 fi
 
 # Install express
-./node/bin/npm install express
-mv "node_modules/express" "node/lib/node_modules/"
 rm -rf "node_modules"
+./node/bin/npm install express
 ./node/bin/npm install
