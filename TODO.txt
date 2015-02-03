@@ -1,0 +1,70 @@
+TODO: Get json messages as languages, add to translations
+
+API JSON (root: /fpga_api/) - Servidor node.js+express
+
+GET
+/status/
+  Mensajes:
+  404 - NO LO HACE EL HOST FPGA, sino el servidor web que invoca
+
+  status => "hp_off"
+  description => "HugePages is not enabled. To fix this, the host should be rebooted with this option selected on the GRUB menu."
+
+  status => "config_off"
+  description => "The FPGA is not configured either as player or as recorder."
+
+  status => "mount_off"
+  description => "The FPGA is not mounted."
+
+  status => "recorder_ready"
+  description => "The FPGA is ready to record data."
+
+  status => "player_ready"
+  description => "The FPGA is ready to reproduce data."
+
+  status => "recorder_on"
+  description => "The FPGA is recording data."
+
+  status => "player_on"
+  description => "The FPGA is ready to reproduce data."
+
+GET
+/statistics/
+  Solo cuando este en recorder/player ON? Que estadisticas?
+
+POST
+/configure/player/:param1/:param2/:param3...
+/configure/recorder/:param1/:param2/:param3...
+
+/start/player/:param1/:param2/:param3...
+/start/recorder/:param1/:param2/:param3...
+
+_________________________________________________________________________________
+
+Proceso del host FPGA:
+
+1) Iniciar con HugePages
+  -TODO: como saber si esta activa?
+2) ./impact.sh [Fichero de configuracion (bitstream)]
+3) Reboot
+  - Programada. Para saber que estamos en este paso, `lspci -vvv`, lista los PCI -> sale 1 (xilinx), con id 19aa:e004
+4) ./install.sh f
+  - Instanciar y montar, solo una vez. Ahora mismo esta con interfaz grafica, cambiar a un script que lo acepte como parametro
+  - Para comprobar que esta, `lsmod`, y tiene que salir nfp_driver
+
+5) Para ver si esta en reproductor o capturador
+  - `cat /proc/nfp/nfp_report`, ver PLA/REC
+  - ./writeControl para controlar cuanto va a enviar/recibir, -l mascara 3
+
+6.1) Recepcion
+  - ./configureAel para eliminar ruido
+  - ./card2host
+
+6.2) Captura
+
+
+
+Passwords
+
+hpcn/hpcn.es
+root/hpcn123
