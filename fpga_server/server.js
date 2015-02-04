@@ -1,9 +1,12 @@
 // Package dependencies
 var express    = require('express');
-var app        = express();
 var bodyParser = require('body-parser');
+// Express
+var app        = express();
+
 // Functions module for each petition
-var funcs      = require('./routes/funcs.js');
+// TODO: One javascript for each typep
+var playground     = require('./routes/playground.js');
 
 // Configure app to use bodyParser() so it will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,7 +23,7 @@ var defError = express.Router();
 // Routes and Modules
 
 // Example route
-router.get('/example', funcs.example);
+router.get('/example', playground.example);
 
 
 
