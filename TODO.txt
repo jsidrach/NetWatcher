@@ -32,12 +32,19 @@ GET
 /statistics/
   Solo cuando este en recorder/player ON? Que estadisticas?
 
+GET
+/capturas disponibles para reproducir...?/Con el tamaño que tienen?
+
 POST
 /configure/player/:param1/:param2/:param3...
 /configure/recorder/:param1/:param2/:param3...
 
 /start/player/:param1/:param2/:param3...
 /start/recorder/:param1/:param2/:param3...
+
+--
+Definir mensajes no estaticos como key fija y value a cadena vacia ("")
+--
 
 _________________________________________________________________________________
 
