@@ -1,23 +1,23 @@
 #!/bin/sh
 
-CURRENT=$(node -v)
-VERSION=$(curl -L -s http://nodejs.org/dist/latest/ \
+CURRENT=$(iojs -v)
+VERSION=$(curl -L -s http://iojs.org/dist/latest/ \
     | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' \
     | tail -n1)
 PLATFORM=linux
 ARCH=x86
-PREFIX="node"
+PREFIX="iojs"
 
 if test "v$VERSION" != "$CURRENT"; then
-    echo "Installing node v$VERSION ..."
+    echo "Installing io.js v$VERSION ..."
     mkdir -p "$PREFIX" && \
-    curl -# -L http://nodejs.org/dist/v$VERSION/node-v$VERSION-$PLATFORM-$ARCH.tar.gz \
+    curl -# -L http://iojs.org/dist/v$VERSION/iojs-v$VERSION-$PLATFORM-$ARCH.tar.gz \
       | tar xzvf - --strip-components=1 -C "$PREFIX"
 else
-    echo "Latest stable version of node already installed."
+    echo "Latest stable version of io.js already installed."
 fi
 
 # Install express
 rm -rf "node_modules"
-./node/bin/npm install express
-./node/bin/npm install
+./iojs/bin/npm install express
+./iojs/bin/npm install
