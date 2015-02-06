@@ -30,8 +30,8 @@ NetWatcher uses a number of open source projects to work properly:
 * [Twitter Bootstrap](http://twitter.github.com/bootstrap/index.html) - great UI boilerplate for modern web apps
     * [Bootswatch](http://bootswatch.com/) - themes for Bootstrap
     * [Bootstrap Growl](https://github.com/ifightcrime/bootstrap-growl) - notifications
-* [node.js](http://nodejs.org/) - evented I/O for the backend server
-* [Express](http://expressjs.com/) - web framework for node.js
+* [io.js](http://iojs.org/) - evented I/O for the backend server
+* [Express](http://expressjs.com/) - web framework for io.js
 * [jQuery](https://jquery.com) - JavaScript library
 * [Composer](https://getcomposer.org) - PHP library for external dependencies
 
