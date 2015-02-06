@@ -6,3 +6,4 @@ echo "program -p 1 -prog" >> impact.bat
 echo "quit" >> impact.bat
 
 impact -batch impact.bat
+rm -f impact.bat
