@@ -1,0 +1,134 @@
+TODO: Programar script de instalación/actualización del servidor de forma remota?
+    - Enviar código nuevo, etc.
+    - Crear proceso que se inicie al arrancar linux
+    - Revisar que está autologin¿
+
+TODO: Investigar cómo traducir los mensajes json
+  - Opción buena: traducir del lado del cliente PHP
+  - Opción MALA?: mandar sólo información no redundante (ids estado, códigos y estadísticas), php se encarga de traducir?
+
+API JSON (root: /fpga_api/) - Servidor node.js+express
+
+GET
+/status/
+  Mensajes:
+  404 - NO LO HACE EL HOST FPGA, sino el servidor web que invoca
+
+  status => "hp_off"
+  description => "HugePages is not enabled. To fix this, the host should be rebooted with this option selected on the GRUB menu."
+
+  status => "config_off"
+  description => "The FPGA is not configured either as player or as recorder."
+
+  status => "mount_off"
+  description => "The FPGA is not mounted."
+
+  status => "recorder_ready"
+  description => "The FPGA is ready to record data."
+
+  status => "player_ready"
+  description => "The FPGA is ready to reproduce data."
+
+  status => "recorder_on"
+  description => "The FPGA is recording data."
+
+  status => "player_on"
+  description => "The FPGA is ready to reproduce data."
+
+Mensaje genérico de error por estado no válido para los GET/POST
+  status => "not_valid"
+  description => "The FPGA is not ready (in a valid state) to perform this operation yet."
+
+Mensaje de estado inconsistente?
+
+Mensaje de orden procesada
+  status => "success"
+  description => ""
+
+GET
+/statistics/
+  Solo cuando este en recorder/player ON? Que estadisticas?
+
+GET
+/capturas disponibles para reproducir...?/Con el tamaño que tienen?
+
+POST
+/init/player|recorder?
+
+/configure/player/:param1/:param2/:param3...
+/configure/recorder/:param1/:param2/:param3...
+
+/start/player/:param1/:param2/:param3...
+/start/recorder/:param1/:param2/:param3...
+
+/stop/player/:param1/:param2/:param3...
+/stop/recorder/:param1/:param2/:param3...
+pause?
+
+
+
+
+--
+Definir mensajes no estaticos como key fija y value a cadena vacia ("")
+--
+
+_________________________________________________________________________________
+
+
+[Preguntas para Jose]
+Actualizar la máquina????
+  - Cómo hacer para reboot un S.O. específico
+Se lanzan los procesos automáticos de init sin logearse con usuario > Sí se inician, automáticamente
+
+Qué archivos imprescindibles me puedo llevar
+Trazas: formatos? hace falta que estén guardadas en algún sitio específico? Traducción?
+
+Desde qué punto se sabe si es player o recorder
+
+
+[Proceso del servidor FPGA]
+
+1) Saber si HugePages está activo
+------
+0 si huge pages está activo, 1 sino
+cat /proc/meminfo | grep "HugePages_Total:       0"
+
+2) Para cambiar a HugePages
+-----
+Solución óptima: hacer grub-reboot [número]
+Solución no óptima: guardar para que por defecto se ponga el de HugePages
+
+3) Para inicializar
+----
+impact.sh.. donde está? Argumento fichero de configuración (bitstream)
+
+4) Para comprobar que esté programada
+----
+lspci | grep 19aa:e004
+Si sale 0 es que está programada
+
+5) Instanciar y montar
+----
+./install_driver.sh
+reboot? es necesario? con hugepages?
+
+6) Para ver si está instanciada y montada
+----
+lsmod | grep nfp_driver
+Si sale 0 es que está montada
+
+7) Para ver si está en reproductor o capturador
+cat /proc/nfp/nfp_report | grep PLA
+Si sale 0, está en player
+cat /proc/nfp/nfp_report | grep REC
+Si sale 0, está en recorder
+
+8) Configurar cuanto va a enviar/recibir
+./writeControl para controlar cuanto va a enviar/recibir, -l mascara 3
+
+9.1) Recepcion
+./configureAel para eliminar ruido
+./card2host
+
+9.2) Captura
+./host2card
