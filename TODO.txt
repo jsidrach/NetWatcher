@@ -1,7 +1,8 @@
-TODO: Programar script de instalación/actualización del servidor de forma remota?
+TODO: Programar script de instalación del servidor de forma remota?
     - Enviar código nuevo, etc.
     - Crear proceso que se inicie al arrancar linux
-    - Revisar que está autologin¿
+    - Revisar que está autologin? Definir autologin?
+TODO: Script de actualización de forma remota
 
 TODO: Investigar cómo traducir los mensajes json
   - Opción buena: traducir del lado del cliente PHP
@@ -95,12 +96,13 @@ cat /proc/meminfo | grep "HugePages_Total:       0"
 
 2) Para cambiar a HugePages
 -----
-Solución óptima: hacer grub-reboot [número]
-Solución no óptima: guardar para que por defecto se ponga el de HugePages
+Solución óptima: hacer grub-reboot [número]                               [ ]
+Solución no óptima: guardar para que por defecto se ponga el de HugePages [x]
+  - Añadir en requisitos previos...?
 
 3) Para inicializar
 ----
-impact.sh.. donde está? Argumento fichero de configuración (bitstream)
+impact.sh Argumento fichero de configuración (bitstream) > DESDE AQUI PLAYER O RECORDER
 
 4) Para comprobar que esté programada
 ----
@@ -110,7 +112,7 @@ Si sale 0 es que está programada
 5) Instanciar y montar
 ----
 ./install_driver.sh
-reboot? es necesario? con hugepages?
+Reboot
 
 6) Para ver si está instanciada y montada
 ----
@@ -118,17 +120,21 @@ lsmod | grep nfp_driver
 Si sale 0 es que está montada
 
 7) Para ver si está en reproductor o capturador
+----
 cat /proc/nfp/nfp_report | grep PLA
 Si sale 0, está en player
 cat /proc/nfp/nfp_report | grep REC
 Si sale 0, está en recorder
 
 8) Configurar cuanto va a enviar/recibir
+----
 ./writeControl para controlar cuanto va a enviar/recibir, -l mascara 3
 
 9.1) Recepcion
+----
 ./configureAel para eliminar ruido
 ./card2host
 
 9.2) Captura
+----
 ./host2card
