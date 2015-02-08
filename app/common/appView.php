@@ -21,16 +21,12 @@ abstract class appView extends \Core\View
     /**
      * Left navbar links
      */
-    private static $leftNavbar = array(
-        '.' => 'Page 1'
-    );
+    private static $leftNavbar;
 
     /**
      * Right navbar links
      */
-    private static $rightNavbar = array(
-        'settings' => 'Settings'
-    );
+    private static $rightNavbar;
 
     /**
      * Generic constructor.
@@ -42,6 +38,14 @@ abstract class appView extends \Core\View
     protected function __construct($model)
     {
         parent::__construct($model);
+        self::$leftNavbar = array(
+            '#notImplemented1' => _('Manager'),
+            '#notImplemented2' => _('Statistics'),
+            '#notImplemented3' => _('Captures')
+        );
+        self::$rightNavbar =  array(
+            'settings' => _('Settings')
+        );
     }
 
     /**
@@ -107,7 +111,7 @@ abstract class appView extends \Core\View
         $this->pLine('<span class="icon-bar"></span>', 0);
         $this->pLine('<span class="icon-bar"></span>', 0);
         $this->pLine('</button>', - 1);
-        $this->pLine('<a href="." class="navbar-brand">' . _(APP_NAME) . '</a>', 0);
+        $this->pLine('<div class="navbar-brand">' . _(APP_NAME) . '</div>', 0);
         $this->pLine('</div>', - 1);
         $this->pLine('<nav id="navbar" class="collapse navbar-collapse" role="navigation">', 0);
         
@@ -192,7 +196,7 @@ abstract class appView extends \Core\View
         
         $this->pLine('<!-- Footer -->', 0);
         $this->pLine('<footer class="footer" role="contentinfo">', 0);
-        $this->pLine('<div class="container">', 1);
+        $this->pLine('<div class="container text-center">', 1);
         
         $this->pLine('<p class="muted credit">', 1);
         $this->pLine('High Performance Computing and Networking', 0);
@@ -200,6 +204,10 @@ abstract class appView extends \Core\View
         $this->pLine('<a href="status">' . _('Status') . '</a>', 0);
         $this->pLine('&middot;', 0);
         $this->pLine('<a target="_blank" href="documentation">' . _('Documentation') . '</a>', 0);
+        $this->pLine('&middot;', 0);
+        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher">' . _('Source') . '</a>', 0);
+        $this->pLine('&middot;', 0);
+        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher/wiki">' . _('Wiki') . '</a>', 0);
         $this->pLine('&middot;', 0);
         $this->pLine('<a href="" data-toggle="modal" data-target="#license">' . _('License') . '</a>', 0);
         $this->pLine('</p>', 0);

@@ -66,6 +66,10 @@ POST
 /stop/recorder/:param1/:param2/:param3...
 pause?
 
+/rename/oldname/newname
+/delete/name
+/parse/name/newname
+
 
 
 
@@ -73,6 +77,28 @@ pause?
 Definir mensajes no estaticos como key fija y value a cadena vacia ("")
 --
 
+
+_________________________________________________________________________________
+Esquema aplicación:
+
+NetWatcher (sin enlace)
+
+Manager
+  > Estado actual, y cambiar de estado, mediante distintos pasos de formulario
+
+Statistics
+  > Estado actual, y cuando esté reproduciendo/capturando algunas estadísticas
+
+Manage Captures
+  > Convertir de PCAP a SIMPLE
+  > Delete > con confirmación
+  > Rename
+  Explicación de como subir nuevas en una caja, scp etcetc
+
+Settings
+  > Idioma, servidor, temas
+  
+  
 _________________________________________________________________________________
 
 

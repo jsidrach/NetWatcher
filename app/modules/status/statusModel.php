@@ -193,7 +193,6 @@ class statusModel extends Common\appModel
     {
         /* Carpetas y archivos internos */
         $write_dirs = array();
-        $write_dirs[] = FILES_DIR;
         $write_dirs[] = LOGGER_DIR;
         $write_dirs[] = CONFIG_DIR;
         foreach ($write_dirs as $dir) {

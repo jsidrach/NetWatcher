@@ -197,10 +197,6 @@ class Config
         define('DOC_API', DOC_DIR . 'api' . DIRECTORY_SEPARATOR . 'index.html');
         
         /**
-         * Path to the files directory
-         */
-        define('FILES_DIR', BASE_DIR . 'files' . DIRECTORY_SEPARATOR);
-        /**
          * Path to the localization directory
          */
         define('LOCALIZATION_DIR', BASE_DIR . 'locale' . DIRECTORY_SEPARATOR);
