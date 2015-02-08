@@ -41,16 +41,29 @@ class settingsController extends Common\appController
     public function save(array $args)
     {
         /* Save the settings */
-        $settings['lang'] = $_REQUEST['language'];
-        $settings['theme'] = $_REQUEST['theme'];
-        $settings['serverIp'] = $_REQUEST['serverIp'];
+        if (isset($_REQUEST['language'])) {
+            $settings['lang'] = $_REQUEST['language'];
+        } else {
+            $settings['lang'] = \Core\Config::$DEFAULT_LANG;
+        }
+        if (isset($_REQUEST['theme'])) {
+            $settings['theme'] = $_REQUEST['theme'];
+        } else {
+            $settings['theme'] = \Core\Config::$DEFAULT_CSS_THEME;
+        }
+        if (isset($_REQUEST['serverIp'])) {
+            $settings['serverIp'] = $_REQUEST['serverIp'];
+        } else {
+            $settings['serverIp'] = \Core\Config::$REMOTE_SERVER_IP;
+        }
         $ctrl = $this->model->saveSettings($settings);
         
         /* Loads the new settings */
         \Core\Config::dynamicLoad();
         
-        /* Renders the page */
-        $this->view->title = _('Settings');
+        /* Reloads the model and renders the page */
+        $this->model = new settingsModel();
+        $this->view = new settingsView($this->model);
         $this->view->render();
         
         /* Renders the notification */
