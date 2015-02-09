@@ -169,7 +169,7 @@ abstract class appView extends \Core\View
         $this->pLine('<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>', 0);
         $this->pLine('<h4 class="modal-title" id="myModalLabel">' . _('License') . ' - ' . APP_NAME . '</h4>', 0);
         $this->pLine('</div>', - 1);
-        $this->pLine('<div class="modal-body">', 0);
+        $this->pLine('<div class="modal-body text-justify">', 0);
         
         /* Reads and formats the license file */
         $file = fopen(LICENSE_FILE, "r");
