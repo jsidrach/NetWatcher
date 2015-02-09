@@ -2,7 +2,7 @@
 
 // Package dependencies
 var scripts    = require('child_process');
-var common     = require('./common.js');
+var common     = require('./_common.js');
 
 // Test example to see if everything is working and to understand different concepts
 exports.example = function(req, res) {

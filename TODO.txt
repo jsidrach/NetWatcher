@@ -46,33 +46,6 @@ Mensaje de orden procesada
   status => "success"
   description => ""
 
-GET
-/statistics/
-  Solo cuando este en recorder/player ON? Que estadisticas?
-
-GET
-/capturas disponibles para reproducir...?/Con el tamaño que tienen?
-
-POST
-/init/player|recorder?
-
-/configure/player/:param1/:param2/:param3...
-/configure/recorder/:param1/:param2/:param3...
-
-/start/player/:param1/:param2/:param3...
-/start/recorder/:param1/:param2/:param3...
-
-/stop/player/:param1/:param2/:param3...
-/stop/recorder/:param1/:param2/:param3...
-pause?
-
-/rename/oldname/newname
-/delete/name
-/parse/name/newname
-
-
-
-
 --
 Definir mensajes no estaticos como key fija y value a cadena vacia ("")
 --
@@ -90,6 +63,7 @@ Statistics
   > Estado actual, y cuando esté reproduciendo/capturando algunas estadísticas
 
 Manage Captures
+  > Ver capturas actuales
   > Convertir de PCAP a SIMPLE
   > Delete > con confirmación
   > Rename
