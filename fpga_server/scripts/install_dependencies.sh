@@ -3,7 +3,7 @@
 # Run from the fpga server
 
 # Install io.js
-CURRENT=$(iojs -v)
+CURRENT=$(./iojs/bin/iojs -v)
 VERSION=$(curl -L -s http://iojs.org/dist/latest/ \
     | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' \
     | tail -n1)
@@ -24,5 +24,3 @@ fi
 rm -rf "node_modules"
 ./iojs/bin/npm install express
 ./iojs/bin/npm install
-
-# TODO: Create init proccess, start init proccess
