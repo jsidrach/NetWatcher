@@ -1,8 +1,5 @@
-TODO: Programar script de instalación del servidor de forma remota?
-    - Enviar código nuevo, etc.
-    - Crear proceso que se inicie al arrancar linux
-    - Revisar que está autologin? Definir autologin?
-TODO: Script de actualización de forma remota
+- Crear proceso que se inicie al arrancar linux
+    ./install_dependencies.sh
 
 TODO: Investigar cómo traducir los mensajes json
   - Opción buena: traducir del lado del cliente PHP
@@ -77,15 +74,7 @@ ________________________________________________________________________________
 
 
 [Preguntas para Jose]
-Actualizar la máquina????
-  - Cómo hacer para reboot un S.O. específico
-Se lanzan los procesos automáticos de init sin logearse con usuario > Sí se inician, automáticamente
-
-Qué archivos imprescindibles me puedo llevar
-Trazas: formatos? hace falta que estén guardadas en algún sitio específico? Traducción?
-
-Desde qué punto se sabe si es player o recorder
-
+Programa para convertir trazas
 
 [Proceso del servidor FPGA]
 
@@ -130,7 +119,7 @@ Si sale 0, está en recorder
 ----
 ./writeControl para controlar cuanto va a enviar/recibir, -l mascara 3
 
-9.1) Recepcion
+9.1) Recepción
 ----
 ./configureAel para eliminar ruido
 ./card2host

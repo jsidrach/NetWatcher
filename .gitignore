@@ -4,6 +4,7 @@ log/
 lib/vendor/
 fpga_server/iojs/
 fpga_server/node_modules/
+fpga_server/data/
 
 # Eclipse specific gitignore
 .settings/
