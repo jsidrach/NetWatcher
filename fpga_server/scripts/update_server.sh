@@ -14,4 +14,16 @@ ssh ${USER}@${SERVER_IP} "[ -d $SERVER_PATH ] || mkdir $SERVER_PATH; exit;" &&
 # Copy server content
 scp -r * ${USER}@${SERVER_IP}:${SERVER_PATH} &&
 # Install server dependencies
-ssh -t ${USER}@${SERVER_IP} "cd ${SERVER_PATH}; [ -d data ] || mkdir data; chmod +x ./scripts/do_chmod.sh; ./scripts/install_server.sh; ./scripts/do_chmod.sh; exit;"
+#     Change dir to server path
+#     Create data folder if it doesn't exist
+#     Install (download) the server dependencies
+#     Change permissions
+#     Create the fpga_api service
+#     Restart the fpga_api service
+ssh -t ${USER}@${SERVER_IP} "cd ${SERVER_PATH};
+                             [ -d data ] || mkdir data;
+                             chmod +x ./scripts/do_chmod.sh;
+                             ./scripts/install_dependencies.sh;
+                             ./scripts/do_chmod.sh;
+                             ./scripts/install_service.sh ${SERVER_PATH} ${USER};
+                             exit;"
