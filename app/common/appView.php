@@ -116,11 +116,12 @@ abstract class appView extends \Core\View
         $this->pLine('<nav id="navbar" class="collapse navbar-collapse" role="navigation">', 0);
         
         $this->pLine('<ul class="nav navbar-nav">', 1);
+        $this->moveIndent(1);
         foreach (self::$leftNavbar as $leftURL => $leftItem) {
             if ($this->title == _($leftItem)) {
-                $this->pLine('<li class="active">', 1);
+                $this->pLine('<li class="active">', 0);
             } else {
-                $this->pLine('<li>', 1);
+                $this->pLine('<li>', 0);
             }
             $this->pLine('<a href="' . $leftURL . '">' . _($leftItem) . '</a>', 1);
             $this->pLine('</li>', - 1);
@@ -128,11 +129,12 @@ abstract class appView extends \Core\View
         $this->pLine('</ul>', - 1);
         
         $this->pLine('<ul class="nav navbar-nav navbar-right">', 0);
+        $this->moveIndent(1);
         foreach (self::$rightNavbar as $rightURL => $rightItem) {
             if ($this->title == _($rightItem)) {
-                $this->pLine('<li class="active">', 1);
+                $this->pLine('<li class="active">', 0);
             } else {
-                $this->pLine('<li>', 1);
+                $this->pLine('<li>', 0);
             }
             $this->pLine('<a href="' . $rightURL . '">' . _($rightItem) . '</a>', 1);
             $this->pLine('</li>', - 1);
@@ -173,11 +175,11 @@ abstract class appView extends \Core\View
         $file = fopen(LICENSE_FILE, "r");
         /* Header */
         $line = trim(preg_replace('/\s+/', ' ', htmlspecialchars(fgets($file))));
-        $this->pLine('<b>' . $line . '</b></br>', 1);
+        $this->pLine('<b>' . $line . '</b><br>', 1);
         /* Body */
         while (($line = fgets($file)) !== false) {
             $line = htmlspecialchars($line);
-            $this->pline(trim(preg_replace('/\s+/', ' ', $line)) . '</br>', 0);
+            $this->pline(trim(preg_replace('/\s+/', ' ', $line)) . '<br>', 0);
         }
         fclose($file);
         
@@ -203,11 +205,9 @@ abstract class appView extends \Core\View
         $this->pLine('&middot;', 0);
         $this->pLine('<a href="status">' . _('Status') . '</a>', 0);
         $this->pLine('&middot;', 0);
-        $this->pLine('<a target="_blank" href="documentation">' . _('Documentation') . '</a>', 0);
+        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher/wiki">' . _('Wiki') . '</a>', 0);
         $this->pLine('&middot;', 0);
         $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher">' . _('Source') . '</a>', 0);
-        $this->pLine('&middot;', 0);
-        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher/wiki">' . _('Wiki') . '</a>', 0);
         $this->pLine('&middot;', 0);
         $this->pLine('<a href="" data-toggle="modal" data-target="#license">' . _('License') . '</a>', 0);
         $this->pLine('</p>', 0);
