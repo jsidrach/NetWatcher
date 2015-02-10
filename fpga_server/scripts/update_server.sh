@@ -9,10 +9,13 @@ SERVER_PATH=/home/jsid/Desktop/fpga_test/
 USER=jsid
 # End of configuration
 
-# Create destination folder
-ssh ${USER}@${SERVER_IP} "[ -d $SERVER_PATH ] || mkdir $SERVER_PATH; exit;" &&
-# Copy server content
-scp -r * ${USER}@${SERVER_IP}:${SERVER_PATH} &&
+# Set up connection
+SSHSOCKET=~/.ssh/$USER@$SERVER_IP
+ssh -M -f -N -o ControlPath=$SSHSOCKET $USER@$SERVER_IP
+RSYNCSOCKET="ssh -o ControlPath=${SSHSOCKET}"
+
+# Sync server content
+rsync -avzR -e "$RSYNCSOCKET" . ${USER}@${SERVER_IP}:${SERVER_PATH}
 # Install server dependencies
 #     Change dir to server path
 #     Create data folder if it doesn't exist
@@ -20,10 +23,15 @@ scp -r * ${USER}@${SERVER_IP}:${SERVER_PATH} &&
 #     Change permissions
 #     Create the fpga_api service
 #     Restart the fpga_api service
-ssh -t ${USER}@${SERVER_IP} "cd ${SERVER_PATH};
+ssh -t -o ControlPath=$SSHSOCKET ${USER}@${SERVER_IP} "cd ${SERVER_PATH};
                              [ -d data ] || mkdir data;
                              chmod +x ./scripts/do_chmod.sh;
                              ./scripts/install_dependencies.sh;
                              ./scripts/do_chmod.sh;
                              ./scripts/install_service.sh ${SERVER_PATH} ${USER};
                              exit;"
+
+# Close the connection
+ssh -S $SSHSOCKET -O exit $USER@$SERVER_IP
+
+
