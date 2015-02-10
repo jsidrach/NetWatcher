@@ -22,7 +22,7 @@ Version
 
 License
 ----
-Code released under the [MIT license](LICENSE.md). Docs released under Creative Commons. Driver binaries of the FPGA are property of [High Performance Computing and Networking](http://www.hpcn.es/).
+Code released under the [MIT license](LICENSE.md). Docs released under Creative Commons. FPGA binary drivers are property of [High Performance Computing and Networking](http://www.hpcn.es/).
 
 Tech
 ----
