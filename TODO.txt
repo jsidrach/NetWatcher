@@ -1,6 +1,3 @@
-- Crear proceso que se inicie al arrancar linux
-    ./install_dependencies.sh
-
 TODO: Investigar cómo traducir los mensajes json
   - Opción buena: traducir del lado del cliente PHP
   - Opción MALA?: mandar sólo información no redundante (ids estado, códigos y estadísticas), php se encarga de traducir?
