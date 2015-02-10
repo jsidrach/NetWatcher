@@ -7,8 +7,8 @@ CURRENT=$(./iojs/bin/iojs -v)
 VERSION=$(curl -L -s http://iojs.org/dist/latest/ \
     | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' \
     | tail -n1)
-PLATFORM=linux
-ARCH=x86
+PLATFORM="$(uname | tr 'A-Z' 'a-z')"
+ARCH="$(uname -m | sed 's/x86_64/x64/g')"
 PREFIX="iojs"
 
 if test "v$VERSION" != "$CURRENT"; then

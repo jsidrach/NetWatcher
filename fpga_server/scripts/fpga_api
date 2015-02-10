@@ -11,7 +11,7 @@
 
 dir=""
 user=""
-cmd="sudo ./iojs/bin/iojs server"
+cmd="sudo nohup ./iojs/bin/iojs server > fpgalog.log 2>&1 &"
 
 name=`basename $0`
 pid_file="/var/run/$name.pid"
