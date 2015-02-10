@@ -58,7 +58,7 @@ $ ./scripts/install_dependencies.sh
 
 Documentation
 ----
-NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA REST service documentation is built with [Swagger](http://swagger.io/) and available on [docs/back-end](docs/back-end). Further documentation about the project architecture and additional reading can be found in the [project's wiki](wiki/).
+NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA REST service documentation is built with [Swagger](http://swagger.io/) and available on [docs/back-end](docs/back-end). Further documentation about the project architecture and additional reading can be found in the [project's wiki](https://github.com/JSidrach/NetWatcher/wiki).
 
 Bugs and feature requests
 ----
