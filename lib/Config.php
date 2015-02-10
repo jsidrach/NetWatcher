@@ -148,7 +148,7 @@ class Config
         /**
          * Readme file
          */
-        define('LICENSE_FILE', BASE_DIR . 'LICENSE');
+        define('LICENSE_FILE', BASE_DIR . 'LICENSE.md');
         
         /**
          * Libraries
