@@ -20,7 +20,7 @@ Version
 
 License
 ----
-Code released under the [MIT license](LICENSE). Docs released under Creative Commons.
+Code released under the [MIT license](LICENSE.md). Docs released under Creative Commons.
 
 Tech
 ----
