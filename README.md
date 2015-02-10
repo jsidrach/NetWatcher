@@ -42,7 +42,7 @@ In addition, a full list of references used can be found [here](REFERENCES.md).
 Installation
 ----
 #### FPGA REST Service
-* Edit `./fpga_server/scripts/update_server.sh` and set the SERVER_IP and USER. *NOTE*: selected user must exist and have superuser rights in the remote server
+* Edit `./fpga_server/scripts/update_server.sh` and set the `SERVER_IP` and `USER`. **NOTE**: selected user must exist and have superuser rights in the remote server
 * Change path to `./fpga_server/`
 * Run the update server script:
 ```sh
