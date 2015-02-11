@@ -1,6 +1,6 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:
+# Provides:          fpga_api
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
@@ -11,7 +11,7 @@
 
 dir=""
 user=""
-cmd="sudo nohup ./iojs/bin/iojs server > fpgalog.log 2>&1 &"
+cmd="nohup sudo ./iojs/bin/iojs server &"
 
 name=`basename $0`
 pid_file="/var/run/$name.pid"
