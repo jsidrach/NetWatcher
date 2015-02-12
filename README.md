@@ -43,25 +43,22 @@ In addition, a full list of references used can be found [here](REFERENCES.md).
 Installation
 ----
 #### FPGA REST Service
-* **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly. In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.
-1. Edit the file `./fpga_server/scripts/update_server.sh` setting the `SERVER_IP` and `USER` vars. **Note**: selected user must exist and have superuser rights in the remote server
-2. Change path to `./fpga_server/`
-3. Deploy the io.js server on the remote host
-```sh
-$ ./scripts/update_server.sh
-```
-4. Start the service
-```sh
-$ sudo service fpga_api start
-```
+1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly. In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.
+2. Edit the file `./fpga_server/scripts/update_server.sh` setting the `SERVER_IP` and `USER` vars. **Note**: selected user must exist and have superuser rights in the remote server
+3. Change path to `./fpga_server/`
+4. Deploy the io.js server on the remote host
+
+        $ ./scripts/update_server.sh
+5. Start the service
+
+        $ sudo service fpga_api start
 
 #### Web Interface
-* **Prerequisites**: apache http server installed, with mod_rewrite support enabled.
-1. Download the repository and extract it (inside a PHP server). Change directory to the repository folder.
-2. Install required packages
-```sh
-$ ./scripts/install_dependencies.sh
-```
+1. **Prerequisites**: apache http server installed, with mod_rewrite support enabled.
+2. Download the repository and extract it (inside a PHP server). Change directory to the repository folder.
+3. Install required packages
+
+        $ ./scripts/install_dependencies.sh
 
 Documentation
 ----
