@@ -23,4 +23,5 @@ fi
 # Install express
 rm -rf "node_modules"
 ./iojs/bin/npm install express
+./iojs/bin/npm install supervisor -g
 ./iojs/bin/npm install

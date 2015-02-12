@@ -5,6 +5,7 @@
     "private": true,
     "dependencies": {
         "express": "4.x",
-        "body-parser": "1.x"
+        "body-parser": "1.x",
+        "supervisor": "x"
     }
 }
