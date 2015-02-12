@@ -15,7 +15,12 @@ SERVER_EXP='s|user=\".*\"|user=\"'${2}'\"|g'
 sed -i -e ${FOLDER_EXP} -e ${SERVER_EXP} ./scripts/fpga_api
 # Install the service
 sudo cp -f ./scripts/fpga_api /etc/init.d
+sudo chmod +x /etc/init.d/fpga_api
 # Set the service as a default on startup
-sudo update-rc.d fpga_api defaults
-# Restart the service
-sudo service fpga_api restart
+sudo ln -sf /etc/init.d/fpga_api /etc/rc0.d/K01fpga_api
+sudo ln -sf /etc/init.d/fpga_api /etc/rc1.d/K01fpga_api
+sudo ln -sf /etc/init.d/fpga_api /etc/rc2.d/S03fpga_api
+sudo ln -sf /etc/init.d/fpga_api /etc/rc3.d/S03fpga_api
+sudo ln -sf /etc/init.d/fpga_api /etc/rc4.d/S03fpga_api
+sudo ln -sf /etc/init.d/fpga_api /etc/rc5.d/S03fpga_api
+sudo ln -sf /etc/init.d/fpga_api /etc/rc6.d/K01fpga_api
