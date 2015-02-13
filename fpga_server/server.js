@@ -55,7 +55,7 @@ var defError       = express.Router();
 
 // Captures
 
-// router.get('/info/captures', captures.getAll);
+router.get('/info/captures', captures.getAll);
 // router.put('/rename/:oldname/:newname', captures.rename);
 // router.delete('/delete/:name', captures.delete);
 // router.post('/parse/:name/:parsedname', captures.parse);
