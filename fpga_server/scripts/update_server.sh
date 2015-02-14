@@ -5,8 +5,8 @@
 
 # Change configuration here
 SERVER_IP=localhost
-SERVER_PATH=/home/jsid/Desktop/fpga_test/
-USER=jsid
+SERVER_PATH=/home/sid/Desktop/fpga_test/
+USER=sid
 # End of configuration
 
 # Set up connection
