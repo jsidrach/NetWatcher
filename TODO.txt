@@ -1,3 +1,5 @@
+Enviar códigos distintos de 200 OK?
+
 Dudas JOSE:
 No hay forma de saber cuando la conversión va bien?
   - No se hace comprobación de formato?
