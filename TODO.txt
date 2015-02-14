@@ -1,3 +1,8 @@
+Dudas JOSE:
+No hay forma de saber cuando la conversión va bien?
+  - No se hace comprobación de formato?
+No hay conversión de simple a pcap? donde?
+
 TODO: Investigar cómo traducir los mensajes json
   - Opción buena: traducir del lado del cliente PHP
   - Opción MALA?: mandar sólo información no redundante (ids estado, códigos y estadísticas), php se encarga de traducir?
