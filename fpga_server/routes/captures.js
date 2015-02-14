@@ -5,9 +5,9 @@ var scripts    = require('child_process');
 var fs         = require('fs');
 var common     = require('./_common.js');
 
-// /captures/getAll
+// /captures/all
 // Gets all the captures (simple/pcap format) in the ./data/ dir
-exports.getCaptures = function(req, res) {
+exports.all = function(req, res) {
   var code_script = scripts.exec('./commands/show_captures.sh', function (error, stdout, stderr) {
     if(error)
     {
@@ -23,9 +23,9 @@ exports.getCaptures = function(req, res) {
   });
 };
 
-// /captures/getSimple
+// /captures/simple
 // Gets all the captures (simple/pcap format) in the ./data/ dir
-exports.getSimple = function(req, res) {
+exports.simple = function(req, res) {
   var code_script = scripts.exec('./commands/show_captures_simple.sh', function (error, stdout, stderr) {
     if(error)
     {
@@ -41,9 +41,9 @@ exports.getSimple = function(req, res) {
   });
 };
 
-// /captures/getFolder
+// /captures/folder
 // Gets all the files in the ./data/ dir
-exports.getFolder = function(req, res) {
+exports.folder = function(req, res) {
   var code_script = scripts.exec('./commands/show_data_files.sh', function (error, stdout, stderr) {
     if(error)
     {
@@ -85,6 +85,38 @@ exports.rename = function(req, res) {
       return;
     }
     common.readJSON('captures_rename_success', ans, function(ans)
+    {
+      res.json(ans);
+    });
+  });
+};
+
+// /captures/delete/:name
+// Deletes a file in the data folder
+exports.delete = function(req, res) {  
+  var ans;
+  // Valid param
+  if(!common.captureExists(req.params.name))
+  {
+    common.readJSON('captures_delete_error', ans, function(ans)
+    {
+      res.json(ans);
+    });
+    return;
+  }
+
+  // Delete
+  fs.unlink('data/'+req.params.name, function (err) {
+    if(err)
+    {
+      console.error(err.message);
+      common.readJSON('captures_delete_error', ans, function(ans)
+      {
+        res.json(ans);
+      });
+      return;
+    }
+    common.readJSON('captures_delete_success', ans, function(ans)
     {
       res.json(ans);
     });

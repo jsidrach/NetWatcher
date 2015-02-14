@@ -1,0 +1,5 @@
+{
+  "code"          : "error",
+  "type"          : "notification",
+  "description"   : "The capture could not be converted. The capture has not a valid format or name, or the new name is already in use."
+}
