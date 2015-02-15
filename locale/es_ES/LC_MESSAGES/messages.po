@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Network Tester\n"
-"POT-Creation-Date: 2015-02-08 19:40+0100\n"
-"PO-Revision-Date: 2015-02-08 19:48+0100\n"
+"Project-Id-Version: NetWatcher\n"
+"POT-Creation-Date: 2015-02-15 11:30+0100\n"
+"PO-Revision-Date: 2015-02-15 11:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -15,8 +15,8 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPathExcluded-0: docs\n"
 "X-Poedit-SearchPathExcluded-1: public\n"
-"X-Poedit-SearchPathExcluded-2: fpga_server/node\n"
-"X-Poedit-SearchPathExcluded-3: fpga_server/node_modules\n"
+"X-Poedit-SearchPathExcluded-2: fpga_api/node\n"
+"X-Poedit-SearchPathExcluded-3: fpga_api/node_modules\n"
 "X-Poedit-SearchPathExcluded-4: lib/vendor\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -36,31 +36,27 @@ msgstr "Capturas"
 msgid "Settings"
 msgstr "Configuración"
 
-#: app/common/appView.php:168 app/common/appView.php:212
+#: app/common/appView.php:170 app/common/appView.php:212
 msgid "License"
 msgstr "Licencia"
 
-#: app/common/appView.php:204 app/modules/status/statusView.php:32
+#: app/common/appView.php:206 app/modules/status/statusView.php:32
 msgid "Status"
 msgstr "Estado"
 
-#: app/common/appView.php:206
-msgid "Documentation"
-msgstr "Documentación"
-
 #: app/common/appView.php:208
-msgid "Source"
-msgstr "Código"
-
-#: app/common/appView.php:210
 msgid "Wiki"
 msgstr "Wiki"
 
-#: app/modules/settings/settingsController.php:59
+#: app/common/appView.php:210
+msgid "Source"
+msgstr "Código"
+
+#: app/modules/settings/settingsController.php:71
 msgid "Settings saved successfully"
 msgstr "Configuración actualizada"
 
-#: app/modules/settings/settingsController.php:61
+#: app/modules/settings/settingsController.php:73
 msgid "Error saving settings"
 msgstr "Error al guardar la configuración"
 
@@ -177,6 +173,9 @@ msgstr "Lo sentimos, ha ocurrido un error. ¡La página solicitada no existe!"
 #: public/404.php:35
 msgid "Take me Home"
 msgstr "Volver"
+
+#~ msgid "Documentation"
+#~ msgstr "Documentación"
 
 #~ msgid "Example text"
 #~ msgstr "Texto de Ejemplo"

@@ -1,0 +1,11 @@
+{
+  "name": "fpga_api",
+  "description": "FPGA API server",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x",
+    "body-parser": "1.x",
+    "supervisor": "x"
+  }
+}

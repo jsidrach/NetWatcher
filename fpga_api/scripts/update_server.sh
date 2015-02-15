@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # Install/Updates the fpga server
-# Run from the fpga_server dir
+# Run from the fpga_api dir
 
 # Change configuration here
 SERVER_IP=localhost
-SERVER_PATH=/home/sid/Desktop/fpga_test/
+SERVER_PATH=/home/sid/Desktop/fpga_api/
 USER=sid
 # End of configuration
 
