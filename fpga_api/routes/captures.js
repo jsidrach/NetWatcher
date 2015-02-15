@@ -38,7 +38,7 @@ exports.path = function (req, res) {
 exports.rename = function (req, res) {
   // Valid params
   if ((!common.validCapture(req.params.oldname)) || (!common.validNewName(req.params.newname))) {
-    common.sendJSON('captures_rename_error', res);
+    common.sendJSON('captures_rename_error', res, 400);
     return;
   }
 
@@ -46,10 +46,10 @@ exports.rename = function (req, res) {
   fs.rename('data/' + req.params.oldname, 'data/' + req.params.newname, function (err) {
     if (err) {
       console.error(err.message);
-      common.sendJSON('captures_rename_error', res);
+      common.sendJSON('captures_rename_error', res, 400);
       return;
     }
-    common.sendJSON('captures_rename_success', res);
+    common.sendJSON('captures_rename_success', res, 200);
   });
 };
 
@@ -58,7 +58,7 @@ exports.rename = function (req, res) {
 exports.convertToPcap = function (req, res) {
   // Valid params
   if ((!common.validSimpleCapture(req.params.name)) || (!common.validNewName(req.params.convertedname))) {
-    common.sendJSON('captures_convert_error', res);
+    common.sendJSON('captures_convert_error', res, 400);
     return;
   }
 
@@ -68,7 +68,7 @@ exports.convertToPcap = function (req, res) {
       console.error('Error executing the simple2pcap command');
       console.error(stdout);
       console.error(stderr);
-      common.sendJSON('captures_convert_error', res);
+      common.sendJSON('captures_convert_error', res, 400);
       return;
     }
   });
@@ -76,10 +76,10 @@ exports.convertToPcap = function (req, res) {
     if (code != 0) {
       console.error('Error executing the simple2pcap command');
       console.error('Code: ' + code);
-      common.sendJSON('captures_convert_error', res);
+      common.sendJSON('captures_convert_error', res, 400);
       return;
     }
-    common.sendJSON('captures_convert_success', res);
+    common.sendJSON('captures_convert_success', res, 200);
   });
 }
 
@@ -88,7 +88,7 @@ exports.convertToPcap = function (req, res) {
 exports.convertToSimple = function (req, res) {
   // Valid params
   if ((!common.validPcapCapture(req.params.name)) || (!common.validNewName(req.params.convertedname))) {
-    common.sendJSON('captures_convert_error', res);
+    common.sendJSON('captures_convert_error', res, 400);
     return;
   }
 
@@ -98,7 +98,7 @@ exports.convertToSimple = function (req, res) {
       console.error('Error executing the pcap2simple command');
       console.error(stdout);
       console.error(stderr);
-      common.sendJSON('captures_convert_error', res);
+      common.sendJSON('captures_convert_error', res, 400);
       return;
     }
   });
@@ -106,10 +106,10 @@ exports.convertToSimple = function (req, res) {
     if (code != 0) {
       console.error('Error executing the pcap2simple command');
       console.error('Code: ' + code);
-      common.sendJSON('captures_convert_error', res);
+      common.sendJSON('captures_convert_error', res, 400);
       return;
     }
-    common.sendJSON('captures_convert_success', res);
+    common.sendJSON('captures_convert_success', res, 200);
   });
 }
 
@@ -119,7 +119,7 @@ exports.convertToSimple = function (req, res) {
 exports.delete = function (req, res) {
   // Valid param
   if (!common.validCapture(req.params.name)) {
-    common.sendJSON('captures_delete_error', res);
+    common.sendJSON('captures_delete_error', res, 400);
     return;
   }
 
@@ -127,10 +127,10 @@ exports.delete = function (req, res) {
   fs.unlink('data/' + req.params.name, function (err) {
     if (err) {
       console.error(err.message);
-      common.sendJSON('captures_delete_error', res);
+      common.sendJSON('captures_delete_error', res, 400);
       return;
     }
-    common.sendJSON('captures_delete_success', res);
+    common.sendJSON('captures_delete_success', res, 200);
   });
 };
 
@@ -193,6 +193,6 @@ function dataCaptures(simple, pcap, res, callback) {
 function sendDataCaptures(res, dataCaptures) {
   common.readJSON('captures_data', function (ans) {
     ans.captures = dataCaptures;
-    res.json(ans);
+    res.status(200).json(ans);
   });
 };

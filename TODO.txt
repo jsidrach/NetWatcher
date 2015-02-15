@@ -1,5 +1,4 @@
 
-Enviar códigos distintos de 200 OK
 Binario simple2pcap
 -----
 

@@ -21,7 +21,7 @@ exports.readJSON = function (file, callback) {
 };
 
 // Sends a json as a response
-exports.sendJSON = function (file, res) {
+exports.sendJSON = function (file, res, code) {
   fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
     var obj;
     if(err) {
@@ -30,7 +30,7 @@ exports.sendJSON = function (file, res) {
     else {
       obj = JSON.parse(data);
     }
-    res.json(obj);
+    res.status(code).json(obj);
   });
 }
 
