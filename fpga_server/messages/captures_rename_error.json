@@ -1,5 +1,0 @@
-{
-  "code"          : "error",
-  "type"          : "notification",
-  "description"   : "The file could not be renamed. The new name is already in use or the old name is not valid."
-}

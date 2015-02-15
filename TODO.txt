@@ -1,11 +1,17 @@
-Enviar códigos distintos de 200 OK?
+
+Enviar códigos distintos de 200 OK
+Binario simple2pcap
+-----
+
+
+Instalar JsFormat en lab
 
 Dudas JOSE:
-No hay forma de saber cuando la conversión va bien?
-  - No se hace comprobación de formato?
-No hay conversión de simple a pcap? donde?
+Pasar bin que transforma de simple a pcap
 
 TODO: Investigar cómo traducir los mensajes json
+  - Opción real: ignorar descripciones de la api, hacer echo de descripciones propias
+  - Opción óptima?: crear un script que busque todos los json de la api, y cree un php con todas las cadenas encontradas en los json
   - Opción buena: traducir del lado del cliente PHP
   - Opción MALA?: mandar sólo información no redundante (ids estado, códigos y estadísticas), php se encarga de traducir?
 

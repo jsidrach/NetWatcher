@@ -2,9 +2,9 @@
 composer.lock
 log/
 lib/vendor/
-fpga_server/iojs/
-fpga_server/node_modules/
-fpga_server/data/
+fpga_api/iojs/
+fpga_api/node_modules/
+fpga_api/data/
 
 # Eclipse specific gitignore
 .settings/

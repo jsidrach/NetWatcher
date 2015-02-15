@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Install/Updates the fpga server
-# Run from the fpga_server dir
+# Run from the fpga_api dir
 #    Parameter 1: server path
 #    Parameter 2: user
 
