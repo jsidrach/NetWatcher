@@ -43,7 +43,7 @@ In addition, a full list of references used can be found [here](REFERENCES.md).
 Installation
 ----
 #### FPGA REST Service
-1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly. In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.
+1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.
 2. Edit the file `./fpga_api/scripts/update_server.sh` setting the `SERVER_IP` and `USER` vars. **Note**: selected user must exist and have superuser rights in the remote server
 3. Change path to `./fpga_api/`
 4. Deploy the io.js server on the remote host

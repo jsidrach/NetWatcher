@@ -12,6 +12,8 @@
  */
 namespace App;
 
+use Core\Config;
+
 /**
  * statusModel class.
  * Checks the components
@@ -50,24 +52,21 @@ class statusModel extends Common\appModel
         $this->testsFunctions[_('Gettext Module')] = 'checkGettext';
         $this->testsFunctions[_('Session Variables')] = 'checkSession';
         $this->testsFunctions[_('Write Permissions')] = 'checkPermissions';
-        $this->testsFunctions[_('Remote Server')] = 'checkRemoteServer';
-        $this->testsFunctions[_('FPGAs')] = 'checkFPGAs';
+        $this->testsFunctions[_('FPGA API')] = 'checkRemoteServer';
         
         /* Status */
         $this->testsResults[_('Rewrite Module')] = 'warning';
         $this->testsResults[_('Gettext Module')] = 'warning';
         $this->testsResults[_('Session Variables')] = 'warning';
         $this->testsResults[_('Write Permissions')] = 'warning';
-        $this->testsResults[_('Remote Server')] = 'warning';
-        $this->testsResults[_('FPGAs')] = 'warning';
+        $this->testsResults[_('FPGA API')] = 'warning';
         
         /* Descriptions */
         $this->testsDescriptions[_('Rewrite Module')] = _('URL rewrite support');
         $this->testsDescriptions[_('Gettext Module')] = _('Locale language support');
         $this->testsDescriptions[_('Session Variables')] = _('Support for the usage of sessions');
         $this->testsDescriptions[_('Write Permissions')] = _('Folder and file properties');
-        $this->testsDescriptions[_('Remote Server')] = _('ioJS daemon');
-        $this->testsDescriptions[_('FPGAs')] = _('FPGAs online and active');
+        $this->testsDescriptions[_('FPGA API')] = _('Remote FPGA Server');
         
         /* Info */
         $this->infoText['success'] = _('Passed');
@@ -191,7 +190,7 @@ class statusModel extends Common\appModel
      */
     private function checkPermissions()
     {
-        /* Carpetas y archivos internos */
+        /* Internal files and directories */
         $write_dirs = array();
         $write_dirs[] = LOGGER_DIR;
         $write_dirs[] = CONFIG_DIR;
@@ -213,19 +212,16 @@ class statusModel extends Common\appModel
      */
     private function checkRemoteServer()
     {
-        // TODO
-        return 'warning';
-    }
-
-    /**
-     * Checks the FPGA's status
-     *
-     * @return string Status of test over the remote FPGA's
-     */
-    private function checkFPGAs()
-    {
-        // TODO
-        return 'warning';
+        $context = stream_context_create(array(
+            'http' => array(
+                'timeout' => 2
+            )
+        ));
+        /* Note: if REMOTE_SERVER_IP is localhost, it must have http:// at the start of the string */
+        if (file_get_contents(Config::$REMOTE_SERVER_IP . '/ping', 0, $context) === FALSE) {
+            return 'danger';
+        }
+        return 'success';
     }
     
     /*

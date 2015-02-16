@@ -45,7 +45,7 @@ class settingsView extends Common\appView
         /* Server settings */
         $this->pLine('<h3>' . _('Server Settings') . '</h3><hr>', 1);
         $this->pLine('<div class="form-group">', 0);
-        $this->pLine('<label for="serverIp" class="col-sm-2 control-label">' . _('Server IP') . '</label>', 1);
+        $this->pLine('<label for="serverIp" class="col-sm-2 control-label">' . _('FPGA API base address') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">', 0);
         $this->pLine('<input type="text" class="form-control" name="serverIp" id="serverIp" value="' . \Core\Router::sanitize(\Core\Config::$REMOTE_SERVER_IP) . '">', 1);
         $this->pLine('</div>', - 1);

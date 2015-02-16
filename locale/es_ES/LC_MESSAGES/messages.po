@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-02-15 11:30+0100\n"
-"PO-Revision-Date: 2015-02-15 11:54+0100\n"
+"POT-Creation-Date: 2015-02-16 19:27+0100\n"
+"PO-Revision-Date: 2015-02-16 19:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -65,8 +65,8 @@ msgid "Server Settings"
 msgstr "Configuración del Servidor"
 
 #: app/modules/settings/settingsView.php:48
-msgid "Server IP"
-msgstr "IP Servidor"
+msgid "FPGA API base address"
+msgstr "Dirección base de la API FPGA"
 
 #: app/modules/settings/settingsView.php:55
 msgid "App Settings"
@@ -88,69 +88,60 @@ msgstr "Guardar"
 msgid "Total"
 msgstr "Total"
 
-#: app/modules/status/statusModel.php:49 app/modules/status/statusModel.php:57
-#: app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:50 app/modules/status/statusModel.php:57
+#: app/modules/status/statusModel.php:64
 msgid "Rewrite Module"
 msgstr "Módulo Rewrite"
 
-#: app/modules/status/statusModel.php:50 app/modules/status/statusModel.php:58
-#: app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:58
+#: app/modules/status/statusModel.php:65
 msgid "Gettext Module"
 msgstr "Módulo Gettext"
 
-#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:59
-#: app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:59
+#: app/modules/status/statusModel.php:66
 msgid "Session Variables"
 msgstr "Variables de Sesión"
 
-#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:60
-#: app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:60
+#: app/modules/status/statusModel.php:67
 msgid "Write Permissions"
 msgstr "Permisos de escritura"
 
-#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:61
-#: app/modules/status/statusModel.php:69
-msgid "Remote Server"
-msgstr "Servidor Remoto"
+#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:61
+#: app/modules/status/statusModel.php:68
+msgid "FPGA API"
+msgstr "FPGA API"
 
-#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:62
-#: app/modules/status/statusModel.php:70
-msgid "FPGAs"
-msgstr "FPGAs"
-
-#: app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:64
 msgid "URL rewrite support"
 msgstr "Soporte para reescritura de URL"
 
-#: app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:65
 msgid "Locale language support"
 msgstr "Soporte para lenguaje local"
 
-#: app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:66
 msgid "Support for the usage of sessions"
 msgstr "Soporte para el uso de sesiones"
 
-#: app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:67
 msgid "Folder and file properties"
 msgstr "Propiedades de carpetas y archivos"
 
-#: app/modules/status/statusModel.php:69
-msgid "ioJS daemon"
-msgstr "Servidor ioJS"
+#: app/modules/status/statusModel.php:68
+msgid "Remote FPGA Server"
+msgstr "Servidor FPGA Remoto"
 
-#: app/modules/status/statusModel.php:70
-msgid "FPGAs online and active"
-msgstr "FPGAs activas"
-
-#: app/modules/status/statusModel.php:73
+#: app/modules/status/statusModel.php:71
 msgid "Passed"
 msgstr "OK"
 
-#: app/modules/status/statusModel.php:74
+#: app/modules/status/statusModel.php:72
 msgid "Not Implemented"
 msgstr "No Implementado"
 
-#: app/modules/status/statusModel.php:75
+#: app/modules/status/statusModel.php:73
 msgid "Failed"
 msgstr "Error"
 
@@ -173,6 +164,19 @@ msgstr "Lo sentimos, ha ocurrido un error. ¡La página solicitada no existe!"
 #: public/404.php:35
 msgid "Take me Home"
 msgstr "Volver"
+
+#~ msgid "FPGA API URL"
+#~ msgstr "FPGA API URL"
+
+#, fuzzy
+#~ msgid "Server URL"
+#~ msgstr "IP Servidor"
+
+#~ msgid "ioJS daemon"
+#~ msgstr "Servidor ioJS"
+
+#~ msgid "FPGAs online and active"
+#~ msgstr "FPGAs activas"
 
 #~ msgid "Documentation"
 #~ msgstr "Documentación"

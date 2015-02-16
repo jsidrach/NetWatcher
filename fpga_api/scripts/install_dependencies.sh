@@ -7,6 +7,7 @@ CURRENT=$(./iojs/bin/iojs -v)
 VERSION=$(curl -L -s http://iojs.org/dist/latest/ \
     | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' \
     | tail -n1)
+# PLATFORM and ARCH are not set to linux x64 but the FPGA only will work properly in it. It is set dynamically for debug purposes
 PLATFORM="$(uname | tr 'A-Z' 'a-z')"
 ARCH="$(uname -m | sed 's/x86_64/x64/g' | sed 's/i.86/x86/g')"
 PREFIX="iojs"
