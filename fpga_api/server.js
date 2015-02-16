@@ -48,7 +48,7 @@ var defError = express.Router();
 
 // Real Time Statistics
 
-// router.get('/ping', statistics.ping);
+router.get('/ping', statistics.ping);
 // router.get('/status', statistics.getStatus);
 // router.get('/player/statistics', statistics.getPlayerStats);
 // router.get('/recorder/statistics', statistics.getRecorderStats);
@@ -65,11 +65,6 @@ router.put('/captures/simple/pcap/:name/:convertedname', captures.convertToPcap)
 router.put('/captures/pcap/simple/:name/:convertedname', captures.convertToSimple);
 router.delete('/captures/delete/:name', captures.delete);
 
-
-
-// TODO: delete example route
-router.get('/example', playground.example);
-
 // Default router
 defError.get('*', function (req, res) {
   res.sendStatus(404);
@@ -77,7 +72,7 @@ defError.get('*', function (req, res) {
 
 // All of our correct routes will be prefixed with /fpga/api
 app.use('/fpga/api', router)
-// Other routes will return 404 - Not Found 
+  // Other routes will return 404 - Not Found 
 app.use('/', defError);
 
 // Start the server

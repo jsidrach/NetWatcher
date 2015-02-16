@@ -57,7 +57,7 @@ class statusView extends Common\appView
     private function renderTestsSummary(Array $stats)
     {
         $infoText = $this->model->getInfoText();
-        $this->pLine('<hr>', 1);
+        $this->pLine('<hr>', 0);
         $this->pLine('<div class="progress">', 0);
         foreach ($stats as $stat => $number) {
             if ($stat != 'total') {

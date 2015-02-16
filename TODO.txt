@@ -1,10 +1,6 @@
-Añadir en dependencias maquina host x64
-Mejorar references
------
+First draft status
 
-Dudas JOSE:
-Pasar bin que transforma de simple a pcap
-
+-------
 TODO: Investigar cómo traducir los mensajes json
   - Opción real: ignorar descripciones de la api, hacer echo de descripciones propias
   - Opción óptima?: crear un script que busque todos los json de la api, y cree un php con todas las cadenas encontradas en los json

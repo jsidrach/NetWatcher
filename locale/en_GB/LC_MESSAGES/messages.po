@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-02-15 11:23+0100\n"
-"PO-Revision-Date: 2015-02-15 11:24+0100\n"
+"POT-Creation-Date: 2015-02-16 19:27+0100\n"
+"PO-Revision-Date: 2015-02-16 19:27+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -65,8 +65,8 @@ msgid "Server Settings"
 msgstr "Server Settings"
 
 #: app/modules/settings/settingsView.php:48
-msgid "Server IP"
-msgstr "Server IP"
+msgid "FPGA API base address"
+msgstr "FPGA API base address"
 
 #: app/modules/settings/settingsView.php:55
 msgid "App Settings"
@@ -88,69 +88,60 @@ msgstr "Save"
 msgid "Total"
 msgstr "Total"
 
-#: app/modules/status/statusModel.php:49 app/modules/status/statusModel.php:57
-#: app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:50 app/modules/status/statusModel.php:57
+#: app/modules/status/statusModel.php:64
 msgid "Rewrite Module"
 msgstr "Rewrite Module"
 
-#: app/modules/status/statusModel.php:50 app/modules/status/statusModel.php:58
-#: app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:58
+#: app/modules/status/statusModel.php:65
 msgid "Gettext Module"
 msgstr "Gettext Module"
 
-#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:59
-#: app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:59
+#: app/modules/status/statusModel.php:66
 msgid "Session Variables"
 msgstr "Session Variables"
 
-#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:60
-#: app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:60
+#: app/modules/status/statusModel.php:67
 msgid "Write Permissions"
 msgstr "Write Permissions"
 
-#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:61
-#: app/modules/status/statusModel.php:69
-msgid "Remote Server"
-msgstr "Remote Server"
+#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:61
+#: app/modules/status/statusModel.php:68
+msgid "FPGA API"
+msgstr "FPGA API"
 
-#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:62
-#: app/modules/status/statusModel.php:70
-msgid "FPGAs"
-msgstr "FPGAs"
-
-#: app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:64
 msgid "URL rewrite support"
 msgstr "URL rewrite support"
 
-#: app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:65
 msgid "Locale language support"
 msgstr "Locale language support"
 
-#: app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:66
 msgid "Support for the usage of sessions"
 msgstr "Support for the usage of sessions"
 
-#: app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:67
 msgid "Folder and file properties"
 msgstr "Folder and file properties"
 
-#: app/modules/status/statusModel.php:69
-msgid "ioJS daemon"
-msgstr "ioJS daemon"
+#: app/modules/status/statusModel.php:68
+msgid "Remote FPGA Server"
+msgstr "Remote FPGA Server"
 
-#: app/modules/status/statusModel.php:70
-msgid "FPGAs online and active"
-msgstr "FPGAs online and active"
-
-#: app/modules/status/statusModel.php:73
+#: app/modules/status/statusModel.php:71
 msgid "Passed"
 msgstr "Passed"
 
-#: app/modules/status/statusModel.php:74
+#: app/modules/status/statusModel.php:72
 msgid "Not Implemented"
 msgstr "Not Implemented"
 
-#: app/modules/status/statusModel.php:75
+#: app/modules/status/statusModel.php:73
 msgid "Failed"
 msgstr "Failed"
 
@@ -173,6 +164,18 @@ msgstr "Sorry, an error has occured. Requested page not found!"
 #: public/404.php:35
 msgid "Take me Home"
 msgstr "Take me Home"
+
+#~ msgid "FPGA API URL"
+#~ msgstr "FPGA API URL"
+
+#~ msgid "Server URL"
+#~ msgstr "Server URL"
+
+#~ msgid "ioJS daemon"
+#~ msgstr "ioJS daemon"
+
+#~ msgid "FPGAs online and active"
+#~ msgstr "FPGAs online and active"
 
 #~ msgid "Documentation"
 #~ msgstr "Documentation"
