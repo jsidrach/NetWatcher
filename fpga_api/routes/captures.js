@@ -63,7 +63,7 @@ exports.convertToPcap = function (req, res) {
   }
 
   // Convert the capture
-  var code_script = scripts.exec('./bin/simple2pcap data/' + req.params.name + ' data/' + req.params.convertedname, function (error, stdout, stderr) {
+  var code_script = scripts.exec('./bin/simple2pcap -o data/' + req.params.convertedname + ' data/' + req.params.name, function (error, stdout, stderr) {
     if (error) {
       console.error('Error executing the simple2pcap command');
       console.error(stdout);
