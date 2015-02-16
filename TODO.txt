@@ -1,9 +1,6 @@
-
-Binario simple2pcap
+Añadir en dependencias maquina host x64
+Mejorar references
 -----
-
-
-Instalar JsFormat en lab
 
 Dudas JOSE:
 Pasar bin que transforma de simple a pcap

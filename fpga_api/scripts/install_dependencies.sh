@@ -8,7 +8,7 @@ VERSION=$(curl -L -s http://iojs.org/dist/latest/ \
     | egrep -o '[0-9]+\.[0-9]+\.[0-9]+' \
     | tail -n1)
 PLATFORM="$(uname | tr 'A-Z' 'a-z')"
-ARCH="$(uname -m | sed 's/x86_64/x64/g')"
+ARCH="$(uname -m | sed 's/x86_64/x64/g' | sed 's/i.86/x86/g')"
 PREFIX="iojs"
 
 if test "v$VERSION" != "$CURRENT"; then
