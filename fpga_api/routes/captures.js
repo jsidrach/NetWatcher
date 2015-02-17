@@ -63,15 +63,7 @@ exports.convertToPcap = function (req, res) {
   }
 
   // Convert the capture
-  var code_script = scripts.exec('./bin/simple2pcap -o data/' + req.params.convertedname + ' data/' + req.params.name, function (error, stdout, stderr) {
-    if (error) {
-      console.error('Error executing the simple2pcap command');
-      console.error(stdout);
-      console.error(stderr);
-      common.sendJSON('captures_convert_error', res, 400);
-      return;
-    }
-  });
+  var code_script = scripts.exec('./bin/simple2pcap -o data/' + req.params.convertedname + ' data/' + req.params.name);
   code_script.on('exit', function (code) {
     if (code != 0) {
       console.error('Error executing the simple2pcap command');
@@ -93,15 +85,7 @@ exports.convertToSimple = function (req, res) {
   }
 
   // Convert the capture
-  var code_script = scripts.exec('./bin/pcap2simple data/' + req.params.name + ' data/' + req.params.convertedname, function (error, stdout, stderr) {
-    if (error) {
-      console.error('Error executing the pcap2simple command');
-      console.error(stdout);
-      console.error(stderr);
-      common.sendJSON('captures_convert_error', res, 400);
-      return;
-    }
-  });
+  var code_script = scripts.exec('./bin/pcap2simple data/' + req.params.name + ' data/' + req.params.convertedname);
   code_script.on('exit', function (code) {
     if (code != 0) {
       console.error('Error executing the pcap2simple command');
