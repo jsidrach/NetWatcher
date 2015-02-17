@@ -9,9 +9,6 @@ var manager = require('./routes/manager.js');
 var statistics = require('./routes/statistics.js');
 var captures = require('./routes/captures.js');
 
-// TODO: Delete example playground
-var playground = require('./routes/playground.js');
-
 // Configure app to use bodyParser() so it will let us get the data from a POST
 app.use(bodyParser.urlencoded({
   extended: true
@@ -49,9 +46,9 @@ var defError = express.Router();
 // Real Time Statistics
 
 router.get('/ping', statistics.ping);
-// router.get('/status', statistics.getStatus);
-// router.get('/player/statistics', statistics.getPlayerStats);
-// router.get('/recorder/statistics', statistics.getRecorderStats);
+router.get('/status', statistics.status);
+// router.get('/player/statistics', statistics.playerStats);
+// router.get('/recorder/statistics', statistics.recorderStats);
 
 
 // Captures
