@@ -1,4 +1,15 @@
-First draft status
+TODO Week:
+-------
+  - Terminar tipos de códigos
+  - Hacer página de capturas PHP
+  - Instalación+Mount de la FPGA (hasta justo antes de configurar)
+  - Boceto página de manager
+
+Dudas Jose:
+-------
+Tipo de códigos en /proc/nfp/nfp_report
+Qué hace readRegisters, testControl
+
 
 -------
 TODO: Investigar cómo traducir los mensajes json
@@ -75,7 +86,7 @@ impact.sh Argumento fichero de configuración (bitstream) > DESDE AQUI PLAYER O 
 lspci | grep 19aa:e004
 Si sale 0 es que está programada
 
-<mount_off>
+<status_3_mount_off>
 5) Instanciar y montar
 ----
 ./install_driver.sh
@@ -93,8 +104,7 @@ Si sale 0, está en player
 cat /proc/nfp/nfp_report | grep REC
 Si sale 0, está en recorder
 
-<mount_on_player>
-<mount_on_recorder>
+<status_4_fpga.json>
 
 
 (Para detectar aquí, buscar el proceso?)

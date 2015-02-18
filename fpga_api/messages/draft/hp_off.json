@@ -1,4 +1,0 @@
-{
-  "status"      : "hp_off",
-  "description" : "HugePages is not enabled. To fix this, the host should be rebooted with this option selected on the GRUB menu."
-}
