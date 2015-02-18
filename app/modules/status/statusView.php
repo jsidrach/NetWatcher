@@ -57,8 +57,8 @@ class statusView extends Common\appView
     private function renderTestsSummary(Array $stats)
     {
         $infoText = $this->model->getInfoText();
-        $this->pLine('<hr>', 0);
-        $this->pLine('<div class="progress">', 0);
+        $this->pLine('<hr>');
+        $this->pLine('<div class="progress">');
         foreach ($stats as $stat => $number) {
             if ($stat != 'total') {
                 $progress = ($number / $stats['total']) * 100;
@@ -66,15 +66,15 @@ class statusView extends Common\appView
                 $this->moveIndent(- 1);
             }
         }
-        $this->pLine('</div>', 0);
+        $this->pLine('</div>');
         foreach ($stats as $stat => $number) {
             if ($stat == 'total') {
-                $this->pLine('<span class="label label-primary">' . _('Total') . ': ' . $number . '</span>', 0);
+                $this->pLine('<span class="label label-primary">' . _('Total') . ': ' . $number . '</span>');
             } else {
-                $this->pLine('<span class="label label-' . $stat . '">' . $infoText[$stat] . ': ' . $number . '</span>', 0);
+                $this->pLine('<span class="label label-' . $stat . '">' . $infoText[$stat] . ': ' . $number . '</span>');
             }
         }
-        $this->pLine('<hr>', 0);
+        $this->pLine('<hr>');
     }
 
     /**
@@ -90,12 +90,12 @@ class statusView extends Common\appView
     private function renderTestPanel($name, $result, $description)
     {
         $infoText = $this->model->getInfoText();
-        $this->pLine('<div class="panel panel-' . $result . '">', 0);
+        $this->pLine('<div class="panel panel-' . $result . '">');
         $this->pLine('<div class="panel-heading">', 1);
         $this->pLine($name, 1);
-        $this->pLine('<span class="panel-title pull-right">' . $infoText[$result] . '</span>', 0);
+        $this->pLine('<span class="panel-title pull-right">' . $infoText[$result] . '</span>');
         $this->pLine('</div>', - 1);
-        $this->pLine('<div class="panel-body">', 0);
+        $this->pLine('<div class="panel-body">');
         $this->pLine($description, 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);

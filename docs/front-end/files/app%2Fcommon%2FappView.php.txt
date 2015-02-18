@@ -21,16 +21,12 @@ abstract class appView extends \Core\View
     /**
      * Left navbar links
      */
-    private static $leftNavbar = array(
-        '.' => 'Page 1'
-    );
+    private static $leftNavbar;
 
     /**
      * Right navbar links
      */
-    private static $rightNavbar = array(
-        'settings' => 'Settings'
-    );
+    private static $rightNavbar;
 
     /**
      * Generic constructor.
@@ -42,6 +38,14 @@ abstract class appView extends \Core\View
     protected function __construct($model)
     {
         parent::__construct($model);
+        self::$leftNavbar = array(
+            '#notImplemented1' => _('Manager'),
+            '#notImplemented2' => _('Statistics'),
+            'captures' => _('Captures')
+        );
+        self::$rightNavbar =  array(
+            'settings' => _('Settings')
+        );
     }
 
     /**
@@ -54,6 +58,7 @@ abstract class appView extends \Core\View
         $this->renderContent();
         $this->renderModals();
         $this->renderFooter();
+        $this->renderClose();
     }
 
     /**
@@ -76,9 +81,12 @@ abstract class appView extends \Core\View
         
         $this->pLine('<!-- CSS files -->', 0);
         foreach (\Core\Config::$CSS_LIBRARIES as $cssLib) {
-            $this->pLine('<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">', 0);
+            if (!strcmp($cssLib,'theme')) {
+                $this->pLine('<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">', 0);
+            } else {
+                $this->pLine('<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">', 0);
+            }
         }
-        $this->pLine('<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">', 0);
         
         $this->pLine('<!-- JS files -->', 0);
         foreach (\Core\Config::$JS_LIBRARIES as $jsLib) {
@@ -98,16 +106,23 @@ abstract class appView extends \Core\View
         $this->pLine('<header class="navbar navbar-default navbar-static-top" id="top" role="banner">', 0);
         $this->pLine('<div class="container">', 1);
         $this->pLine('<div class="navbar-header">', 1);
-        $this->pLine('<a href="." class="navbar-brand">' . _(APP_NAME) . '</a>', 1);
+        $this->pLine('<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">', 1);
+        $this->pLine('<span class="sr-only">Toggle navigation</span>', 1);
+        $this->pLine('<span class="icon-bar"></span>', 0);
+        $this->pLine('<span class="icon-bar"></span>', 0);
+        $this->pLine('<span class="icon-bar"></span>', 0);
+        $this->pLine('</button>', - 1);
+        $this->pLine('<div class="navbar-brand">' . _(APP_NAME) . '</div>', 0);
         $this->pLine('</div>', - 1);
-        $this->pLine('<nav class="collapse navbar-collapse" role="navigation">', 0);
+        $this->pLine('<nav id="navbar" class="collapse navbar-collapse" role="navigation">', 0);
         
         $this->pLine('<ul class="nav navbar-nav">', 1);
+        $this->moveIndent(1);
         foreach (self::$leftNavbar as $leftURL => $leftItem) {
             if ($this->title == _($leftItem)) {
-                $this->pLine('<li class="active">', 1);
+                $this->pLine('<li class="active">', 0);
             } else {
-                $this->pLine('<li>', 1);
+                $this->pLine('<li>', 0);
             }
             $this->pLine('<a href="' . $leftURL . '">' . _($leftItem) . '</a>', 1);
             $this->pLine('</li>', - 1);
@@ -115,11 +130,12 @@ abstract class appView extends \Core\View
         $this->pLine('</ul>', - 1);
         
         $this->pLine('<ul class="nav navbar-nav navbar-right">', 0);
+        $this->moveIndent(1);
         foreach (self::$rightNavbar as $rightURL => $rightItem) {
             if ($this->title == _($rightItem)) {
-                $this->pLine('<li class="active">', 1);
+                $this->pLine('<li class="active">', 0);
             } else {
-                $this->pLine('<li>', 1);
+                $this->pLine('<li>', 0);
             }
             $this->pLine('<a href="' . $rightURL . '">' . _($rightItem) . '</a>', 1);
             $this->pLine('</li>', - 1);
@@ -154,13 +170,17 @@ abstract class appView extends \Core\View
         $this->pLine('<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>', 0);
         $this->pLine('<h4 class="modal-title" id="myModalLabel">' . _('License') . ' - ' . APP_NAME . '</h4>', 0);
         $this->pLine('</div>', - 1);
-        $this->pLine('<div class="modal-body">', 0);
+        $this->pLine('<div class="modal-body text-justify">', 0);
         
         /* Reads and formats the license file */
         $file = fopen(LICENSE_FILE, "r");
-        $this->pLine('<b>' . $string = trim(preg_replace('/\s+/', ' ', fgets($file))) . '</b></br>', 1);
+        /* Header */
+        $line = trim(preg_replace('/\s+/', ' ', htmlspecialchars(fgets($file))));
+        $this->pLine('<b>' . $line . '</b><br>', 1);
+        /* Body */
         while (($line = fgets($file)) !== false) {
-            $this->pline(trim(preg_replace('/\s+/', ' ', $line)) . '</br>', 0);
+            $line = htmlspecialchars($line);
+            $this->pline(trim(preg_replace('/\s+/', ' ', $line)) . '<br>', 0);
         }
         fclose($file);
         
@@ -178,27 +198,77 @@ abstract class appView extends \Core\View
         $this->pLine('</div>', - 1);
         
         $this->pLine('<!-- Footer -->', 0);
-        $this->pLine('<footer role="contentinfo">', 0);
-        $this->pLine('<div id="footer" class="navbar-fixed-bottom">', 1);
-        $this->pLine('<div class="container">', 1);
+        $this->pLine('<footer class="footer" role="contentinfo">', 0);
+        $this->pLine('<div class="container text-center">', 1);
         
         $this->pLine('<p class="muted credit">', 1);
         $this->pLine('High Performance Computing and Networking', 0);
         $this->pLine('&middot;', 0);
         $this->pLine('<a href="status">' . _('Status') . '</a>', 0);
         $this->pLine('&middot;', 0);
-        $this->pLine('<a target="_blank" href="documentation">' . _('Documentation') . '</a>', 0);
+        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher/wiki">' . _('Wiki') . '</a>', 0);
+        $this->pLine('&middot;', 0);
+        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher">' . _('Source') . '</a>', 0);
         $this->pLine('&middot;', 0);
         $this->pLine('<a href="" data-toggle="modal" data-target="#license">' . _('License') . '</a>', 0);
         $this->pLine('</p>', 0);
         
         $this->pLine('</div>', - 1);
-        $this->pLine('</div>', - 1);
         
         $this->pLine('</footer>', - 1);
-        
+    }
+
+    /**
+     * Renders the end of the document
+     */
+    protected function renderClose()
+    {
         $this->pLine('</body>', - 1);
         $this->pLine('</html>', - 1);
+    }
+
+    /**
+     * Renders the localization strings of the plugins. Not used by default.
+     * To enable it, override renderClose() and call first to this function and then to the parent renderClose().
+     */
+    protected function renderLocalization()
+    {
+        $this->pLine('<script>');
+        $this->pLine('<!-- Localization of the bootstrap-table plugin -->', 1);
+        $this->pLine('(function ($) {');
+        $this->pLine('\'use strict\'', 1);
+        $this->pLine('var locale_strings = {');
+        $this->pLine('formatLoadingMessage: function () {', 1);
+        $this->pLine('return \'' . _('Loading, please wait...') . '\';', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatRecordsPerPage: function (pageNumber) {');
+        $this->pLine('return sprintf(\'%s ' . _('records per page') . '\', pageNumber);', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatShowingRows: function (pageFrom, pageTo, totalRows) {');
+        $this->pLine('return sprintf(\'' . _('Showing %s to %s of %s rows') . '\', pageFrom, pageTo, totalRows);', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatSearch: function () {');
+        $this->pLine('return \'' . _('Search') . '\';', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatNoMatches: function () {');
+        $this->pLine('return \'' . _('No matching records found') . '\';', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatPaginationSwitch: function () {');
+        $this->pLine('return \'' . _('Hide/Show pagination') . '\';', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatRefresh: function () {');
+        $this->pLine('return \'' . _('Refresh') . '\';', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatToggle: function () {');
+        $this->pLine('return \'' . _('Toggle') . '\';', 1);
+        $this->pLine('},', -1);
+        $this->pLine('formatColumns: function () {');
+        $this->pLine('return \'' . _('Columns') . '\';', 1);
+        $this->pLine('}', -1);
+        $this->pLine('};', -1);
+        $this->pLine('$.extend($.fn.bootstrapTable.defaults, locale_strings);');
+        $this->pLine('})(jQuery);', -1);
+        $this->pLine('</script>', -1);
     }
 }
 ?>

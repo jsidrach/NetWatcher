@@ -113,5 +113,19 @@ class Router
         
         return true;
     }
+
+    /**
+     * Sanitizes the html input
+     *
+     * @param string $string
+     *            String to sanitize
+     * @return Sanitized string
+     */
+    public static function sanitize($string)
+    {
+        $string = mb_convert_encoding($string, 'UTF-8', 'UTF-8');
+        $string = htmlentities($string, ENT_QUOTES, 'UTF-8');
+        return $string;
+    }
 }
 ?>

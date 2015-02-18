@@ -25,18 +25,24 @@ class Config
         'jquery.js',
         'bootstrap.js',
         'jquery.bootstrap-growl.js',
-        'growl-settings.js'
+        'growl-settings.js',
+        'bootstrap-table.js',
+        'netwatcher-captures.js'
     );
 
     /**
      * CSS Libraries
      */
     public static $CSS_LIBRARIES = array(
-        'bootstrap.min.css'
+        'bootstrap.min.css',
+        'theme',
+        'sticky-footer.css',
+        'bootstrap-table.css'
     );
+    /* 'theme' is the keyword for the user theme, so we can place it between other stylesheets */
 
     /**
-     * Themes
+     * User Themes
      */
     public static $CSS_THEMES = array(
         'Default' => 'bootstrap-theme.min.css',
@@ -92,7 +98,7 @@ class Config
         /**
          * Name of the app
          */
-        define('APP_NAME', 'Network Tester');
+        define('APP_NAME', 'NetWatcher');
         
         /**
          * Number of indent ispaces
@@ -145,7 +151,7 @@ class Config
         /**
          * Readme file
          */
-        define('LICENSE_FILE', BASE_DIR . 'LICENSE');
+        define('LICENSE_FILE', BASE_DIR . 'LICENSE.md');
         
         /**
          * Libraries
@@ -194,10 +200,6 @@ class Config
         define('DOC_API', DOC_DIR . 'api' . DIRECTORY_SEPARATOR . 'index.html');
         
         /**
-         * Path to the files directory
-         */
-        define('FILES_DIR', BASE_DIR . 'files' . DIRECTORY_SEPARATOR);
-        /**
          * Path to the localization directory
          */
         define('LOCALIZATION_DIR', BASE_DIR . 'locale' . DIRECTORY_SEPARATOR);
@@ -240,7 +242,7 @@ class Config
         $configData = json_decode(file_get_contents(DEFAULT_CONFIG_FILE));
         
         /* Loads the css theme */
-        self::$DEFAULT_CSS_THEME = htmlspecialchars($configData->theme);
+        self::$DEFAULT_CSS_THEME = $configData->theme;
         
         /* Loads the language */
         putenv('LANG=' . self::$LANGUAGES[$configData->lang]);
@@ -250,10 +252,10 @@ class Config
         $domain = 'messages';
         bindtextdomain($domain, LOCALIZATION_DIR);
         bind_textdomain_codeset($domain, META_CHARSET);
-        self::$DEFAULT_LANG = htmlspecialchars($configData->lang);
+        self::$DEFAULT_LANG = $configData->lang;
         
         /* Loads the server ip */
-        self::$REMOTE_SERVER_IP = htmlspecialchars($configData->serverIp);
+        self::$REMOTE_SERVER_IP = $configData->serverIp;
     }
 }
 ?>
