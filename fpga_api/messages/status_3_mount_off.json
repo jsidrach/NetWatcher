@@ -1,0 +1,4 @@
+{
+  "status": "mount_off",
+  "description": "The FPGA is initialized but not mounted."
+}
