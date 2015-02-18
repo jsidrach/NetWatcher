@@ -1,15 +1,27 @@
 TODO Week:
 -------
-  - Terminar tipos de códigos
-  - Hacer página de capturas PHP
+  - Hacer página de capturas PHP (sin funcionalidad)
+    - Panel derecho (renombrar, convertir, borrar)
+    - Cuadro de información de abajo
+  - Hacer la funcionalidad de la página de capturas (netwatcher-captures.js)
+  - Localizar página captures con POEdit
+
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
+  - Terminar tipos de códigos status
   - Boceto página de manager
+
+  - Rellenar apartado <cosas que mencionar en la memoria>
+
+  - Más temas bootstrap
+
 
 Dudas Jose:
 -------
+IMPORTANTE: Problema reproducir tráfico FPGA
 Tipo de códigos en /proc/nfp/nfp_report
 Qué hace readRegisters, testControl
-
+- Añadir dependencia red local
+- Tema seguridad
 
 -------
 TODO: Investigar cómo traducir los mensajes json
@@ -51,7 +63,7 @@ Statistics
 
 Manage Captures
   > Ver capturas actuales (todas, simples, pcap, ordenación, búsqueda)
-  > Convertir de PCAP a SIMPLE
+  > Convertir capturas entre formatos
   > Delete > con confirmación
   > Rename
   Explicación de como subir nuevas en una caja, scp etc
@@ -123,3 +135,8 @@ Si sale 0, está en recorder
 9.2) Captura
 ----
 ./host2card
+
+
+_________________________________________________________________________________________
+
+Cosas a mencionar en la memoria:

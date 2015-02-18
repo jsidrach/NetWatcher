@@ -27,3 +27,6 @@ curl -o public/themes/bootstrap.cyborg.min.css http://bootswatch.com/cyborg/boot
 curl -o public/themes/bootstrap.darkly.min.css http://bootswatch.com/darkly/bootstrap.min.css
 curl -o public/themes/bootstrap.slate.min.css http://bootswatch.com/slate/bootstrap.min.css
 curl -o public/themes/bootstrap.yeti.min.css http://bootswatch.com/yeti/bootstrap.min.css
+# Bootstrap Table
+curl -o public/js/bootstrap-table.js https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.js
+curl -o public/css/bootstrap-table.css https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.css

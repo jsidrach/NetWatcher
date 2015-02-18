@@ -25,7 +25,9 @@ class Config
         'jquery.js',
         'bootstrap.js',
         'jquery.bootstrap-growl.js',
-        'growl-settings.js'
+        'growl-settings.js',
+        'bootstrap-table.js',
+        'netwatcher-captures.js'
     );
 
     /**
@@ -34,7 +36,8 @@ class Config
     public static $CSS_LIBRARIES = array(
         'bootstrap.min.css',
         'theme',
-        'sticky-footer.css'
+        'sticky-footer.css',
+        'bootstrap-table.css'
     );
     /* 'theme' is the keyword for the user theme, so we can place it between other stylesheets */
 

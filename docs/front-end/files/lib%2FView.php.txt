@@ -75,7 +75,7 @@ abstract class View
      * @param Int $offset
      *            Offset change of the indent
      */
-    public function pLine($string, $offset)
+    public function pLine($string, $offset = 0)
     {
         $this->indent += $offset;
         for ($i = 0; $i < $this->indent; ++ $i) {
