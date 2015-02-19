@@ -90,6 +90,9 @@ abstract class appView extends \Core\View
         
         $this->pLine('<!-- JS files -->', 0);
         foreach (\Core\Config::$JS_LIBRARIES as $jsLib) {
+            if(preg_match("/\.php$/", $jsLib)) {
+              $jsLib .= '?' .time();
+            }
             $this->pLine('<script src="' . JS_DIR . $jsLib . '"></script>', 0);
         }
         
@@ -162,12 +165,12 @@ abstract class appView extends \Core\View
      */
     protected function renderModals()
     {
-        $this->pLine('<!-- License -->', 1);
+        $this->pLine('<!-- License -->');
         $this->pLine('<div class="modal fade" id="license" tabindex="-2" role="dialog" aria-hidden="true">', 0);
         $this->pLine('<div class="modal-dialog">', 1);
         $this->pLine('<div class="modal-content">', 1);
         $this->pLine('<div class="modal-header">', 1);
-        $this->pLine('<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>', 0);
+        $this->pLine('<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>', 1);
         $this->pLine('<h4 class="modal-title" id="myModalLabel">' . _('License') . ' - ' . APP_NAME . '</h4>', 0);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="modal-body text-justify">', 0);
@@ -187,7 +190,7 @@ abstract class appView extends \Core\View
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', -1);
     }
 
     /**
