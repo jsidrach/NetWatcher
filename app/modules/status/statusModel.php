@@ -217,7 +217,6 @@ class statusModel extends Common\appModel
                 'timeout' => 2
             )
         ));
-        /* Note: if REMOTE_SERVER_IP is localhost, it must have http:// at the start of the string */
         if (file_get_contents(Config::$REMOTE_SERVER_IP . '/ping', 0, $context) === FALSE) {
             return 'danger';
         }

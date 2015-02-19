@@ -51,11 +51,14 @@ class settingsController extends Common\appController
         } else {
             $settings['theme'] = \Core\Config::$DEFAULT_CSS_THEME;
         }
+        /* Note: if REMOTE_SERVER_IP is localhost, it must have http:// at the start of the string */
         if (isset($_REQUEST['serverIp'])) {
             $settings['serverIp'] = $_REQUEST['serverIp'];
         } else {
             $settings['serverIp'] = \Core\Config::$REMOTE_SERVER_IP;
         }
+        // Cache string for the latest change in generated javascripts
+        $settings['cacheTime'] = time();
         $ctrl = $this->model->saveSettings($settings);
         
         /* Loads the new settings */

@@ -1,5 +1,5 @@
 Workflow javascript captures
-  - Cambiar 2 checkbox a 3 radiobutton (simple, capture, all): al hacer click, ver estado, hacer nueva petición a /all | /simple | /pcap
+  - radios: al hacer click, ver estado, hacer nueva petición a /all | /simple | /pcap
     - Capturar la respuesta, actualizar datos tabla
       - Si no llega respuesta, notificación error no responde, autorefresh off
   - Autorefresh
@@ -12,28 +12,14 @@ Workflow javascript captures
   - Probar ordenación
   - Seleccionar 1 de tabla: guardar nombre en panel azul, guardar tipo en algún lado
 
-
-
-  - Info capturas: imprimir en php todo y dejar un span kbd para meter la dirección, petición php onload, sino, error
-
-
-
-
 TODO Week:
 -------
-  - Hacer página de capturas PHP (sin funcionalidad)
-    - Panel derecho (renombrar, convertir, borrar)
-    - Cuadro de información de abajo
-  - Buscar deshabilitar caché?
   - Hacer la funcionalidad de la página de capturas (netwatcher-captures.js)
   - Localizar página captures con POEdit
-  - Añadir al readme que para poedit hace falta también editar una cosa y añadirlo a la lista de idiomas disponibles
 
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
   - Terminar tipos de códigos status
   - Boceto página de manager
-
-  - Rellenar apartado <cosas que mencionar en la memoria>
 
   - Más temas bootstrap
 
@@ -163,3 +149,33 @@ Si sale 0, está en recorder
 _________________________________________________________________________________________
 
 Cosas a mencionar en la memoria:
+  - Esquema de la arquitectura
+    - Por qué PHP
+    - Por qué io.js
+    - Restricciones (red local)
+  - Esquema de comunicaciones/protocolos entre las 3 partes
+  - Diseño de la aplicación, responsive, temas, atractiva visualmente, mejora de manejo respecto a consola
+  - Framework MVC desarrollado en PHP. Traducción de rutas, configuración, componentes:
+    - rewrite (htaccess)
+    - gettext
+    - composer
+  - Localización
+    - Importancia, gettext()
+    - PHP+JavaScript, reto
+    - Solución .js.php
+    - Solución caché ficheros, time()+guardar última modificación
+  - REST(-based) stack (express, io.js) service, filosofía
+      - Distintas partes. Máquina de estados finito
+      - Diferencias y restricciones respecto a restful
+      - Llamadas asíncronas
+      - Algoritmo utilizado
+  - Documentación
+    - Wiki
+    - Swagger?
+    - phpDocumentor
+  - Problema de tráfico redundante, reproducir mismo tráfico que se capturó, incluyendo órdenes al servicio
+    - Solución propuesta
+  - Posibles mejoras
+    - Más idiomas
+    - Más estadísticas
+    - Módulo de seguridad

@@ -1,24 +1,24 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-02-16 19:27+0100\n"
-"PO-Revision-Date: 2015-02-16 19:27+0100\n"
+"POT-Creation-Date: 2015-02-19 17:27+0100\n"
+"PO-Revision-Date: 2015-02-19 17:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: docs\n"
 "X-Poedit-SearchPathExcluded-1: public\n"
 "X-Poedit-SearchPathExcluded-2: fpga_api/node\n"
 "X-Poedit-SearchPathExcluded-3: fpga_api/node_modules\n"
 "X-Poedit-SearchPathExcluded-4: lib/vendor\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: app/common/appView.php:42
 msgid "Manager"
@@ -28,7 +28,7 @@ msgstr "Manager"
 msgid "Statistics"
 msgstr "Statistics"
 
-#: app/common/appView.php:44
+#: app/common/appView.php:44 app/modules/captures/capturesView.php:32
 msgid "Captures"
 msgstr "Captures"
 
@@ -36,27 +36,102 @@ msgstr "Captures"
 msgid "Settings"
 msgstr "Settings"
 
-#: app/common/appView.php:170 app/common/appView.php:212
+#: app/common/appView.php:175 app/common/appView.php:217
 msgid "License"
 msgstr "License"
 
-#: app/common/appView.php:206 app/modules/status/statusView.php:32
+#: app/common/appView.php:211 app/modules/status/statusView.php:32
 msgid "Status"
 msgstr "Status"
 
-#: app/common/appView.php:208
+#: app/common/appView.php:213
 msgid "Wiki"
 msgstr "Wiki"
 
-#: app/common/appView.php:210
+#: app/common/appView.php:215
 msgid "Source"
 msgstr "Source"
 
-#: app/modules/settings/settingsController.php:71
+#: app/modules/captures/capturesView.php:48
+msgid "All"
+msgstr "All"
+
+#: app/modules/captures/capturesView.php:49
+msgid "Simple"
+msgstr "Simple"
+
+#: app/modules/captures/capturesView.php:50
+msgid "Pcap"
+msgstr "Pcap"
+
+#: app/modules/captures/capturesView.php:51
+msgid "Auto Refresh"
+msgstr "Auto Refresh"
+
+#: app/modules/captures/capturesView.php:61
+msgid "Name"
+msgstr "Name"
+
+#: app/modules/captures/capturesView.php:62
+msgid "Type"
+msgstr "Type"
+
+#: app/modules/captures/capturesView.php:63
+msgid "Size"
+msgstr "Size"
+
+#: app/modules/captures/capturesView.php:64
+msgid "Date"
+msgstr "Date"
+
+#: app/modules/captures/capturesView.php:76
+msgid "Select a capture from the table"
+msgstr "Select a capture from the table"
+
+#: app/modules/captures/capturesView.php:83
+msgid "Convert"
+msgstr "Convert"
+
+#: app/modules/captures/capturesView.php:87
+msgid "Converted name"
+msgstr "Converted name"
+
+#: app/modules/captures/capturesView.php:90
+#: app/modules/captures/capturesView.php:106
+msgid "OK"
+msgstr "OK"
+
+#: app/modules/captures/capturesView.php:99
+msgid "Rename"
+msgstr "Rename"
+
+#: app/modules/captures/capturesView.php:103
+msgid "New name"
+msgstr "New name"
+
+#: app/modules/captures/capturesView.php:115
+msgid "Delete"
+msgstr "Delete"
+
+#: app/modules/captures/capturesView.php:119
+msgid "Delete this capture (permanently)"
+msgstr "Delete this capture (permanently)"
+
+#: app/modules/captures/capturesView.php:132
+msgid ""
+"Add additional captures generated outside NetWatcher by copying the capture "
+"file (or adding symbolic link to it) to the captures directory on the FPGA "
+"remote server"
+msgstr ""
+"Add additional captures generated outside NetWatcher by copying the capture "
+"file (or adding symbolic link to it) to the captures directory on the FPGA "
+"remote server"
+
+#: app/modules/settings/settingsController.php:74
 msgid "Settings saved successfully"
 msgstr "Settings saved successfully"
 
-#: app/modules/settings/settingsController.php:73
+#: app/modules/settings/settingsController.php:76
 msgid "Error saving settings"
 msgstr "Error saving settings"
 
@@ -84,86 +159,86 @@ msgstr "Theme"
 msgid "Save"
 msgstr "Save"
 
+#: app/modules/status/statusModel.php:51
+#: app/modules/status/statusModel.php:58
+#: app/modules/status/statusModel.php:65
+msgid "Rewrite Module"
+msgstr "Rewrite Module"
+
+#: app/modules/status/statusModel.php:52
+#: app/modules/status/statusModel.php:59
+#: app/modules/status/statusModel.php:66
+msgid "Gettext Module"
+msgstr "Gettext Module"
+
+#: app/modules/status/statusModel.php:53
+#: app/modules/status/statusModel.php:60
+#: app/modules/status/statusModel.php:67
+msgid "Session Variables"
+msgstr "Session Variables"
+
+#: app/modules/status/statusModel.php:54
+#: app/modules/status/statusModel.php:61
+#: app/modules/status/statusModel.php:68
+msgid "Write Permissions"
+msgstr "Write Permissions"
+
+#: app/modules/status/statusModel.php:55
+#: app/modules/status/statusModel.php:62
+#: app/modules/status/statusModel.php:69
+msgid "FPGA API"
+msgstr "FPGA API"
+
+#: app/modules/status/statusModel.php:65
+msgid "URL rewrite support"
+msgstr "URL rewrite support"
+
+#: app/modules/status/statusModel.php:66
+msgid "Locale language support"
+msgstr "Locale language support"
+
+#: app/modules/status/statusModel.php:67
+msgid "Support for the usage of sessions"
+msgstr "Support for the usage of sessions"
+
+#: app/modules/status/statusModel.php:68
+msgid "Folder and file properties"
+msgstr "Folder and file properties"
+
+#: app/modules/status/statusModel.php:69
+msgid "Remote FPGA Server"
+msgstr "Remote FPGA Server"
+
+#: app/modules/status/statusModel.php:72
+msgid "Passed"
+msgstr "Passed"
+
+#: app/modules/status/statusModel.php:73
+msgid "Not Implemented"
+msgstr "Not Implemented"
+
+#: app/modules/status/statusModel.php:74
+msgid "Failed"
+msgstr "Failed"
+
 #: app/modules/status/statusView.php:72
 msgid "Total"
 msgstr "Total"
 
-#: app/modules/status/statusModel.php:50 app/modules/status/statusModel.php:57
-#: app/modules/status/statusModel.php:64
-msgid "Rewrite Module"
-msgstr "Rewrite Module"
+#~ msgid "404 - Not Found"
+#~ msgstr "404 - Not Found"
 
-#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:58
-#: app/modules/status/statusModel.php:65
-msgid "Gettext Module"
-msgstr "Gettext Module"
+#~ msgid "Page Not Found"
+#~ msgstr "Page Not Found"
 
-#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:59
-#: app/modules/status/statusModel.php:66
-msgid "Session Variables"
-msgstr "Session Variables"
+#~ msgid "Error 404"
+#~ msgstr "Error 404"
 
-#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:60
-#: app/modules/status/statusModel.php:67
-msgid "Write Permissions"
-msgstr "Write Permissions"
+#~ msgid "Sorry, an error has occured. Requested page not found!"
+#~ msgstr "Sorry, an error has occured. Requested page not found!"
 
-#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:61
-#: app/modules/status/statusModel.php:68
-msgid "FPGA API"
-msgstr "FPGA API"
-
-#: app/modules/status/statusModel.php:64
-msgid "URL rewrite support"
-msgstr "URL rewrite support"
-
-#: app/modules/status/statusModel.php:65
-msgid "Locale language support"
-msgstr "Locale language support"
-
-#: app/modules/status/statusModel.php:66
-msgid "Support for the usage of sessions"
-msgstr "Support for the usage of sessions"
-
-#: app/modules/status/statusModel.php:67
-msgid "Folder and file properties"
-msgstr "Folder and file properties"
-
-#: app/modules/status/statusModel.php:68
-msgid "Remote FPGA Server"
-msgstr "Remote FPGA Server"
-
-#: app/modules/status/statusModel.php:71
-msgid "Passed"
-msgstr "Passed"
-
-#: app/modules/status/statusModel.php:72
-msgid "Not Implemented"
-msgstr "Not Implemented"
-
-#: app/modules/status/statusModel.php:73
-msgid "Failed"
-msgstr "Failed"
-
-#: public/404.php:5
-msgid "404 - Not Found"
-msgstr "404 - Not Found"
-
-#: public/404.php:28
-msgid "Page Not Found"
-msgstr "Page Not Found"
-
-#: public/404.php:29
-msgid "Error 404"
-msgstr "Error 404"
-
-#: public/404.php:32
-msgid "Sorry, an error has occured. Requested page not found!"
-msgstr "Sorry, an error has occured. Requested page not found!"
-
-#: public/404.php:35
-msgid "Take me Home"
-msgstr "Take me Home"
+#~ msgid "Take me Home"
+#~ msgstr "Take me Home"
 
 #~ msgid "FPGA API URL"
 #~ msgstr "FPGA API URL"

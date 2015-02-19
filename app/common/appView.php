@@ -43,7 +43,7 @@ abstract class appView extends \Core\View
             '#notImplemented2' => _('Statistics'),
             'captures' => _('Captures')
         );
-        self::$rightNavbar =  array(
+        self::$rightNavbar = array(
             'settings' => _('Settings')
         );
     }
@@ -81,7 +81,7 @@ abstract class appView extends \Core\View
         
         $this->pLine('<!-- CSS files -->', 0);
         foreach (\Core\Config::$CSS_LIBRARIES as $cssLib) {
-            if (!strcmp($cssLib,'theme')) {
+            if (! strcmp($cssLib, 'theme')) {
                 $this->pLine('<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">', 0);
             } else {
                 $this->pLine('<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">', 0);
@@ -90,8 +90,9 @@ abstract class appView extends \Core\View
         
         $this->pLine('<!-- JS files -->', 0);
         foreach (\Core\Config::$JS_LIBRARIES as $jsLib) {
-            if(preg_match("/\.php$/", $jsLib)) {
-              $jsLib .= '?' .time();
+            /* Refresh cache if needed (after saving new settings) */
+            if (preg_match("/\.php$/", $jsLib)) {
+                $jsLib .= '?' . \Core\Config::$CACHE_TIME;
             }
             $this->pLine('<script src="' . JS_DIR . $jsLib . '"></script>', 0);
         }
@@ -190,7 +191,7 @@ abstract class appView extends \Core\View
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        $this->pLine('</div>', -1);
+        $this->pLine('</div>', - 1);
     }
 
     /**
@@ -228,50 +229,6 @@ abstract class appView extends \Core\View
     {
         $this->pLine('</body>', - 1);
         $this->pLine('</html>', - 1);
-    }
-
-    /**
-     * Renders the localization strings of the plugins. Not used by default.
-     * To enable it, override renderClose() and call first to this function and then to the parent renderClose().
-     */
-    protected function renderLocalization()
-    {
-        $this->pLine('<script>');
-        $this->pLine('<!-- Localization of the bootstrap-table plugin -->', 1);
-        $this->pLine('(function ($) {');
-        $this->pLine('\'use strict\'', 1);
-        $this->pLine('var locale_strings = {');
-        $this->pLine('formatLoadingMessage: function () {', 1);
-        $this->pLine('return \'' . _('Loading, please wait...') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatRecordsPerPage: function (pageNumber) {');
-        $this->pLine('return sprintf(\'%s ' . _('records per page') . '\', pageNumber);', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatShowingRows: function (pageFrom, pageTo, totalRows) {');
-        $this->pLine('return sprintf(\'' . _('Showing %s to %s of %s rows') . '\', pageFrom, pageTo, totalRows);', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatSearch: function () {');
-        $this->pLine('return \'' . _('Search') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatNoMatches: function () {');
-        $this->pLine('return \'' . _('No matching records found') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatPaginationSwitch: function () {');
-        $this->pLine('return \'' . _('Hide/Show pagination') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatRefresh: function () {');
-        $this->pLine('return \'' . _('Refresh') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatToggle: function () {');
-        $this->pLine('return \'' . _('Toggle') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatColumns: function () {');
-        $this->pLine('return \'' . _('Columns') . '\';', 1);
-        $this->pLine('}', -1);
-        $this->pLine('};', -1);
-        $this->pLine('$.extend($.fn.bootstrapTable.defaults, locale_strings);');
-        $this->pLine('})(jQuery);', -1);
-        $this->pLine('</script>', -1);
     }
 }
 ?>

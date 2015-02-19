@@ -18,7 +18,7 @@ namespace App;
  */
 class capturesController extends Common\appController
 {
-    
+
     /**
      * Default inherited constructor for the capturesController class
      *
