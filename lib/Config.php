@@ -27,7 +27,7 @@ class Config
         'jquery.bootstrap-growl.js',
         'growl-settings.js',
         'bootstrap-table.js',
-        'netwatcher-captures.js'
+        'netwatcher-captures.js.php'
     );
 
     /**

@@ -1,10 +1,33 @@
+Workflow javascript captures
+  - Cambiar 2 checkbox a 3 radiobutton (simple, capture, all): al hacer click, ver estado, hacer nueva petición a /all | /simple | /pcap
+    - Capturar la respuesta, actualizar datos tabla
+      - Si no llega respuesta, notificación error no responde, autorefresh off
+  - Autorefresh
+    - Off: quitar peticiones
+    - On: timer cada X sec, capturar respuesta, actualizar datos tabla
+        - Si no llega respuesta, notificación error no responde, autorefresh off
+  - Refresh
+    - nueva peticion datos tabla, si no responde autorefresh off y notificacion error
+  - Search (automático?)
+  - Probar ordenación
+  - Seleccionar 1 de tabla: guardar nombre en panel azul, guardar tipo en algún lado
+
+
+
+  - Info capturas: imprimir en php todo y dejar un span kbd para meter la dirección, petición php onload, sino, error
+
+
+
+
 TODO Week:
 -------
   - Hacer página de capturas PHP (sin funcionalidad)
     - Panel derecho (renombrar, convertir, borrar)
     - Cuadro de información de abajo
+  - Buscar deshabilitar caché?
   - Hacer la funcionalidad de la página de capturas (netwatcher-captures.js)
   - Localizar página captures con POEdit
+  - Añadir al readme que para poedit hace falta también editar una cosa y añadirlo a la lista de idiomas disponibles
 
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
   - Terminar tipos de códigos status

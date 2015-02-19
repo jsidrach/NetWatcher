@@ -16,7 +16,7 @@ Options -Indexes
 
 </IfModule>
 
-<Files *.php>
+<Files *.*>
     Order Deny,Allow
     Deny from all
 </Files>
