@@ -27,6 +27,7 @@ class Config
         'jquery.bootstrap-growl.js',
         'growl-settings.js',
         'bootstrap-table.js',
+        'bootstrap-table-localization.js.php',
         'netwatcher-captures.js.php'
     );
 
@@ -78,9 +79,17 @@ class Config
     public static $REMOTE_SERVER_IP;
 
     /**
-     * Loads the configuration of the MVC
+     * Time of the latest change to the settings (for cache purposes)
      */
-    public static function load()
+    public static $CACHE_TIME;
+
+    /**
+     * Loads the configuration of the MVC
+     *
+     * @param BaseDir $baseDir
+     *            Base directory
+     */
+    public static function load($baseDir = '.')
     {
         /* Display all the errors */
         error_reporting(- 1);
@@ -125,7 +134,7 @@ class Config
         /**
          * Path to the base directory
          */
-        define('BASE_DIR', '.' . DIRECTORY_SEPARATOR);
+        define('BASE_DIR', $baseDir . DIRECTORY_SEPARATOR);
         
         /**
          * Path to the config directory
@@ -256,6 +265,9 @@ class Config
         
         /* Loads the server ip */
         self::$REMOTE_SERVER_IP = $configData->serverIp;
+
+        /* Sets the cache time */
+        self::$CACHE_TIME = $configData->cacheTime;
     }
 }
 ?>

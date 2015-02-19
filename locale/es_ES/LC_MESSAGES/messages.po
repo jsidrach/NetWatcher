@@ -1,24 +1,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-02-16 19:27+0100\n"
-"PO-Revision-Date: 2015-02-16 19:30+0100\n"
+"POT-Creation-Date: 2015-02-19 17:17+0100\n"
+"PO-Revision-Date: 2015-02-19 17:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPathExcluded-0: docs\n"
-"X-Poedit-SearchPathExcluded-1: public\n"
-"X-Poedit-SearchPathExcluded-2: fpga_api/node\n"
-"X-Poedit-SearchPathExcluded-3: fpga_api/node_modules\n"
-"X-Poedit-SearchPathExcluded-4: lib/vendor\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: docs\n"
+"X-Poedit-SearchPathExcluded-1: fpga_api/node\n"
+"X-Poedit-SearchPathExcluded-2: fpga_api/node_modules\n"
+"X-Poedit-SearchPathExcluded-3: lib/vendor\n"
 
 #: app/common/appView.php:42
 msgid "Manager"
@@ -28,7 +27,7 @@ msgstr "Gestor"
 msgid "Statistics"
 msgstr "Estadísticas"
 
-#: app/common/appView.php:44
+#: app/common/appView.php:44 app/modules/captures/capturesView.php:32
 msgid "Captures"
 msgstr "Capturas"
 
@@ -36,27 +35,148 @@ msgstr "Capturas"
 msgid "Settings"
 msgstr "Configuración"
 
-#: app/common/appView.php:170 app/common/appView.php:212
+#: app/common/appView.php:175 app/common/appView.php:217
 msgid "License"
 msgstr "Licencia"
 
-#: app/common/appView.php:206 app/modules/status/statusView.php:32
+#: app/common/appView.php:211 app/modules/status/statusView.php:32
 msgid "Status"
 msgstr "Estado"
 
-#: app/common/appView.php:208
+#: app/common/appView.php:213
 msgid "Wiki"
 msgstr "Wiki"
 
-#: app/common/appView.php:210
+#: app/common/appView.php:215
 msgid "Source"
 msgstr "Código"
 
-#: app/modules/settings/settingsController.php:71
+#: app/modules/captures/capturesView.php:48
+msgid "All"
+msgstr "Todas"
+
+#: app/modules/captures/capturesView.php:49
+msgid "Simple"
+msgstr "Simple"
+
+#: app/modules/captures/capturesView.php:50
+msgid "Pcap"
+msgstr "Pcap"
+
+#: app/modules/captures/capturesView.php:51
+msgid "Auto Refresh"
+msgstr "Actualizar Automáticamente"
+
+#: app/modules/captures/capturesView.php:61
+msgid "Name"
+msgstr "Nombre"
+
+#: app/modules/captures/capturesView.php:62
+msgid "Type"
+msgstr "Tipo"
+
+#: app/modules/captures/capturesView.php:63
+msgid "Size"
+msgstr "Tamaño"
+
+#: app/modules/captures/capturesView.php:64
+msgid "Date"
+msgstr "Fecha"
+
+#: app/modules/captures/capturesView.php:76
+msgid "Select a capture from the table"
+msgstr "Selecciona una traza de la tabla"
+
+#: app/modules/captures/capturesView.php:83
+msgid "Convert"
+msgstr "Convertir"
+
+#: app/modules/captures/capturesView.php:87
+msgid "Converted name"
+msgstr "Nombre de la traza convertida"
+
+#: app/modules/captures/capturesView.php:90
+#: app/modules/captures/capturesView.php:106
+msgid "OK"
+msgstr "OK"
+
+#: app/modules/captures/capturesView.php:99
+msgid "Rename"
+msgstr "Renombrar"
+
+#: app/modules/captures/capturesView.php:103
+msgid "New name"
+msgstr "Nuevo nombre"
+
+#: app/modules/captures/capturesView.php:115
+msgid "Delete"
+msgstr "Borrar"
+
+#: app/modules/captures/capturesView.php:119
+msgid "Delete this capture (permanently)"
+msgstr "Borrar esta traza (permanentemente)"
+
+#: app/modules/captures/capturesView.php:132
+msgid ""
+"Add additional captures generated outside NetWatcher by copying the capture "
+"file (or adding symbolic link to it) to the captures directory on the FPGA "
+"remote server"
+msgstr ""
+"Añade trazas adicionales generadas fuera de NetWatcher copiando el archivo "
+"de traza (o añadiendo un enlace simbólico a él) al directorio de las trazas "
+"en el servidor FPGA remoto"
+
+#: app/modules/captures/capturesView.php:145
+#: public/js/bootstrap-table-localization.js.php:14
+msgid "Loading, please wait..."
+msgstr "Cargando, espere por favor..."
+
+#: app/modules/captures/capturesView.php:148
+#: public/js/bootstrap-table-localization.js.php:17
+msgid "records per page"
+msgstr "registros por página"
+
+#: app/modules/captures/capturesView.php:151
+#: public/js/bootstrap-table-localization.js.php:20
+#, php-format
+msgid "Showing %s to %s of %s rows"
+msgstr "Mostrando %s a %s de %s filas"
+
+#: app/modules/captures/capturesView.php:154
+#: public/js/bootstrap-table-localization.js.php:23
+msgid "Search"
+msgstr "Buscar"
+
+#: app/modules/captures/capturesView.php:157
+#: public/js/bootstrap-table-localization.js.php:26
+msgid "No matching records found"
+msgstr "No se encontraron registros coincidentes"
+
+#: app/modules/captures/capturesView.php:160
+#: public/js/bootstrap-table-localization.js.php:29
+msgid "Hide/Show pagination"
+msgstr "Ocultar/Mostrar paginación"
+
+#: app/modules/captures/capturesView.php:163
+#: public/js/bootstrap-table-localization.js.php:32
+msgid "Refresh"
+msgstr "Actualizar"
+
+#: app/modules/captures/capturesView.php:166
+#: public/js/bootstrap-table-localization.js.php:35
+msgid "Toggle"
+msgstr "Interruptor"
+
+#: app/modules/captures/capturesView.php:169
+#: public/js/bootstrap-table-localization.js.php:38
+msgid "Columns"
+msgstr "Columnas"
+
+#: app/modules/settings/settingsController.php:74
 msgid "Settings saved successfully"
 msgstr "Configuración actualizada"
 
-#: app/modules/settings/settingsController.php:73
+#: app/modules/settings/settingsController.php:76
 msgid "Error saving settings"
 msgstr "Error al guardar la configuración"
 
@@ -84,66 +204,66 @@ msgstr "Tema"
 msgid "Save"
 msgstr "Guardar"
 
-#: app/modules/status/statusView.php:72
-msgid "Total"
-msgstr "Total"
-
-#: app/modules/status/statusModel.php:50 app/modules/status/statusModel.php:57
-#: app/modules/status/statusModel.php:64
+#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:58
+#: app/modules/status/statusModel.php:65
 msgid "Rewrite Module"
 msgstr "Módulo Rewrite"
 
-#: app/modules/status/statusModel.php:51 app/modules/status/statusModel.php:58
-#: app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:59
+#: app/modules/status/statusModel.php:66
 msgid "Gettext Module"
 msgstr "Módulo Gettext"
 
-#: app/modules/status/statusModel.php:52 app/modules/status/statusModel.php:59
-#: app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:60
+#: app/modules/status/statusModel.php:67
 msgid "Session Variables"
 msgstr "Variables de Sesión"
 
-#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:60
-#: app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:61
+#: app/modules/status/statusModel.php:68
 msgid "Write Permissions"
 msgstr "Permisos de escritura"
 
-#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:61
-#: app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:55 app/modules/status/statusModel.php:62
+#: app/modules/status/statusModel.php:69
 msgid "FPGA API"
 msgstr "FPGA API"
 
-#: app/modules/status/statusModel.php:64
+#: app/modules/status/statusModel.php:65
 msgid "URL rewrite support"
 msgstr "Soporte para reescritura de URL"
 
-#: app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:66
 msgid "Locale language support"
 msgstr "Soporte para lenguaje local"
 
-#: app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:67
 msgid "Support for the usage of sessions"
 msgstr "Soporte para el uso de sesiones"
 
-#: app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:68
 msgid "Folder and file properties"
 msgstr "Propiedades de carpetas y archivos"
 
-#: app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:69
 msgid "Remote FPGA Server"
 msgstr "Servidor FPGA Remoto"
 
-#: app/modules/status/statusModel.php:71
+#: app/modules/status/statusModel.php:72
 msgid "Passed"
 msgstr "OK"
 
-#: app/modules/status/statusModel.php:72
+#: app/modules/status/statusModel.php:73
 msgid "Not Implemented"
 msgstr "No Implementado"
 
-#: app/modules/status/statusModel.php:73
+#: app/modules/status/statusModel.php:74
 msgid "Failed"
 msgstr "Error"
+
+#: app/modules/status/statusView.php:72
+msgid "Total"
+msgstr "Total"
 
 #: public/404.php:5
 msgid "404 - Not Found"
@@ -161,9 +281,18 @@ msgstr "Error 404"
 msgid "Sorry, an error has occured. Requested page not found!"
 msgstr "Lo sentimos, ha ocurrido un error. ¡La página solicitada no existe!"
 
-#: public/404.php:35
+#: public/404.php:34
 msgid "Take me Home"
 msgstr "Volver"
+
+#~ msgid ""
+#~ "Add additional captures generated outside NetWatcher by copying the "
+#~ "capture file (or adding symbolic link to it) to the captures directory on "
+#~ "the FPGA remote server.<br>"
+#~ msgstr ""
+#~ "Añade trazas adicionales generadas fuera de NetWatcher copiando el "
+#~ "archivo de traza (o añadiendo un enlace simbólico) al directorio de "
+#~ "trazas en el servidor remoto FPGA.<br>"
 
 #~ msgid "FPGA API URL"
 #~ msgstr "FPGA API URL"

@@ -42,6 +42,8 @@ In addition, a full list of references used can be found [here](REFERENCES.md).
 
 Installation
 ----
+** Prerequisite **: the three parties involved (the FPGA service, the web interface and the client -browser) must be in the same local network.
+
 #### FPGA REST Service
 1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.
 2. Edit the file `./fpga_api/scripts/update_server.sh` setting the `SERVER_IP` and `USER` vars. **Note**: selected user must exist and have superuser rights in the remote server
@@ -110,3 +112,4 @@ $ ./scripts/do_chmod.sh
 
 * Translations (implementing more languages)
     * Edit ./locale/ files with a PO file editor, ex: [POEdit](https://poedit.net)
+    * Restart apache
