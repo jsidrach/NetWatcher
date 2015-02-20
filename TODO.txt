@@ -1,18 +1,19 @@
+TODO Weekend:
+-------------
 Workflow javascript captures
   - Seleccionar 1 de tabla: guardar nombre en panel azul, guardar tipo en algún lado
-- Checker server config php
+  - Rename, convert, delete(+popup?)
+- Implementar un sistema de timestamp {{$timestamp}} <- postman
+    - req.headers?
+- POEdit nueva página de capturas
+
+
 
 TODO Week:
 -------
-  - Hacer la funcionalidad de la página de capturas (netwatcher-captures.js)
-  - Localizar página captures con POEdit
-
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
   - Terminar tipos de códigos status
   - Boceto página de manager
-
-  - Más temas bootstrap
-
 
 Dudas Jose:
 -------
@@ -23,13 +24,7 @@ Qué hace readRegisters, testControl
 - Tema seguridad
 
 -------
-TODO: Investigar cómo traducir los mensajes json
-  - Opción real: ignorar descripciones de la api, hacer echo de descripciones propias
-  - Opción óptima?: crear un script que busque todos los json de la api, y cree un php con todas las cadenas encontradas en los json
-  - Opción buena: traducir del lado del cliente PHP
-  - Opción MALA?: mandar sólo información no redundante (ids estado, códigos y estadísticas), php se encarga de traducir?
-
-API JSON (root: /fpga_api/) - Servidor node.js+express
+API JSON (root: /fpga/api/) - Servidor node.js+express
 
 GET
 /status/
@@ -161,12 +156,13 @@ Cosas a mencionar en la memoria:
     - Algoritmo utilizado
     - JSONP, cross-domain
     - Supervisor, cambios en javascript sin reiniciar
+    - Timestamps
   - Documentación
     - Wiki
     - Swagger?
     - phpDocumentor
   - Problema de tráfico redundante, reproducir mismo tráfico que se capturó, incluyendo órdenes al servicio
-    - Solución propuesta
+    - Solución propuesta (timestamps)
   - Posibles mejoras
     - Más idiomas
     - Más estadísticas
