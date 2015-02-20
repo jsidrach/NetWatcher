@@ -10,15 +10,60 @@
 /**
  * Generic model for the app
  */
-namespace App\Common;
-
+namespace App\Common;    
+    
 /**
- * Generic Model Class
+ * Model Class
  */
 abstract class appModel extends \Core\Model
 {
-/**
- * Empty class
- */
+    /**
+     * Left navbar links
+     */
+    public $leftNavbar;
+    
+    /**
+     * Right navbar links
+     */
+    public $rightNavbar;
+    
+    /**
+     * Common css libraries
+     */
+    public $cssLibraries;
+    
+    /**
+     * Common javascript libraries
+     */
+    public $jsLibraries;
+    
+    /**
+     * App Model constructor. Sets the navigation links and common javascript libraries
+     */
+    public function __construct()
+    {        
+        $this->leftNavbar = array(
+            '#notImplemented1' => _('Manager'),
+            '#notImplemented2' => _('Statistics'),
+            'captures' => _('Captures')
+        );
+        $this->rightNavbar = array(
+            'settings' => _('Settings')
+        );
+        /* 'theme' is the keyword for the user theme, so we can place it between other stylesheets */
+        $this->cssLibraries = array(
+            'bootstrap.min.css',
+            'theme',
+            'sticky-footer.css',
+            'bootstrap-table.css'
+        );
+        $this->jsLibraries = array(
+            'jquery.js',
+            'bootstrap.js',
+            'jquery.bootstrap-growl.js',
+            'growl-settings.js',
+            'bootstrap-table.js'
+        );
+    }
 }
 ?>

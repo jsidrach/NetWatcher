@@ -155,7 +155,7 @@ Cosas a mencionar en la memoria:
     - Restricciones (red local)
   - Esquema de comunicaciones/protocolos entre las 3 partes
   - Diseño de la aplicación, responsive, temas, atractiva visualmente, mejora de manejo respecto a consola
-  - Framework MVC desarrollado en PHP. Traducción de rutas, configuración, componentes:
+  - Framework MVC+Router+Logger desarrollado en PHP. Traducción de rutas, configuración, componentes:
     - rewrite (htaccess)
     - gettext
     - composer
@@ -165,10 +165,10 @@ Cosas a mencionar en la memoria:
     - Solución .js.php
     - Solución caché ficheros, time()+guardar última modificación
   - REST(-based) stack (express, io.js) service, filosofía
-      - Distintas partes. Máquina de estados finito
-      - Diferencias y restricciones respecto a restful
-      - Llamadas asíncronas
-      - Algoritmo utilizado
+    - Distintas partes. Máquina de estados finito
+    - Diferencias y restricciones respecto a restful
+    - Llamadas asíncronas
+    - Algoritmo utilizado
   - Documentación
     - Wiki
     - Swagger?
