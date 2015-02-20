@@ -44,7 +44,7 @@ class capturesModel extends Common\appModel
             $this->capturesFolder = json_decode($data)->path;
         }
         /* Additional libraries */
-        array_push($this->jsLibraries, 'bootstrap-table-localization.js.php', 'netwatcher-captures.js.php');
+        array_push($this->jsLibraries, 'bootstrap-table.js', 'bootstrap-table-localization.js.php', 'netwatcher-captures.js.php');
     }
 }
 ?>

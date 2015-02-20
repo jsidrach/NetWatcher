@@ -1,16 +1,6 @@
 Workflow javascript captures
-  - radios: al hacer click, ver estado, hacer nueva petición a /all | /simple | /pcap
-    - Capturar la respuesta, actualizar datos tabla
-      - Si no llega respuesta, notificación error no responde, autorefresh off
-  - Autorefresh
-    - Off: quitar peticiones
-    - On: timer cada X sec, capturar respuesta, actualizar datos tabla
-        - Si no llega respuesta, notificación error no responde, autorefresh off
-  - Refresh
-    - nueva peticion datos tabla, si no responde autorefresh off y notificacion error
-  - Search (automático?)
-  - Probar ordenación
   - Seleccionar 1 de tabla: guardar nombre en panel azul, guardar tipo en algún lado
+- Checker server config php
 
 TODO Week:
 -------
@@ -169,6 +159,8 @@ Cosas a mencionar en la memoria:
     - Diferencias y restricciones respecto a restful
     - Llamadas asíncronas
     - Algoritmo utilizado
+    - JSONP, cross-domain
+    - Supervisor, cambios en javascript sin reiniciar
   - Documentación
     - Wiki
     - Swagger?

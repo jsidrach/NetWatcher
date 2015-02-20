@@ -45,14 +45,16 @@ class capturesView extends Common\appView
         
         /* Toolbar of the table */
         $this->pLine('<div id="toolbar">', 1);
-        $this->pLine('<label><input type="radio" name="typeCapture" value="all" checked>' . _('All') . '</label>', 1);
-        $this->pLine('<label><input type="radio" name="typeCapture" value="simple">' . _('Simple') . '</label>');
-        $this->pLine('<label><input type="radio" name="typeCapture" value="pcap">' . _('Pcap') . '</label>');
+        $this->pLine('<label><input type="radio" id="allCaptures" name="typeCapture" value="all" checked>' . _('All') . '</label>', 1);
+        $this->pLine('<label><input type="radio" id="simpleCaptures" name="typeCapture" value="simple">' . _('Simple') . '</label>');
+        $this->pLine('<label><input type="radio" id="pcapCaptures" name="typeCapture" value="pcap">' . _('Pcap') . '</label>');
         $this->pLine('<label><input type="checkbox" id="autoRefresh">' . _('Auto Refresh') . '</label>');
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="table-responsive">');
-        $this->pLine('<table class="table"', 1);
+        $this->pLine('<table id="tableCaptures"', 1);
+        $this->pLine('       class="table"');
         $this->pLine('       data-toggle="table"');
+        $this->pLine('       data-height="500"');
         $this->pLine('       data-search="true"');
         $this->pLine('       data-show-refresh="true"');
         $this->pLine('       data-toolbar="#toolbar">');
@@ -125,6 +127,7 @@ class capturesView extends Common\appView
         $this->pLine('</div>', - 1);
         
         /* Lower panel with info about adding external captures */
+        $this->pLine('<div class="row">&nbsp;</div>');
         $this->pLine('<div class="row">');
         $this->pLine('<div class="col-md-8">', 1);
         $this->pLine('<div class="panel panel-info">', 1);
