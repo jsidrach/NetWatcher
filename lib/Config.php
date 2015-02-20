@@ -17,31 +17,6 @@ namespace Core;
  */
 class Config
 {
-
-    /**
-     * JS Libraries
-     */
-    public static $JS_LIBRARIES = array(
-        'jquery.js',
-        'bootstrap.js',
-        'jquery.bootstrap-growl.js',
-        'growl-settings.js',
-        'bootstrap-table.js',
-        'bootstrap-table-localization.js.php',
-        'netwatcher-captures.js.php'
-    );
-
-    /**
-     * CSS Libraries
-     */
-    public static $CSS_LIBRARIES = array(
-        'bootstrap.min.css',
-        'theme',
-        'sticky-footer.css',
-        'bootstrap-table.css'
-    );
-    /* 'theme' is the keyword for the user theme, so we can place it between other stylesheets */
-
     /**
      * User Themes
      */

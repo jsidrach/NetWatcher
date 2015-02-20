@@ -31,6 +31,7 @@ class capturesModel extends Common\appModel
      */
     public function __construct()
     {
+        parent::__construct();
         $context = stream_context_create(array(
             'http' => array(
                 'timeout' => 1
@@ -42,6 +43,8 @@ class capturesModel extends Common\appModel
         } else {
             $this->capturesFolder = json_decode($data)->path;
         }
+        /* Additional libraries */
+        array_push($this->jsLibraries, 'bootstrap-table-localization.js.php', 'netwatcher-captures.js.php');
     }
 }
 ?>

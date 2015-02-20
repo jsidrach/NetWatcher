@@ -19,33 +19,15 @@ abstract class appView extends \Core\View
 {
 
     /**
-     * Left navbar links
-     */
-    private static $leftNavbar;
-
-    /**
-     * Right navbar links
-     */
-    private static $rightNavbar;
-
-    /**
      * Generic constructor.
      * Associates a model to the view
      *
      * @param Model $model
      *            Model to associate with the controller
      */
-    protected function __construct($model)
+    public function __construct($model)
     {
         parent::__construct($model);
-        self::$leftNavbar = array(
-            '#notImplemented1' => _('Manager'),
-            '#notImplemented2' => _('Statistics'),
-            'captures' => _('Captures')
-        );
-        self::$rightNavbar = array(
-            'settings' => _('Settings')
-        );
     }
 
     /**
@@ -80,8 +62,8 @@ abstract class appView extends \Core\View
         $this->pLine('<link rel="icon" href="' . APP_FAVICON . '">', 0);
         
         $this->pLine('<!-- CSS files -->', 0);
-        foreach (\Core\Config::$CSS_LIBRARIES as $cssLib) {
-            if (! strcmp($cssLib, 'theme')) {
+        foreach ($this->model->cssLibraries as $cssLib) {
+            if ((!strcmp($cssLib, 'theme')) && isset(\Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME])) {
                 $this->pLine('<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">', 0);
             } else {
                 $this->pLine('<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">', 0);
@@ -89,7 +71,7 @@ abstract class appView extends \Core\View
         }
         
         $this->pLine('<!-- JS files -->', 0);
-        foreach (\Core\Config::$JS_LIBRARIES as $jsLib) {
+        foreach ($this->model->jsLibraries as $jsLib) {
             /* Refresh cache if needed (after saving new settings) */
             if (preg_match("/\.php$/", $jsLib)) {
                 $jsLib .= '?' . \Core\Config::$CACHE_TIME;
@@ -122,7 +104,7 @@ abstract class appView extends \Core\View
         
         $this->pLine('<ul class="nav navbar-nav">', 1);
         $this->moveIndent(1);
-        foreach (self::$leftNavbar as $leftURL => $leftItem) {
+        foreach ($this->model->leftNavbar as $leftURL => $leftItem) {
             if ($this->title == _($leftItem)) {
                 $this->pLine('<li class="active">', 0);
             } else {
@@ -135,7 +117,7 @@ abstract class appView extends \Core\View
         
         $this->pLine('<ul class="nav navbar-nav navbar-right">', 0);
         $this->moveIndent(1);
-        foreach (self::$rightNavbar as $rightURL => $rightItem) {
+        foreach ($this->model->rightNavbar as $rightURL => $rightItem) {
             if ($this->title == _($rightItem)) {
                 $this->pLine('<li class="active">', 0);
             } else {
