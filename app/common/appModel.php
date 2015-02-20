@@ -61,8 +61,7 @@ abstract class appModel extends \Core\Model
             'jquery.js',
             'bootstrap.js',
             'jquery.bootstrap-growl.js',
-            'growl-settings.js',
-            'bootstrap-table.js'
+            'growl-settings.js'
         );
     }
 }

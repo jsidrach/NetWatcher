@@ -1,8 +1,8 @@
 // Common functions for the scripts
 
 // Package dependencies
-var fs         = require('fs');
-var path       = require('path');
+var fs = require('fs');
+var path = require('path');
 
 // Exports
 
@@ -10,10 +10,11 @@ var path       = require('path');
 exports.readJSON = function (file, callback) {
   fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
     var obj;
-    if(err) {
-      obj = { message: 'Not Found' };
-    }
-    else {
+    if (err) {
+      obj = {
+        message: 'Not Found'
+      };
+    } else {
       obj = JSON.parse(data);
     }
     callback(obj);
@@ -24,56 +25,57 @@ exports.readJSON = function (file, callback) {
 exports.sendJSON = function (file, res, code) {
   fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
     var obj;
-    if(err) {
-      obj = { message: 'Not Found' };
-    }
-    else {
+    if (err) {
+      obj = {
+        message: 'Not Found'
+      };
+    } else {
       obj = JSON.parse(data);
     }
-    res.status(code).json(obj);
+    res.status(code).jsonp(obj);
   });
 }
 
 // Parses a csv into a JSON string
-exports.csv2JSONstring = function (csv) { 
-  var lines = csv.split("\n"); 
-  var result = []; 
+exports.csv2JSONstring = function (csv) {
+  var lines = csv.split("\n");
+  var result = [];
   var headers = lines[0].split("|");
- 
-  for(var i = 1; i < lines.length; i++) { 
+
+  for (var i = 1; i < lines.length; i++) {
     var obj = {};
     var currentline = lines[i].split("|");
-    
-    if(currentline.length == headers.length) {
-      for(var j = 0; j < headers.length;j++) {
+
+    if (currentline.length == headers.length) {
+      for (var j = 0; j < headers.length; j++) {
         obj[headers[j]] = currentline[j];
       }
       result.push(obj);
     }
   }
-  
+
   // Return JSON
   return JSON.stringify(result);
 };
 
 // Parses a csv into a JSON Javascript object
-exports.csv2JSONobject = function (csv) { 
-  var lines = csv.split("\n"); 
-  var result = []; 
+exports.csv2JSONobject = function (csv) {
+  var lines = csv.split("\n");
+  var result = [];
   var headers = lines[0].split("|");
- 
-  for(var i = 1; i < lines.length; i++) { 
+
+  for (var i = 1; i < lines.length; i++) {
     var obj = {};
     var currentline = lines[i].split("|");
- 
-    if(currentline.length == headers.length) {
-      for(var j = 0; j < headers.length;j++) {
+
+    if (currentline.length == headers.length) {
+      for (var j = 0; j < headers.length; j++) {
         obj[headers[j]] = currentline[j];
       }
       result.push(obj);
     }
   }
-  
+
   // Return Javascript Object
   return result;
 };
@@ -83,11 +85,11 @@ exports.csv2JSONobject = function (csv) {
 // Checks if a new name is available and valid
 function validNewName(name) {
   // Valid name
-  if(!validName(name)) {
+  if (!validName(name)) {
     return false;
   }
   // File already exists
-  if (fs.existsSync('data/'+name)) {
+  if (fs.existsSync('data/' + name)) {
     return false;
   }
   return true;
@@ -95,16 +97,16 @@ function validNewName(name) {
 exports.validNewName = validNewName;
 
 // Checks if a capture has a valid simple format
-function validSimpleCapture (name) {
-  if(!validFile(name)) {
+function validSimpleCapture(name) {
+  if (!validFile(name)) {
     return false;
   }
   // 3rd and 4th byte are 0x69
   var magicNumber = new Buffer([0x69, 0x69]);
   var buffer = new Buffer([0x00, 0x00]);
-  var fd = fs.openSync('data/'+name, 'r');
+  var fd = fs.openSync('data/' + name, 'r');
   var len = fs.readSync(fd, buffer, 0, 2, 2);
-  if(len != magicNumber.length) {
+  if (len != magicNumber.length) {
     return false;
   }
   return ((magicNumber[0] == buffer[0]) && (magicNumber[1] == buffer[1]));
@@ -112,9 +114,8 @@ function validSimpleCapture (name) {
 exports.validSimpleCapture = validSimpleCapture;
 
 // Checks if a capture has a valid pcap format
-function validPcapCapture (name)
-{
-  if(!validFile(name)) {
+function validPcapCapture(name) {
+  if (!validFile(name)) {
     return false;
   }
   // First bytes one of this magic numbers (endianness)
@@ -125,15 +126,15 @@ function validPcapCapture (name)
     new Buffer([0xd4, 0xc3, 0xb2, 0xa1])
   ];
   var buffer = new Buffer([0x00, 0x00, 0x00, 0x00]);
-  var fd = fs.openSync('data/'+name, 'r');
+  var fd = fs.openSync('data/' + name, 'r');
   var len = fs.readSync(fd, buffer, 0, 4, 0);
-  if(len != magicNumbers[0].length) {
+  if (len != magicNumbers[0].length) {
     return false;
   }
   var flag = false;
-  magicNumbers.some(function(magicNumber){
-    for (i = 0; i < magicNumber.length; i++) { 
-      if(buffer[i] != magicNumber[i]) {
+  magicNumbers.some(function (magicNumber) {
+    for (i = 0; i < magicNumber.length; i++) {
+      if (buffer[i] != magicNumber[i]) {
         return false;
       }
     }
@@ -145,7 +146,7 @@ function validPcapCapture (name)
 exports.validPcapCapture = validPcapCapture;
 
 // Checks if a capture exists with a given name (full name)
-function validCapture (name) {
+function validCapture(name) {
   return (validSimpleCapture(name) || validPcapCapture(name));
 }
 exports.validCapture = validCapture;
@@ -157,8 +158,8 @@ exports.validCapture = validCapture;
 function validName(name) {
   var flag = true;
   // Name is valid if it does not have the following substrings:
-  ['\\/', '\\.\\.', '\\$', '\\~'].every(function(entry) {
-    if(name.search(entry) != -1) {
+  ['\\/', '\\.\\.', '\\$', '\\~'].every(function (entry) {
+    if (name.search(entry) != -1) {
       flag = false;
       return false;
     }
@@ -170,11 +171,11 @@ function validName(name) {
 // File exists and it is valid
 function validFile(name) {
   // Valid name
-  if(!validName(name)) {
+  if (!validName(name)) {
     return false;
   }
   // File already exists
-  if (!fs.existsSync('data/'+name)) {
+  if (!fs.existsSync('data/' + name)) {
     return false;
   }
   return true;

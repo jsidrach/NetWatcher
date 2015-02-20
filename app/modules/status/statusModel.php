@@ -47,6 +47,8 @@ class statusModel extends Common\appModel
      */
     public function __construct()
     {
+        parent::__construct();
+
         /* Functions */
         $this->testsFunctions[_('Rewrite Module')] = 'checkModRewrite';
         $this->testsFunctions[_('Gettext Module')] = 'checkGettext';

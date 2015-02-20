@@ -8,7 +8,7 @@ var common = require('./_common.js');
 // /ping
 // Simple ping
 exports.ping = function (req, res) {
-  res.sendStatus(200);
+  common.sendJSON('ping', res, 200);
 };
 
 // /status
@@ -93,7 +93,7 @@ statusFPGA = function (res, callbackList) {
       // TODO: Ask type of codes, what they mean
 
       // Send the response
-      res.status(200).json(ans);
+      res.status(200).jsonp(ans);
     });
   });
 };
