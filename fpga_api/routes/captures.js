@@ -45,7 +45,7 @@ exports.rename = function (req, res) {
   // Rename
   fs.rename('data/' + req.params.oldname, 'data/' + req.params.newname, function (err) {
     if (err) {
-      console.error(err.message);
+      common.logError(err.message);
       common.sendJSON('captures_rename_error', res, 400);
       return;
     }
@@ -66,14 +66,13 @@ exports.convertToPcap = function (req, res) {
   var code_script = scripts.exec('./bin/simple2pcap -o data/' + req.params.convertedname + ' data/' + req.params.name);
   code_script.on('exit', function (code) {
     if (code != 0) {
-      console.error('Error executing the simple2pcap command');
-      console.error('Code: ' + code);
+      common.logError('Error executing the simple2pcap command. Code: ' + code);
       common.sendJSON('captures_convert_error', res, 400);
       return;
     }
     common.sendJSON('captures_convert_success', res, 200);
   });
-}
+};
 
 // /captures/pcap/simple/:name/:convertedname
 // Converts a capture from pcap to simple
@@ -88,15 +87,13 @@ exports.convertToSimple = function (req, res) {
   var code_script = scripts.exec('./bin/pcap2simple data/' + req.params.name + ' data/' + req.params.convertedname);
   code_script.on('exit', function (code) {
     if (code != 0) {
-      console.error('Error executing the pcap2simple command');
-      console.error('Code: ' + code);
+      common.logError('Error executing the pcap2simple command. Code: ' + code);
       common.sendJSON('captures_convert_error', res, 400);
       return;
     }
     common.sendJSON('captures_convert_success', res, 200);
   });
-}
-
+};
 
 // /captures/delete/:name
 // Deletes a capture in the ./data/ dir
@@ -110,13 +107,14 @@ exports.delete = function (req, res) {
   // Delete
   fs.unlink('data/' + req.params.name, function (err) {
     if (err) {
-      console.error(err.message);
+      common.logError(err.message);
       common.sendJSON('captures_delete_error', res, 400);
       return;
     }
     common.sendJSON('captures_delete_success', res, 200);
   });
 };
+
 
 // Internal functions
 
@@ -139,7 +137,7 @@ function dataCaptures(simple, pcap, res, callback) {
     files.forEach(function (entry) {
       fs.stat('data/' + entry, function (err, stats) {
         if (err) {
-          console.error(err);
+          common.logError(err);
           return;
         }
 

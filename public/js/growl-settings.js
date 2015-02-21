@@ -6,8 +6,8 @@ $.bootstrapGrowl.default_options = {
           amount: 60
         },
         align: "center",
-        width: 250,
-        delay: 5000,
+        width: 350,
+        delay: 3000,
         allow_dismiss: true,
         stackup_spacing: 10
         };

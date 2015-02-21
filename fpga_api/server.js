@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 // Express
 var app = express();
 
+// Common module
+var common = require('./routes/_common.js');
 // Functions module for each petition
 var manager = require('./routes/manager.js');
 var statistics = require('./routes/statistics.js');
@@ -22,6 +24,12 @@ var port = process.env.PORT || 1337;
 var router = express.Router();
 // Default routes (Not Found Error)
 var defError = express.Router();
+
+// Middleware to discard out of time request (reproduced calls with the FPGA)
+app.route('*')
+  .post(common.handleRequest)
+  .put(common.handleRequest)
+  .delete(common.handleRequest);
 
 // Routes and Modules
 

@@ -73,7 +73,7 @@ mountedFPGA = function (res, callbackList) {
 statusFPGA = function (res, callbackList) {
   var code_script = scripts.exec('cat /proc/nfp/nfp_report', function (error, stdout, stderr) {
     if (error) {
-      console.error(stderr);
+      common.logError(stderr);
       common.sendJSON('status_3_mount_off', res, 200);
       return;
     }
@@ -84,7 +84,7 @@ statusFPGA = function (res, callbackList) {
       } else if (stdout.indexOf('REC') != -1) {
         ans.type = 'recorder';
       } else {
-        console.error('Neither a player nor recorder');
+        common.logError('Neither a player nor recorder');
         common.sendJSON('status_3_mount_off', res, 200);
         return;
       }
