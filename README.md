@@ -34,7 +34,7 @@ NetWatcher uses a number of open source projects to work properly:
     * [Bootstrap Growl](https://github.com/ifightcrime/bootstrap-growl) - notifications
 * [io.js](https://iojs.org/) - evented I/O for the backend server
 * [Express](http://expressjs.com/) - web framework for io.js
-* [Supervisor](https://github.com/isaacs/node-supervisor) - watches code changes and reloads them
+* [Supervisor](https://github.com/isaacs/node-supervisor) - supervisor and hot-code reloader
 * [jQuery](https://jquery.com) - JavaScript library
 * [Composer](https://getcomposer.org) - PHP library for external dependencies
 
