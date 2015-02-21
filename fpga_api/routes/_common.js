@@ -6,6 +6,21 @@ var path = require('path');
 
 // Exports
 
+// Checks the timestamp and discard not valid requests
+exports.handleRequest = function (req, res, next) {
+  if (!validTimestamp(req)) {
+    res.sendStatus(408);
+  } else {
+    next();
+  }
+};
+
+// Logs an error with a date
+exports.logError = function(string) {
+  var logHeader = '[' + new Date().toUTCString() + ']: ';
+  console.error(logHeader+string);
+};
+
 // Reads a json in the messages folder
 exports.readJSON = function (file, callback) {
   fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
@@ -152,7 +167,27 @@ function validCapture(name) {
 exports.validCapture = validCapture;
 
 
+
 // Internal functions
+
+// Checks if a timestamp is valid
+function validTimestamp(req) {
+  if (typeof req.headers.timestamp === 'undefined') {
+    return false;
+  }
+  // 1 second precision
+  var currentTimestamp = parseInt(Date.now() / 1000);
+  var requestTimestamp = parseInt(req.headers.timestamp);
+  if (isNaN(requestTimestamp)) {
+    return false;
+  }
+  // Round request timestamp to the same precision
+  if(requestTimestamp.toString().length > currentTimestamp.toString().length) {
+    requestTimestamp = parseInt(requestTimestamp/(Math.pow(10, requestTimestamp.toString().length - currentTimestamp.toString().length)));
+  }
+  var delay = Math.abs(currentTimestamp - requestTimestamp);
+  return (delay < 10);
+};
 
 // Checks if a name is valid (syntactically)
 function validName(name) {
@@ -179,4 +214,4 @@ function validFile(name) {
     return false;
   }
   return true;
-}
+};

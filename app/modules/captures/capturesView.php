@@ -57,7 +57,8 @@ class capturesView extends Common\appView
         $this->pLine('       data-height="500"');
         $this->pLine('       data-search="true"');
         $this->pLine('       data-show-refresh="true"');
-        $this->pLine('       data-toolbar="#toolbar">');
+        $this->pLine('       data-toolbar="#toolbar"');
+        $this->pLine('       style="cursor: pointer">');
         $this->pLine('<thead>', 1);
         $this->pLine('<tr>', 1);
         $this->pLine('<th data-field="name" data-sortable="true">' . _('Name') . '</th>', 1);

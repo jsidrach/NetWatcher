@@ -1,27 +1,31 @@
-TODO Weekend:
+TODO:
 -------------
 Workflow javascript captures
-  - Seleccionar 1 de tabla: guardar nombre en panel azul, guardar tipo en algún lado
-  - Rename, convert, delete(+popup?)
-- Implementar un sistema de timestamp {{$timestamp}} <- postman
-    - req.headers?
+  - Rename, convert, delete queries
+    - Añadir timestamp a la query con Date.now()
+    - Tras hacer la query, deseleccionar el panel derecho
+    - Cuando llega la respuesta, hacer refresh
+    - Set autorefresh off si alguna query falla
 - POEdit nueva página de capturas
-
+- Backup
 
 
 TODO Week:
 -------
+  - Repasar todo hasta la fecha, mejorar comentarios
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
   - Terminar tipos de códigos status
   - Boceto página de manager
 
 Dudas Jose:
 -------
-IMPORTANTE: Problema reproducir tráfico FPGA
-Tipo de códigos en /proc/nfp/nfp_report
-Qué hace readRegisters, testControl
-- Añadir dependencia red local
-- Tema seguridad
+  - Tipo de códigos en /proc/nfp/nfp_report
+  - Qué hace readRegisters, testControl
+
+Dudas Sergio:
+-------
+  - Tema dependencia red local
+  - Tema seguridad
 
 -------
 API JSON (root: /fpga/api/) - Servidor node.js+express
