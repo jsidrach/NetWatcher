@@ -54,6 +54,7 @@ app.route('*')
 // Real Time Statistics
 
 router.get('/ping', statistics.ping);
+router.get('/delay', statistics.delay);
 router.get('/status', statistics.status);
 // router.get('/player/statistics', statistics.playerStats);
 // router.get('/recorder/statistics', statistics.recorderStats);

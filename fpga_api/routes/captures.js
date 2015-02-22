@@ -29,7 +29,7 @@ exports.pcap = function (req, res) {
 exports.path = function (req, res) {
   var dataPath = {};
   dataPath['path'] = path.resolve(__dirname, '..', 'data/');
-  res.jsonp(dataPath);
+  res.json(dataPath);
 };
 
 
@@ -175,6 +175,6 @@ function dataCaptures(simple, pcap, res, callback) {
 function sendDataCaptures(res, dataCaptures) {
   common.readJSON('captures_data', function (ans) {
     ans.captures = dataCaptures;
-    res.status(200).jsonp(ans);
+    res.status(200).json(ans);
   });
 };
