@@ -6,9 +6,7 @@
 <?php
 echo '<link rel="icon" href="' . APP_FAVICON . '">';
 echo '<!-- CSS files -->';
-foreach (\Core\Config::$CSS_LIBRARIES as $cssLib) {
-    echo '<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">';
-}
+echo '<link href="' . CSS_DIR . 'bootstrap.min.css" rel="stylesheet">';
 echo '<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">';
 ?>
 <style>

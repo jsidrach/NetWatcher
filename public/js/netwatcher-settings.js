@@ -30,22 +30,22 @@ function setServerIpInput(value) {
   var serverIpForm = $('#serverIpForm');
   var serverIpIcon = $('#ipIcon');
   if (value) {
-    if (serverIpForm.hasClass('has-error')) {
-      serverIpForm.removeClass('has-error');
+    if (serverIpForm.hasClass('has-warning')) {
+      serverIpForm.removeClass('has-warning');
     }
     serverIpForm.addClass('has-success');
-    if (serverIpIcon.hasClass('glyphicon-remove')) {
-      serverIpIcon.removeClass('glyphicon-remove');
+    if (serverIpIcon.hasClass('glyphicon-warning-sign')) {
+      serverIpIcon.removeClass('glyphicon-warning-sign');
     }
     serverIpIcon.addClass('glyphicon-ok');
   } else {
     if (serverIpForm.hasClass('has-success')) {
       serverIpForm.removeClass('has-success');
     }
-    serverIpForm.addClass('has-error');
+    serverIpForm.addClass('has-warning');
     if (serverIpIcon.hasClass('glyphicon-ok')) {
       serverIpIcon.removeClass('glyphicon-ok');
     }
-    serverIpIcon.addClass('glyphicon-remove');
+    serverIpIcon.addClass('glyphicon-warning-sign');
   }
 }

@@ -42,7 +42,7 @@ In addition, a full list of references used can be found [here](REFERENCES.md).
 
 Installation
 ----
-**Prerequisite**: the three parties involved (the FPGA service, the web interface and the client -browser) must be in the same local network.
+**Prerequisite**: the FPGA service and the apache server must be in the same local network.
 
 #### FPGA REST Service
 1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.

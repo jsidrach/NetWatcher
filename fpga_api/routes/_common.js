@@ -16,9 +16,9 @@ exports.handleRequest = function (req, res, next) {
 };
 
 // Logs an error with a date
-exports.logError = function(string) {
+exports.logError = function (string) {
   var logHeader = '[' + new Date().toUTCString() + ']: ';
-  console.error(logHeader+string);
+  console.error(logHeader + string);
 };
 
 // Reads a json in the messages folder
@@ -38,6 +38,21 @@ exports.readJSON = function (file, callback) {
 
 // Sends a json as a response
 exports.sendJSON = function (file, res, code) {
+  fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
+    var obj;
+    if (err) {
+      obj = {
+        message: 'Not Found'
+      };
+    } else {
+      obj = JSON.parse(data);
+    }
+    res.status(code).json(obj);
+  });
+}
+
+// Sends a jsonp as a response
+exports.sendJSONP = function (file, res, code) {
   fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
     var obj;
     if (err) {
@@ -182,8 +197,8 @@ function validTimestamp(req) {
     return false;
   }
   // Round request timestamp to the same precision
-  if(requestTimestamp.toString().length > currentTimestamp.toString().length) {
-    requestTimestamp = parseInt(requestTimestamp/(Math.pow(10, requestTimestamp.toString().length - currentTimestamp.toString().length)));
+  if (requestTimestamp.toString().length > currentTimestamp.toString().length) {
+    requestTimestamp = parseInt(requestTimestamp / (Math.pow(10, requestTimestamp.toString().length - currentTimestamp.toString().length)));
   }
   var delay = Math.abs(currentTimestamp - requestTimestamp);
   return (delay < 10);

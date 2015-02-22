@@ -101,6 +101,17 @@ class Config
          * Default method
          */
         define('DEFAULT_METHOD', 'display');
+
+        /**
+         * Define the target URL Parameter 'csurl' for proxy calls
+         */
+        define('CSURL', 'csurl');
+
+        /**
+         * Base path for the proxy queries
+         */
+        define('PROXY_PATH', 'proxy.php?' . CSURL . '=');
+
         
         /**
          * Routes

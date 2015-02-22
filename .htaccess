@@ -25,3 +25,8 @@ Options -Indexes
     Order Allow,Deny
     Allow from all
 </Files>
+
+<Files proxy.php>
+    Order Allow,Deny
+    Allow from all
+</Files>
