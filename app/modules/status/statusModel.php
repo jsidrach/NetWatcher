@@ -54,6 +54,7 @@ class statusModel extends Common\appModel
         $this->testsFunctions[_('Gettext Module')] = 'checkGettext';
         $this->testsFunctions[_('Session Variables')] = 'checkSession';
         $this->testsFunctions[_('Write Permissions')] = 'checkPermissions';
+        $this->testsFunctions[_('Proxy Server')] = 'checkProxy';
         $this->testsFunctions[_('FPGA API')] = 'checkRemoteServer';
         
         /* Status */
@@ -61,6 +62,7 @@ class statusModel extends Common\appModel
         $this->testsResults[_('Gettext Module')] = 'warning';
         $this->testsResults[_('Session Variables')] = 'warning';
         $this->testsResults[_('Write Permissions')] = 'warning';
+        $this->testsResults[_('Proxy Server')] = 'warning';
         $this->testsResults[_('FPGA API')] = 'warning';
         
         /* Descriptions */
@@ -68,6 +70,7 @@ class statusModel extends Common\appModel
         $this->testsDescriptions[_('Gettext Module')] = _('Locale language support');
         $this->testsDescriptions[_('Session Variables')] = _('Support for the usage of sessions');
         $this->testsDescriptions[_('Write Permissions')] = _('Folder and file properties');
+        $this->testsDescriptions[_('Proxy Server')] = _('Proxy server enabled for FPGA API calls');
         $this->testsDescriptions[_('FPGA API')] = _('Remote FPGA Server');
         
         /* Info */
@@ -205,6 +208,20 @@ class statusModel extends Common\appModel
             return 'danger';
         }
         return 'success';
+    }
+
+    /**
+     * Checks the folder and file permissions
+     *
+     * @return string Status of test over the proxy server
+     */
+    private function checkProxy()
+    {
+        $server_info = $this->phpinfo_array(true);
+        if (isset($server_info['curl']) && isset($server_info['curl']['cURL support']) && $server_info['curl']['cURL support'] == 'enabled') {
+            return 'success';
+        }
+        return 'danger';
     }
 
     /**
