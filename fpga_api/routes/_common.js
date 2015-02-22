@@ -112,6 +112,26 @@ exports.csv2JSONobject = function (csv) {
 
 // Exports that are also internal functions
 
+// Gets the delay (in seconds) between the petition timestamp and the petition
+function getDelay (req) {
+  if (typeof req.headers.timestamp === 'undefined') {
+    return false;
+  }
+  // 1 second precision
+  var currentTimestamp = parseInt(Date.now() / 1000);
+  var requestTimestamp = parseInt(req.headers.timestamp);
+  if (isNaN(requestTimestamp)) {
+    return false;
+  }
+  // Round request timestamp to the same precision
+  if (requestTimestamp.toString().length > currentTimestamp.toString().length) {
+    requestTimestamp = parseInt(requestTimestamp / (Math.pow(10, requestTimestamp.toString().length - currentTimestamp.toString().length)));
+  }
+  var delay = Math.abs(currentTimestamp - requestTimestamp);
+  return delay;
+};
+exports.getDelay = getDelay;
+
 // Checks if a new name is available and valid
 function validNewName(name) {
   // Valid name
@@ -187,21 +207,11 @@ exports.validCapture = validCapture;
 
 // Checks if a timestamp is valid
 function validTimestamp(req) {
-  if (typeof req.headers.timestamp === 'undefined') {
+  var delay = getDelay(req);
+  if(delay === false) {
     return false;
   }
-  // 1 second precision
-  var currentTimestamp = parseInt(Date.now() / 1000);
-  var requestTimestamp = parseInt(req.headers.timestamp);
-  if (isNaN(requestTimestamp)) {
-    return false;
-  }
-  // Round request timestamp to the same precision
-  if (requestTimestamp.toString().length > currentTimestamp.toString().length) {
-    requestTimestamp = parseInt(requestTimestamp / (Math.pow(10, requestTimestamp.toString().length - currentTimestamp.toString().length)));
-  }
-  var delay = Math.abs(currentTimestamp - requestTimestamp);
-  return (delay < 10);
+  return (getDelay(req) <= 10);
 };
 
 // Checks if a name is valid (syntactically)

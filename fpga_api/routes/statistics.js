@@ -8,7 +8,21 @@ var common = require('./_common.js');
 // /ping
 // Simple ping
 exports.ping = function (req, res) {
-  common.sendJSONP('ping', res, 200);
+  common.sendJSONP('statistics_ping', res, 200);
+};
+
+// /delay
+// Seconds of delay between the client and the server (of timestamps)
+exports.delay = function (req, res) {
+  var delay = common.getDelay(req);
+  if(delay === false) {
+    res.sendStatus(404);
+  } else {
+    common.readJSON('statistics_delay', function (ans) {
+      ans.delay = delay;
+      res.status(200).json(ans);
+    });
+  }
 };
 
 // /status
@@ -17,6 +31,7 @@ exports.status = function (req, res) {
   // Finite State Machine. Every transition to a new status (state) is checked with a callback test function
   nextCallback(res, [hugePagesOn, initializedFPGA, mountedFPGA, statusFPGA]);
 };
+
 
 // Internal functions for the transitions of the Finite State Machine
 

@@ -56,6 +56,7 @@ class statusModel extends Common\appModel
         $this->testsFunctions[_('Write Permissions')] = 'checkPermissions';
         $this->testsFunctions[_('Proxy Server')] = 'checkProxy';
         $this->testsFunctions[_('FPGA API')] = 'checkRemoteServer';
+        $this->testsFunctions[_('Synchronized Time Stamp')] = 'checkTimestamp';
         
         /* Status */
         $this->testsResults[_('Rewrite Module')] = 'warning';
@@ -64,6 +65,7 @@ class statusModel extends Common\appModel
         $this->testsResults[_('Write Permissions')] = 'warning';
         $this->testsResults[_('Proxy Server')] = 'warning';
         $this->testsResults[_('FPGA API')] = 'warning';
+        $this->testsResults[_('Synchronized Time Stamp')] = 'warning';
         
         /* Descriptions */
         $this->testsDescriptions[_('Rewrite Module')] = _('URL rewrite support');
@@ -72,11 +74,17 @@ class statusModel extends Common\appModel
         $this->testsDescriptions[_('Write Permissions')] = _('Folder and file properties');
         $this->testsDescriptions[_('Proxy Server')] = _('Proxy server enabled for FPGA API calls');
         $this->testsDescriptions[_('FPGA API')] = _('Remote FPGA Server');
+        $this->testsDescriptions[_('Synchronized Time Stamp')] = _('Timestamp delay between the client and the FPGA host: ');
+
         
         /* Info */
         $this->infoText['success'] = _('Passed');
         $this->infoText['warning'] = _('Not Implemented');
+        $this->infoText['info'] = _('In Progress...');
         $this->infoText['danger'] = _('Failed');
+
+        /* Additional libraries */
+        array_push($this->jsLibraries, 'netwatcher-status.js.php');
     }
 
     /**
@@ -142,6 +150,15 @@ class statusModel extends Common\appModel
         }
         
         return $stats;
+    }
+
+    /**
+     * Returns the test ids
+     *
+     * @return Array Ids of the tests (unique function names associated with each one)
+     */
+    public function getTestsIds() {
+        return $this->testsFunctions;
     }
     
     /*
@@ -240,6 +257,16 @@ class statusModel extends Common\appModel
             return 'danger';
         }
         return 'success';
+    }
+
+    /**
+     * Checks the remote server status
+     *
+     * @return string Status of test over the remote server
+     */
+    private function checkTimestamp()
+    {
+        return 'info';
     }
     
     /*
