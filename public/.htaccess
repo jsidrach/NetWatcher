@@ -7,7 +7,7 @@
     Allow from all
 </Files>
 
-<Files *.php>
+<Files 404.php>
     Order Deny,Allow
     Deny from all
 </Files>
