@@ -181,10 +181,16 @@ class Config
          * Path to the documentation directory
          */
         define('DOC_DIR', 'docs' . DIRECTORY_SEPARATOR);
+
         /**
          * Path to the root of the documentation
          */
-        define('DOC_API', DOC_DIR . 'api' . DIRECTORY_SEPARATOR . 'index.html');
+        define('FRONT_END_DOCS', DOC_DIR . 'front-end' . DIRECTORY_SEPARATOR . 'index.html');
+        
+        /**
+         * Path to the root of the documentation
+         */
+        define('BACK_END_DOCS', DOC_DIR . 'back-end' . DIRECTORY_SEPARATOR . 'index.html');
         
         /**
          * Path to the localization directory
