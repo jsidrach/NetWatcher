@@ -87,6 +87,8 @@ class statusView extends Common\appView
      *            Result of the test
      * @param string $description
      *            Description of the test
+     * @param string $id
+     *            Id of the test
      */
     private function renderTestPanel($name, $result, $description, $id)
     {

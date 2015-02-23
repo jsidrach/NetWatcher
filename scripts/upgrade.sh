@@ -19,14 +19,9 @@ cp -rf "lib/vendor/twbs/bootstrap/dist/"* "public/"
 rm -rf "public/js/bootstrap.min.js"
 rm -rf "public/css/bootstrap-theme.css" "public/css/bootstrap-theme.css.map" "public/css/bootstrap.css" "public/css/bootstrap.css.map"
 rm -rf "components/"
-mv public/css/bootstrap-theme.min.css public/themes/
+mv public/css/bootstrap-theme.min.css public/themes/default.min.css
 # Bootstrap Themes
-curl -o public/themes/bootstrap.celurean.min.css http://bootswatch.com/cerulean/bootstrap.min.css
-curl -o public/themes/bootstrap.cosmo.min.css http://bootswatch.com/cosmo/bootstrap.min.css
-curl -o public/themes/bootstrap.cyborg.min.css http://bootswatch.com/cyborg/bootstrap.min.css
-curl -o public/themes/bootstrap.darkly.min.css http://bootswatch.com/darkly/bootstrap.min.css
-curl -o public/themes/bootstrap.slate.min.css http://bootswatch.com/slate/bootstrap.min.css
-curl -o public/themes/bootstrap.yeti.min.css http://bootswatch.com/yeti/bootstrap.min.css
+curl http://api.bootswatch.com/3/ | cut -b2- | tr '"' '\n' | grep .min.css | grep latest | sed 's/^..//' | awk -F'/' '{ORS=""} {print "public/themes/"$4".min.css "; print; print "\n"}' | awk -F'$' '{system("curl -o "$1)}'
 # Bootstrap Table
 curl -o public/js/bootstrap-table.js https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.js
 curl -o public/css/bootstrap-table.css https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.css

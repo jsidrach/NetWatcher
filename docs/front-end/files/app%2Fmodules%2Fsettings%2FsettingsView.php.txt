@@ -44,13 +44,14 @@ class settingsView extends Common\appView
         
         /* Server settings */
         $this->pLine('<h3>' . _('Server Settings') . '</h3><hr>', 1);
-        $this->pLine('<div class="form-group">');
+        $this->pLine('<div class="form-group has-feedback" id="serverIpForm">');
         $this->pLine('<label for="serverIp" class="col-sm-2 control-label">' . _('FPGA API base address') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<input type="text" class="form-control" name="serverIp" id="serverIp" value="' . \Core\Router::sanitize(\Core\Config::$REMOTE_SERVER_IP) . '">', 1);
+        $this->pLine('<span class="glyphicon glyphicon-ok form-control-feedback" id="ipIcon" aria-hidden="true" ></span>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        
+
         /* App settings */
         $this->pLine('<h3>' . _('App Settings') . '</h3><hr>');
         /* Language */
@@ -58,6 +59,7 @@ class settingsView extends Common\appView
         $this->pLine('<label for="language" class="col-sm-2 control-label">' . _('Language') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<select class="form-control custom" name="language" id="language">', 1);
+        $this->moveIndent(1);
         foreach (\Core\Config::$LANGUAGES as $text => $lang) {
             if ($text == \Core\Config::$DEFAULT_LANG) {
                 $this->pLine('<option value="' . $text . '" selected>' . $text . '</option>');
@@ -65,7 +67,7 @@ class settingsView extends Common\appView
                 $this->pLine('<option value="' . $text . '">' . $text . '</option>');
             }
         }
-        $this->pLine('</select>');
+        $this->pLine('</select>', -1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         /* Theme */
@@ -73,6 +75,7 @@ class settingsView extends Common\appView
         $this->pLine('<label for="theme" class="col-sm-2 control-label">' . _('Theme') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<select class="form-control custom" name="theme" id="theme">', 1);
+        $this->moveIndent(1);
         foreach (\Core\Config::$CSS_THEMES as $text => $theme) {
             if ($text == \Core\Config::$DEFAULT_CSS_THEME) {
                 $this->pLine('<option value="' . $text . '" selected>' . $text . '</option>');
@@ -80,7 +83,7 @@ class settingsView extends Common\appView
                 $this->pLine('<option value="' . $text . '">' . $text . '</option>');
             }
         }
-        $this->pLine('</select>');
+        $this->pLine('</select>', -1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         

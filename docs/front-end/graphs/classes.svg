@@ -27,20 +27,20 @@
 </g>
 <!-- \\App\\Common\\appModel -->
 <g id="node1" class="node"><title>\\App\\Common\\appModel</title>
-<polygon fill="none" stroke="black" points="274,-276 190,-276 190,-240 274,-240 274,-276"/>
-<text text-anchor="start" x="198" y="-261.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="204.5" y="-249.2" font-family="Courier,monospace" font-size="11.00">appModel</text>
+<polygon fill="none" stroke="black" points="274,-330 190,-330 190,-294 274,-294 274,-330"/>
+<text text-anchor="start" x="198" y="-315.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="204.5" y="-303.2" font-family="Courier,monospace" font-size="11.00">appModel</text>
 </g>
 <!-- \\Core\\Model -->
-<g id="node14" class="node"><title>\\Core\\Model</title>
-<polygon fill="none" stroke="black" points="108,-276 24,-276 24,-240 108,-240 108,-276"/>
-<text text-anchor="start" x="32" y="-261.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="49" y="-249.2" font-family="Courier,monospace" font-size="11.00">Model</text>
+<g id="node15" class="node"><title>\\Core\\Model</title>
+<polygon fill="none" stroke="black" points="108,-330 24,-330 24,-294 108,-294 108,-330"/>
+<text text-anchor="start" x="32" y="-315.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="49" y="-303.2" font-family="Courier,monospace" font-size="11.00">Model</text>
 </g>
 <!-- \\App\\Common\\appModel&#45;&gt;\\Core\\Model -->
 <g id="edge1" class="edge"><title>\\App\\Common\\appModel&#45;&gt;\\Core\\Model</title>
-<path fill="none" stroke="black" d="M189.616,-258C167.974,-258 141.283,-258 118.335,-258"/>
-<polygon fill="none" stroke="black" points="118.087,-254.5 108.087,-258 118.087,-261.5 118.087,-254.5"/>
+<path fill="none" stroke="black" d="M189.616,-312C167.974,-312 141.283,-312 118.335,-312"/>
+<polygon fill="none" stroke="black" points="118.087,-308.5 108.087,-312 118.087,-315.5 118.087,-308.5"/>
 </g>
 <!-- \\App\\Common\\appController -->
 <g id="node2" class="node"><title>\\App\\Common\\appController</title>
@@ -49,52 +49,52 @@
 <text text-anchor="start" x="188" y="-195.2" font-family="Courier,monospace" font-size="11.00">appController</text>
 </g>
 <!-- \\Core\\Controller -->
-<g id="node15" class="node"><title>\\Core\\Controller</title>
-<polygon fill="none" stroke="black" points="108,-114 24,-114 24,-78 108,-78 108,-114"/>
-<text text-anchor="start" x="32" y="-99.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="32" y="-87.2" font-family="Courier,monospace" font-size="11.00">Controller</text>
+<g id="node17" class="node"><title>\\Core\\Controller</title>
+<polygon fill="none" stroke="black" points="108,-168 24,-168 24,-132 108,-132 108,-168"/>
+<text text-anchor="start" x="32" y="-153.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="32" y="-141.2" font-family="Courier,monospace" font-size="11.00">Controller</text>
 </g>
 <!-- \\App\\Common\\appController&#45;&gt;\\Core\\Controller -->
-<g id="edge8" class="edge"><title>\\App\\Common\\appController&#45;&gt;\\Core\\Controller</title>
-<path fill="none" stroke="black" d="M206.854,-185.82C183.942,-168.853 148.305,-143.192 116,-123 114.059,-121.787 112.061,-120.569 110.031,-119.356"/>
-<polygon fill="none" stroke="black" points="111.424,-116.117 101.021,-114.112 107.903,-122.167 111.424,-116.117"/>
+<g id="edge2" class="edge"><title>\\App\\Common\\appController&#45;&gt;\\Core\\Controller</title>
+<path fill="none" stroke="black" d="M179.559,-187.062C159.871,-180.579 137.44,-173.194 117.811,-166.73"/>
+<polygon fill="none" stroke="black" points="118.722,-163.346 108.129,-163.542 116.532,-169.994 118.722,-163.346"/>
 </g>
 <!-- \\App\\Common\\appView -->
 <g id="node3" class="node"><title>\\App\\Common\\appView</title>
-<polygon fill="none" stroke="black" points="274,-330 190,-330 190,-294 274,-294 274,-330"/>
-<text text-anchor="start" x="198" y="-315.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="208" y="-303.2" font-family="Courier,monospace" font-size="11.00">appView</text>
+<polygon fill="none" stroke="black" points="274,-276 190,-276 190,-240 274,-240 274,-276"/>
+<text text-anchor="start" x="198" y="-261.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="208" y="-249.2" font-family="Courier,monospace" font-size="11.00">appView</text>
 </g>
 <!-- \\Core\\View -->
-<g id="node18" class="node"><title>\\Core\\View</title>
-<polygon fill="none" stroke="black" points="108,-330 24,-330 24,-294 108,-294 108,-330"/>
-<text text-anchor="start" x="32" y="-315.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
-<text text-anchor="start" x="52" y="-303.2" font-family="Courier,monospace" font-size="11.00">View</text>
+<g id="node14" class="node"><title>\\Core\\View</title>
+<polygon fill="none" stroke="black" points="108,-276 24,-276 24,-240 108,-240 108,-276"/>
+<text text-anchor="start" x="32" y="-261.2" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
+<text text-anchor="start" x="52" y="-249.2" font-family="Courier,monospace" font-size="11.00">View</text>
 </g>
 <!-- \\App\\Common\\appView&#45;&gt;\\Core\\View -->
-<g id="edge9" class="edge"><title>\\App\\Common\\appView&#45;&gt;\\Core\\View</title>
-<path fill="none" stroke="black" d="M189.616,-312C167.974,-312 141.283,-312 118.335,-312"/>
-<polygon fill="none" stroke="black" points="118.087,-308.5 108.087,-312 118.087,-315.5 118.087,-308.5"/>
+<g id="edge3" class="edge"><title>\\App\\Common\\appView&#45;&gt;\\Core\\View</title>
+<path fill="none" stroke="black" d="M189.616,-258C167.974,-258 141.283,-258 118.335,-258"/>
+<polygon fill="none" stroke="black" points="118.087,-254.5 108.087,-258 118.087,-261.5 118.087,-254.5"/>
 </g>
-<!-- \\App\\statusModel -->
-<g id="node4" class="node"><title>\\App\\statusModel</title>
-<polygon fill="none" stroke="black" points="470.5,-330 379.5,-330 379.5,-294 470.5,-294 470.5,-330"/>
-<text text-anchor="middle" x="425" y="-309.2" font-family="Courier,monospace" font-size="11.00">statusModel</text>
+<!-- \\App\\settingsModel -->
+<g id="node4" class="node"><title>\\App\\settingsModel</title>
+<polygon fill="none" stroke="black" points="477,-492 373,-492 373,-456 477,-456 477,-492"/>
+<text text-anchor="middle" x="425" y="-471.2" font-family="Courier,monospace" font-size="11.00">settingsModel</text>
 </g>
-<!-- \\App\\statusModel&#45;&gt;\\App\\Common\\appModel -->
-<g id="edge2" class="edge"><title>\\App\\statusModel&#45;&gt;\\App\\Common\\appModel</title>
-<path fill="none" stroke="black" d="M379.219,-299.339C350.689,-291.273 313.651,-280.802 283.991,-272.416"/>
-<polygon fill="none" stroke="black" points="284.813,-269.012 274.238,-269.659 282.909,-275.748 284.813,-269.012"/>
-</g>
-<!-- \\App\\statusView -->
-<g id="node5" class="node"><title>\\App\\statusView</title>
-<polygon fill="none" stroke="black" points="467,-492 383,-492 383,-456 467,-456 467,-492"/>
-<text text-anchor="middle" x="425" y="-471.2" font-family="Courier,monospace" font-size="11.00">statusView</text>
-</g>
-<!-- \\App\\statusView&#45;&gt;\\App\\Common\\appView -->
-<g id="edge3" class="edge"><title>\\App\\statusView&#45;&gt;\\App\\Common\\appView</title>
-<path fill="none" stroke="black" d="M382.911,-461.164C373.646,-457.342 364.15,-452.634 356,-447 312.324,-416.803 273.154,-368.342 251.286,-338.435"/>
+<!-- \\App\\settingsModel&#45;&gt;\\App\\Common\\appModel -->
+<g id="edge4" class="edge"><title>\\App\\settingsModel&#45;&gt;\\App\\Common\\appModel</title>
+<path fill="none" stroke="black" d="M372.917,-456.704C367.001,-453.843 361.224,-450.612 356,-447 312.324,-416.803 273.154,-368.342 251.286,-338.435"/>
 <polygon fill="none" stroke="black" points="254.01,-336.228 245.328,-330.156 248.328,-340.317 254.01,-336.228"/>
+</g>
+<!-- \\App\\settingsView -->
+<g id="node5" class="node"><title>\\App\\settingsView</title>
+<polygon fill="none" stroke="black" points="474,-330 376,-330 376,-294 474,-294 474,-330"/>
+<text text-anchor="middle" x="425" y="-309.2" font-family="Courier,monospace" font-size="11.00">settingsView</text>
+</g>
+<!-- \\App\\settingsView&#45;&gt;\\App\\Common\\appView -->
+<g id="edge5" class="edge"><title>\\App\\settingsView&#45;&gt;\\App\\Common\\appView</title>
+<path fill="none" stroke="black" d="M375.803,-298.374C347.727,-290.436 312.355,-280.436 283.839,-272.373"/>
+<polygon fill="none" stroke="black" points="284.637,-268.962 274.062,-269.609 282.733,-275.698 284.637,-268.962"/>
 </g>
 <!-- \\App\\settingsController -->
 <g id="node6" class="node"><title>\\App\\settingsController</title>
@@ -102,29 +102,29 @@
 <text text-anchor="middle" x="425" y="-147.2" font-family="Courier,monospace" font-size="11.00">settingsController</text>
 </g>
 <!-- \\App\\settingsController&#45;&gt;\\App\\Common\\appController -->
-<g id="edge4" class="edge"><title>\\App\\settingsController&#45;&gt;\\App\\Common\\appController</title>
+<g id="edge6" class="edge"><title>\\App\\settingsController&#45;&gt;\\App\\Common\\appController</title>
 <path fill="none" stroke="black" d="M360.134,-168.056C338.789,-174.091 315.066,-180.798 293.949,-186.768"/>
 <polygon fill="none" stroke="black" points="292.802,-183.455 284.132,-189.544 294.707,-190.191 292.802,-183.455"/>
 </g>
-<!-- \\App\\settingsView -->
-<g id="node7" class="node"><title>\\App\\settingsView</title>
-<polygon fill="none" stroke="black" points="474,-438 376,-438 376,-402 474,-402 474,-438"/>
-<text text-anchor="middle" x="425" y="-417.2" font-family="Courier,monospace" font-size="11.00">settingsView</text>
+<!-- \\App\\statusModel -->
+<g id="node7" class="node"><title>\\App\\statusModel</title>
+<polygon fill="none" stroke="black" points="470.5,-438 379.5,-438 379.5,-402 470.5,-402 470.5,-438"/>
+<text text-anchor="middle" x="425" y="-417.2" font-family="Courier,monospace" font-size="11.00">statusModel</text>
 </g>
-<!-- \\App\\settingsView&#45;&gt;\\App\\Common\\appView -->
-<g id="edge5" class="edge"><title>\\App\\settingsView&#45;&gt;\\App\\Common\\appView</title>
-<path fill="none" stroke="black" d="M375.89,-402.327C369.111,-399.426 362.309,-396.286 356,-393 324.089,-376.38 290.095,-353.557 265.95,-336.373"/>
+<!-- \\App\\statusModel&#45;&gt;\\App\\Common\\appModel -->
+<g id="edge7" class="edge"><title>\\App\\statusModel&#45;&gt;\\App\\Common\\appModel</title>
+<path fill="none" stroke="black" d="M379.154,-403.707C371.311,-400.432 363.323,-396.814 356,-393 324.089,-376.38 290.095,-353.557 265.95,-336.373"/>
 <polygon fill="none" stroke="black" points="267.686,-333.31 257.523,-330.318 263.602,-338.995 267.686,-333.31"/>
 </g>
-<!-- \\App\\settingsModel -->
-<g id="node8" class="node"><title>\\App\\settingsModel</title>
-<polygon fill="none" stroke="black" points="477,-276 373,-276 373,-240 477,-240 477,-276"/>
-<text text-anchor="middle" x="425" y="-255.2" font-family="Courier,monospace" font-size="11.00">settingsModel</text>
+<!-- \\App\\statusView -->
+<g id="node8" class="node"><title>\\App\\statusView</title>
+<polygon fill="none" stroke="black" points="467,-276 383,-276 383,-240 467,-240 467,-276"/>
+<text text-anchor="middle" x="425" y="-255.2" font-family="Courier,monospace" font-size="11.00">statusView</text>
 </g>
-<!-- \\App\\settingsModel&#45;&gt;\\App\\Common\\appModel -->
-<g id="edge6" class="edge"><title>\\App\\settingsModel&#45;&gt;\\App\\Common\\appModel</title>
-<path fill="none" stroke="black" d="M372.816,-258C345.38,-258 311.675,-258 284.232,-258"/>
-<polygon fill="none" stroke="black" points="284.048,-254.5 274.048,-258 284.048,-261.5 284.048,-254.5"/>
+<!-- \\App\\statusView&#45;&gt;\\App\\Common\\appView -->
+<g id="edge8" class="edge"><title>\\App\\statusView&#45;&gt;\\App\\Common\\appView</title>
+<path fill="none" stroke="black" d="M382.556,-258C353.674,-258 314.957,-258 284.152,-258"/>
+<polygon fill="none" stroke="black" points="284.035,-254.5 274.035,-258 284.035,-261.5 284.035,-254.5"/>
 </g>
 <!-- \\App\\statusController -->
 <g id="node9" class="node"><title>\\App\\statusController</title>
@@ -132,54 +132,54 @@
 <text text-anchor="middle" x="425" y="-93.2" font-family="Courier,monospace" font-size="11.00">statusController</text>
 </g>
 <!-- \\App\\statusController&#45;&gt;\\App\\Common\\appController -->
-<g id="edge7" class="edge"><title>\\App\\statusController&#45;&gt;\\App\\Common\\appController</title>
+<g id="edge9" class="edge"><title>\\App\\statusController&#45;&gt;\\App\\Common\\appController</title>
 <path fill="none" stroke="black" d="M374.8,-114.141C368.384,-116.911 361.971,-119.89 356,-123 324.089,-139.62 290.095,-162.443 265.95,-179.627"/>
 <polygon fill="none" stroke="black" points="263.602,-177.005 257.523,-185.682 267.686,-182.69 263.602,-177.005"/>
 </g>
+<!-- \\App\\capturesModel -->
+<g id="node10" class="node"><title>\\App\\capturesModel</title>
+<polygon fill="none" stroke="black" points="477,-384 373,-384 373,-348 477,-348 477,-384"/>
+<text text-anchor="middle" x="425" y="-363.2" font-family="Courier,monospace" font-size="11.00">capturesModel</text>
+</g>
+<!-- \\App\\capturesModel&#45;&gt;\\App\\Common\\appModel -->
+<g id="edge10" class="edge"><title>\\App\\capturesModel&#45;&gt;\\App\\Common\\appModel</title>
+<path fill="none" stroke="black" d="M372.816,-351.529C345.259,-343.738 311.378,-334.159 283.87,-326.382"/>
+<polygon fill="none" stroke="black" points="284.623,-322.958 274.048,-323.605 282.718,-329.694 284.623,-322.958"/>
+</g>
+<!-- \\App\\capturesView -->
+<g id="node11" class="node"><title>\\App\\capturesView</title>
+<polygon fill="none" stroke="black" points="474,-222 376,-222 376,-186 474,-186 474,-222"/>
+<text text-anchor="middle" x="425" y="-201.2" font-family="Courier,monospace" font-size="11.00">capturesView</text>
+</g>
+<!-- \\App\\capturesView&#45;&gt;\\App\\Common\\appView -->
+<g id="edge11" class="edge"><title>\\App\\capturesView&#45;&gt;\\App\\Common\\appView</title>
+<path fill="none" stroke="black" d="M375.803,-217.626C347.727,-225.564 312.355,-235.564 283.839,-243.627"/>
+<polygon fill="none" stroke="black" points="282.733,-240.302 274.062,-246.391 284.637,-247.038 282.733,-240.302"/>
+</g>
 <!-- \\App\\capturesController -->
-<g id="node10" class="node"><title>\\App\\capturesController</title>
+<g id="node12" class="node"><title>\\App\\capturesController</title>
 <polygon fill="none" stroke="black" points="494,-60 356,-60 356,-24 494,-24 494,-60"/>
 <text text-anchor="middle" x="425" y="-39.2" font-family="Courier,monospace" font-size="11.00">capturesController</text>
 </g>
 <!-- \\App\\capturesController&#45;&gt;\\App\\Common\\appController -->
-<g id="edge10" class="edge"><title>\\App\\capturesController&#45;&gt;\\App\\Common\\appController</title>
+<g id="edge12" class="edge"><title>\\App\\capturesController&#45;&gt;\\App\\Common\\appController</title>
 <path fill="none" stroke="black" d="M371.147,-60.1656C365.851,-62.8072 360.702,-65.7493 356,-69 312.324,-99.1972 273.154,-147.658 251.286,-177.565"/>
 <polygon fill="none" stroke="black" points="248.328,-175.683 245.328,-185.844 254.01,-179.772 248.328,-175.683"/>
 </g>
-<!-- \\App\\capturesView -->
-<g id="node11" class="node"><title>\\App\\capturesView</title>
-<polygon fill="none" stroke="black" points="474,-384 376,-384 376,-348 474,-348 474,-384"/>
-<text text-anchor="middle" x="425" y="-363.2" font-family="Courier,monospace" font-size="11.00">capturesView</text>
-</g>
-<!-- \\App\\capturesView&#45;&gt;\\App\\Common\\appView -->
-<g id="edge11" class="edge"><title>\\App\\capturesView&#45;&gt;\\App\\Common\\appView</title>
-<path fill="none" stroke="black" d="M375.803,-352.374C347.727,-344.436 312.355,-334.436 283.839,-326.373"/>
-<polygon fill="none" stroke="black" points="284.637,-322.962 274.062,-323.609 282.733,-329.698 284.637,-322.962"/>
-</g>
-<!-- \\App\\capturesModel -->
-<g id="node12" class="node"><title>\\App\\capturesModel</title>
-<polygon fill="none" stroke="black" points="477,-222 373,-222 373,-186 477,-186 477,-222"/>
-<text text-anchor="middle" x="425" y="-201.2" font-family="Courier,monospace" font-size="11.00">capturesModel</text>
-</g>
-<!-- \\App\\capturesModel&#45;&gt;\\App\\Common\\appModel -->
-<g id="edge12" class="edge"><title>\\App\\capturesModel&#45;&gt;\\App\\Common\\appModel</title>
-<path fill="none" stroke="black" d="M372.816,-218.471C345.259,-226.262 311.378,-235.841 283.87,-243.618"/>
-<polygon fill="none" stroke="black" points="282.718,-240.306 274.048,-246.395 284.623,-247.042 282.718,-240.306"/>
-</g>
-<!-- \\Core\\Logger -->
-<g id="node13" class="node"><title>\\Core\\Logger</title>
-<polygon fill="none" stroke="black" points="94.5,-384 37.5,-384 37.5,-348 94.5,-348 94.5,-384"/>
-<text text-anchor="middle" x="66" y="-363.2" font-family="Courier,monospace" font-size="11.00">Logger</text>
-</g>
 <!-- \\Core\\Router -->
-<g id="node16" class="node"><title>\\Core\\Router</title>
-<polygon fill="none" stroke="black" points="94.5,-222 37.5,-222 37.5,-186 94.5,-186 94.5,-222"/>
-<text text-anchor="middle" x="66" y="-201.2" font-family="Courier,monospace" font-size="11.00">Router</text>
+<g id="node13" class="node"><title>\\Core\\Router</title>
+<polygon fill="none" stroke="black" points="94.5,-384 37.5,-384 37.5,-348 94.5,-348 94.5,-384"/>
+<text text-anchor="middle" x="66" y="-363.2" font-family="Courier,monospace" font-size="11.00">Router</text>
 </g>
 <!-- \\Core\\Config -->
-<g id="node17" class="node"><title>\\Core\\Config</title>
-<polygon fill="none" stroke="black" points="94.5,-168 37.5,-168 37.5,-132 94.5,-132 94.5,-168"/>
-<text text-anchor="middle" x="66" y="-147.2" font-family="Courier,monospace" font-size="11.00">Config</text>
+<g id="node16" class="node"><title>\\Core\\Config</title>
+<polygon fill="none" stroke="black" points="94.5,-222 37.5,-222 37.5,-186 94.5,-186 94.5,-222"/>
+<text text-anchor="middle" x="66" y="-201.2" font-family="Courier,monospace" font-size="11.00">Config</text>
+</g>
+<!-- \\Core\\Logger -->
+<g id="node18" class="node"><title>\\Core\\Logger</title>
+<polygon fill="none" stroke="black" points="94.5,-114 37.5,-114 37.5,-78 94.5,-78 94.5,-114"/>
+<text text-anchor="middle" x="66" y="-93.2" font-family="Courier,monospace" font-size="11.00">Logger</text>
 </g>
 </g>
 </svg>

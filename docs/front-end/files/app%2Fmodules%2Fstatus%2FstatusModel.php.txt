@@ -47,31 +47,44 @@ class statusModel extends Common\appModel
      */
     public function __construct()
     {
+        parent::__construct();
+
         /* Functions */
         $this->testsFunctions[_('Rewrite Module')] = 'checkModRewrite';
         $this->testsFunctions[_('Gettext Module')] = 'checkGettext';
         $this->testsFunctions[_('Session Variables')] = 'checkSession';
         $this->testsFunctions[_('Write Permissions')] = 'checkPermissions';
+        $this->testsFunctions[_('Proxy Server')] = 'checkProxy';
         $this->testsFunctions[_('FPGA API')] = 'checkRemoteServer';
+        $this->testsFunctions[_('Synchronized Time Stamp')] = 'checkTimestamp';
         
         /* Status */
         $this->testsResults[_('Rewrite Module')] = 'warning';
         $this->testsResults[_('Gettext Module')] = 'warning';
         $this->testsResults[_('Session Variables')] = 'warning';
         $this->testsResults[_('Write Permissions')] = 'warning';
+        $this->testsResults[_('Proxy Server')] = 'warning';
         $this->testsResults[_('FPGA API')] = 'warning';
+        $this->testsResults[_('Synchronized Time Stamp')] = 'warning';
         
         /* Descriptions */
         $this->testsDescriptions[_('Rewrite Module')] = _('URL rewrite support');
         $this->testsDescriptions[_('Gettext Module')] = _('Locale language support');
         $this->testsDescriptions[_('Session Variables')] = _('Support for the usage of sessions');
         $this->testsDescriptions[_('Write Permissions')] = _('Folder and file properties');
+        $this->testsDescriptions[_('Proxy Server')] = _('Proxy server enabled for FPGA API calls');
         $this->testsDescriptions[_('FPGA API')] = _('Remote FPGA Server');
+        $this->testsDescriptions[_('Synchronized Time Stamp')] = _('Timestamp delay between the client and the FPGA host: ');
+
         
         /* Info */
         $this->infoText['success'] = _('Passed');
         $this->infoText['warning'] = _('Not Implemented');
+        $this->infoText['info'] = _('In Progress...');
         $this->infoText['danger'] = _('Failed');
+
+        /* Additional libraries */
+        array_push($this->jsLibraries, 'netwatcher-status.js.php');
     }
 
     /**
@@ -137,6 +150,15 @@ class statusModel extends Common\appModel
         }
         
         return $stats;
+    }
+
+    /**
+     * Returns the test ids
+     *
+     * @return Array Ids of the tests (unique function names associated with each one)
+     */
+    public function getTestsIds() {
+        return $this->testsFunctions;
     }
     
     /*
@@ -206,6 +228,20 @@ class statusModel extends Common\appModel
     }
 
     /**
+     * Checks the folder and file permissions
+     *
+     * @return string Status of test over the proxy server
+     */
+    private function checkProxy()
+    {
+        $server_info = $this->phpinfo_array(true);
+        if (isset($server_info['curl']) && isset($server_info['curl']['cURL support']) && $server_info['curl']['cURL support'] == 'enabled') {
+            return 'success';
+        }
+        return 'danger';
+    }
+
+    /**
      * Checks the remote server status
      *
      * @return string Status of test over the remote server
@@ -217,11 +253,20 @@ class statusModel extends Common\appModel
                 'timeout' => 2
             )
         ));
-        /* Note: if REMOTE_SERVER_IP is localhost, it must have http:// at the start of the string */
         if (file_get_contents(Config::$REMOTE_SERVER_IP . '/ping', 0, $context) === FALSE) {
             return 'danger';
         }
         return 'success';
+    }
+
+    /**
+     * Checks the remote server status
+     *
+     * @return string Status of test over the remote server
+     */
+    private function checkTimestamp()
+    {
+        return 'info';
     }
     
     /*
@@ -233,6 +278,7 @@ class statusModel extends Common\appModel
      *
      * @param boolean $return
      *            Flag to determine if return an object or a string
+     *
      * @return Ambigous Object with the info or a formatted string with the info
      */
     private function phpinfo_array($return = false)

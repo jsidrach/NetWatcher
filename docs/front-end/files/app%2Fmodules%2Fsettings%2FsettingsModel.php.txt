@@ -20,6 +20,16 @@ class settingsModel extends Common\appModel
 {
 
     /**
+     * Constructor for the settings model
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        /* Additional libraries (IP Checker) */
+        array_push($this->jsLibraries, 'netwatcher-settings.js');
+    }
+
+    /**
      * Saves the dynamic settings to a file
      *
      * @param array $settings

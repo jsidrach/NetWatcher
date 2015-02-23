@@ -18,20 +18,33 @@ namespace App;
  */
 class capturesModel extends Common\appModel
 {
+
     /**
-     * Refresh rate
-     * 
-     * @var Number of seconds between calls to get the data
+     * Captures folder
+     *
+     * @var Captures folder of the remote server
      */
-    public $refreshRate;
-    
+    public $capturesFolder;
+
     /**
      * Constructor for the captures model
      */
     public function __construct()
     {
-        /* Set the refresh rate (seconds) */
-        $this->refreshRate = 5;
+        parent::__construct();
+        $context = stream_context_create(array(
+            'http' => array(
+                'timeout' => 1
+            )
+        ));
+        $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/captures/path', 0, $context);
+        if ($data === FALSE) {
+            $this->capturesFolder = '<captures_path>';
+        } else {
+            $this->capturesFolder = json_decode($data)->path;
+        }
+        /* Additional libraries */
+        array_push($this->jsLibraries, 'bootstrap-table.js', 'bootstrap-table-localization.js.php', 'netwatcher-captures.js.php');
     }
 }
 ?>

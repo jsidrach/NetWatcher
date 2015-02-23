@@ -18,25 +18,17 @@ namespace Core;
 class Config
 {
     /**
-     * User Themes
-     */
-    public static $CSS_THEMES = array(
-        'Default' => 'bootstrap-theme.min.css',
-        'Darkly' => 'bootstrap.darkly.min.css',
-        'Cyborg' => 'bootstrap.cyborg.min.css',
-        'Slate' => 'bootstrap.slate.min.css',
-        'Cosmo' => 'bootstrap.cosmo.min.css',
-        'Celurean' => 'bootstrap.celurean.min.css',
-        'Yeti' => 'bootstrap.yeti.min.css'
-    );
-
-    /**
      * Languages
      */
     public static $LANGUAGES = array(
         'English' => 'en_GB.utf8',
         'Español' => 'es_ES.utf8'
     );
+
+    /**
+     * User Themes
+     */
+    public static $CSS_THEMES;
 
     /**
      * Default CSS Theme
@@ -223,9 +215,29 @@ class Config
          * Path to the general log file
          */
         define('LOGGER_GENERAL', LOGGER_DIR . 'app.log');
+
+        self::loadThemes();
         
         /* Loads dynamic configuration */
         self::dynamicLoad();
+    }
+
+    /**
+     * Loads the available themes
+     */
+    public static function loadThemes() {
+      if ($handle = opendir(THEMES_DIR)) {
+        while (false !== ($entry = readdir($handle))) {
+            if (($entry != '.') && ($entry != '..')) {
+                $name = explode('.' , $entry)[0];
+                self::$CSS_THEMES[ucfirst($name)] = $entry;
+            }
+        }
+        asort(self::$CSS_THEMES);
+        closedir($handle);
+      } else {
+        Logger::logWarning('Cannot open themes directory');
+      }
     }
 
     /**
