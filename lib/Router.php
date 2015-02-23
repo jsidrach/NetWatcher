@@ -48,10 +48,14 @@ class Router
         $args = is_array($parts) && count($parts) > 2 ? array_slice($parts, 2) : array();
         
         /* If the requested controller is the documentation, charge it */
-        if ($classname == 'documentation') {
-            header('Location: ' . DOC_API);
+        if ($classname == 'docs-back-end') {
+            header('Location: ' . BACK_END_DOCS);
             die();
         }
+        if ($classname == 'docs-front-end') {
+            header('Location: ' . FRONT_END_DOCS);
+            die();
+        }        
         
         /* Checks if the controller exist */
         if (! self::checkMVC($classname)) {
