@@ -6,7 +6,6 @@
  *
  * @package Core
  */
-
 /* Autoload libraries */
 require_once ('lib/vendor/autoload.php');
 /* Dispatch the request */

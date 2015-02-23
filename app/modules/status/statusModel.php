@@ -278,6 +278,7 @@ class statusModel extends Common\appModel
      *
      * @param boolean $return
      *            Flag to determine if return an object or a string
+     *
      * @return Ambigous Object with the info or a formatted string with the info
      */
     private function phpinfo_array($return = false)

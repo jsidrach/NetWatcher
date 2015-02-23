@@ -145,28 +145,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1168175868"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-246522873"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1168175868" class="accordion-body collapse in">
+            <div id="namespace-246522873" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-532324367"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1142904164"></a>
                                 <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
             </div>
-            <div id="namespace-532324367" class="accordion-body collapse ">
+            <div id="namespace-1142904164" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-768924427"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1914513537"></a>
                                 <a href="../namespaces/App.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
             </div>
-            <div id="namespace-768924427" class="accordion-body collapse ">
+            <div id="namespace-1914513537" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -200,10 +200,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1892365414"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1848313517"></a>
                                 <a href="../namespaces/Core.html" style="margin-left: 30px; padding-left: 0">Core</a>
             </div>
-            <div id="namespace-1892365414" class="accordion-body collapse ">
+            <div id="namespace-1848313517" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -238,8 +238,8 @@
                                                                     </nav>
 
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-                    <h1><small>public</small>404.php</h1>
-                    <p><em></em></p>
+                    <h1><small></small>proxy.php</h1>
+                    <p><em>Proxy for the FPGA API ajax petitions</em></p>
                     
 
                     
@@ -261,7 +261,106 @@
                 </aside>
             </div>
 
-            
+                        <div class="row-fluid">
+                <section class="span8 content file">
+                    <h2>Constants</h2>
+                </section>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_RELATIVE_SUBPATHS" name="constant_RELATIVE_SUBPATHS" class="anchor"></a>
+            <article id="constant_RELATIVE_SUBPATHS" class="constant">
+                <h3 class="">RELATIVE_SUBPATHS</h3>
+                <pre class="signature">RELATIVE_SUBPATHS</pre>
+                <p><em>Number of subparts of the URL</em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">proxy.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CSAJAX_FILTERS" name="constant_CSAJAX_FILTERS" class="anchor"></a>
+            <article id="constant_CSAJAX_FILTERS" class="constant">
+                <h3 class="">CSAJAX_FILTERS</h3>
+                <pre class="signature">CSAJAX_FILTERS</pre>
+                <p><em>Enables or disables filtering for cross domain requests.</em></p>
+                <p>Recommended value: true</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">proxy.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_CSAJAX_FILTER_DOMAIN" name="constant_CSAJAX_FILTER_DOMAIN" class="anchor"></a>
+            <article id="constant_CSAJAX_FILTER_DOMAIN" class="constant">
+                <h3 class="">CSAJAX_FILTER_DOMAIN</h3>
+                <pre class="signature">CSAJAX_FILTER_DOMAIN</pre>
+                <p><em>If set to true, $valid_requests should hold only domains i.e.</em></p>
+                <p>a.example.com, b.example.com, usethisdomain.com
+If set to false, $valid_requests should hold the whole URL ( without the parameters ) i.e. <a href="http://example.com/this/is/long/url/">http://example.com/this/is/long/url/</a>
+Recommended value: false (for security reasons - do not forget that anyone can access your proxy)</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">proxy.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
             
         </div>
     </section>
@@ -272,7 +371,7 @@
             <h3 id="source-view-label"></h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/public/404.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/proxy.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
@@ -314,7 +413,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on February 18th, 2015 at 22:29.
+                    on February 23rd, 2015 at 10:51.
                 </section>
             </section>
         </section>

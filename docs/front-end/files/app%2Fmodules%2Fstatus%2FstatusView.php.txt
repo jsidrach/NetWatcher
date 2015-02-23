@@ -42,9 +42,10 @@ class statusView extends Common\appView
         $testsResults = $this->model->getTestsResults();
         $testsDescriptions = $this->model->getTestsDescriptions();
         $stats = $this->model->getTestsStatistics();
+        $testsIds = $this->model->getTestsIds();
         $this->renderTestsSummary($stats);
         foreach ($this->model->getTestsResults() as $test => $result) {
-            $this->renderTestPanel($test, $result, $testsDescriptions[$test]);
+            $this->renderTestPanel($test, $result, $testsDescriptions[$test], $testsIds[$test]);
         }
     }
 
@@ -62,16 +63,16 @@ class statusView extends Common\appView
         foreach ($stats as $stat => $number) {
             if ($stat != 'total') {
                 $progress = ($number / $stats['total']) * 100;
-                $this->pLine('<div class="progress-bar progress-bar-striped progress-bar-' . $stat . '" style="width: ' . number_format($progress, 2) . '%" role="progressbar"></div>', 1);
+                $this->pLine('<div id="progressBar-' . $stat . '" class="progress-bar progress-bar-striped progress-bar-' . $stat . '" style="width: ' . number_format($progress, 2) . '%" role="progressbar"></div>', 1);
                 $this->moveIndent(- 1);
             }
         }
         $this->pLine('</div>');
         foreach ($stats as $stat => $number) {
             if ($stat == 'total') {
-                $this->pLine('<span class="label label-primary">' . _('Total') . ': ' . $number . '</span>');
+                $this->pLine('<span id="progressLabel-total" class="label label-primary">' . _('Total') . ': ' . $number . '</span>');
             } else {
-                $this->pLine('<span class="label label-' . $stat . '">' . $infoText[$stat] . ': ' . $number . '</span>');
+                $this->pLine('<span id="progressLabel-' . $stat . '" class="label label-' . $stat . '">' . $infoText[$stat] . ': ' . $number . '</span>');
             }
         }
         $this->pLine('<hr>');
@@ -86,16 +87,18 @@ class statusView extends Common\appView
      *            Result of the test
      * @param string $description
      *            Description of the test
+     * @param string $id
+     *            Id of the test
      */
-    private function renderTestPanel($name, $result, $description)
+    private function renderTestPanel($name, $result, $description, $id)
     {
         $infoText = $this->model->getInfoText();
-        $this->pLine('<div class="panel panel-' . $result . '">');
+        $this->pLine('<div class="panel panel-' . $result . '" id="' . $id . '">');
         $this->pLine('<div class="panel-heading">', 1);
         $this->pLine($name, 1);
-        $this->pLine('<span class="panel-title pull-right">' . $infoText[$result] . '</span>');
+        $this->pLine('<span class="panel-title pull-right" id="' . $id . 'Info">' . $infoText[$result] . '</span>');
         $this->pLine('</div>', - 1);
-        $this->pLine('<div class="panel-body">');
+        $this->pLine('<div class="panel-body" id="' . $id . 'Desc">');
         $this->pLine($description, 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);

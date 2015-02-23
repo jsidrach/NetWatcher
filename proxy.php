@@ -1,5 +1,9 @@
 <?php
-/* Autoload libraries */
+/**
+ * Proxy for the FPGA API ajax petitions
+ */
+
+/** Autoload libraries */
 require_once ('lib/vendor/autoload.php');
 
 /**

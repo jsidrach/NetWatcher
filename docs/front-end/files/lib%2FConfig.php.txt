@@ -17,43 +17,6 @@ namespace Core;
  */
 class Config
 {
-
-    /**
-     * JS Libraries
-     */
-    public static $JS_LIBRARIES = array(
-        'jquery.js',
-        'bootstrap.js',
-        'jquery.bootstrap-growl.js',
-        'growl-settings.js',
-        'bootstrap-table.js',
-        'netwatcher-captures.js'
-    );
-
-    /**
-     * CSS Libraries
-     */
-    public static $CSS_LIBRARIES = array(
-        'bootstrap.min.css',
-        'theme',
-        'sticky-footer.css',
-        'bootstrap-table.css'
-    );
-    /* 'theme' is the keyword for the user theme, so we can place it between other stylesheets */
-
-    /**
-     * User Themes
-     */
-    public static $CSS_THEMES = array(
-        'Default' => 'bootstrap-theme.min.css',
-        'Darkly' => 'bootstrap.darkly.min.css',
-        'Cyborg' => 'bootstrap.cyborg.min.css',
-        'Slate' => 'bootstrap.slate.min.css',
-        'Cosmo' => 'bootstrap.cosmo.min.css',
-        'Celurean' => 'bootstrap.celurean.min.css',
-        'Yeti' => 'bootstrap.yeti.min.css'
-    );
-
     /**
      * Languages
      */
@@ -61,6 +24,11 @@ class Config
         'English' => 'en_GB.utf8',
         'Español' => 'es_ES.utf8'
     );
+
+    /**
+     * User Themes
+     */
+    public static $CSS_THEMES;
 
     /**
      * Default CSS Theme
@@ -78,9 +46,17 @@ class Config
     public static $REMOTE_SERVER_IP;
 
     /**
-     * Loads the configuration of the MVC
+     * Time of the latest change to the settings (for cache purposes)
      */
-    public static function load()
+    public static $CACHE_TIME;
+
+    /**
+     * Loads the configuration of the MVC
+     *
+     * @param BaseDir $baseDir
+     *            Base directory
+     */
+    public static function load($baseDir = '.')
     {
         /* Display all the errors */
         error_reporting(- 1);
@@ -117,6 +93,17 @@ class Config
          * Default method
          */
         define('DEFAULT_METHOD', 'display');
+
+        /**
+         * Define the target URL Parameter 'csurl' for proxy calls
+         */
+        define('CSURL', 'csurl');
+
+        /**
+         * Base path for the proxy queries
+         */
+        define('PROXY_PATH', 'proxy.php?' . CSURL . '=');
+
         
         /**
          * Routes
@@ -125,7 +112,7 @@ class Config
         /**
          * Path to the base directory
          */
-        define('BASE_DIR', '.' . DIRECTORY_SEPARATOR);
+        define('BASE_DIR', $baseDir . DIRECTORY_SEPARATOR);
         
         /**
          * Path to the config directory
@@ -228,9 +215,29 @@ class Config
          * Path to the general log file
          */
         define('LOGGER_GENERAL', LOGGER_DIR . 'app.log');
+
+        self::loadThemes();
         
         /* Loads dynamic configuration */
         self::dynamicLoad();
+    }
+
+    /**
+     * Loads the available themes
+     */
+    public static function loadThemes() {
+      if ($handle = opendir(THEMES_DIR)) {
+        while (false !== ($entry = readdir($handle))) {
+            if (($entry != '.') && ($entry != '..')) {
+                $name = explode('.' , $entry)[0];
+                self::$CSS_THEMES[ucfirst($name)] = $entry;
+            }
+        }
+        asort(self::$CSS_THEMES);
+        closedir($handle);
+      } else {
+        Logger::logWarning('Cannot open themes directory');
+      }
     }
 
     /**
@@ -256,6 +263,9 @@ class Config
         
         /* Loads the server ip */
         self::$REMOTE_SERVER_IP = $configData->serverIp;
+
+        /* Sets the cache time */
+        self::$CACHE_TIME = $configData->cacheTime;
     }
 }
 ?>

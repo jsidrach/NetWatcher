@@ -19,33 +19,15 @@ abstract class appView extends \Core\View
 {
 
     /**
-     * Left navbar links
-     */
-    private static $leftNavbar;
-
-    /**
-     * Right navbar links
-     */
-    private static $rightNavbar;
-
-    /**
      * Generic constructor.
      * Associates a model to the view
      *
      * @param Model $model
      *            Model to associate with the controller
      */
-    protected function __construct($model)
+    public function __construct($model)
     {
         parent::__construct($model);
-        self::$leftNavbar = array(
-            '#notImplemented1' => _('Manager'),
-            '#notImplemented2' => _('Statistics'),
-            'captures' => _('Captures')
-        );
-        self::$rightNavbar =  array(
-            'settings' => _('Settings')
-        );
     }
 
     /**
@@ -80,8 +62,8 @@ abstract class appView extends \Core\View
         $this->pLine('<link rel="icon" href="' . APP_FAVICON . '">', 0);
         
         $this->pLine('<!-- CSS files -->', 0);
-        foreach (\Core\Config::$CSS_LIBRARIES as $cssLib) {
-            if (!strcmp($cssLib,'theme')) {
+        foreach ($this->model->cssLibraries as $cssLib) {
+            if ((!strcmp($cssLib, 'theme')) && isset(\Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME])) {
                 $this->pLine('<link href="' . THEMES_DIR . \Core\Config::$CSS_THEMES[\Core\Config::$DEFAULT_CSS_THEME] . '" rel="stylesheet">', 0);
             } else {
                 $this->pLine('<link href="' . CSS_DIR . $cssLib . '" rel="stylesheet">', 0);
@@ -89,7 +71,11 @@ abstract class appView extends \Core\View
         }
         
         $this->pLine('<!-- JS files -->', 0);
-        foreach (\Core\Config::$JS_LIBRARIES as $jsLib) {
+        foreach ($this->model->jsLibraries as $jsLib) {
+            /* Refresh cache if needed (after saving new settings) */
+            if (preg_match("/\.php$/", $jsLib)) {
+                $jsLib .= '?' . \Core\Config::$CACHE_TIME;
+            }
             $this->pLine('<script src="' . JS_DIR . $jsLib . '"></script>', 0);
         }
         
@@ -118,7 +104,7 @@ abstract class appView extends \Core\View
         
         $this->pLine('<ul class="nav navbar-nav">', 1);
         $this->moveIndent(1);
-        foreach (self::$leftNavbar as $leftURL => $leftItem) {
+        foreach ($this->model->leftNavbar as $leftURL => $leftItem) {
             if ($this->title == _($leftItem)) {
                 $this->pLine('<li class="active">', 0);
             } else {
@@ -131,7 +117,7 @@ abstract class appView extends \Core\View
         
         $this->pLine('<ul class="nav navbar-nav navbar-right">', 0);
         $this->moveIndent(1);
-        foreach (self::$rightNavbar as $rightURL => $rightItem) {
+        foreach ($this->model->rightNavbar as $rightURL => $rightItem) {
             if ($this->title == _($rightItem)) {
                 $this->pLine('<li class="active">', 0);
             } else {
@@ -162,13 +148,13 @@ abstract class appView extends \Core\View
      */
     protected function renderModals()
     {
-        $this->pLine('<!-- License -->', 1);
+        $this->pLine('<!-- License -->');
         $this->pLine('<div class="modal fade" id="license" tabindex="-2" role="dialog" aria-hidden="true">', 0);
         $this->pLine('<div class="modal-dialog">', 1);
         $this->pLine('<div class="modal-content">', 1);
         $this->pLine('<div class="modal-header">', 1);
-        $this->pLine('<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>', 0);
-        $this->pLine('<h4 class="modal-title" id="myModalLabel">' . _('License') . ' - ' . APP_NAME . '</h4>', 0);
+        $this->pLine('<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>', 1);
+        $this->pLine('<h4 class="modal-title" id="licenseTitle">' . _('License') . ' - ' . APP_NAME . '</h4>', 0);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="modal-body text-justify">', 0);
         
@@ -225,50 +211,6 @@ abstract class appView extends \Core\View
     {
         $this->pLine('</body>', - 1);
         $this->pLine('</html>', - 1);
-    }
-
-    /**
-     * Renders the localization strings of the plugins. Not used by default.
-     * To enable it, override renderClose() and call first to this function and then to the parent renderClose().
-     */
-    protected function renderLocalization()
-    {
-        $this->pLine('<script>');
-        $this->pLine('<!-- Localization of the bootstrap-table plugin -->', 1);
-        $this->pLine('(function ($) {');
-        $this->pLine('\'use strict\'', 1);
-        $this->pLine('var locale_strings = {');
-        $this->pLine('formatLoadingMessage: function () {', 1);
-        $this->pLine('return \'' . _('Loading, please wait...') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatRecordsPerPage: function (pageNumber) {');
-        $this->pLine('return sprintf(\'%s ' . _('records per page') . '\', pageNumber);', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatShowingRows: function (pageFrom, pageTo, totalRows) {');
-        $this->pLine('return sprintf(\'' . _('Showing %s to %s of %s rows') . '\', pageFrom, pageTo, totalRows);', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatSearch: function () {');
-        $this->pLine('return \'' . _('Search') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatNoMatches: function () {');
-        $this->pLine('return \'' . _('No matching records found') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatPaginationSwitch: function () {');
-        $this->pLine('return \'' . _('Hide/Show pagination') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatRefresh: function () {');
-        $this->pLine('return \'' . _('Refresh') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatToggle: function () {');
-        $this->pLine('return \'' . _('Toggle') . '\';', 1);
-        $this->pLine('},', -1);
-        $this->pLine('formatColumns: function () {');
-        $this->pLine('return \'' . _('Columns') . '\';', 1);
-        $this->pLine('}', -1);
-        $this->pLine('};', -1);
-        $this->pLine('$.extend($.fn.bootstrapTable.defaults, locale_strings);');
-        $this->pLine('})(jQuery);', -1);
-        $this->pLine('</script>', -1);
     }
 }
 ?>
