@@ -5,6 +5,7 @@ TODO Week:
   - Terminar tipos de códigos status
   - Boceto página de manager
   - pcapng > editcap > identificar y convertir
+  - Página troubleshooting wiki github
 
 Dudas Jose:
 -------
@@ -18,7 +19,7 @@ Dudas Sergio:
   - Tema seguridad
 
 -------
-API JSON (root: /fpga/api/) - Servidor node.js+express
+API JSON (root: /fpga/api/) - Servidor io.js+express
 
 GET
 /status/
@@ -48,11 +49,13 @@ Manager
   > Estado actual, y cambiar de estado, mediante distintos pasos de formulario
 
 Statistics
-  > Estado actual, y cuando esté reproduciendo/capturando algunas estadísticas
+  > Estado actual, y cuando esté reproduciendo/capturando algunas estadística
+    > Velocidad del raid. Botón de formatear si no alcanza tasa > Muchas confirmaciones!
 
 Manage Captures
   > Ver capturas actuales (todas, simples, pcap, ordenación, búsqueda)
   > Convertir capturas entre formatos
+    > Identificar formatos de pcap distintos al aceptado y transformar con capedit antes de pasar a simple (pipes?)
   > Delete > con confirmación
   > Rename
   Explicación de como subir nuevas en una caja, scp etc
@@ -159,6 +162,7 @@ Cosas a mencionar en la memoria:
   - Problema de tráfico redundante, reproducir mismo tráfico que se capturó, incluyendo órdenes al servicio
     - Solución propuesta (timestamps)
   - Posibles mejoras
+    - Estandarización, futuras fpgas con características parecidas
     - Más idiomas
     - Más estadísticas
     - Módulo de seguridad

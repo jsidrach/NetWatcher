@@ -1,4 +1,5 @@
 {
   "code": "success",
-  "delay": ""
+  "delay": "",
+  "maxDelay": ""
 }
