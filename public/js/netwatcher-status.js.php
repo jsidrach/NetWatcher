@@ -20,13 +20,14 @@ $(document).ready(function () {
     headers: { 'timestamp': Date.now() },
     success: function (resp) {
       try {
-        if((resp.code == 'success') && !(typeof resp.delay === 'undefined')) {
+        if((resp.code == 'success') && !(typeof resp.delay === 'undefined') && !(typeof resp.maxDelay === 'undefined')) {
           var delay = parseInt(resp.delay);
-          if (isNaN(delay)) {
+          var maxDelay = parseInt(resp.maxDelay);
+          if (isNaN(delay) || isNaN(maxDelay)) {
             setDelayError();
             return;
           }
-          setDelayOK(resp.delay);
+          setDelayOK(delay, maxDelay);
         } else {
           setDelayError();
         }
@@ -41,11 +42,11 @@ $(document).ready(function () {
 });
 
 // Sets the delay test to ok if the delay is less than 10 seconds
-function setDelayOK(delay) { 
+function setDelayOK(delay, maxDelay) { 
   var status = $('#checkTimestamp');
   var info = $('#checkTimestampInfo');
   var desc = $('#checkTimestampDesc');
-  if(delay <= 20) {
+  if(delay <= maxDelay) {
     status.removeClass('panel-info').addClass('panel-success');
     info.text(<?php echo '\'' . _('Passed') . '\'';?>);
     setStatsPassed(true);

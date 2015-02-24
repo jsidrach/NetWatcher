@@ -17,10 +17,11 @@ exports.ping = function (req, res) {
 exports.delay = function (req, res) {
   var delay = common.getDelay(req);
   if(delay === false) {
-    res.sendStatus(404);
+    res.sendStatus(408);
   } else {
     common.readJSON('statistics_delay', function (ans) {
       ans.delay = delay;
+      ans.maxDelay = config.MAX_DELAY
       res.status(200).json(ans);
     });
   }

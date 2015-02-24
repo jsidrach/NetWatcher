@@ -43,7 +43,7 @@ abstract class appModel extends \Core\Model
     public function __construct()
     {        
         $this->leftNavbar = array(
-            '#notImplemented1' => _('Manager'),
+            'manager' => _('Manager'),
             '#notImplemented2' => _('Statistics'),
             'captures' => _('Captures')
         );
