@@ -4,6 +4,7 @@ TODO Week:
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
   - Terminar tipos de códigos status
   - Boceto página de manager
+  - pcapng > editcap > identificar y convertir
 
 Dudas Jose:
 -------
@@ -32,6 +33,7 @@ Mensaje de orden procesada
   status => "success"
   description => ""
 
+Testear raid, rendimiento, formatear
 --
 Definir mensajes no estaticos como key fija y value a cadena vacia ("")
 --
