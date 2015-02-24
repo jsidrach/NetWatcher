@@ -4,22 +4,23 @@
 var scripts = require('child_process');
 var fs = require('fs');
 var path = require('path');
+var config = require('../config.js');
 var common = require('./_common.js');
 
 // /captures/all
-// Gets all the captures (simple/pcap format) in the ./data/ dir
+// Gets all the captures (simple/pcap format) in the CAPTURES_DIR
 exports.all = function (req, res) {
   dataCaptures(true, true, res, sendDataCaptures);
 };
 
 // /captures/simple
-// Gets the simple captures in the ./data/ dir
+// Gets the simple captures in the CAPTURES_DIR 
 exports.simple = function (req, res) {
   dataCaptures(true, false, res, sendDataCaptures);
 };
 
 // /captures/pcap
-// Gets the pcap captures in the ./data/ dir
+// Gets the pcap captures in the CAPTURES_DIR 
 exports.pcap = function (req, res) {
   dataCaptures(false, true, res, sendDataCaptures);
 };
@@ -28,13 +29,20 @@ exports.pcap = function (req, res) {
 // Gets the path where the captures are stored
 exports.path = function (req, res) {
   var dataPath = {};
-  dataPath['path'] = path.resolve(__dirname, '..', 'data/');
+  // Absolute path
+  if (config.CAPTURES_DIR.charAt(0) == '/') {
+    dataPath['path'] = path.resolve(config.CAPTURES_DIR);
+  }
+  // Relative path
+  else {
+    dataPath['path'] = path.resolve(__dirname, '..', config.CAPTURES_DIR);
+  }
   res.json(dataPath);
 };
 
 
 // /captures/rename/:oldname/:newname
-// Renames a capture in the ./data/ dir
+// Renames a capture in the CAPTURES_DIR
 exports.rename = function (req, res) {
   // Valid params
   if ((!common.validCapture(req.params.oldname)) || (!common.validNewName(req.params.newname))) {
@@ -43,7 +51,7 @@ exports.rename = function (req, res) {
   }
 
   // Rename
-  fs.rename('data/' + req.params.oldname, 'data/' + req.params.newname, function (err) {
+  fs.rename(config.CAPTURES_DIR + req.params.oldname, config.CAPTURES_DIR + req.params.newname, function (err) {
     if (err) {
       common.logError(err.message);
       common.sendJSON('captures_rename_error', res, 400);
@@ -63,7 +71,7 @@ exports.convertToPcap = function (req, res) {
   }
 
   // Convert the capture
-  var code_script = scripts.exec('./bin/simple2pcap -o data/' + req.params.convertedname + ' data/' + req.params.name);
+  var code_script = scripts.exec('./bin/simple2pcap -o ' + config.CAPTURES_DIR + req.params.convertedname + ' ' + config.CAPTURES_DIR + req.params.name);
   code_script.on('exit', function (code) {
     if (code != 0) {
       common.logError('Error executing the simple2pcap command. Code: ' + code);
@@ -84,7 +92,7 @@ exports.convertToSimple = function (req, res) {
   }
 
   // Convert the capture
-  var code_script = scripts.exec('./bin/pcap2simple data/' + req.params.name + ' data/' + req.params.convertedname);
+  var code_script = scripts.exec('./bin/pcap2simple ' + config.CAPTURES_DIR + req.params.name + ' ' + config.CAPTURES_DIR + req.params.convertedname);
   code_script.on('exit', function (code) {
     if (code != 0) {
       common.logError('Error executing the pcap2simple command. Code: ' + code);
@@ -96,7 +104,7 @@ exports.convertToSimple = function (req, res) {
 };
 
 // /captures/delete/:name
-// Deletes a capture in the ./data/ dir
+// Deletes a capture in the CAPTURES_DIR
 exports.delete = function (req, res) {
   // Valid param
   if (!common.validCapture(req.params.name)) {
@@ -105,7 +113,7 @@ exports.delete = function (req, res) {
   }
 
   // Delete
-  fs.unlink('data/' + req.params.name, function (err) {
+  fs.unlink(config.CAPTURES_DIR + req.params.name, function (err) {
     if (err) {
       common.logError(err.message);
       common.sendJSON('captures_delete_error', res, 400);
@@ -118,7 +126,7 @@ exports.delete = function (req, res) {
 
 // Internal functions
 
-// Gets an array of captures info from the ./data/ dir
+// Gets an array of captures info from the CAPTURES_DIR 
 function dataCaptures(simple, pcap, res, callback) {
   // Validator callback
   var validator;
@@ -130,12 +138,17 @@ function dataCaptures(simple, pcap, res, callback) {
     validator = common.validPcapCapture;
   }
 
-  // Gets all the files in the ./data/ dir
-  fs.readdir('data/', function (err, files) {
+  // Gets all the files in the CAPTURES_DIR 
+  fs.readdir(config.CAPTURES_DIR, function (err, files) {
+    if (err) {
+      common.logError(err);
+      res.sendStatus(500);
+      return;
+    }
     var dataCaptures = [];
     // For each file
     files.forEach(function (entry) {
-      fs.stat('data/' + entry, function (err, stats) {
+      fs.stat(config.CAPTURES_DIR + entry, function (err, stats) {
         if (err) {
           common.logError(err);
           return;

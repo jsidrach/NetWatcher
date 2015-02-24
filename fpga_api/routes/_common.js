@@ -3,8 +3,9 @@
 // Package dependencies
 var fs = require('fs');
 var path = require('path');
+var config = require('../config.js');
 
-// Exports
+// Function exports
 
 // Checks the timestamp and discard not valid requests
 exports.handleRequest = function (req, res, next) {
@@ -139,7 +140,7 @@ function validNewName(name) {
     return false;
   }
   // File already exists
-  if (fs.existsSync('data/' + name)) {
+  if (fs.existsSync(config.CAPTURES_DIR + name)) {
     return false;
   }
   return true;
@@ -154,7 +155,7 @@ function validSimpleCapture(name) {
   // 3rd and 4th byte are 0x69
   var magicNumber = new Buffer([0x69, 0x69]);
   var buffer = new Buffer([0x00, 0x00]);
-  var fd = fs.openSync('data/' + name, 'r');
+  var fd = fs.openSync(config.CAPTURES_DIR + name, 'r');
   var len = fs.readSync(fd, buffer, 0, 2, 2);
   if (len != magicNumber.length) {
     return false;
@@ -176,7 +177,7 @@ function validPcapCapture(name) {
     new Buffer([0xd4, 0xc3, 0xb2, 0xa1])
   ];
   var buffer = new Buffer([0x00, 0x00, 0x00, 0x00]);
-  var fd = fs.openSync('data/' + name, 'r');
+  var fd = fs.openSync(config.CAPTURES_DIR + name, 'r');
   var len = fs.readSync(fd, buffer, 0, 4, 0);
   if (len != magicNumbers[0].length) {
     return false;
@@ -235,7 +236,7 @@ function validFile(name) {
     return false;
   }
   // File already exists
-  if (!fs.existsSync('data/' + name)) {
+  if (!fs.existsSync(config.CAPTURES_DIR + name)) {
     return false;
   }
   return true;

@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 // Express
 var app = express();
 
+// Config module
+var config = require('./config.js');
 // Common module
 var common = require('./routes/_common.js');
 // Functions module for each petition
@@ -18,7 +20,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 // Set the port
-var port = process.env.PORT || 1337;
+var port = process.env.PORT || config.PORT;
 
 // Routes for the FPGA API
 var router = express.Router();
