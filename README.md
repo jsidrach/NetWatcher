@@ -113,3 +113,9 @@ $ ./scripts/do_chmod.sh
 * Translations (implementing more languages)
     * Edit ./locale/ files with a PO file editor, ex: [POEdit](https://poedit.net)
     * Restart apache
+
+* Open port to the service
+    * Edit `/etc/sysconfig/iptables` and add the line `-A INPUT -m state --state NEW -m tcp -p tcp --dport 1337 -j ACCEPT`
+
+* Sync the clock with an external source (run both on the php and the fpga hosts)
+    * `sudo ntpdate pool.ntp.org`

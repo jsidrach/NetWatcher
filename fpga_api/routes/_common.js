@@ -212,7 +212,7 @@ function validTimestamp(req) {
   if(delay === false) {
     return false;
   }
-  return (getDelay(req) <= 10);
+  return (getDelay(req) <= config.MAX_DELAY);
 };
 
 // Checks if a name is valid (syntactically)
