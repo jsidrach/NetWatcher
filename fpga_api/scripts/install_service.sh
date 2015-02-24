@@ -7,7 +7,7 @@
 
 if [ "$#" -ne 2 ]; then
     echo "Illegal number of parameters (server_path and user)"
-    exit 0;
+    exit 1;
 fi
 
 FOLDER_EXP='s|dir=\".*\"|dir=\"'${1}'\"|g'
