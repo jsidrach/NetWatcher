@@ -6,15 +6,15 @@ require_once('../../lib/vendor/autoload.php');
 \Core\Config::load('../..');
 ?>
 
-// URL of the delay call
-var delayURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/delay';
+// Base URL for the ajax calls
+var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?>;
 
 // Sets the events
 $(document).ready(function () {
   // Put the convert request
   $.ajax({
     type: 'GET',
-    url: delayURL,
+    url: baseURL + '/info/delay',
     dataType: 'json',
     timeout: '10000',
     headers: { 'timestamp': Date.now() },

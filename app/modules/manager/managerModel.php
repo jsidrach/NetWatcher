@@ -20,7 +20,6 @@ use Core\Config;
  */
 class managerModel extends Common\appModel
 {
-
     /**
      * Constructor for the managerModel class.
      * Sets the strings (with localization support)
@@ -28,9 +27,26 @@ class managerModel extends Common\appModel
     public function __construct()
     {
         parent::__construct();
-
+        
         /* Additional libraries */
-        array_push($this->jsLibraries, 'netwatcher-manager.js.php');
+        array_push($this->jsLibraries, 'bootstrap-table.js', 'bootstrap-table-localization.js.php', 'netwatcher-manager.js.php');
+    }
+    
+    /**
+     * Get the current status of the FPGA
+     */
+    public function getStatus() {
+        $context = stream_context_create(array(
+            'http' => array(
+                'timeout' => 2
+            )
+        ));
+        $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', 0, $context);
+        if ($data === FALSE) {
+            return 'error';
+        } else {
+            return json_decode($data)->status;
+        }
     }
 }
 ?>
