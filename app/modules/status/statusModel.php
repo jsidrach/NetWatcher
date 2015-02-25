@@ -253,7 +253,7 @@ class statusModel extends Common\appModel
                 'timeout' => 2
             )
         ));
-        if (file_get_contents(Config::$REMOTE_SERVER_IP . '/ping', 0, $context) === FALSE) {
+        if (file_get_contents(Config::$REMOTE_SERVER_IP . '/info/ping', 0, $context) === FALSE) {
             return 'danger';
         }
         return 'success';
