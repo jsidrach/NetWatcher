@@ -1,10 +1,15 @@
 TODO Week:
 -------
-  - Repasar todo hasta la fecha, mejorar comentarios
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
-  - Terminar tipos de códigos status
+    - Añadir métodos a la api
   - Boceto página de manager
   - pcapng > editcap > identificar y convertir
+  - Repasar todo hasta la fecha, mejorar comentarios
+
+TODO Future:
+-------
+  - Terminar tipos de códigos status
+    - Terminar página de manager
   - Página troubleshooting wiki github
 
 Dudas Jose:

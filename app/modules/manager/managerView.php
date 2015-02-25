@@ -33,13 +33,32 @@ class managerView extends Common\appView
     }
 
     /**
-     * Renders the main content of the page inside the rest of the page
+     * Renders the id of the page
      *
      * @see \App\Common\Views\appView::renderContent()
      */
     protected function renderContent()
-    {
-        //
+    { }
+    
+    /**
+     * Renders a connection error panel
+     */
+    public function renderError() {
+        //TODO
+    }
+    
+    /**
+     * Renders an error with HugePages
+     */
+    public function renderErrorHP() {
+        //TODO
+    }
+    
+    /**
+     * Renders mode selection (player/recorder)
+     */
+    public function renderModeSelection() {
+        //TODO
     }
 }
 ?>

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 // Checks the ip
 function checkIp() {
-  var pingURL = $('#serverIp').val() + '/ping';
+  var pingURL = $('#serverIp').val() + '/info/ping';
   // Get the new data
   $.ajax({
     type: 'GET',

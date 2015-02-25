@@ -20,6 +20,16 @@ class managerController extends Common\appController
 {
 
     /**
+     * Callbacks depending on the model status
+     */
+    private $subPages = array(
+        'error' => 'renderError',
+        'hp_off' => 'renderErrorHP',
+        'init_off' => 'renderModeSelection',
+        'mount_off' => 'renderModeSelection'
+    );
+
+    /**
      * Default inherited constructor for the managerController class
      *
      * @param ManagerModel $model
@@ -30,6 +40,26 @@ class managerController extends Common\appController
     public function __construct(ManagerModel $model, ManagerView $view)
     {
         parent::__construct($model, $view);
+    }
+
+    /**
+     * Overwrites the parent display to control the different pages depending on the FPGA status
+     *
+     * @see \App\Common\Controllers\appController::display()
+     *
+     * @param array $args
+     *            Params of the display (unused)
+     */
+    public function display(Array $args)
+    {
+        $status = $this->model->getStatus();
+        
+        if (isset($this->subPages[$status]) && method_exists($this->view, $this->subPages[$status])) {
+            $callback = $this->subPages[$status];
+        } else {            
+            $callback = 'renderEror';
+        }
+        $this->view->render($callback);
     }
 }
 ?>
