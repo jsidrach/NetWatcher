@@ -70,10 +70,13 @@ function toggleRightPanels(value) {
   $('#deleteCapture').attr('disabled', !value);
   if(!value) {
     $('#captureName').text(noCaptureText);
+    $('#captureNamePanel').removeClass('panel-primary').addClass('panel-info');
     selectedCaptureName = null;
     selectedCaptureType = null;
     $('#convertedName').val('');
     $('#newName').val('');
+  } else {    
+    $('#captureNamePanel').removeClass('panel-info').addClass('panel-primary');
   }
 }
 

@@ -97,9 +97,9 @@ class capturesView extends Common\appView
         /* Right action menu */
         $this->pLine('<div class="col-md-4">');
         /* Selected capture */
-        $this->pLine('<div class="panel panel-info">', 1);
+        $this->pLine('<div id="captureNamePanel" class="panel panel-info">', 1);
         $this->pLine('<div class="panel-heading">', 1);
-        $this->pLine('<h3 class="panel-title" id="captureName">' . _('Select a capture from the table') . '</h3>', 1);
+        $this->pLine('<h3 id="captureName" class="panel-title">' . _('Select a capture from the table') . '</h3>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         

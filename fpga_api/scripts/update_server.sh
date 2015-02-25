@@ -4,9 +4,9 @@
 # Run from the fpga_api dir
 
 # Change configuration here
-SERVER_IP=150.244.58.44
-SERVER_PATH=/home/hpcn/JSid/fpga_api/
-USER=hpcn
+SERVER_IP=localhost
+SERVER_PATH=/home/jsid/Desktop/fpga_api/
+USER=jsid
 # End of configuration
 
 # Set up connection
