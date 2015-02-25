@@ -1,41 +1,25 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-02-22 23:03+0100\n"
-"PO-Revision-Date: 2015-02-22 23:04+0100\n"
+"POT-Creation-Date: 2015-02-25 12:08+0100\n"
+"PO-Revision-Date: 2015-02-25 12:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: docs\n"
 "X-Poedit-SearchPathExcluded-1: fpga_api/node\n"
 "X-Poedit-SearchPathExcluded-2: fpga_api/node_modules\n"
 "X-Poedit-SearchPathExcluded-3: lib/vendor\n"
-"X-Poedit-SearchPath-0: .\n"
 
-#: app/common/appView.php:157 app/common/appView.php:199
-msgid "License"
-msgstr "Licencia"
-
-#: app/common/appView.php:193 app/modules/status/statusView.php:32
-msgid "Status"
-msgstr "Estado"
-
-#: app/common/appView.php:195
-msgid "Wiki"
-msgstr "Wiki"
-
-#: app/common/appView.php:197
-msgid "Source"
-msgstr "Código"
-
-#: app/common/appModel.php:46
+#: app/common/appModel.php:46 app/modules/manager/managerView.php:32
 msgid "Manager"
 msgstr "Gestor"
 
@@ -51,37 +35,21 @@ msgstr "Capturas"
 msgid "Settings"
 msgstr "Configuración"
 
-#: app/modules/settings/settingsController.php:74
-msgid "Settings saved successfully"
-msgstr "Configuración actualizada"
+#: app/common/appView.php:177 app/common/appView.php:219
+msgid "License"
+msgstr "Licencia"
 
-#: app/modules/settings/settingsController.php:76
-msgid "Error saving settings"
-msgstr "Error al guardar la configuración"
+#: app/common/appView.php:213 app/modules/status/statusView.php:32
+msgid "Status"
+msgstr "Estado"
 
-#: app/modules/settings/settingsView.php:46
-msgid "Server Settings"
-msgstr "Configuración del Servidor"
+#: app/common/appView.php:215
+msgid "Wiki"
+msgstr "Wiki"
 
-#: app/modules/settings/settingsView.php:48
-msgid "FPGA API base address"
-msgstr "Dirección base de la API FPGA"
-
-#: app/modules/settings/settingsView.php:56
-msgid "App Settings"
-msgstr "Configuración de Aplicación"
-
-#: app/modules/settings/settingsView.php:59
-msgid "Language"
-msgstr "Idioma"
-
-#: app/modules/settings/settingsView.php:75
-msgid "Theme"
-msgstr "Tema"
-
-#: app/modules/settings/settingsView.php:93
-msgid "Save"
-msgstr "Guardar"
+#: app/common/appView.php:217
+msgid "Source"
+msgstr "Código"
 
 #: app/modules/captures/capturesView.php:47
 msgid ""
@@ -171,9 +139,46 @@ msgstr ""
 "de traza (o añadiendo un enlace simbólico a él) al directorio de las trazas "
 "en el servidor FPGA remoto"
 
-#: app/modules/status/statusView.php:73
-msgid "Total"
-msgstr "Total"
+#: app/modules/manager/managerView.php:50
+msgid "Connection Error. Trying to refresh in"
+msgstr "Error en la conexión. Intentando actualizar en"
+
+#: app/modules/manager/managerView.php:53
+#, php-format
+msgid "Consider visiting the %ssettings%s and %sstatus%s pages"
+msgstr "Considera visitar las páginas de %sconfiguración%s y %sestado%s"
+
+#: app/modules/settings/settingsController.php:78
+msgid "Settings saved successfully"
+msgstr "Configuración actualizada"
+
+#: app/modules/settings/settingsController.php:80
+msgid "Error saving settings"
+msgstr "Error al guardar la configuración"
+
+#: app/modules/settings/settingsView.php:46
+msgid "Server Settings"
+msgstr "Configuración del Servidor"
+
+#: app/modules/settings/settingsView.php:48
+msgid "FPGA API base address"
+msgstr "Dirección base de la API FPGA"
+
+#: app/modules/settings/settingsView.php:56
+msgid "App Settings"
+msgstr "Configuración de Aplicación"
+
+#: app/modules/settings/settingsView.php:59
+msgid "Language"
+msgstr "Idioma"
+
+#: app/modules/settings/settingsView.php:75
+msgid "Theme"
+msgstr "Tema"
+
+#: app/modules/settings/settingsView.php:93
+msgid "Save"
+msgstr "Guardar"
 
 #: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:62
 #: app/modules/status/statusModel.php:71
@@ -238,7 +243,7 @@ msgstr "Servidor FPGA Remoto"
 msgid "Timestamp delay between the client and the FPGA host: "
 msgstr "Diferencia de relojes entre el cliente y el servidor FPGA:"
 
-#: app/modules/status/statusModel.php:81 public/js/netwatcher-status.js.php:50
+#: app/modules/status/statusModel.php:81 public/js/netwatcher-status.js.php:51
 msgid "Passed"
 msgstr "OK"
 
@@ -250,10 +255,14 @@ msgstr "No Implementado"
 msgid "In Progress..."
 msgstr "En Progreso..."
 
-#: app/modules/status/statusModel.php:84 public/js/netwatcher-status.js.php:54
-#: public/js/netwatcher-status.js.php:67
+#: app/modules/status/statusModel.php:84 public/js/netwatcher-status.js.php:55
+#: public/js/netwatcher-status.js.php:68
 msgid "Failed"
 msgstr "Error"
+
+#: app/modules/status/statusView.php:73
+msgid "Total"
+msgstr "Total"
 
 #: public/404.php:5
 msgid "404 - Not Found"
@@ -312,55 +321,55 @@ msgstr "Interruptor"
 msgid "Columns"
 msgstr "Columnas"
 
-#: public/js/netwatcher-status.js.php:68
-msgid "No Response"
-msgstr "Sin Respuesta"
-
-#: public/js/netwatcher-captures.js.php:103
+#: public/js/netwatcher-captures.js.php:106
 msgid "Connection error"
 msgstr "Error de conexión"
 
-#: public/js/netwatcher-captures.js.php:139
-#: public/js/netwatcher-captures.js.php:181
-#: public/js/netwatcher-captures.js.php:212
+#: public/js/netwatcher-captures.js.php:142
+#: public/js/netwatcher-captures.js.php:184
+#: public/js/netwatcher-captures.js.php:215
 msgid "No capture is selected"
 msgstr "No hay ninguna traza seleccionada"
 
-#: public/js/netwatcher-captures.js.php:144
+#: public/js/netwatcher-captures.js.php:147
 msgid "Converted capture\\'s name is not valid"
 msgstr "Nombre de traza convertida inválido"
 
-#: public/js/netwatcher-captures.js.php:156
+#: public/js/netwatcher-captures.js.php:159
 msgid "Capture converted successfully"
 msgstr "Traza convertida correctamente"
 
-#: public/js/netwatcher-captures.js.php:157
+#: public/js/netwatcher-captures.js.php:160
 msgid "Capture could not be converted"
 msgstr "No se pudo convertir la traza (nombre en uso)"
 
-#: public/js/netwatcher-captures.js.php:173
+#: public/js/netwatcher-captures.js.php:176
 msgid "Capture queued for conversion"
 msgstr "Traza en conversión"
 
-#: public/js/netwatcher-captures.js.php:186
+#: public/js/netwatcher-captures.js.php:189
 msgid "New name is not valid"
 msgstr "Nuevo nombre inválido o en uso"
 
-#: public/js/netwatcher-captures.js.php:190
+#: public/js/netwatcher-captures.js.php:193
 msgid "Capture renamed successfully"
 msgstr "Traza renombrada correctamente"
 
-#: public/js/netwatcher-captures.js.php:191
+#: public/js/netwatcher-captures.js.php:194
 msgid "Capture could not be renamed"
 msgstr "No se pudo renombrar la traza (nombre en uso)"
 
-#: public/js/netwatcher-captures.js.php:217
+#: public/js/netwatcher-captures.js.php:220
 msgid "Capture deleted successfully"
 msgstr "Traza borrada correctamente"
 
-#: public/js/netwatcher-captures.js.php:218
+#: public/js/netwatcher-captures.js.php:221
 msgid "Capture could not be deleted"
 msgstr "No se pudo borrar la traza"
+
+#: public/js/netwatcher-status.js.php:69
+msgid "No Response"
+msgstr "Sin Respuesta"
 
 #~ msgid ""
 #~ "Add additional captures generated outside NetWatcher by copying the "

@@ -44,7 +44,15 @@ class managerView extends Common\appView
      * Renders a connection error panel
      */
     public function renderError() {
-        //TODO
+        $this->pLine('<div id="connectionError" class="bootstrap-growl alert alert-danger"
+                           style="position: fixed; margin: 0px 0px 0px -175px; z-index: 9999; top: 60px; width: 350px; left: 50%;">');
+        $this->pLine('<p>', 1);
+        $this->pLine(_('Connection Error. Trying to refresh in') . ' <label id="connectionErrorCountdown"></label>...', 1);
+        $this->pLine('</p>', -1);
+        $this->pLine('<p>');
+        $this->pLine(sprintf(_('Consider visiting the %ssettings%s and %sstatus%s pages'), '<a href="settings">', '</a>', '<a href="status">', '</a>'), 1);
+        $this->pLine('</p>', -1);
+        $this->pLine('</div>', -1);
     }
     
     /**
