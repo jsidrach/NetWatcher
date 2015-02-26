@@ -10,6 +10,7 @@ curl -sS https://getcomposer.org/installer | php -- --install-dir=lib/vendor
 curl -o lib/vendor/phpDocumentor.phar http://www.phpdoc.org/phpDocumentor.phar
 # Get Dependencies
 ./lib/vendor/composer.phar install
+rm -rf public/js/npm.js
 # JQuery
 cp lib/vendor/components/jquery/jquery.js public/js/
 # Growl notifications
