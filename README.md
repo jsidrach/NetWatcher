@@ -119,3 +119,7 @@ $ ./scripts/do_chmod.sh
 
 * Sync the clock with an external source (run both on the php and the fpga hosts)
     * `sudo ntpdate pool.ntp.org`
+
+* Configure boot with HugePages as the default grub option
+    * Open `/boot/grub/grub.cfg` and search for the name of the HugePages option.
+    * Edit `/etc/default/grub` and use the quoted name of the option or its index for the `GRUB_DEFAULT` option

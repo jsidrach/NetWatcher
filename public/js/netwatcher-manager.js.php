@@ -20,6 +20,10 @@ $(document).ready(function () {
     countdownTimer();
     setInterval('countdownTimer()', 1000);
   }
+  // HugePages off page
+  else if($('#hugePagesOff').length) {
+    $('#rebootingModal').on('shown.bs.modal', rebootWebService);
+  }
 });
 
 //
@@ -39,3 +43,12 @@ function countdownTimer() {
 //
 // HugePages off page
 //
+
+// Reboot the web service and show the progress
+function rebootWebService() {
+  // TODO
+  // Envía request de reiniciar
+  // Error: pone barra a error, espera 2 sec y reload page
+  // No error: bone la barra a verde, hace peticiones hasta que alguna responda
+  // Cuando una responda, reload page
+}

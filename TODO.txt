@@ -1,27 +1,32 @@
-TODO Week:
+TODO Week(+End):
 -------
-  - Instalación+Mount de la FPGA (hasta justo antes de configurar)
-    - Añadir métodos a la api
-  - Boceto página de manager
-  - pcapng > editcap > identificar y convertir
+  [High Priority]
+  - Instalar versión x64
+      - Montar todo, comprobar que sigue funcionando
+
+  - Implementar reboot en la fpga_api
+  - Barra de progreso para el reboot en Manager>Captures
+
+TODO WeekEnd
+------
+  - Empezar wiki (troubleshooting), hacer referencia en el readme a algunos apartados (ej: default grub option)
+    - Mover algunas cosas del readme a la wiki
   - Repasar todo hasta la fecha, mejorar comentarios
+
+[Low Priority]
+- Instalación+Mount de la FPGA (hasta justo antes de configurar)
+- Añadir métodos a la api
+- pcapng > editcap > identificar y convertir
 
 TODO Future:
 -------
   - Terminar tipos de códigos status
     - Terminar página de manager
-  - Página troubleshooting wiki github
 
 Dudas Jose:
 -------
   - Tipo de códigos en /proc/nfp/nfp_report
   - Qué hace readRegisters, testControl
-
-Dudas Sergio:
--------
-  - Tema dependencia red local-> SOLUCIONADO!
-    - Proxy
-  - Tema seguridad
 
 -------
 API JSON (root: /fpga/api/) - Servidor io.js+express
@@ -140,7 +145,7 @@ Cosas a mencionar en la memoria:
   - Esquema de la arquitectura
     - Por qué PHP
     - Por qué io.js
-    - Restricciones (red local)
+    - Restricciones (red local entre php e io.js)
   - Esquema de comunicaciones/protocolos entre las 3 partes
   - Diseño de la aplicación, responsive, temas, atractiva visualmente, mejora de manejo respecto a consola
   - Framework MVC+Router+Logger desarrollado en PHP. Traducción de rutas, configuración, componentes:
@@ -159,11 +164,11 @@ Cosas a mencionar en la memoria:
     - Algoritmo utilizado
     - JSONP, cross-domain <-> Proxy
     - Supervisor, cambios en javascript sin reiniciar
-    - Timestamps
+    - Timestamps (extra, no necesario, vlan distintas)
   - Documentación
     - Wiki
-    - Swagger?
     - phpDocumentor
+    - Web Service
   - Problema de tráfico redundante, reproducir mismo tráfico que se capturó, incluyendo órdenes al servicio
     - Solución propuesta (timestamps)
   - Posibles mejoras

@@ -24,7 +24,7 @@ class managerController extends Common\appController
      */
     private $subPages = array(
         'error' => 'renderError',
-        'hp_off' => 'renderErrorHP',
+        'hugepages_off' => 'renderErrorHP',
         'init_off' => 'renderModeSelection',
         'mount_off' => 'renderModeSelection'
     );
