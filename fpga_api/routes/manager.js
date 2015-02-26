@@ -13,7 +13,7 @@ exports.reboot = function (req, res) {
   scripts.exec('sudo /sbin/reboot', function (error, stdout, stderr) {
     if (error) {
       common.logError(stderr);
-      common.sendJSON('reboot_error', res, 500);
+      res.sendCode(500);
       return;
     }
     common.sendJSON('reboot_ok', res, 200);
