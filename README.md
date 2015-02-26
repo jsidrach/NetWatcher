@@ -123,3 +123,9 @@ $ ./scripts/do_chmod.sh
 * Configure boot with HugePages as the default grub option
     * Open `/boot/grub/grub.cfg` and search for the name of the HugePages option.
     * Edit `/etc/default/grub` and use the quoted name of the option or its index for the `GRUB_DEFAULT` option
+
+* FPGA Web Service does not start after reboot (fixed in modern releases of redhat)
+    * Open `/etc/sudoers` and comment `# Defaults    requiretty`
+
+* Local .htaccess not being used by apache
+    * Check cat `/etc/apache2/apache2.conf | grep AllowOverride`, and change the conf of the NetWatcher parent dir to `AllowOverride All`

@@ -9,8 +9,8 @@
 # Description:       Enable fpga_api service, provided by daemon.
 ### END INIT INFO
 
-dir=""
-user=""
+dir="/home/sid/Desktop/fpga_api/"
+user="sid"
 cmd="PATH=$PATH:$dir/iojs/bin/ ./iojs/bin/supervisor -w routes server"
 
 name="fpga_api"

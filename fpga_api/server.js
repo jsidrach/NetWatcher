@@ -38,6 +38,7 @@ app.route('*')
 
 // Manager
 
+router.put('/reboot', manager.reboot);
 // router.post('/player/init', manager.initPlayer);
 // router.post('/recorder/init', manager.initRecorder);
 

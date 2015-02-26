@@ -24,3 +24,5 @@ sudo ln -sf /etc/init.d/fpga_api /etc/rc3.d/S03fpga_api
 sudo ln -sf /etc/init.d/fpga_api /etc/rc4.d/S03fpga_api
 sudo ln -sf /etc/init.d/fpga_api /etc/rc5.d/S03fpga_api
 sudo ln -sf /etc/init.d/fpga_api /etc/rc6.d/K01fpga_api
+# Let the server user execute reboot
+sudo grep -q -F ${2}' ALL = NOPASSWD: /sbin/reboot' /etc/sudoers || sudo echo ${2}' ALL = NOPASSWD: /sbin/reboot' | sudo tee --append /etc/sudoers > /dev/null
