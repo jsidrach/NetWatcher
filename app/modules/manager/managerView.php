@@ -100,8 +100,8 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="modal-body text-justify">');
         $this->pLine('<div class="progress">', 1);
-        $this->pLine('<div id="" class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" style="width: 100%">', 1);
-        $this->pLine('<span id="">' . _('Loading') . '</span>', 1);
+        $this->pLine('<div id="rebootingProgress" class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" style="width: 100%">', 1);
+        $this->pLine('<span><strong id="rebootingLabel">' . _('Sending request...') . '</strong></span>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);

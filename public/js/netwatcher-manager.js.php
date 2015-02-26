@@ -38,7 +38,7 @@ function countdownTimer() {
     clearInterval(countdownTimer);
     location.reload(true);
   }
-}
+};
 
 //
 // HugePages off page
@@ -46,9 +46,48 @@ function countdownTimer() {
 
 // Reboot the web service and show the progress
 function rebootWebService() {
-  // TODO
-  // Envía request de reiniciar
-  // Error: pone barra a error, espera 2 sec y reload page
-  // No error: bone la barra a verde, hace peticiones hasta que alguna responda
-  // Cuando una responda, reload page
-}
+  var progressBar = $('#rebootingProgress');
+  var progressLabel = $('#rebootingLabel');
+  var rebootURL = baseURL + '/reboot';
+
+  // Make the reboot request
+  $.ajax({
+    type: 'PUT',
+    url: rebootURL,
+    headers: { 'timestamp': Date.now() },
+    dataType: 'json',
+    success: function (resp) {
+      // Request received. Waiting for server to boot again
+      setTimeout(function () {
+        // Request OK. Waiting for the server to reboot
+        progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
+        progressLabel.text(<?php echo '\'' . _('Waiting for the server to reboot...') . '\'' ?>);
+        setTimeout('waitUntilUp()', 7500);
+      }, 2000);
+    },
+    error: function (e) {
+      setTimeout(function () {
+        // Error on the request. Error and refresh
+        progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
+        progressLabel.text(<?php echo '\'' . _('Error sending request') . '\'' ?>);
+        setTimeout(function () {location.reload(true)}, 2000);
+      }, 2000);
+    }
+  });
+};
+
+// Waits until the server is up again
+function waitUntilUp() {
+  var pingURL = baseURL + 'info/ping';
+  setInterval(function() {
+    $.ajax({
+      type: 'GET',
+      url: pingURL,
+      dataType: 'json',
+      success: function (resp) {
+        // Server up. Reload the window
+        location.reload(true);
+      }
+    });
+  }, 2000);
+};
