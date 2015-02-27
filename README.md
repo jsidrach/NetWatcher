@@ -1,6 +1,6 @@
 # NetWatcher
 
-NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High Performance Computing and Networking](http://www.hpcn.es/) research group. NetWatcher is divided in two parts: a web interface to manage the FPGA, and a FPGA web service to execute commands and monitor it in the FPGA host.
+NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High Performance Computing and Networking](http://www.hpcn.es/) research group. NetWatcher is divided in two parts: a FPGA Web Service to execute commands and monitor them in the FPGA, and a Web Interface to visually make those calls.
 
 ## Table of contents
 
@@ -12,7 +12,6 @@ NetWatcher is a web-based interface to manage network traffic capturer FPGAs, de
      - [Web Interface](#web-interface)
 - [Documentation](#documentation)
 - [Bugs and feature requests](#bugs-and-feature-requests)
-- [Other Scripts](#other-scripts)
 
 
 Version
@@ -45,87 +44,29 @@ Installation
 **Prerequisite**: the FPGA service and the apache server must be in the same local network.
 
 #### FPGA Web Service
-1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.
+1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active
 2. Edit the file `./fpga_api/scripts/update_server.sh` setting the `SERVER_IP` and `USER` vars. **Note**: selected user must exist and have superuser rights in the remote server
 3. Change path to `./fpga_api/`
 4. Deploy the io.js server on the remote host
 
         $ ./scripts/update_server.sh
-5. Start the service
+5. Log into the FPGA Web Service host and start the service
 
         $ sudo service fpga_api start
 
 #### Web Interface
-1. **Prerequisites**: apache http server installed, with mod_rewrite support enabled.
-2. Download the repository and extract it (inside a PHP server). Change directory to the repository folder.
+1. **Prerequisites**: apache http server installed, with mod_rewrite support enabled
+2. Download the repository and extract it (inside a PHP server). Change directory to the repository folder
 3. Install required packages
 
         $ ./scripts/install_dependencies.sh
 
+If you run into any issue, visit the [troubleshooting page](https://github.com/JSidrach/NetWatcher/wiki/Troubleshooting).
+
 Documentation
 ----
-NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA web service documentation is built with [Swagger](http://swagger.io/) and available on [docs/back-end](docs/back-end). Further documentation about the project architecture and additional reading can be found in the [project's wiki](https://github.com/JSidrach/NetWatcher/wiki).
+NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA Web Service documentation is available on [docs/back-end](docs/back-end). Further documentation about the project architecture and additional reading can be found in the [project's wiki](https://github.com/JSidrach/NetWatcher/wiki).
 
 Bugs and feature requests
 ----
-New features can be requested opening a GitHub Issue. If you have found a bug and you have a *tested* fix for it, you can submit a pull request.
-
-Other Scripts
-----
-
-* Install required packages
-```sh
-$ ./scripts/install_dependencies.sh
-```
-
-* Install/Upgrade libraries and dependencies
-```sh
-$ ./scripts/upgrade.sh
-```
-
-* Generate Documentation
-```sh
-$ ./scripts/gen_doc.sh
-```
-
-* Update libraries and dependencies
-```sh
-$ ./lib/vendor/composer.phar update
-```
-
-* Check PHP files syntax
-```sh
-$ ./scripts/check_php.sh
-```
-
-* Fix permissions
-```sh
-$ ./scripts/do_chmod.sh
-```
-
-* Check Gettext
-    * phpinfo(): GetText Support enabled
-    * Status page
-    
-* Only localhost
-    * Open `/etc/apache2/ports.conf`, change `Listen 80` to `Listen 127.0.0.1:80`
-
-* Translations (implementing more languages)
-    * Edit ./locale/ files with a PO file editor, ex: [POEdit](https://poedit.net)
-    * Restart apache
-
-* Open port to the service
-    * Edit `/etc/sysconfig/iptables` and add the line `-A INPUT -m state --state NEW -m tcp -p tcp --dport 1337 -j ACCEPT`
-
-* Sync the clock with an external source (run both on the php and the fpga hosts)
-    * `sudo ntpdate pool.ntp.org`
-
-* Configure boot with HugePages as the default grub option
-    * Open `/boot/grub/grub.cfg` and search for the name of the HugePages option.
-    * Edit `/etc/default/grub` and use the quoted name of the option or its index for the `GRUB_DEFAULT` option
-
-* FPGA Web Service does not start after reboot (fixed in modern releases of redhat)
-    * Open `/etc/sudoers` and comment `# Defaults    requiretty`
-
-* Local .htaccess not being used by apache
-    * Check cat `/etc/apache2/apache2.conf | grep AllowOverride`, and change the conf of the NetWatcher parent dir to `AllowOverride All`
+New features can be requested opening a GitHub Issue. If you have found a bug and you have a *tested* fix for it, feel encouraged to submit a pull request.
