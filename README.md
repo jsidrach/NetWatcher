@@ -50,7 +50,9 @@ Installation
 4. Deploy the io.js server on the remote host
 
         $ ./scripts/update_server.sh
-5. Log into the FPGA Web Service host and start the service
+5. Log into the FPGA Web Service host
+6. Configure the server (if needed) by editing the `config.js` file
+7. Start the service
 
         $ sudo service fpga_api start
 
@@ -60,6 +62,7 @@ Installation
 3. Install required packages
 
         $ ./scripts/install_dependencies.sh
+4. Connect the web interface with the FPGA Web Service visiting the settings page on your browser and editing the IP
 
 If you run into any issue, visit the [troubleshooting page](https://github.com/JSidrach/NetWatcher/wiki/Troubleshooting).
 
