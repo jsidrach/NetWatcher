@@ -5,6 +5,13 @@ var scripts = require('child_process');
 var config = require('../config.js');
 var common = require('./_common.js');
 
+// Constant execs
+var checkHugePagesOff = 'cat /proc/meminfo | grep "HugePages_Total:       0"';
+exports.checkHugePagesOff = checkHugePagesOff;
+var checkInitFPGAOn = 'lspci | grep 19aa:e004';
+exports.checkInitFPGAOn = checkInitFPGAOn;
+var checkFPGAMountedOn = 'lsmod | grep nfp_driver';
+exports.checkFPGAMountedOn = checkFPGAMountedOn;
 
 // /ping
 // Simple ping
@@ -34,7 +41,6 @@ exports.status = function (req, res) {
   nextCallback(res, [hugePagesOn, initializedFPGA, mountedFPGA, statusFPGA]);
 };
 
-
 // Internal functions for the transitions of the Finite State Machine
 
 // Executes the next callback
@@ -48,7 +54,7 @@ nextCallback = function (res, callbackList) {
 hugePagesOn = function (res, callbackList) {
   var status_json = 'status_1_hugepages_off';
   // 0 if huge pages is not active, 1 if hugepages is active
-  var code_script = scripts.exec('cat /proc/meminfo | grep "HugePages_Total:       0"');
+  var code_script = scripts.exec(checkHugePagesOff);
   code_script.on('exit', function (code) {
     if (code == 0) {
       common.sendJSON(status_json, res, 200);
@@ -62,7 +68,7 @@ hugePagesOn = function (res, callbackList) {
 initializedFPGA = function (res, callbackList) {
   var status_json = 'status_2_init_off';
   // 0 if fpga initialized, 1 otherwise
-  var code_script = scripts.exec('lspci | grep 19aa:e004');
+  var code_script = scripts.exec(checkInitFPGAOn);
   code_script.on('exit', function (code) {
     if (code != 0) {
       common.sendJSON(status_json, res, 200);
@@ -76,7 +82,7 @@ initializedFPGA = function (res, callbackList) {
 mountedFPGA = function (res, callbackList) {
   var status_json = 'status_3_mount_off';
   // 0 if fpga is mounted, 1 otherwise
-  var code_script = scripts.exec('lsmod | grep nfp_driver');
+  var code_script = scripts.exec(checkFPGAMountedOn);
   code_script.on('exit', function (code) {
     if (code != 0) {
       common.sendJSON(status_json, res, 200);

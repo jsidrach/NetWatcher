@@ -1,0 +1,5 @@
+{
+  "code": "success",
+  "type": "notification",
+  "description": "The FPGA has been initialized. The host will reboot now."
+}

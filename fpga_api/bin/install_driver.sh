@@ -1,7 +1,7 @@
 #!/bin/sh - 
 
 # Remove the previous driver
-rmmod nfp_driver.ko
+rmmod ./bin/nfp_driver.ko
 
 # Instantiate the driver
 insmod ./bin/nfp_driver.ko

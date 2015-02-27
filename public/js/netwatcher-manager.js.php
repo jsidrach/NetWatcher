@@ -48,7 +48,7 @@ function countdownTimer() {
 function rebootWebService() {
   var progressBar = $('#rebootingProgress');
   var progressLabel = $('#rebootingLabel');
-  var rebootURL = baseURL + '/reboot';
+  var rebootURL = baseURL + 'system/reboot';
 
   // Make the reboot request
   $.ajax({
@@ -91,3 +91,13 @@ function waitUntilUp() {
     });
   }, 2000);
 };
+
+
+/*
+Enviar peticion>
+Programando el <player/recorder>...
+> recibir contestacion, esperar 2sec
+Reiniciando el host...
+  > Esperar 7500ms, esperando a que se levante el host
+<refresh>
+*/
