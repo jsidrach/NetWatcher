@@ -2,8 +2,6 @@ TODO WeekEnd
 ------
   - Instalación+Mount de la FPGA (hasta justo antes de configurar)
     - Hacer página php manager
-  - Empezar wiki (troubleshooting), hacer referencia en el readme a algunos apartados (ej: default grub option)
-    - Mover algunas cosas del readme a la wiki
   - Repasar todo hasta la fecha, mejorar comentarios
 
 TODO Week
