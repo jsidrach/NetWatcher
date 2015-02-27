@@ -4,18 +4,98 @@
 var scripts = require('child_process');
 var config = require('../config.js');
 var common = require('./_common.js');
-var rebootScript = 
+var info = require('./statistics.js');
 
-// /reboot
+// Constant execs
+var rebootCommand = 'sudo /sbin/reboot';
+var playerBitStream = 'bin/nf10g_player.bit';
+var recorderBitStream = 'bin/nf10g_recorder.bit';
+
+// /system/reboot
 // Reboots the system
-exports.reboot = function (req, res) {
-  // Reboots the system
-  scripts.exec('sudo /sbin/reboot', function (error, stdout, stderr) {
+function reboot(req, res) {
+  // Reboot the system
+  scripts.exec(rebootCommand, function (error, stdout, stderr) {
     if (error) {
+      // Internal error
       common.logError(stderr);
-      res.sendCode(500);
+      res.sendStatus(500);
       return;
     }
-    common.sendJSON('reboot_ok', res, 200);
+    common.sendJSON('system_reboot_ok', res, 200);
+  });
+};
+exports.reboot = reboot;
+
+// /player/init
+// Programs and mounts the FPGA as a player
+exports.initPlayer = function (req, res) {
+  initFPGA(req, res, playerBitStream);
+};
+
+// /recorder/init
+// Programs and mounts the FPGA as a recorder
+exports.initRecorder = function (req, res) {
+  initFPGA(req, res, recorderBitStream);
+};
+
+// Internal Functions
+
+// Checks the state and programs and mounts the FPGA with a bitstream
+function initFPGA(req, res, bitstream) {
+  // Prequisite: HugePages on
+  // 0 if huge pages is not active, 1 if hugepages is active
+  var code_script = scripts.exec(info.checkHugePagesOff);
+  code_script.on('exit', function (code) {
+    if (code == 0) {
+      // HugePages off: invalid state to initialize the FPGA
+      common.readJSON('fpga_invalid_state', function (ans) {
+        ans.description = 'Invalid State. HugePages needs to be active to initialize the FPGA.';
+        res.status(412).json(ans);
+      });
+      return;
+    }
+    // HugePages on: initialize the FPGA
+    initBitstream(req, res, bitstream);
+  });
+};
+
+// Programs and mounts the FPGA with a bitstream
+function initBitstream(req, res, bitstream) {
+  // Program the FPGA
+  var code_script = scripts.exec('./bin/impact.sh ' + bitstream);
+  code_script.on('exit', function (code) {
+    // Check if the FPGA Is programmed
+    scripts.exec(info.checkInitFPGAOn).on('exit', function (code) {
+      if (code != 0) {
+        // Internal error
+        res.sendStatus(500);
+        return;
+      }
+      mountFPGA(req, res);
+    });
+  });
+};
+
+// Mounts the FPGA and reboots the system
+function mountFPGA(req, res) {
+  // Mount the FPGA
+  scripts.exec('./bin/install_driver.sh').on('exit', function (code) {
+    if (code != 0) {
+      // Internal Error
+      res.sendStatus(500);
+      return;
+    }
+    // Reboot the system
+    scripts.exec(rebootCommand, function (error, stdout, stderr) {
+      if (error) {
+        // Internal error
+        common.logError(stderr);
+        res.sendStatus(500);
+        return;
+      }  
+      // Programmed ok
+      res.sendJSON('fpga_init_ok', res, 200);
+    });
   });
 };

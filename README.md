@@ -1,6 +1,6 @@
 # NetWatcher
 
-NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High Performance Computing and Networking](http://www.hpcn.es/) research group. NetWatcher is divided in two parts: a web interface to manage the FPGA, and a FPGA REST-based service to execute commands and monitor it in the FPGA host.
+NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High Performance Computing and Networking](http://www.hpcn.es/) research group. NetWatcher is divided in two parts: a web interface to manage the FPGA, and a FPGA web service to execute commands and monitor it in the FPGA host.
 
 ## Table of contents
 
@@ -8,7 +8,7 @@ NetWatcher is a web-based interface to manage network traffic capturer FPGAs, de
 - [License](#license)
 - [Tech](#tech)
 - [Installation](#installation)
-     - [FPGA REST Service](#fpga-rest-service)
+     - [FPGA Web Service](#fpga-web-service)
      - [Web Interface](#web-interface)
 - [Documentation](#documentation)
 - [Bugs and feature requests](#bugs-and-feature-requests)
@@ -44,7 +44,7 @@ Installation
 ----
 **Prerequisite**: the FPGA service and the apache server must be in the same local network.
 
-#### FPGA REST Service
+#### FPGA Web Service
 1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active.
 2. Edit the file `./fpga_api/scripts/update_server.sh` setting the `SERVER_IP` and `USER` vars. **Note**: selected user must exist and have superuser rights in the remote server
 3. Change path to `./fpga_api/`
@@ -64,7 +64,7 @@ Installation
 
 Documentation
 ----
-NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA REST service documentation is built with [Swagger](http://swagger.io/) and available on [docs/back-end](docs/back-end). Further documentation about the project architecture and additional reading can be found in the [project's wiki](https://github.com/JSidrach/NetWatcher/wiki).
+NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA web service documentation is built with [Swagger](http://swagger.io/) and available on [docs/back-end](docs/back-end). Further documentation about the project architecture and additional reading can be found in the [project's wiki](https://github.com/JSidrach/NetWatcher/wiki).
 
 Bugs and feature requests
 ----

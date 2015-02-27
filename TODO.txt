@@ -1,21 +1,16 @@
-TODO Week(+End):
--------
-  [High Priority]
-  - Instalar versión x64
-      - Montar todo, comprobar que sigue funcionando
-
-  - Implementar reboot en la fpga_api
-  - Barra de progreso para el reboot en Manager>Captures
-
 TODO WeekEnd
 ------
+  - Instalación+Mount de la FPGA (hasta justo antes de configurar)
+    - Hacer página php manager
   - Empezar wiki (troubleshooting), hacer referencia en el readme a algunos apartados (ej: default grub option)
     - Mover algunas cosas del readme a la wiki
   - Repasar todo hasta la fecha, mejorar comentarios
 
+TODO Week
+------
+  - Probar inicialización de la fpga, tanto player como recorder
+    - ¿Se necesitan permisos de sudo?
 [Low Priority]
-- Instalación+Mount de la FPGA (hasta justo antes de configurar)
-- Añadir métodos a la api
 - pcapng > editcap > identificar y convertir
 
 TODO Future:
@@ -25,6 +20,8 @@ TODO Future:
 
 Dudas Jose:
 -------
+  - Si ya está programada la fpga y quiero cambiar de modo, vale con ejecutar otra vez impact/install_driver
+    - O hay antes que desmontarla/desprogramarla o algo...
   - Tipo de códigos en /proc/nfp/nfp_report
   - Qué hace readRegisters, testControl
 
@@ -88,7 +85,7 @@ cat /proc/meminfo | grep "HugePages_Total:       0"
 -----
 Solución óptima: hacer grub-reboot [número]                               [ ]
 Solución no óptima: guardar para que por defecto se ponga el de HugePages [x]
-  - Añadir en requisitos previos...?
+  - Reboot
 
 <status_2_init_off>
 3) Para inicializar
@@ -146,6 +143,7 @@ Cosas a mencionar en la memoria:
     - Por qué PHP
     - Por qué io.js
     - Restricciones (red local entre php e io.js)
+      - Redes distintas para control/tráfico
   - Esquema de comunicaciones/protocolos entre las 3 partes
   - Diseño de la aplicación, responsive, temas, atractiva visualmente, mejora de manejo respecto a consola
   - Framework MVC+Router+Logger desarrollado en PHP. Traducción de rutas, configuración, componentes:
@@ -169,8 +167,6 @@ Cosas a mencionar en la memoria:
     - Wiki
     - phpDocumentor
     - Web Service
-  - Problema de tráfico redundante, reproducir mismo tráfico que se capturó, incluyendo órdenes al servicio
-    - Solución propuesta (timestamps)
   - Posibles mejoras
     - Estandarización, futuras fpgas con características parecidas
     - Más idiomas
