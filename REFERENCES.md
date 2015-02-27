@@ -13,7 +13,7 @@
 - http://coenraets.org/blog/2012/10/creating-a-rest-api-using-node-js-express-and-mongodb/
 - https://www.airpair.com/javascript/node-js-tutorial
 
-##### PHP Proxy
+##### PHP Cross Domain (AJAX) Proxy
 - https://github.com/softius/php-cross-domain-proxy
 
 ##### Node.js installation script
