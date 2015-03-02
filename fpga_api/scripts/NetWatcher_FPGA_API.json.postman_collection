@@ -16,7 +16,8 @@
 		"80b90616-c4de-4d10-b309-7911dc8f00c0",
 		"2585be7c-cb9a-cc93-512d-679ed0392aff",
 		"9044b3d1-917e-299c-b10f-39e468ae9eb1",
-		"c0101849-9a35-c774-9644-6017bd39feed"
+		"c0101849-9a35-c774-9644-6017bd39feed",
+		"fff5f9d6-245e-9920-95c1-490e6137e3bb"
 	],
 	"folders": [],
 	"timestamp": 1424082764812,
@@ -174,7 +175,7 @@
 			"data": [],
 			"dataMode": "params",
 			"name": "/player/init",
-			"description": "Initializes the FPGA as a traffic player\nMounts the FPGA\nReboots the system",
+			"description": "Initializes the FPGA as a traffic player and reboots the system",
 			"descriptionFormat": "html",
 			"time": 1425285381421,
 			"version": 2,
@@ -255,7 +256,7 @@
 			"data": [],
 			"dataMode": "params",
 			"name": "/recorder/init",
-			"description": "Initializes the FPGA as a traffic recorder\nMounts the FPGA\nReboots the system",
+			"description": "Initializes the FPGA as a traffic recorder and reboots the system",
 			"descriptionFormat": "html",
 			"time": 1425285423577,
 			"version": 2,
@@ -304,6 +305,27 @@
 			"description": "Simple ping request",
 			"collectionId": "fe7ef0b0-d1a3-e841-cb9a-d811b5514a3f",
 			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "fff5f9d6-245e-9920-95c1-490e6137e3bb",
+			"headers": "timestamp: {{$timestamp}}\n",
+			"url": "{{url}}/driver/install",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"data": [],
+			"dataMode": "params",
+			"name": "/driver/install",
+			"description": "Installs the FPGA driver",
+			"descriptionFormat": "html",
+			"time": 1425314842632,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"collectionId": "fe7ef0b0-d1a3-e841-cb9a-d811b5514a3f",
 			"synced": false
 		}
 	]

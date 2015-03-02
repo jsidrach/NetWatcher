@@ -22,4 +22,6 @@ quit" > impact.bat
 
 # impact -batch impact.bat
 /opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/impact -batch impact.bat
+RESULT=$?
 rm -f impact.bat
+exit $RESULT
