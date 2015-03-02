@@ -86,6 +86,7 @@ Solución no óptima: guardar para que por defecto se ponga el de HugePages [x]
 3) Para inicializar
 ----
 impact.sh Argumento fichero de configuración (bitstream) > DESDE AQUI PLAYER O RECORDER
+Reboot
 
 4) Para comprobar que esté programada
 ----
@@ -96,7 +97,6 @@ Si sale 0 es que está programada
 5) Instanciar y montar
 ----
 ./install_driver.sh
-Reboot
 
 6) Para ver si está instanciada y montada
 ----

@@ -28,16 +28,46 @@ function reboot(req, res) {
 exports.reboot = reboot;
 
 // /player/init
-// Programs and mounts the FPGA as a player
+// Programs the FPGA as a player and reboots the system
 exports.initPlayer = function (req, res) {
   initFPGA(req, res, playerBitStream);
 };
 
 // /recorder/init
-// Programs and mounts the FPGA as a recorder
+// Programs the FPGA as a recorder and reboots the system
 exports.initRecorder = function (req, res) {
   initFPGA(req, res, recorderBitStream);
 };
+
+// /driver/install
+// Installs the driver and mounts the FPGA
+exports.installDriver = function(req, res) {
+  // Check if the FPGA is programmed
+  var code_script = scripts.exec(info.checkInitFPGAOn);
+  code_script.on('exit', function (code) {
+    if (code != 0) {
+      // FPGA not programmed: invalid state to mount the FPGA
+      common.readJSON('fpga_invalid_state', function (ans) {
+        ans.description = 'Invalid State. The FPGA must be programmed before mounted.';
+        res.status(412).json(ans);
+      });
+      return;
+    }
+    // Mount the FPGA
+    scripts.exec('sudo install_driver.sh').on('exit', function (code) {
+      if (code != 0) {
+        // Internal Error
+        common.logError('Error mounting the FPGA');
+        res.sendStatus(500);
+        return;
+      }
+      // Mounted ok
+      common.sendJSON('fpga_mount_ok', res, 200);
+    });
+  });
+};
+
+
 
 // Internal Functions
 
@@ -63,33 +93,24 @@ function initFPGA(req, res, bitstream) {
 // Programs and mounts the FPGA with a bitstream
 function initBitstream(req, res, bitstream) {
   // Program the FPGA
-  var code_script = scripts.exec('./bin/impact.sh ' + bitstream);
-  code_script.on('exit', function (code) {
+  scripts.exec('./bin/impact.sh ' + bitstream).on('exit', function (code) {
     // Check if the FPGA Is programmed
     if (code != 0) {
       // Internal error
-      console.log('Error initializing the fpga');
+      common.logError('Error initializing the FPGA');
       res.sendStatus(500);
       return;
     }
-    mountFPGA(req, res);
-  });
-};
-
-// Mounts the FPGA and reboots the system
-function mountFPGA(req, res) {
-  // Mount the FPGA
-  var code_script = scripts.exec('sudo install_driver.sh');
-
-  code_script.on('exit', function (code) {
-    if (code != 0) {
-      // Internal Error
-      console.log('Error mounting the fpga');
-      res.sendStatus(500);
-      return;
-    }
-
-    // Programmed ok
-    common.sendJSON('fpga_init_ok', res, 200);
+    // Reboot the system
+    scripts.exec(rebootCommand, function (error, stdout, stderr) {
+      if (error) {
+        // Internal error
+        common.logError(stderr);
+        res.sendStatus(500);
+        return;
+      }
+      // Programmed ok
+      common.sendJSON('fpga_init_ok', res, 200);
+    });
   });
 };
