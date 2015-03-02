@@ -91,7 +91,7 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         /* Rebooting progress modal */
-        $this->renderModalRequest('rebootingModal', _('Rebooting Web Service'), 'rebootingProgress');
+        $this->renderModalRequest('rebootingModal', _('Rebooting Web Service'), 'rebootingProgress', 'rebootingLabel');
     }
 
     /**
@@ -104,13 +104,13 @@ class managerView extends Common\appView
         // Buttons ids: initPlayer, initRecorder
         
         /* FPGA initialization progress modal */
-        $this->renderModalRequest('initModal', _('Initializing the FPGA'), 'initProgress');
+        $this->renderModalRequest('initModal', _('Initializing the FPGA'), 'initProgress', 'initLabel');
     }
 
     /**
      * Renders a modal overlay (for ajax petitions)
      */
-    private function renderModalRequest($modalId, $modalTitle, $progressBarId)
+    private function renderModalRequest($modalId, $modalTitle, $progressBarId, $labelId)
     {
         $this->pLine('<!-- Request progress modal -->');
         $this->pLine('<div id="' . $modalId . '" data-backdrop="static" data-keyboard="false" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');
@@ -122,7 +122,7 @@ class managerView extends Common\appView
         $this->pLine('<div class="modal-body text-justify">');
         $this->pLine('<div class="progress">', 1);
         $this->pLine('<div id="' . $progressBarId . '" class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" style="width: 0%">', 1);
-        $this->pLine('<span><strong id="initLabel">' . _('Sending request...') . '</strong></span>', 1);
+        $this->pLine('<span><strong id="' . $labelId . '">' . _('Sending request...') . '</strong></span>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);

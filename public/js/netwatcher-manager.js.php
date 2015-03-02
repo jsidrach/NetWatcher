@@ -60,6 +60,7 @@ function rebootWebService() {
   var progressLabel = $('#rebootingLabel');
   var rebootURL = baseURL + 'system/reboot';
 
+  progressBar.css('width', '100%');
   // Make the reboot request
   $.ajax({
     type: 'PUT',
@@ -111,10 +112,11 @@ function initFPGA(player) {
       // FPGA programmed. Waiting for the server to reboot
       progressBar.css('width', '50%');
       progressLabel.text(<?php echo '\'' . _('FPGA programmed. Rebooting the system...') . '\'' ?>);
-      setTimeout(waitUntilUp(installDriver, 10000);
+      setTimeout(waitUntilUp(installDriver), 10000);
     },
     error: function (e) {
       setTimeout(function () {
+        progressBar.css('width', '100%');
         progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
         progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
         setTimeout(function () {location.reload(true)}, 2000);
@@ -153,6 +155,7 @@ function installDriver() {
     },
     error: function (e) {
       setTimeout(function () {
+        progressBar.css('width', '100%');
         progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
         progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
         // Reload the page
