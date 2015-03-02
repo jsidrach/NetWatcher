@@ -66,36 +66,30 @@ function initBitstream(req, res, bitstream) {
   var code_script = scripts.exec('./bin/impact.sh ' + bitstream);
   code_script.on('exit', function (code) {
     // Check if the FPGA Is programmed
-    scripts.exec(info.checkInitFPGAOn).on('exit', function (code) {
-      if (code != 0) {
-        // Internal error
-        res.sendStatus(500);
-        return;
-      }
-      mountFPGA(req, res);
-    });
+    if (code != 0) {
+      // Internal error
+      console.log('Error initializing the fpga');
+      res.sendStatus(500);
+      return;
+    }
+    mountFPGA(req, res);
   });
 };
 
 // Mounts the FPGA and reboots the system
 function mountFPGA(req, res) {
   // Mount the FPGA
-  scripts.exec('./bin/install_driver.sh').on('exit', function (code) {
+  var code_script = scripts.exec('sudo install_driver.sh');
+
+  code_script.on('exit', function (code) {
     if (code != 0) {
       // Internal Error
+      console.log('Error mounting the fpga');
       res.sendStatus(500);
       return;
     }
-    // Reboot the system
-    scripts.exec(rebootCommand, function (error, stdout, stderr) {
-      if (error) {
-        // Internal error
-        common.logError(stderr);
-        res.sendStatus(500);
-        return;
-      }  
-      // Programmed ok
-      res.sendJSON('fpga_init_ok', res, 200);
-    });
+
+    // Programmed ok
+    common.sendJSON('fpga_init_ok', res, 200);
   });
 };

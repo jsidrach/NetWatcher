@@ -24,5 +24,7 @@ sudo ln -sf /etc/init.d/fpga_api /etc/rc3.d/S03fpga_api
 sudo ln -sf /etc/init.d/fpga_api /etc/rc4.d/S03fpga_api
 sudo ln -sf /etc/init.d/fpga_api /etc/rc5.d/S03fpga_api
 sudo ln -sf /etc/init.d/fpga_api /etc/rc6.d/K01fpga_api
-# Let the server user execute reboot
+# Let the server user execute reboot and install_driver
 sudo grep -q -F ${2}' ALL = NOPASSWD: /sbin/reboot' /etc/sudoers || sudo echo ${2}' ALL = NOPASSWD: /sbin/reboot' | sudo tee --append /etc/sudoers > /dev/null
+sudo cp -f ./bin/install_driver.sh /usr/bin/
+sudo grep -q -F ${2}' ALL = NOPASSWD: /sbin/install_driver.sh' /etc/sudoers || sudo echo ${2}' ALL = NOPASSWD: /sbin/install_driver.sh' | sudo tee --append /etc/sudoers > /dev/null

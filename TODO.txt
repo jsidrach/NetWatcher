@@ -1,13 +1,9 @@
-TODO WeekEnd
-------
-  - Instalación+Mount de la FPGA (hasta justo antes de configurar)
-    - Hacer página php manager
-  - Repasar todo hasta la fecha, mejorar comentarios
-
 TODO Week
 ------
-  - Probar inicialización de la fpga, tanto player como recorder
-    - ¿Se necesitan permisos de sudo?
+  - Revisar mount fpga
+  - Pagina php de manager
+  - Repasar todo hasta la fecha, mejorar comentarios
+
 [Low Priority]
 - pcapng > editcap > identificar y convertir
 
@@ -18,6 +14,7 @@ TODO Future:
 
 Dudas Jose:
 -------
+  - No hace falta reiniciar tras montar para que lo detecte?
   - Si ya está programada la fpga y quiero cambiar de modo, vale con ejecutar otra vez impact/install_driver
     - O hay antes que desmontarla/desprogramarla o algo...
   - Tipo de códigos en /proc/nfp/nfp_report
