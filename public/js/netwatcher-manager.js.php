@@ -62,7 +62,7 @@ function rebootWebService() {
         // Request OK. Waiting for the server to reboot
         progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
         progressLabel.text(<?php echo '\'' . _('Waiting for the server to reboot...') . '\'' ?>);
-        setTimeout('waitUntilUp()', 7500);
+        setTimeout(waitUntilUp(function() {location.reload(true);}), 7500);
       }, 2000);
     },
     error: function (e) {
@@ -77,7 +77,7 @@ function rebootWebService() {
 };
 
 // Waits until the server is up again
-function waitUntilUp() {
+function waitUntilUp(callback) {
   var pingURL = baseURL + 'info/ping';
   setInterval(function() {
     $.ajax({
@@ -85,8 +85,8 @@ function waitUntilUp() {
       url: pingURL,
       dataType: 'json',
       success: function (resp) {
-        // Server up. Reload the window
-        location.reload(true);
+        // Server up. Callback
+        callback();
       }
     });
   }, 2000);
@@ -94,10 +94,12 @@ function waitUntilUp() {
 
 
 /*
-Enviar peticion>
-Programando el <player/recorder>...
-> recibir contestacion, esperar 2sec
-Reiniciando el host...
-  > Esperar 7500ms, esperando a que se levante el host
-<refresh>
+Enviar peticion /player/init | recorder/init
+Programando el <player/recorder>... <AUMENTAR EL TIMEOUT>
+Reiniciando el sistema... > Esperar 10 segundos, empezar a hacer pings
+Cuando se responda el ping
+Enviar peticion /driver/install
+Instalando el driver...
+OK
+Refresh
 */
