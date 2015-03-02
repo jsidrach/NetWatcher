@@ -20,5 +20,6 @@ assignfile -p 1 -file $1
 program -p 1 -prog
 quit" > impact.bat
 
-impact -batch impact.bat
+# impact -batch impact.bat
+/opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/impact -batch impact.bat
 rm -f impact.bat
