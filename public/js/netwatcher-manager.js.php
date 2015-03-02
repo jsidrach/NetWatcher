@@ -24,6 +24,16 @@ $(document).ready(function () {
   else if($('#hugePagesOff').length) {
     $('#rebootingModal').on('shown.bs.modal', rebootWebService);
   }
+  // Init FPGA
+  else if($('#selectMode').length) {
+    $('#initPlayer').on('click', function() {
+      initFPGA(true);
+    });
+    $('#initRecorder').on('click', function() {
+      initFPGA(false);
+    });
+  }
+
 });
 
 //
@@ -62,19 +72,101 @@ function rebootWebService() {
         // Request OK. Waiting for the server to reboot
         progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
         progressLabel.text(<?php echo '\'' . _('Waiting for the server to reboot...') . '\'' ?>);
-        setTimeout(waitUntilUp(function() {location.reload(true);}), 7500);
+        setTimeout(waitUntilUp(function() {location.reload(true);}), 10000);
       }, 2000);
     },
     error: function (e) {
       setTimeout(function () {
         // Error on the request. Error and refresh
         progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
-        progressLabel.text(<?php echo '\'' . _('Error sending request') . '\'' ?>);
+        progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
         setTimeout(function () {location.reload(true)}, 2000);
       }, 2000);
     }
   });
 };
+
+
+//
+// Init player/recorder
+//
+
+// Init the FPGA (as player if player == true, recorder otherwise)
+function initFPGA(player) {
+  var progressBar = $('#initProgress');
+  var progressLabel = $('#initLabel');
+  var initURL = baseURL + (flag ? 'player' : 'recorder') + '/init';
+
+  // Sending request
+  progressBar.css('width', '25%');
+  progressLabel.text(<?php echo '\'' . _('Programming the FPGA...') . '\'' ?>);
+  // Make the init request
+  $.ajax({
+    type: 'POST',
+    url: initURL,
+    headers: { 'timestamp': Date.now() },
+    dataType: 'json',
+    timeout: 300000,
+    success: function (resp) {
+      // FPGA programmed. Waiting for the server to reboot
+      progressBar.css('width', '50%');
+      progressLabel.text(<?php echo '\'' . _('FPGA programmed. Rebooting the system...') . '\'' ?>);
+      setTimeout(waitUntilUp(installDriver, 10000);
+    },
+    error: function (e) {
+      setTimeout(function () {
+        progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
+        progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
+        setTimeout(function () {location.reload(true)}, 2000);
+      }, 2000);
+    }
+  });
+};
+
+// Installs the driver
+function installDriver() {
+  var progressBar = $('#initProgress');
+  var progressLabel = $('#initLabel');
+  var installURL = baseURL + 'driver/install';
+  
+  // Sending the install request
+  progressBar.css('width', '75%');
+  progressLabel.text(<?php echo '\'' . _('Installing the driver...') . '\'' ?>);
+
+
+  $.ajax({
+    type: 'POST',
+    url: installURL,
+    headers: { 'timestamp': Date.now() },
+    dataType: 'json',
+    timeout: 300000,
+    success: function (resp) {
+      // FPGA driver installed      
+      progressBar.css('width', '100%');
+      progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
+      progressLabel.text(<?php echo '\'' . _('Driver successfully installed. Refreshing...') . '\'' ?>);
+
+      // Reload the page
+      setTimeout(function () {
+        location.reload(true);
+      }, 2000);
+    },
+    error: function (e) {
+      setTimeout(function () {
+        progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
+        progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
+        // Reload the page
+        setTimeout(function () {
+          location.reload(true);
+        }, 2000);
+      }, 2000);
+    }
+  });
+};
+
+//
+// Auxiliary functions
+//
 
 // Waits until the server is up again
 function waitUntilUp(callback) {
@@ -91,15 +183,3 @@ function waitUntilUp(callback) {
     });
   }, 2000);
 };
-
-
-/*
-Enviar peticion /player/init | recorder/init
-Programando el <player/recorder>... <AUMENTAR EL TIMEOUT>
-Reiniciando el sistema... > Esperar 10 segundos, empezar a hacer pings
-Cuando se responda el ping
-Enviar peticion /driver/install
-Instalando el driver...
-OK
-Refresh
-*/
