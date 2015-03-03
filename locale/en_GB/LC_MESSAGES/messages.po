@@ -1,56 +1,235 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-02-25 12:07+0100\n"
-"PO-Revision-Date: 2015-02-25 12:07+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2015-03-03 11:23+0100\n"
+"PO-Revision-Date: 2015-03-03 11:26+0100\n"
+"Last-Translator: JSid <***REMOVED***>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: docs\n"
 "X-Poedit-SearchPathExcluded-1: public\n"
 "X-Poedit-SearchPathExcluded-2: fpga_api/node\n"
 "X-Poedit-SearchPathExcluded-3: fpga_api/node_modules\n"
 "X-Poedit-SearchPathExcluded-4: lib/vendor\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: app/common/appModel.php:46 app/modules/manager/managerView.php:32
-msgid "Manager"
-msgstr "Manager"
+#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:62
+#: app/modules/status/statusModel.php:71
+msgid "Rewrite Module"
+msgstr "Rewrite Module"
 
-#: app/common/appModel.php:47
-msgid "Statistics"
-msgstr "Statistics"
+#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:63
+#: app/modules/status/statusModel.php:72
+msgid "Gettext Module"
+msgstr "Gettext Module"
 
-#: app/common/appModel.php:48 app/modules/captures/capturesView.php:32
-msgid "Captures"
-msgstr "Captures"
+#: app/modules/status/statusModel.php:55 app/modules/status/statusModel.php:64
+#: app/modules/status/statusModel.php:73
+msgid "Session Variables"
+msgstr "Session Variables"
 
-#: app/common/appModel.php:51 app/modules/settings/settingsView.php:32
-msgid "Settings"
-msgstr "Settings"
+#: app/modules/status/statusModel.php:56 app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:74
+msgid "Write Permissions"
+msgstr "Write Permissions"
 
-#: app/common/appView.php:177 app/common/appView.php:219
-msgid "License"
-msgstr "License"
+#: app/modules/status/statusModel.php:57 app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:75
+msgid "Proxy Server"
+msgstr "Proxy Server"
 
-#: app/common/appView.php:213 app/modules/status/statusView.php:32
+#: app/modules/status/statusModel.php:58 app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:76
+msgid "FPGA API"
+msgstr "FPGA API"
+
+#: app/modules/status/statusModel.php:59 app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:77
+msgid "Synchronized Time Stamp"
+msgstr "Synchronized Time Stamp"
+
+#: app/modules/status/statusModel.php:71
+msgid "URL rewrite support"
+msgstr "URL rewrite support"
+
+#: app/modules/status/statusModel.php:72
+msgid "Locale language support"
+msgstr "Locale language support"
+
+#: app/modules/status/statusModel.php:73
+msgid "Support for the usage of sessions"
+msgstr "Support for the usage of sessions"
+
+#: app/modules/status/statusModel.php:74
+msgid "Folder and file properties"
+msgstr "Folder and file properties"
+
+#: app/modules/status/statusModel.php:75
+msgid "Proxy server enabled for FPGA API calls"
+msgstr "Proxy server enabled for FPGA API calls"
+
+#: app/modules/status/statusModel.php:76
+msgid "Remote FPGA Server"
+msgstr "Remote FPGA Server"
+
+#: app/modules/status/statusModel.php:77
+msgid "Timestamp delay between the client and the FPGA host: "
+msgstr "Timestamp delay between the client and the FPGA host: "
+
+#: app/modules/status/statusModel.php:81 public/js/netwatcher-status.js.php:51
+msgid "Passed"
+msgstr "Passed"
+
+#: app/modules/status/statusModel.php:82
+msgid "Not Implemented"
+msgstr "Not Implemented"
+
+#: app/modules/status/statusModel.php:83
+msgid "In Progress..."
+msgstr "In Progress..."
+
+#: app/modules/status/statusModel.php:84 public/js/netwatcher-status.js.php:55
+#: public/js/netwatcher-status.js.php:68
+msgid "Failed"
+msgstr "Failed"
+
+#: app/modules/status/statusView.php:32 app/common/appView.php:213
 msgid "Status"
 msgstr "Status"
 
-#: app/common/appView.php:215
-msgid "Wiki"
-msgstr "Wiki"
+#: app/modules/status/statusView.php:73
+msgid "Total"
+msgstr "Total"
 
-#: app/common/appView.php:217
-msgid "Source"
-msgstr "Source"
+#: app/modules/manager/managerView.php:33 app/common/appModel.php:46
+msgid "Manager"
+msgstr "Manager"
+
+#: app/modules/manager/managerView.php:52
+msgid "Connection Error"
+msgstr "Connection Error"
+
+#: app/modules/manager/managerView.php:52
+#, php-format
+msgid "Consider visiting the %ssettings%s and %sstatus%s pages"
+msgstr "Consider visiting the %ssettings%s and %sstatus%s pages"
+
+#: app/modules/manager/managerView.php:53
+msgid "Trying to refresh in"
+msgstr "Trying to refresh in"
+
+#: app/modules/manager/managerView.php:68
+msgid "Error"
+msgstr "Error"
+
+#: app/modules/manager/managerView.php:68
+msgid "HugePages is off and it is required by the FPGA"
+msgstr "HugePages is off and it is required by the FPGA"
+
+#: app/modules/manager/managerView.php:71
+msgid "Click here to reboot the FPGA server"
+msgstr "Click here to reboot the FPGA server"
+
+#: app/modules/manager/managerView.php:73
+msgid ""
+"(it will fix the issue only if the remote server has HugePages as its "
+"default boot option)"
+msgstr ""
+"(it will fix the issue only if the remote server has HugePages as its "
+"default boot option)"
+
+#: app/modules/manager/managerView.php:84
+msgid "The remote server will be rebooted, and all its process stopped"
+msgstr "The remote server will be rebooted, and all its process stopped"
+
+#: app/modules/manager/managerView.php:85
+msgid "Are you sure you want to reboot?"
+msgstr "Are you sure you want to reboot?"
+
+#: app/modules/manager/managerView.php:88
+msgid "Reboot"
+msgstr "Reboot"
+
+#: app/modules/manager/managerView.php:89
+#: app/modules/captures/capturesView.php:51
+msgid "Cancel"
+msgstr "Cancel"
+
+#: app/modules/manager/managerView.php:95
+msgid "Rebooting Web Service"
+msgstr "Rebooting Web Service"
+
+#: app/modules/manager/managerView.php:107
+msgid "Select a mode to initialize the FPGA"
+msgstr "Select a mode to initialize the FPGA"
+
+#: app/modules/manager/managerView.php:117
+#: app/modules/manager/managerView.php:123
+msgid "Initialize the FPGA as a"
+msgstr "Initialize the FPGA as a"
+
+#: app/modules/manager/managerView.php:117
+msgid "player"
+msgstr "player"
+
+#: app/modules/manager/managerView.php:123
+msgid "recorder"
+msgstr "recorder"
+
+#: app/modules/manager/managerView.php:128
+msgid "Initializing the FPGA"
+msgstr "Initializing the FPGA"
+
+#: app/modules/manager/managerView.php:146
+msgid "Sending request..."
+msgstr "Sending request..."
+
+#: app/modules/settings/settingsController.php:78
+msgid "Settings saved successfully"
+msgstr "Settings saved successfully"
+
+#: app/modules/settings/settingsController.php:80
+msgid "Error saving settings"
+msgstr "Error saving settings"
+
+#: app/modules/settings/settingsView.php:32 app/common/appModel.php:51
+msgid "Settings"
+msgstr "Settings"
+
+#: app/modules/settings/settingsView.php:46
+msgid "Server Settings"
+msgstr "Server Settings"
+
+#: app/modules/settings/settingsView.php:48
+msgid "FPGA API base address"
+msgstr "FPGA API base address"
+
+#: app/modules/settings/settingsView.php:56
+msgid "App Settings"
+msgstr "App Settings"
+
+#: app/modules/settings/settingsView.php:59
+msgid "Language"
+msgstr "Language"
+
+#: app/modules/settings/settingsView.php:75
+msgid "Theme"
+msgstr "Theme"
+
+#: app/modules/settings/settingsView.php:93
+msgid "Save"
+msgstr "Save"
+
+#: app/modules/captures/capturesView.php:32 app/common/appModel.php:48
+msgid "Captures"
+msgstr "Captures"
 
 #: app/modules/captures/capturesView.php:47
 msgid ""
@@ -64,10 +243,6 @@ msgstr ""
 #: app/modules/captures/capturesView.php:141
 msgid "Delete"
 msgstr "Delete"
-
-#: app/modules/captures/capturesView.php:51
-msgid "Cancel"
-msgstr "Cancel"
 
 #: app/modules/captures/capturesView.php:71
 msgid "All"
@@ -140,214 +315,162 @@ msgstr ""
 "file (or adding symbolic link to it) to the captures directory on the FPGA "
 "remote server"
 
-#: app/modules/manager/managerView.php:50
-msgid "Connection Error. Trying to refresh in"
-msgstr "Connection Error. Trying to refresh in"
+#: app/common/appModel.php:47
+msgid "Statistics"
+msgstr "Statistics"
 
-#: app/modules/manager/managerView.php:53
+#: app/common/appView.php:177 app/common/appView.php:219
+msgid "License"
+msgstr "License"
+
+#: app/common/appView.php:215
+msgid "Wiki"
+msgstr "Wiki"
+
+#: app/common/appView.php:217
+msgid "Source"
+msgstr "Source"
+
+#: public/404.php:5
+msgid "404 - Not Found"
+msgstr "404 - Not Found"
+
+#: public/404.php:26
+msgid "Page Not Found"
+msgstr "Page Not Found"
+
+#: public/404.php:27
+msgid "Error 404"
+msgstr "Error 404"
+
+#: public/404.php:30
+msgid "Sorry, an error has occured. Requested page not found!"
+msgstr "Sorry, an error has occured. Requested page not found!"
+
+#: public/404.php:32
+msgid "Take me Home"
+msgstr "Take me Home"
+
+#: public/js/netwatcher-manager.js.php:94
+msgid "Waiting for the server to reboot..."
+msgstr "Waiting for the server to reboot..."
+
+#: public/js/netwatcher-manager.js.php:102
+#: public/js/netwatcher-manager.js.php:148
+#: public/js/netwatcher-manager.js.php:189
+msgid "Error sending the request"
+msgstr "Error sending the request"
+
+#: public/js/netwatcher-manager.js.php:121
+msgid "as a player"
+msgstr "as a player"
+
+#: public/js/netwatcher-manager.js.php:123
+msgid "as a recorder"
+msgstr "as a recorder"
+
+#: public/js/netwatcher-manager.js.php:128
+msgid "Programming the FPGA..."
+msgstr "Programming the FPGA..."
+
+#: public/js/netwatcher-manager.js.php:139
+msgid "FPGA programmed. Rebooting the system..."
+msgstr "FPGA programmed. Rebooting the system..."
+
+#: public/js/netwatcher-manager.js.php:163
+msgid "Installing the driver..."
+msgstr "Installing the driver"
+
+#: public/js/netwatcher-manager.js.php:177
+msgid "Driver successfully installed. Refreshing..."
+msgstr "Driver successfully installed. Refreshing..."
+
+#: public/js/netwatcher-status.js.php:69
+msgid "No Response"
+msgstr "No Response"
+
+#: public/js/netwatcher-captures.js.php:106
+msgid "Connection error"
+msgstr "Connection error"
+
+#: public/js/netwatcher-captures.js.php:142
+#: public/js/netwatcher-captures.js.php:184
+#: public/js/netwatcher-captures.js.php:215
+msgid "No capture is selected"
+msgstr "No capture is selected"
+
+#: public/js/netwatcher-captures.js.php:147
+msgid "Converted capture\\'s name is not valid"
+msgstr "Converted capture\\'s name is not valid"
+
+#: public/js/netwatcher-captures.js.php:159
+msgid "Capture converted successfully"
+msgstr "Capture converted successfully"
+
+#: public/js/netwatcher-captures.js.php:160
+msgid "Capture could not be converted"
+msgstr "Capture could not be converted"
+
+#: public/js/netwatcher-captures.js.php:176
+msgid "Capture queued for conversion"
+msgstr "Capture queued for conversion"
+
+#: public/js/netwatcher-captures.js.php:189
+msgid "New name is not valid"
+msgstr "New name is not valid"
+
+#: public/js/netwatcher-captures.js.php:193
+msgid "Capture renamed successfully"
+msgstr "Capture renamed successfully"
+
+#: public/js/netwatcher-captures.js.php:194
+msgid "Capture could not be renamed"
+msgstr "Capture could not be renamed"
+
+#: public/js/netwatcher-captures.js.php:220
+msgid "Capture deleted successfully"
+msgstr "Capture deleted successfully"
+
+#: public/js/netwatcher-captures.js.php:221
+msgid "Capture could not be deleted"
+msgstr "Capture could not be deleted"
+
+#: public/js/bootstrap-table-localization.js.php:12
+msgid "Loading, please wait..."
+msgstr "Loading, please wait..."
+
+#: public/js/bootstrap-table-localization.js.php:14
+msgid "records per page"
+msgstr "records per page"
+
+#: public/js/bootstrap-table-localization.js.php:16
 #, php-format
-msgid "Consider visiting the %ssettings%s and %sstatus%s pages"
-msgstr "Consider visiting the %ssettings%s and %sstatus%s pages"
+msgid "Showing %s to %s of %s rows"
+msgstr "Showing %s to %s of %s rows"
 
-#: app/modules/settings/settingsController.php:78
-msgid "Settings saved successfully"
-msgstr "Settings saved successfully"
+#: public/js/bootstrap-table-localization.js.php:18
+msgid "Search"
+msgstr "Search"
 
-#: app/modules/settings/settingsController.php:80
-msgid "Error saving settings"
-msgstr "Error saving settings"
+#: public/js/bootstrap-table-localization.js.php:20
+msgid "No matching records found"
+msgstr "No matching records found"
 
-#: app/modules/settings/settingsView.php:46
-msgid "Server Settings"
-msgstr "Server Settings"
+#: public/js/bootstrap-table-localization.js.php:22
+msgid "Hide/Show pagination"
+msgstr "Hide/Show pagination"
 
-#: app/modules/settings/settingsView.php:48
-msgid "FPGA API base address"
-msgstr "FPGA API base address"
+#: public/js/bootstrap-table-localization.js.php:24
+msgid "Refresh"
+msgstr "Refresh"
 
-#: app/modules/settings/settingsView.php:56
-msgid "App Settings"
-msgstr "App Settings"
+#: public/js/bootstrap-table-localization.js.php:26
+msgid "Toggle"
+msgstr "Toggle"
 
-#: app/modules/settings/settingsView.php:59
-msgid "Language"
-msgstr "Language"
-
-#: app/modules/settings/settingsView.php:75
-msgid "Theme"
-msgstr "Theme"
-
-#: app/modules/settings/settingsView.php:93
-msgid "Save"
-msgstr "Save"
-
-#: app/modules/status/statusModel.php:53
-#: app/modules/status/statusModel.php:62
-#: app/modules/status/statusModel.php:71
-msgid "Rewrite Module"
-msgstr "Rewrite Module"
-
-#: app/modules/status/statusModel.php:54
-#: app/modules/status/statusModel.php:63
-#: app/modules/status/statusModel.php:72
-msgid "Gettext Module"
-msgstr "Gettext Module"
-
-#: app/modules/status/statusModel.php:55
-#: app/modules/status/statusModel.php:64
-#: app/modules/status/statusModel.php:73
-msgid "Session Variables"
-msgstr "Session Variables"
-
-#: app/modules/status/statusModel.php:56
-#: app/modules/status/statusModel.php:65
-#: app/modules/status/statusModel.php:74
-msgid "Write Permissions"
-msgstr "Write Permissions"
-
-#: app/modules/status/statusModel.php:57
-#: app/modules/status/statusModel.php:66
-#: app/modules/status/statusModel.php:75
-msgid "Proxy Server"
-msgstr "Proxy Server"
-
-#: app/modules/status/statusModel.php:58
-#: app/modules/status/statusModel.php:67
-#: app/modules/status/statusModel.php:76
-msgid "FPGA API"
-msgstr "FPGA API"
-
-#: app/modules/status/statusModel.php:59
-#: app/modules/status/statusModel.php:68
-#: app/modules/status/statusModel.php:77
-msgid "Synchronized Time Stamp"
-msgstr "Synchronized Time Stamp"
-
-#: app/modules/status/statusModel.php:71
-msgid "URL rewrite support"
-msgstr "URL rewrite support"
-
-#: app/modules/status/statusModel.php:72
-msgid "Locale language support"
-msgstr "Locale language support"
-
-#: app/modules/status/statusModel.php:73
-msgid "Support for the usage of sessions"
-msgstr "Support for the usage of sessions"
-
-#: app/modules/status/statusModel.php:74
-msgid "Folder and file properties"
-msgstr "Folder and file properties"
-
-#: app/modules/status/statusModel.php:75
-msgid "Proxy server enabled for FPGA API calls"
-msgstr "Proxy server enabled for FPGA API calls"
-
-#: app/modules/status/statusModel.php:76
-msgid "Remote FPGA Server"
-msgstr "Remote FPGA Server"
-
-#: app/modules/status/statusModel.php:77
-msgid "Timestamp delay between the client and the FPGA host: "
-msgstr "Timestamp delay between the client and the FPGA host: "
-
-#: app/modules/status/statusModel.php:81
-msgid "Passed"
-msgstr "Passed"
-
-#: app/modules/status/statusModel.php:82
-msgid "Not Implemented"
-msgstr "Not Implemented"
-
-#: app/modules/status/statusModel.php:83
-msgid "In Progress..."
-msgstr "In Progress..."
-
-#: app/modules/status/statusModel.php:84
-msgid "Failed"
-msgstr "Failed"
-
-#: app/modules/status/statusView.php:73
-msgid "Total"
-msgstr "Total"
-
-#~ msgid "404 - Not Found"
-#~ msgstr "404 - Not Found"
-
-#~ msgid "Page Not Found"
-#~ msgstr "Page Not Found"
-
-#~ msgid "Error 404"
-#~ msgstr "Error 404"
-
-#~ msgid "Sorry, an error has occured. Requested page not found!"
-#~ msgstr "Sorry, an error has occured. Requested page not found!"
-
-#~ msgid "Take me Home"
-#~ msgstr "Take me Home"
-
-#~ msgid "Loading, please wait..."
-#~ msgstr "Loading, please wait..."
-
-#~ msgid "records per page"
-#~ msgstr "records per page"
-
-#~ msgid "Showing %s to %s of %s rows"
-#~ msgstr "Showing %s to %s of %s rows"
-
-#~ msgid "Search"
-#~ msgstr "Search"
-
-#~ msgid "No matching records found"
-#~ msgstr "No matching records found"
-
-#~ msgid "Hide/Show pagination"
-#~ msgstr "Hide/Show pagination"
-
-#~ msgid "Refresh"
-#~ msgstr "Refresh"
-
-#~ msgid "Toggle"
-#~ msgstr "Toggle"
-
-#~ msgid "Columns"
-#~ msgstr "Columns"
-
-#~ msgid "No Response"
-#~ msgstr "No Response"
-
-#~ msgid "Connection error"
-#~ msgstr "Connection error"
-
-#~ msgid "No capture is selected"
-#~ msgstr "No capture is selected"
-
-#~ msgid "Converted capture\\'s name is not valid"
-#~ msgstr "Converted capture\\'s name is not valid"
-
-#~ msgid "Capture converted successfully"
-#~ msgstr "Capture converted successfully"
-
-#~ msgid "Capture could not be converted"
-#~ msgstr "Capture could not be converted"
-
-#~ msgid "Capture queued for conversion"
-#~ msgstr "Capture queued for conversion"
-
-#~ msgid "New name is not valid"
-#~ msgstr "New name is not valid"
-
-#~ msgid "Capture renamed successfully"
-#~ msgstr "Capture renamed successfully"
-
-#~ msgid "Capture could not be renamed"
-#~ msgstr "Capture could not be renamed"
-
-#~ msgid "Capture deleted successfully"
-#~ msgstr "Capture deleted successfully"
-
-#~ msgid "Capture could not be deleted"
-#~ msgstr "Capture could not be deleted"
+#: public/js/bootstrap-table-localization.js.php:28
+msgid "Columns"
+msgstr "Columns"
 
 #~ msgid "FPGA API URL"
 #~ msgstr "FPGA API URL"

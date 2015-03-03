@@ -1,184 +1,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-02-25 12:08+0100\n"
-"PO-Revision-Date: 2015-02-25 12:08+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2015-03-03 11:32+0100\n"
+"PO-Revision-Date: 2015-03-03 11:39+0100\n"
+"Last-Translator: JSid <***REMOVED***>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
 "X-Poedit-Basepath: ../../../\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: docs\n"
 "X-Poedit-SearchPathExcluded-1: fpga_api/node\n"
 "X-Poedit-SearchPathExcluded-2: fpga_api/node_modules\n"
 "X-Poedit-SearchPathExcluded-3: lib/vendor\n"
-
-#: app/common/appModel.php:46 app/modules/manager/managerView.php:32
-msgid "Manager"
-msgstr "Gestor"
-
-#: app/common/appModel.php:47
-msgid "Statistics"
-msgstr "Estadísticas"
-
-#: app/common/appModel.php:48 app/modules/captures/capturesView.php:32
-msgid "Captures"
-msgstr "Capturas"
-
-#: app/common/appModel.php:51 app/modules/settings/settingsView.php:32
-msgid "Settings"
-msgstr "Configuración"
-
-#: app/common/appView.php:177 app/common/appView.php:219
-msgid "License"
-msgstr "Licencia"
-
-#: app/common/appView.php:213 app/modules/status/statusView.php:32
-msgid "Status"
-msgstr "Estado"
-
-#: app/common/appView.php:215
-msgid "Wiki"
-msgstr "Wiki"
-
-#: app/common/appView.php:217
-msgid "Source"
-msgstr "Código"
-
-#: app/modules/captures/capturesView.php:47
-msgid ""
-"Selected capture will be permanently deleted, are you sure you want to "
-"delete it?"
-msgstr ""
-"La traza seleccionada será borrada permanentemente, ¿seguro que deseas "
-"borrarla?"
-
-#: app/modules/captures/capturesView.php:50
-#: app/modules/captures/capturesView.php:141
-msgid "Delete"
-msgstr "Borrar"
-
-#: app/modules/captures/capturesView.php:51
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: app/modules/captures/capturesView.php:71
-msgid "All"
-msgstr "Todas"
-
-#: app/modules/captures/capturesView.php:72
-msgid "Simple"
-msgstr "Simple"
-
-#: app/modules/captures/capturesView.php:73
-msgid "Pcap"
-msgstr "Pcap"
-
-#: app/modules/captures/capturesView.php:74
-msgid "Auto Refresh"
-msgstr "Actualizar Automáticamente"
-
-#: app/modules/captures/capturesView.php:87
-msgid "Name"
-msgstr "Nombre"
-
-#: app/modules/captures/capturesView.php:88
-msgid "Type"
-msgstr "Tipo"
-
-#: app/modules/captures/capturesView.php:89
-msgid "Size"
-msgstr "Tamaño"
-
-#: app/modules/captures/capturesView.php:90
-msgid "Date"
-msgstr "Fecha"
-
-#: app/modules/captures/capturesView.php:102
-msgid "Select a capture from the table"
-msgstr "Selecciona una traza de la tabla"
-
-#: app/modules/captures/capturesView.php:109
-msgid "Convert"
-msgstr "Convertir"
-
-#: app/modules/captures/capturesView.php:113
-msgid "Converted name"
-msgstr "Nombre de la traza convertida"
-
-#: app/modules/captures/capturesView.php:116
-#: app/modules/captures/capturesView.php:132
-msgid "OK"
-msgstr "OK"
-
-#: app/modules/captures/capturesView.php:125
-msgid "Rename"
-msgstr "Renombrar"
-
-#: app/modules/captures/capturesView.php:129
-msgid "New name"
-msgstr "Nuevo nombre"
-
-#: app/modules/captures/capturesView.php:145
-msgid "Delete this capture (permanently)"
-msgstr "Borrar esta traza (permanentemente)"
-
-#: app/modules/captures/capturesView.php:159
-msgid ""
-"Add additional captures generated outside NetWatcher by copying the capture "
-"file (or adding symbolic link to it) to the captures directory on the FPGA "
-"remote server"
-msgstr ""
-"Añade trazas adicionales generadas fuera de NetWatcher copiando el archivo "
-"de traza (o añadiendo un enlace simbólico a él) al directorio de las trazas "
-"en el servidor FPGA remoto"
-
-#: app/modules/manager/managerView.php:50
-msgid "Connection Error. Trying to refresh in"
-msgstr "Error en la conexión. Intentando actualizar en"
-
-#: app/modules/manager/managerView.php:53
-#, php-format
-msgid "Consider visiting the %ssettings%s and %sstatus%s pages"
-msgstr "Considera visitar las páginas de %sconfiguración%s y %sestado%s"
-
-#: app/modules/settings/settingsController.php:78
-msgid "Settings saved successfully"
-msgstr "Configuración actualizada"
-
-#: app/modules/settings/settingsController.php:80
-msgid "Error saving settings"
-msgstr "Error al guardar la configuración"
-
-#: app/modules/settings/settingsView.php:46
-msgid "Server Settings"
-msgstr "Configuración del Servidor"
-
-#: app/modules/settings/settingsView.php:48
-msgid "FPGA API base address"
-msgstr "Dirección base de la API FPGA"
-
-#: app/modules/settings/settingsView.php:56
-msgid "App Settings"
-msgstr "Configuración de Aplicación"
-
-#: app/modules/settings/settingsView.php:59
-msgid "Language"
-msgstr "Idioma"
-
-#: app/modules/settings/settingsView.php:75
-msgid "Theme"
-msgstr "Tema"
-
-#: app/modules/settings/settingsView.php:93
-msgid "Save"
-msgstr "Guardar"
+"X-Poedit-SearchPath-0: .\n"
 
 #: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:62
 #: app/modules/status/statusModel.php:71
@@ -260,9 +99,236 @@ msgstr "En Progreso..."
 msgid "Failed"
 msgstr "Error"
 
+#: app/modules/status/statusView.php:32 app/common/appView.php:213
+msgid "Status"
+msgstr "Estado"
+
 #: app/modules/status/statusView.php:73
 msgid "Total"
 msgstr "Total"
+
+#: app/modules/manager/managerView.php:33 app/common/appModel.php:46
+msgid "Manager"
+msgstr "Gestor"
+
+#: app/modules/manager/managerView.php:52
+msgid "Connection Error"
+msgstr "Error en la conexión"
+
+#: app/modules/manager/managerView.php:52
+#, php-format
+msgid "Consider visiting the %ssettings%s and %sstatus%s pages"
+msgstr "Considera visitar las páginas de %sconfiguración%s y %sestado%s"
+
+#: app/modules/manager/managerView.php:53
+msgid "Trying to refresh in"
+msgstr "Intentando actualizar en"
+
+#: app/modules/manager/managerView.php:68
+msgid "Error"
+msgstr "Error"
+
+#: app/modules/manager/managerView.php:68
+msgid "HugePages is off and it is required by the FPGA"
+msgstr "HugePages no está activo y  es necesario para la FPGA"
+
+#: app/modules/manager/managerView.php:71
+msgid "Click here to reboot the FPGA server"
+msgstr "Haz click aquí para reiniciar el servidor FPGA"
+
+#: app/modules/manager/managerView.php:73
+msgid ""
+"(it will fix the issue only if the remote server has HugePages as its "
+"default boot option)"
+msgstr ""
+"(arreglará este problema solo si el servidor remoto tiene HugePages como "
+"opción por defecto al arrancar)"
+
+#: app/modules/manager/managerView.php:84
+msgid "The remote server will be rebooted, and all its process stopped"
+msgstr "El servidor remoto será reiniciado y todos sus procesos parados"
+
+#: app/modules/manager/managerView.php:85
+msgid "Are you sure you want to reboot?"
+msgstr "¿Estás seguro de que quieres reiniciar?"
+
+#: app/modules/manager/managerView.php:88
+msgid "Reboot"
+msgstr "Reiniciar"
+
+#: app/modules/manager/managerView.php:89
+#: app/modules/captures/capturesView.php:51
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/modules/manager/managerView.php:95
+msgid "Rebooting Web Service"
+msgstr "Reiniciar el Servicio Web"
+
+#: app/modules/manager/managerView.php:107
+msgid "Select a mode to initialize the FPGA"
+msgstr "Selecciona un modo en el que inicializar la FPGA"
+
+#: app/modules/manager/managerView.php:117
+#: app/modules/manager/managerView.php:123
+msgid "Initialize the FPGA as a"
+msgstr "Inicializar la FPGA como"
+
+#: app/modules/manager/managerView.php:117
+msgid "player"
+msgstr "reproductor"
+
+#: app/modules/manager/managerView.php:123
+msgid "recorder"
+msgstr "reproductor"
+
+#: app/modules/manager/managerView.php:128
+msgid "Initializing the FPGA"
+msgstr "Inicializando la FPGA"
+
+#: app/modules/manager/managerView.php:146
+msgid "Sending request..."
+msgstr "Enviando petición..."
+
+#: app/modules/settings/settingsController.php:78
+msgid "Settings saved successfully"
+msgstr "Configuración actualizada"
+
+#: app/modules/settings/settingsController.php:80
+msgid "Error saving settings"
+msgstr "Error al guardar la configuración"
+
+#: app/modules/settings/settingsView.php:32 app/common/appModel.php:51
+msgid "Settings"
+msgstr "Configuración"
+
+#: app/modules/settings/settingsView.php:46
+msgid "Server Settings"
+msgstr "Configuración del Servidor"
+
+#: app/modules/settings/settingsView.php:48
+msgid "FPGA API base address"
+msgstr "Dirección base de la API FPGA"
+
+#: app/modules/settings/settingsView.php:56
+msgid "App Settings"
+msgstr "Configuración de Aplicación"
+
+#: app/modules/settings/settingsView.php:59
+msgid "Language"
+msgstr "Idioma"
+
+#: app/modules/settings/settingsView.php:75
+msgid "Theme"
+msgstr "Tema"
+
+#: app/modules/settings/settingsView.php:93
+msgid "Save"
+msgstr "Guardar"
+
+#: app/modules/captures/capturesView.php:32 app/common/appModel.php:48
+msgid "Captures"
+msgstr "Capturas"
+
+#: app/modules/captures/capturesView.php:47
+msgid ""
+"Selected capture will be permanently deleted, are you sure you want to "
+"delete it?"
+msgstr ""
+"La traza seleccionada será borrada permanentemente, ¿seguro que deseas "
+"borrarla?"
+
+#: app/modules/captures/capturesView.php:50
+#: app/modules/captures/capturesView.php:141
+msgid "Delete"
+msgstr "Borrar"
+
+#: app/modules/captures/capturesView.php:71
+msgid "All"
+msgstr "Todas"
+
+#: app/modules/captures/capturesView.php:72
+msgid "Simple"
+msgstr "Simple"
+
+#: app/modules/captures/capturesView.php:73
+msgid "Pcap"
+msgstr "Pcap"
+
+#: app/modules/captures/capturesView.php:74
+msgid "Auto Refresh"
+msgstr "Actualizar Automáticamente"
+
+#: app/modules/captures/capturesView.php:87
+msgid "Name"
+msgstr "Nombre"
+
+#: app/modules/captures/capturesView.php:88
+msgid "Type"
+msgstr "Tipo"
+
+#: app/modules/captures/capturesView.php:89
+msgid "Size"
+msgstr "Tamaño"
+
+#: app/modules/captures/capturesView.php:90
+msgid "Date"
+msgstr "Fecha"
+
+#: app/modules/captures/capturesView.php:102
+msgid "Select a capture from the table"
+msgstr "Selecciona una traza de la tabla"
+
+#: app/modules/captures/capturesView.php:109
+msgid "Convert"
+msgstr "Convertir"
+
+#: app/modules/captures/capturesView.php:113
+msgid "Converted name"
+msgstr "Nombre de la traza convertida"
+
+#: app/modules/captures/capturesView.php:116
+#: app/modules/captures/capturesView.php:132
+msgid "OK"
+msgstr "OK"
+
+#: app/modules/captures/capturesView.php:125
+msgid "Rename"
+msgstr "Renombrar"
+
+#: app/modules/captures/capturesView.php:129
+msgid "New name"
+msgstr "Nuevo nombre"
+
+#: app/modules/captures/capturesView.php:145
+msgid "Delete this capture (permanently)"
+msgstr "Borrar esta traza (permanentemente)"
+
+#: app/modules/captures/capturesView.php:159
+msgid ""
+"Add additional captures generated outside NetWatcher by copying the capture "
+"file (or adding symbolic link to it) to the captures directory on the FPGA "
+"remote server"
+msgstr ""
+"Añade trazas adicionales generadas fuera de NetWatcher copiando el archivo "
+"de traza (o añadiendo un enlace simbólico a él) al directorio de las trazas "
+"en el servidor FPGA remoto"
+
+#: app/common/appModel.php:47
+msgid "Statistics"
+msgstr "Estadísticas"
+
+#: app/common/appView.php:177 app/common/appView.php:219
+msgid "License"
+msgstr "Licencia"
+
+#: app/common/appView.php:215
+msgid "Wiki"
+msgstr "Wiki"
+
+#: app/common/appView.php:217
+msgid "Source"
+msgstr "Código"
 
 #: public/404.php:5
 msgid "404 - Not Found"
@@ -284,42 +350,43 @@ msgstr "Lo sentimos, ha ocurrido un error. ¡La página solicitada no existe!"
 msgid "Take me Home"
 msgstr "Volver"
 
-#: public/js/bootstrap-table-localization.js.php:12
-msgid "Loading, please wait..."
-msgstr "Cargando, espere por favor..."
+#: public/js/netwatcher-manager.js.php:94
+msgid "Waiting for the server to reboot..."
+msgstr "Esperando a que el servidor se reinicie..."
 
-#: public/js/bootstrap-table-localization.js.php:14
-msgid "records per page"
-msgstr "registros por página"
+#: public/js/netwatcher-manager.js.php:102
+#: public/js/netwatcher-manager.js.php:148
+#: public/js/netwatcher-manager.js.php:189
+msgid "Error sending the request"
+msgstr "Error al enviar la petición"
 
-#: public/js/bootstrap-table-localization.js.php:16
-#, php-format
-msgid "Showing %s to %s of %s rows"
-msgstr "Mostrando %s a %s de %s filas"
+#: public/js/netwatcher-manager.js.php:121
+msgid "as a player"
+msgstr "como reproductor"
 
-#: public/js/bootstrap-table-localization.js.php:18
-msgid "Search"
-msgstr "Buscar"
+#: public/js/netwatcher-manager.js.php:123
+msgid "as a recorder"
+msgstr "como capturador"
 
-#: public/js/bootstrap-table-localization.js.php:20
-msgid "No matching records found"
-msgstr "No se encontraron registros coincidentes"
+#: public/js/netwatcher-manager.js.php:128
+msgid "Programming the FPGA..."
+msgstr "Programando la FPGA..."
 
-#: public/js/bootstrap-table-localization.js.php:22
-msgid "Hide/Show pagination"
-msgstr "Ocultar/Mostrar paginación"
+#: public/js/netwatcher-manager.js.php:139
+msgid "FPGA programmed. Rebooting the system..."
+msgstr "FPGA programada. Reiniciando el sistema..."
 
-#: public/js/bootstrap-table-localization.js.php:24
-msgid "Refresh"
-msgstr "Actualizar"
+#: public/js/netwatcher-manager.js.php:163
+msgid "Installing the driver..."
+msgstr "Instalando el driver..."
 
-#: public/js/bootstrap-table-localization.js.php:26
-msgid "Toggle"
-msgstr "Interruptor"
+#: public/js/netwatcher-manager.js.php:177
+msgid "Driver successfully installed. Refreshing..."
+msgstr "Driver instalado con éxito. Actualizando..."
 
-#: public/js/bootstrap-table-localization.js.php:28
-msgid "Columns"
-msgstr "Columnas"
+#: public/js/netwatcher-status.js.php:69
+msgid "No Response"
+msgstr "Sin Respuesta"
 
 #: public/js/netwatcher-captures.js.php:106
 msgid "Connection error"
@@ -367,9 +434,42 @@ msgstr "Traza borrada correctamente"
 msgid "Capture could not be deleted"
 msgstr "No se pudo borrar la traza"
 
-#: public/js/netwatcher-status.js.php:69
-msgid "No Response"
-msgstr "Sin Respuesta"
+#: public/js/bootstrap-table-localization.js.php:12
+msgid "Loading, please wait..."
+msgstr "Cargando, espere por favor..."
+
+#: public/js/bootstrap-table-localization.js.php:14
+msgid "records per page"
+msgstr "registros por página"
+
+#: public/js/bootstrap-table-localization.js.php:16
+#, php-format
+msgid "Showing %s to %s of %s rows"
+msgstr "Mostrando %s a %s de %s filas"
+
+#: public/js/bootstrap-table-localization.js.php:18
+msgid "Search"
+msgstr "Buscar"
+
+#: public/js/bootstrap-table-localization.js.php:20
+msgid "No matching records found"
+msgstr "No se encontraron registros coincidentes"
+
+#: public/js/bootstrap-table-localization.js.php:22
+msgid "Hide/Show pagination"
+msgstr "Ocultar/Mostrar paginación"
+
+#: public/js/bootstrap-table-localization.js.php:24
+msgid "Refresh"
+msgstr "Actualizar"
+
+#: public/js/bootstrap-table-localization.js.php:26
+msgid "Toggle"
+msgstr "Interruptor"
+
+#: public/js/bootstrap-table-localization.js.php:28
+msgid "Columns"
+msgstr "Columnas"
 
 #~ msgid ""
 #~ "Add additional captures generated outside NetWatcher by copying the "

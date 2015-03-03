@@ -26,14 +26,33 @@ $(document).ready(function () {
   }
   // Init FPGA
   else if($('#selectMode').length) {
-    $('#initPlayer').on('click', function() {
+    var initPlayer = $('#initPlayer');
+    var initRecorder = $('#initRecorder');
+    initPlayer.on('click', function() {
       initFPGA(true);
     });
-    $('#initRecorder').on('click', function() {
+    initRecorder.on('click', function() {
       initFPGA(false);
     });
+    // Color change on hover
+    initPlayer.hover(
+      function(){
+        $(this).removeClass('alert-info').addClass('alert-success');
+      },
+      function(){
+        $(this).removeClass('alert-success').addClass('alert-info');
+      }
+    );
+    initRecorder.hover(
+      function(){
+        $(this).removeClass('alert-info').addClass('alert-success');
+      },
+      function(){
+        $(this).removeClass('alert-success').addClass('alert-info');
+      }
+   ); 
   }
-
+  // TODO: Rest of pages
 });
 
 //
@@ -96,10 +115,16 @@ function rebootWebService() {
 function initFPGA(player) {
   var progressBar = $('#initProgress');
   var progressLabel = $('#initLabel');
-  var initURL = baseURL + (flag ? 'player' : 'recorder') + '/init';
+  var initURL = baseURL + (player ? 'player' : 'recorder') + '/init';
+
+  if(player) {
+    $('#initModal').find('.modal-title').text($('#initModal').find('.modal-title').text() + ' ' + <?php echo '\'' . _('as a player') . '\'' ?>);
+  } else {
+    $('#initModal').find('.modal-title').text($('#initModal').find('.modal-title').text() + ' ' + <?php echo '\'' . _('as a recorder') . '\'' ?>);
+  }
 
   // Sending request
-  progressBar.css('width', '25%');
+  progressBar.css('width', '50%');
   progressLabel.text(<?php echo '\'' . _('Programming the FPGA...') . '\'' ?>);
   // Make the init request
   $.ajax({
@@ -110,9 +135,11 @@ function initFPGA(player) {
     timeout: 300000,
     success: function (resp) {
       // FPGA programmed. Waiting for the server to reboot
-      progressBar.css('width', '50%');
+      progressBar.css('width', '70%');
       progressLabel.text(<?php echo '\'' . _('FPGA programmed. Rebooting the system...') . '\'' ?>);
-      setTimeout(waitUntilUp(installDriver), 10000);
+      setTimeout(function() {
+        waitUntilUp(installDriver);
+      }, 10000);
     },
     error: function (e) {
       setTimeout(function () {
@@ -132,7 +159,7 @@ function installDriver() {
   var installURL = baseURL + 'driver/install';
   
   // Sending the install request
-  progressBar.css('width', '75%');
+  progressBar.css('width', '85%');
   progressLabel.text(<?php echo '\'' . _('Installing the driver...') . '\'' ?>);
 
 
@@ -143,14 +170,16 @@ function installDriver() {
     dataType: 'json',
     timeout: 300000,
     success: function (resp) {
-      // FPGA driver installed      
-      progressBar.css('width', '100%');
-      progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
-      progressLabel.text(<?php echo '\'' . _('Driver successfully installed. Refreshing...') . '\'' ?>);
+      setTimeout(function () { 
+        // FPGA driver installed      
+        progressBar.css('width', '100%');
+        progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
+        progressLabel.text(<?php echo '\'' . _('Driver successfully installed. Refreshing...') . '\'' ?>);
 
-      // Reload the page
-      setTimeout(function () {
-        location.reload(true);
+        // Reload the page
+        setTimeout(function () {
+          location.reload(true);
+        }, 2000);
       }, 2000);
     },
     error: function (e) {
@@ -174,15 +203,17 @@ function installDriver() {
 // Waits until the server is up again
 function waitUntilUp(callback) {
   var pingURL = baseURL + 'info/ping';
-  setInterval(function() {
+  var timer = setInterval(function() {
     $.ajax({
       type: 'GET',
       url: pingURL,
       dataType: 'json',
+      timeout: 1000,
       success: function (resp) {
         // Server up. Callback
+        clearInterval(timer);
         callback();
       }
     });
-  }, 2000);
+  }, 3000);
 };

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * View class of the manager
  *
@@ -99,9 +100,29 @@ class managerView extends Common\appView
      */
     public function renderModeSelection()
     {
-        // TODO: Two buttons, one for each option, click on the button > open modal, launch jquery
-        // ID: selectMode
-        // Buttons ids: initPlayer, initRecorder
+        $this->pLine('<div class="row">');
+        /* Select one mode */
+        $this->pLine('<div class="col-md-8 col-md-offset-2 text-center">', 1);
+        $this->pLine('<div class="alert alert-info" role="alert" id="selectMode">', 1);
+        $this->pLine('<h3>' . _('Select a mode to initialize the FPGA') . '</h3>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="row">');
+        
+        /* Player */
+        $this->pLine('<div class="col-md-4 col-md-offset-2 text-center">', 1);
+        $this->pLine('<div class="alert alert-info" role="alert" id="initPlayer" data-toggle="modal" data-target="#initModal"  style="cursor: pointer">', 1);
+        $this->pLine(_('Initialize the FPGA as a') . ' <strong>' . _('player') . '</strong>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        /* Recorder */
+        $this->pLine('<div class="col-md-4 text-center">');
+        $this->pLine('<div class="alert alert-info" role="alert" id="initRecorder" data-toggle="modal" data-target="#initModal"  style="cursor: pointer">', 1);
+        $this->pLine(_('Initialize the FPGA as a') . ' <strong>' . _('recorder') . '</strong>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
         
         /* FPGA initialization progress modal */
         $this->renderModalRequest('initModal', _('Initializing the FPGA'), 'initProgress', 'initLabel');
@@ -116,7 +137,7 @@ class managerView extends Common\appView
         $this->pLine('<div id="' . $modalId . '" data-backdrop="static" data-keyboard="false" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');
         $this->pLine('<div class="modal-dialog">', 1);
         $this->pLine('<div class="modal-content">', 1);
-        $this->pLine('<div class="modal-header panel-primary">', 1);
+        $this->pLine('<div class="modal-header alert-info">', 1);
         $this->pLine('<h4 class="modal-title">' . $modalTitle . '</h4>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="modal-body text-justify">');
