@@ -38,21 +38,21 @@ class capturesView extends Common\appView
     protected function renderModals()
     {
         parent::renderModals();
-
+        
         $this->pLine('<!-- Delete confirmation -->');
         $this->pLine('<div id="confirmDeleteModal" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');
         $this->pLine('<div class="modal-dialog">', 1);
         $this->pLine('<div class="modal-content">', 1);
         $this->pLine('<div class="modal-body text-justify">', 1);
         $this->pLine(_('Selected capture will be permanently deleted, are you sure you want to delete it?'), 1);
-        $this->pLine('</div>', -1);
+        $this->pLine('</div>', - 1);
         $this->pLine('<div class="modal-footer">');
         $this->pLine('<button type="button" data-dismiss="modal" class="btn btn-danger" id="confirmDelete">' . _('Delete') . '</button>', 1);
         $this->pLine('<button type="button" data-dismiss="modal" class="btn btn-default">' . _('Cancel') . '</button>');
-        $this->pLine('</div>', -1);
-        $this->pLine('</div>', -1);
-        $this->pLine('</div>', -1);
-        $this->pLine('</div>', -1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
     }
 
     /**
@@ -138,7 +138,7 @@ class capturesView extends Common\appView
         /* Delete panel */
         $this->pLine('<div class="panel panel-danger">');
         $this->pLine('<div class="panel-heading" data-toggle="collapse" data-target="#deletePanel" id="deleteBox">', 1);
-        $this->pLine('<h3 class="panel-title" style="cursor: pointer;">' . _('Delete') . '</h3>', 1);
+        $this->pLine('<h3 class="panel-title" style="cursor: pointer">' . _('Delete') . '</h3>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="panel-body collapse" id="deletePanel">');
         $this->pLine('<button type="button" class="btn btn-danger pull-right" id="deleteCapture" data-toggle="modal" data-target="#confirmDeleteModal">', 1);
@@ -162,7 +162,7 @@ class capturesView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-
+        
         /* Delete confirmation modal */
     }
 }

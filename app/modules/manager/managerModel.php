@@ -20,6 +20,7 @@ use Core\Config;
  */
 class managerModel extends Common\appModel
 {
+
     /**
      * Constructor for the managerModel class.
      * Sets the strings (with localization support)
@@ -31,11 +32,12 @@ class managerModel extends Common\appModel
         /* Additional libraries */
         array_push($this->jsLibraries, 'bootstrap-table.js', 'bootstrap-table-localization.js.php', 'netwatcher-manager.js.php');
     }
-    
+
     /**
      * Get the current status of the FPGA
      */
-    public function getStatus() {
+    public function getStatus()
+    {
         $context = stream_context_create(array(
             'http' => array(
                 'timeout' => 2
