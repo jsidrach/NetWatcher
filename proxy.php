@@ -150,7 +150,12 @@ $response = curl_exec($ch);
 curl_close($ch);
 
 // Split response to header and content
-list ($response_headers, $response_content) = preg_split('/(\r\n){2}/', $response, 2);
+// list ($response_headers, $response_content) = preg_split('/(\r\n){2}/', $response, 2);
+$aux = preg_split('/(\r\n){2}/', $response, 2);
+$response_headers = $aux[0];
+if(isset($aux[1])) {
+    $response_content = $aux[1];
+}
 
 // (Re-)send the headers
 $response_headers = preg_split('/(\r\n){1}/', $response_headers);
@@ -166,4 +171,6 @@ foreach ($response_headers as $key => $response_header) {
 }
 
 // Finally, output the content
-print($response_content);
+if(isset($response_content)) {
+    print($response_content);
+}

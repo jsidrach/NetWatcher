@@ -122,6 +122,10 @@ class Config
          * Path to the default config file
          */
         define('DEFAULT_CONFIG_FILE', CONFIG_DIR . 'settings.json');
+        /**
+         * Path to the languages list file
+         */
+        define('LANGUAGES_LIST_FILE', CONFIG_DIR . 'languages.json');
         
         /**
          * Path to the public directory
@@ -222,6 +226,7 @@ class Config
          */
         define('LOGGER_GENERAL', LOGGER_DIR . 'app.log');
 
+        /* Loads the themes */
         self::loadThemes();
         
         /* Loads dynamic configuration */
@@ -253,6 +258,9 @@ class Config
     {
         /* Loads the configuration file */
         $configData = json_decode(file_get_contents(DEFAULT_CONFIG_FILE));
+
+        /* Loads the languages */
+        self::$LANGUAGES = json_decode(file_get_contents(LANGUAGES_LIST_FILE), true);
         
         /* Loads the css theme */
         self::$DEFAULT_CSS_THEME = $configData->theme;
