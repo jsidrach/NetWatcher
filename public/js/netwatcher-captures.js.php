@@ -132,6 +132,10 @@ function setAutoRefresh(value) {
 function selectCapture() {
   selectedCaptureName = $(this).find('td:nth-child(1)').text();
   selectedCaptureType = $(this).find('td:nth-child(2)').text();
+  // Only select proper captures
+  if(!selectedCaptureType.length) {
+    return;
+  }
   $('#captureName').text(selectedCaptureName);
   toggleRightPanels(true);
 }
