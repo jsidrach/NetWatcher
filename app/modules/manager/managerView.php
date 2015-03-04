@@ -130,6 +130,15 @@ class managerView extends Common\appView
 
     /**
      * Renders a modal overlay (for ajax petitions)
+     *
+     * @param ModalId $view
+     *            Id of the modal div
+     * @param ModalTitle $view
+     *            Id of the modal's title
+     * @param ProgressBarId $view
+     *            Id of the modal's progress bar
+     * @param LabelId $view
+     *            Id of the modal's progress bar label
      */
     private function renderModalRequest($modalId, $modalTitle, $progressBarId, $labelId)
     {

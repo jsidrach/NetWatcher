@@ -51,7 +51,7 @@ class settingsView extends Common\appView
         $this->pLine('<span class="glyphicon glyphicon-ok form-control-feedback" id="ipIcon" aria-hidden="true" ></span>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-
+        
         /* App settings */
         $this->pLine('<h3>' . _('App Settings') . '</h3><hr>');
         /* Language */
@@ -67,7 +67,7 @@ class settingsView extends Common\appView
                 $this->pLine('<option value="' . $text . '">' . $text . '</option>');
             }
         }
-        $this->pLine('</select>', -1);
+        $this->pLine('</select>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         /* Theme */
@@ -83,7 +83,7 @@ class settingsView extends Common\appView
                 $this->pLine('<option value="' . $text . '">' . $text . '</option>');
             }
         }
-        $this->pLine('</select>', -1);
+        $this->pLine('</select>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         

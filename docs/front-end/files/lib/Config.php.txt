@@ -17,6 +17,7 @@ namespace Core;
  */
 class Config
 {
+
     /**
      * Languages
      */
@@ -93,17 +94,16 @@ class Config
          * Default method
          */
         define('DEFAULT_METHOD', 'display');
-
+        
         /**
          * Define the target URL Parameter 'csurl' for proxy calls
          */
         define('CSURL', 'csurl');
-
+        
         /**
          * Base path for the proxy queries
          */
         define('PROXY_PATH', 'proxy.php?' . CSURL . '=');
-
         
         /**
          * Routes
@@ -122,6 +122,10 @@ class Config
          * Path to the default config file
          */
         define('DEFAULT_CONFIG_FILE', CONFIG_DIR . 'settings.json');
+        /**
+         * Path to the languages list file
+         */
+        define('LANGUAGES_LIST_FILE', CONFIG_DIR . 'languages.json');
         
         /**
          * Path to the public directory
@@ -181,10 +185,16 @@ class Config
          * Path to the documentation directory
          */
         define('DOC_DIR', 'docs' . DIRECTORY_SEPARATOR);
+        
         /**
          * Path to the root of the documentation
          */
-        define('DOC_API', DOC_DIR . 'api' . DIRECTORY_SEPARATOR . 'index.html');
+        define('FRONT_END_DOCS', DOC_DIR . 'front-end' . DIRECTORY_SEPARATOR . 'index.html');
+        
+        /**
+         * Path to the root of the documentation
+         */
+        define('BACK_END_DOCS', DOC_DIR . 'back-end' . DIRECTORY_SEPARATOR . 'index.html');
         
         /**
          * Path to the localization directory
@@ -215,7 +225,8 @@ class Config
          * Path to the general log file
          */
         define('LOGGER_GENERAL', LOGGER_DIR . 'app.log');
-
+        
+        /* Loads the themes */
         self::loadThemes();
         
         /* Loads dynamic configuration */
@@ -225,19 +236,20 @@ class Config
     /**
      * Loads the available themes
      */
-    public static function loadThemes() {
-      if ($handle = opendir(THEMES_DIR)) {
-        while (false !== ($entry = readdir($handle))) {
-            if (($entry != '.') && ($entry != '..')) {
-                $name = explode('.' , $entry)[0];
-                self::$CSS_THEMES[ucfirst($name)] = $entry;
+    public static function loadThemes()
+    {
+        if ($handle = opendir(THEMES_DIR)) {
+            while (false !== ($entry = readdir($handle))) {
+                if (($entry != '.') && ($entry != '..')) {
+                    $name = explode('.', $entry)[0];
+                    self::$CSS_THEMES[ucfirst($name)] = $entry;
+                }
             }
+            asort(self::$CSS_THEMES);
+            closedir($handle);
+        } else {
+            Logger::logWarning('Cannot open themes directory');
         }
-        asort(self::$CSS_THEMES);
-        closedir($handle);
-      } else {
-        Logger::logWarning('Cannot open themes directory');
-      }
     }
 
     /**
@@ -247,6 +259,9 @@ class Config
     {
         /* Loads the configuration file */
         $configData = json_decode(file_get_contents(DEFAULT_CONFIG_FILE));
+        
+        /* Loads the languages */
+        self::$LANGUAGES = json_decode(file_get_contents(LANGUAGES_LIST_FILE), true);
         
         /* Loads the css theme */
         self::$DEFAULT_CSS_THEME = $configData->theme;
@@ -263,7 +278,7 @@ class Config
         
         /* Loads the server ip */
         self::$REMOTE_SERVER_IP = $configData->serverIp;
-
+        
         /* Sets the cache time */
         self::$CACHE_TIME = $configData->cacheTime;
     }

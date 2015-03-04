@@ -1,49 +1,25 @@
-TODO Week
-------
-  - Revisar mount fpga
-  - Pagina php de manager
-  - Repasar todo hasta la fecha, mejorar comentarios
-
-[Low Priority]
-- pcapng > editcap > identificar y convertir
-
 TODO Future:
 -------
-  - Terminar tipos de códigos status
+  - Maquina de estados finita FPGA? Terminar tipos de códigos status
     - Terminar página de manager
 
 Dudas Jose:
 -------
-  - No hace falta reiniciar tras montar para que lo detecte?
+  - Maquina de estados finitas FPGA, una vez programada y montada
   - Si ya está programada la fpga y quiero cambiar de modo, vale con ejecutar otra vez impact/install_driver
     - O hay antes que desmontarla/desprogramarla o algo...
   - Tipo de códigos en /proc/nfp/nfp_report
   - Qué hace readRegisters, testControl
 
--------
-API JSON (root: /fpga/api/) - Servidor io.js+express
 
-GET
-/status/
-  Mensajes:
-Mensaje genérico de error por estado no válido para los GET/POST
-  status => "not_valid"
-  description => "The FPGA is not ready (in a valid state) to perform this operation yet."
-
-Mensaje de estado inconsistente?
-
-Mensaje de orden procesada
-  status => "success"
-  description => ""
-
-Testear raid, rendimiento, formatear
---
-Definir mensajes no estaticos como key fija y value a cadena vacia ("")
---
+Ideas adicionales
+------
+  - Pcapng > editcap > identificar y convertir, pipes
+  - Testear raid (dd), rendimiento, formatear
 
 
 _________________________________________________________________________________
-Esquema aplicación:
+Esquema aplicación php:
 
 NetWatcher (sin enlace)
 
@@ -68,6 +44,8 @@ Settings
   
 _________________________________________________________________________________
 
+API JSON (root: /fpga/api/) - Servidor io.js+express
+-------
 [Proceso del servidor FPGA]
 
 <status_1_hugepages_off>

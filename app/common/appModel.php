@@ -10,38 +10,40 @@
 /**
  * Generic model for the app
  */
-namespace App\Common;    
-    
+namespace App\Common;
+
 /**
  * Model Class
  */
 abstract class appModel extends \Core\Model
 {
+
     /**
      * Left navbar links
      */
     public $leftNavbar;
-    
+
     /**
      * Right navbar links
      */
     public $rightNavbar;
-    
+
     /**
      * Common css libraries
      */
     public $cssLibraries;
-    
+
     /**
      * Common javascript libraries
      */
     public $jsLibraries;
-    
+
     /**
-     * App Model constructor. Sets the navigation links and common javascript libraries
+     * App Model constructor.
+     * Sets the navigation links and common javascript libraries
      */
     public function __construct()
-    {        
+    {
         $this->leftNavbar = array(
             'manager' => _('Manager'),
             '#notImplemented2' => _('Statistics'),

@@ -48,7 +48,7 @@ class statusModel extends Common\appModel
     public function __construct()
     {
         parent::__construct();
-
+        
         /* Functions */
         $this->testsFunctions[_('Rewrite Module')] = 'checkModRewrite';
         $this->testsFunctions[_('Gettext Module')] = 'checkGettext';
@@ -75,14 +75,13 @@ class statusModel extends Common\appModel
         $this->testsDescriptions[_('Proxy Server')] = _('Proxy server enabled for FPGA API calls');
         $this->testsDescriptions[_('FPGA API')] = _('Remote FPGA Server');
         $this->testsDescriptions[_('Synchronized Time Stamp')] = _('Timestamp delay between the client and the FPGA host: ');
-
         
         /* Info */
         $this->infoText['success'] = _('Passed');
         $this->infoText['warning'] = _('Not Implemented');
         $this->infoText['info'] = _('In Progress...');
         $this->infoText['danger'] = _('Failed');
-
+        
         /* Additional libraries */
         array_push($this->jsLibraries, 'netwatcher-status.js.php');
     }
@@ -157,7 +156,8 @@ class statusModel extends Common\appModel
      *
      * @return Array Ids of the tests (unique function names associated with each one)
      */
-    public function getTestsIds() {
+    public function getTestsIds()
+    {
         return $this->testsFunctions;
     }
     
@@ -278,7 +278,7 @@ class statusModel extends Common\appModel
      *
      * @param boolean $return
      *            Flag to determine if return an object or a string
-     *
+     *            
      * @return Ambigous Object with the info or a formatted string with the info
      */
     private function phpinfo_array($return = false)

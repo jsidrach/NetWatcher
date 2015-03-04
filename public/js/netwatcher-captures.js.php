@@ -1,7 +1,7 @@
 <?php
 Header("content-type: application/x-javascript");
 /* Autoload libraries */
-require_once('../../lib/vendor/autoload.php');
+require_once ('../../lib/vendor/autoload.php');
 /* Loads the config */
 \Core\Config::load('../..');
 ?>
@@ -68,14 +68,14 @@ function toggleRightPanels(value) {
   $('#newName').attr('disabled', !value);
   $('#renameOK').attr('disabled', !value);
   $('#deleteCapture').attr('disabled', !value);
-  if(!value) {
+  if (!value) {
     $('#captureName').text(noCaptureText);
     $('#captureNamePanel').removeClass('panel-primary').addClass('panel-info');
     selectedCaptureName = null;
     selectedCaptureType = null;
     $('#convertedName').val('');
     $('#newName').val('');
-  } else {    
+  } else {
     $('#captureNamePanel').removeClass('panel-info').addClass('panel-primary');
   }
 }
@@ -103,7 +103,7 @@ function refreshData() {
     },
     error: function (e) {
       // Notification of the error (timeout most of the times)
-      notificationError(<?php echo '\''._('Connection error').'\''; ?>);
+      notificationError(<?php echo '\'' . _('Connection error') . '\''; ?>);
       setAutoRefresh(false);
     }
   });
@@ -138,26 +138,26 @@ function selectCapture() {
 
 // Convert the selected capture
 function convertCapture() {
-  if(selectedCaptureName == null) {
-    notificationError(<?php echo '\''._('No capture is selected').'\''; ?>);
+  if (selectedCaptureName == null) {
+    notificationError(<?php echo '\'' . _('No capture is selected') . '\''; ?>);
     return;
   }
   var convertedName = $('#convertedName').val();
-  if(!validName(convertedName)) {
-    notificationError(<?php echo '\''._('Converted capture\\\'s name is not valid').'\''; ?>);
+  if (!validName(convertedName)) {
+    notificationError(<?php echo '\'' . _('Converted capture\\\'s name is not valid') . '\''; ?>);
     return;
   }
   var convertURL = baseURL;
   // Type of convert
-  if(selectedCaptureType == 'simple') {
+  if (selectedCaptureType == 'simple') {
     convertURL += 'simple/pcap/';
   } else {
     convertURL += 'pcap/simple/';
   }
   convertURL += selectedCaptureName + '/' + convertedName;
 
-  var stringOK = <?php echo '\''._('Capture converted successfully').'\''; ?>;
-  var stringERR = <?php echo '\''._('Capture could not be converted').'\''; ?>;
+  var stringOK = <?php echo '\'' . _('Capture converted successfully') . '\''; ?>;
+  var stringERR = <?php echo '\'' . _('Capture could not be converted') . '\''; ?>;
 
   // Put the convert request
   $.ajax({
@@ -165,7 +165,9 @@ function convertCapture() {
     url: convertURL,
     dataType: 'json',
     timeout: '100000',
-    headers: { 'timestamp': Date.now() },
+    headers: {
+      'timestamp': Date.now()
+    },
     success: function (resp) {
       handleResponse(resp, stringOK, stringERR);
     },
@@ -173,25 +175,25 @@ function convertCapture() {
       handleResponse(null, null, stringERR);
     }
   });
-  $.bootstrapGrowl(<?php echo '\''._('Capture queued for conversion').'\''; ?> , {
-    type: 'info'
-  });
+  $.bootstrapGrowl(<?php echo '\'' . _('Capture queued for conversion') . '\''; ?>, {
+      type: 'info'
+    });
 }
 
 // Rename the selected capture
 function renameCapture() {
-  if(selectedCaptureName == null) {
-    notificationError(<?php echo '\''._('No capture is selected').'\''; ?>);
+  if (selectedCaptureName == null) {
+    notificationError( <?php echo '\'' . _('No capture is selected') . '\''; ?>);
     return;
   }
   var newName = $('#newName').val();
-  if(!validName(newName)) {
-    notificationError(<?php echo '\''._('New name is not valid').'\''; ?>);
+  if (!validName(newName)) {
+    notificationError(<?php echo '\'' . _('New name is not valid') . '\''; ?>);
     return;
   }
   var renameURL = baseURL + 'rename/' + selectedCaptureName + '/' + newName;
-  var stringOK = <?php echo '\''._('Capture renamed successfully').'\''; ?>;
-  var stringERR = <?php echo '\''._('Capture could not be renamed').'\''; ?>;
+  var stringOK = <?php echo '\'' . _('Capture renamed successfully') . '\''; ?>;
+  var stringERR = <?php echo '\'' . _('Capture could not be renamed') . '\''; ?>;
 
   // Put the rename request
   $.ajax({
@@ -199,7 +201,9 @@ function renameCapture() {
     url: renameURL,
     dataType: 'json',
     timeout: '1500',
-    headers: { 'timestamp': Date.now() },
+    headers: {
+      'timestamp': Date.now()
+    },
     success: function (resp) {
       handleResponse(resp, stringOK, stringERR);
     },
@@ -211,14 +215,14 @@ function renameCapture() {
 
 // Delete the selected capture
 function deleteCapture() {
-  if(selectedCaptureName == null) {
-    notificationError(<?php echo '\''._('No capture is selected').'\''; ?>);
+  if (selectedCaptureName == null) {
+    notificationError( <?php echo '\'' . _('No capture is selected') . '\''; ?>);
     return;
   }
 
   var deleteURL = baseURL + 'delete/' + selectedCaptureName;
-  var stringOK = <?php echo '\''._('Capture deleted successfully').'\''; ?>;
-  var stringERR = <?php echo '\''._('Capture could not be deleted').'\''; ?>;
+  var stringOK = <?php echo '\'' . _('Capture deleted successfully') . '\''; ?>;
+  var stringERR = <?php echo '\'' . _('Capture could not be deleted') . '\''; ?>;
   console.log(deleteURL);
 
   // Get the new data
@@ -227,7 +231,9 @@ function deleteCapture() {
     url: deleteURL,
     dataType: 'json',
     timeout: '1500',
-    headers: { 'timestamp': Date.now() },
+    headers: {
+      'timestamp': Date.now()
+    },
     success: function (resp) {
       handleResponse(resp, stringOK, stringERR);
     },
@@ -239,13 +245,12 @@ function deleteCapture() {
 
 // Handles a petition response
 function handleResponse(resp, stringOK, stringERR) {
-  if(resp == null) {
+  if (resp == null) {
     notificationError(stringERR);
-  }
-  else {
+  } else {
     try {
-      if(resp.code == 'success') {
-        $.bootstrapGrowl(stringOK , {
+      if (resp.code == 'success') {
+        $.bootstrapGrowl(stringOK, {
           type: 'success'
         });
       } else {
@@ -262,14 +267,14 @@ function handleResponse(resp, stringOK, stringERR) {
 // Creates an error notification
 function notificationError(stringERR) {
   // Notification of the error
-  $.bootstrapGrowl(stringERR , {
-   type: 'danger'
+  $.bootstrapGrowl(stringERR, {
+    type: 'danger'
   });
 }
 
 // Checks if a name is valid (syntactically)
 function validName(name) {
-  if(name.length < 1) {
+  if (name.length < 1) {
     return false;
   }
   var flag = true;

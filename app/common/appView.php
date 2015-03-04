@@ -32,14 +32,17 @@ abstract class appView extends \Core\View
 
     /**
      * Renders the model (page)
-     * 
+     *
      * @param Callback $callback
      *            Callback to the function that renders the main content (optional)
      */
     public function render($callback = 'renderContent')
     {
         $this->renderHead();
-        call_user_func(array($this, $callback));
+        call_user_func(array(
+            $this,
+            $callback
+        ));
         $this->renderTail();
     }
 

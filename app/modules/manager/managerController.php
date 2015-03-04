@@ -56,7 +56,7 @@ class managerController extends Common\appController
         
         if (isset($this->subPages[$status]) && method_exists($this->view, $this->subPages[$status])) {
             $callback = $this->subPages[$status];
-        } else {            
+        } else {
             $callback = 'renderModeSelection';
         }
         $this->view->render($callback);
