@@ -51,12 +51,12 @@ class settingsController extends Common\appController
         } else {
             $settings['theme'] = \Core\Config::$DEFAULT_CSS_THEME;
         }
-        /* Note: REMOTE_SERVER_IP must have http:// at the start of the string */
+        /* REMOTE_SERVER_IP must have http:// at the start of the string */
         if (isset($_REQUEST['serverIp'])) {
             $prefix = 'http://';
             $settings['serverIp'] = $_REQUEST['serverIp'];
-            if(!(substr($settings['serverIp'], 0, strlen($prefix)) === $prefix)) {
-              $settings['serverIp'] = $prefix . $settings['serverIp'];
+            if (! (substr($settings['serverIp'], 0, strlen($prefix)) === $prefix)) {
+                $settings['serverIp'] = $prefix . $settings['serverIp'];
             }
         } else {
             $settings['serverIp'] = \Core\Config::$REMOTE_SERVER_IP;

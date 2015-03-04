@@ -17,6 +17,7 @@ namespace Core;
  */
 class Config
 {
+
     /**
      * Languages
      */
@@ -93,17 +94,16 @@ class Config
          * Default method
          */
         define('DEFAULT_METHOD', 'display');
-
+        
         /**
          * Define the target URL Parameter 'csurl' for proxy calls
          */
         define('CSURL', 'csurl');
-
+        
         /**
          * Base path for the proxy queries
          */
         define('PROXY_PATH', 'proxy.php?' . CSURL . '=');
-
         
         /**
          * Routes
@@ -185,7 +185,7 @@ class Config
          * Path to the documentation directory
          */
         define('DOC_DIR', 'docs' . DIRECTORY_SEPARATOR);
-
+        
         /**
          * Path to the root of the documentation
          */
@@ -225,7 +225,7 @@ class Config
          * Path to the general log file
          */
         define('LOGGER_GENERAL', LOGGER_DIR . 'app.log');
-
+        
         /* Loads the themes */
         self::loadThemes();
         
@@ -236,19 +236,20 @@ class Config
     /**
      * Loads the available themes
      */
-    public static function loadThemes() {
-      if ($handle = opendir(THEMES_DIR)) {
-        while (false !== ($entry = readdir($handle))) {
-            if (($entry != '.') && ($entry != '..')) {
-                $name = explode('.' , $entry)[0];
-                self::$CSS_THEMES[ucfirst($name)] = $entry;
+    public static function loadThemes()
+    {
+        if ($handle = opendir(THEMES_DIR)) {
+            while (false !== ($entry = readdir($handle))) {
+                if (($entry != '.') && ($entry != '..')) {
+                    $name = explode('.', $entry)[0];
+                    self::$CSS_THEMES[ucfirst($name)] = $entry;
+                }
             }
+            asort(self::$CSS_THEMES);
+            closedir($handle);
+        } else {
+            Logger::logWarning('Cannot open themes directory');
         }
-        asort(self::$CSS_THEMES);
-        closedir($handle);
-      } else {
-        Logger::logWarning('Cannot open themes directory');
-      }
     }
 
     /**
@@ -258,7 +259,7 @@ class Config
     {
         /* Loads the configuration file */
         $configData = json_decode(file_get_contents(DEFAULT_CONFIG_FILE));
-
+        
         /* Loads the languages */
         self::$LANGUAGES = json_decode(file_get_contents(LANGUAGES_LIST_FILE), true);
         
@@ -277,7 +278,7 @@ class Config
         
         /* Loads the server ip */
         self::$REMOTE_SERVER_IP = $configData->serverIp;
-
+        
         /* Sets the cache time */
         self::$CACHE_TIME = $configData->cacheTime;
     }

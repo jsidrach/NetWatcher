@@ -55,7 +55,7 @@ class Router
         if ($classname == 'docs-front-end') {
             header('Location: ' . FRONT_END_DOCS);
             die();
-        }        
+        }
         
         /* Checks if the controller exist */
         if (! self::checkMVC($classname)) {
@@ -94,7 +94,7 @@ class Router
     private static function checkMVC($classname)
     {
         /* Check each file */
-        $commonPath = MODULES_DIR. $classname . DIRECTORY_SEPARATOR . $classname;
+        $commonPath = MODULES_DIR . $classname . DIRECTORY_SEPARATOR . $classname;
         $controller_file = $commonPath . 'Controller.php';
         if (! file_exists($controller_file)) {
             Logger::logWarning('File ' . $controller_file . ' not found');

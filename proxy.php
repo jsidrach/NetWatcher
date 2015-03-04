@@ -3,7 +3,9 @@
  * Proxy for the FPGA API ajax petitions
  */
 
-/** Autoload libraries */
+/**
+ * Autoload libraries
+ */
 require_once ('lib/vendor/autoload.php');
 
 /**
@@ -134,7 +136,7 @@ $ch = curl_init($request_url);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $request_headers); // (Re-)send headers
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return response
 curl_setopt($ch, CURLOPT_HEADER, true); // Enabled response headers
-
+                                        
 // Add data for POST, PUT or DELETE requests
 if ('POST' == $request_method) {
     $post_data = is_array($request_params) ? http_build_query($request_params) : $request_params;
@@ -153,7 +155,7 @@ curl_close($ch);
 // list ($response_headers, $response_content) = preg_split('/(\r\n){2}/', $response, 2);
 $aux = preg_split('/(\r\n){2}/', $response, 2);
 $response_headers = $aux[0];
-if(isset($aux[1])) {
+if (isset($aux[1])) {
     $response_content = $aux[1];
 }
 
@@ -171,6 +173,6 @@ foreach ($response_headers as $key => $response_header) {
 }
 
 // Finally, output the content
-if(isset($response_content)) {
+if (isset($response_content)) {
     print($response_content);
 }

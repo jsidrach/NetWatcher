@@ -38,7 +38,8 @@ class capturesView extends Common\appView
     protected function renderModals()
     {
         parent::renderModals();
-        
+
+        /* Delete confirmation modal */
         $this->pLine('<!-- Delete confirmation -->');
         $this->pLine('<div id="confirmDeleteModal" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');
         $this->pLine('<div class="modal-dialog">', 1);
@@ -162,8 +163,6 @@ class capturesView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        
-        /* Delete confirmation modal */
     }
 }
 ?>

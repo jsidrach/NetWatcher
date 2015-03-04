@@ -37,8 +37,7 @@ while [[ $# > 0 ]]
       shift
       ;;
       -r|--clear)
-      rm -rf "log/"*
-      rm -rf "docs/"*
+      echo "" | tee log/*.log
       shift
       ;;
       -b|--backup)
