@@ -37,7 +37,7 @@ NetWatcher uses a number of open source projects to work properly:
 * [jQuery](https://jquery.com) - JavaScript library
 * [Composer](https://getcomposer.org) - PHP library for external dependencies
 
-In addition, a full list of references used can be found [here](REFERENCES.md).
+The FPGA design and implementation has been developed by [jfzazo](https://github.com/jfzazo). In addition, a full list of references used can be found [here](REFERENCES.md).
 
 Installation
 ----
@@ -45,7 +45,7 @@ Installation
 
 #### FPGA Web Service
 1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active
-2. Edit the file `./fpga_api/scripts/update_server.sh` setting the `SERVER_IP`, `SERVER_PATH` and `USER` vars. **Note**: selected user must exist and have superuser rights in the remote server
+2. Edit the file `./fpga_api/scripts/update_server.sh` setting the `SERVER_IP` and `SERVER_PATH` vars. **Note**: root user must exist.
 3. Change path to `./fpga_api/`
 4. Deploy the io.js server on the remote host
 

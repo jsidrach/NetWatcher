@@ -146,7 +146,7 @@ function initFPGA(player) {
       progressBar.css('width', '70%');
       progressLabel.text(<?php echo '\'' . _('FPGA programmed. Rebooting the system...') . '\'' ?>);
       setTimeout(function () {
-        waitUntilUp(installDriver);
+        waitUntilUp(function() { installDriver(player); });
       }, 10000);
     },
     error: function (e) {
@@ -163,10 +163,10 @@ function initFPGA(player) {
 };
 
 // Installs the driver
-function installDriver() {
+function installDriver(player) {
   var progressBar = $('#initProgress');
   var progressLabel = $('#initLabel');
-  var installURL = baseURL + 'driver/install';
+  var installURL = baseURL + (player ? 'player' : 'recorder') + '/install';
 
   // Sending the install request
   progressBar.css('width', '85%');

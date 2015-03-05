@@ -1,6 +1,7 @@
 // Common functions for the scripts
 
 // Package dependencies
+var scripts = require('child_process');
 var fs = require('fs');
 var path = require('path');
 var config = require('../config.js');
@@ -149,7 +150,7 @@ exports.validNewName = validNewName;
 
 // Checks if a capture has a valid simple format
 function validSimpleCapture(name) {
-  if (!validFile(name)) {
+  if (!validFile(name)) {  console.log('hey2');
     return false;
   }
   // 3rd and 4th byte are 0x69
@@ -166,33 +167,19 @@ exports.validSimpleCapture = validSimpleCapture;
 
 // Checks if a capture has a valid pcap format
 function validPcapCapture(name) {
-  if (!validFile(name)) {
+  if (!validFile(name) || validSimpleCapture(name)) {
     return false;
   }
-  // First bytes one of this magic numbers (endianness)
-  var magicNumbers = [
-    new Buffer([0xa1, 0xb2, 0x3c, 0x4d]),
-    new Buffer([0xa1, 0xb2, 0xc3, 0xd4]),
-    new Buffer([0x4d, 0x3c, 0xb2, 0xa1]),
-    new Buffer([0xd4, 0xc3, 0xb2, 0xa1])
-  ];
-  var buffer = new Buffer([0x00, 0x00, 0x00, 0x00]);
-  var fd = fs.openSync(config.CAPTURES_DIR + name, 'r');
-  var len = fs.readSync(fd, buffer, 0, 4, 0);
-  if (len != magicNumbers[0].length) {
+  // Check if it is a valid pcap capture
+  try {
+    scripts.execSync(
+      'export LD_LIBRARY_PATH=bin/caputils/ && ./bin/caputils/capinfos -t "'
+      + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"'
+      );
+  } catch (error) {
     return false;
   }
-  var flag = false;
-  magicNumbers.some(function (magicNumber) {
-    for (i = 0; i < magicNumber.length; i++) {
-      if (buffer[i] != magicNumber[i]) {
-        return false;
-      }
-    }
-    flag = true;
-    return true;
-  });
-  return flag;
+  return true;
 }
 exports.validPcapCapture = validPcapCapture;
 

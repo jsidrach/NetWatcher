@@ -5,8 +5,6 @@ rmmod ./bin/nfp_driver.ko
 
 # Instantiate the driver
 insmod ./bin/nfp_driver.ko
-mkdir -p /dev/nfp
-chmod 777 /dev/nfp
 
 # Mount with HugePages
 mkdir -p /mnt/huge

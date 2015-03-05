@@ -14,7 +14,6 @@ Dudas Jose:
 
 Ideas adicionales
 ------
-  - Pcapng > editcap > identificar y convertir, pipes
   - Testear raid (dd), rendimiento, formatear
 
 
@@ -91,14 +90,22 @@ Si sale 0, está en recorder
 <status_4_fpga.json>
 
 
-(Para detectar aquí, buscar el proceso?)
-8) Configurar cuanto va a enviar/recibir
-----
-./writeControl para controlar cuanto va a enviar/recibir, -l mascara 3
-
+PONER SIEMPRE CUANDO SE MONTA EN MODO CAPTURA ./CONFIGUREAEL
 8.1) Configuración adicional recepción
 ----
 ./configureAel para eliminar ruido
+
+(Para detectar aquí, buscar el proceso?)
+8) Configurar cuanto va a enviar/recibir
+----
+./writeControl para controlar cuanto va a enviar, -l mascara [0,1,2,3] (Agregado)
+                                         /recibir, -l puerto [0,1,2,3]
+                                         -r siempre (reset hw)
+                                         -n -1 (reproduce )
+  > Reinicia la maquina de estados
+  > Configurar ciertas opciones
+
+
 
 9.1) Recepción
 ----
