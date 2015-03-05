@@ -30,3 +30,6 @@
 
 ##### Convert CSV to JSON
 - http://techslides.com/convert-csv-to-json-in-javascript
+
+##### Fork of editcap with hwgen support (wireshark-hwgen)
+* https://github.com/jfzazo/wireshark-hwgen

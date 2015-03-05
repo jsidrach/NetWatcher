@@ -39,35 +39,17 @@ exports.initRecorder = function (req, res) {
   initFPGA(req, res, recorderBitStream);
 };
 
-// /driver/install
-// Installs the driver and mounts the FPGA
-exports.installDriver = function(req, res) {
-  // Check if the FPGA is programmed
-  var code_script = scripts.exec(info.checkInitFPGAOn);
-  code_script.on('exit', function (code) {
-    if (code != 0) {
-      // FPGA not programmed: invalid state to mount the FPGA
-      common.readJSON('fpga_invalid_state', function (ans) {
-        ans.description = 'Invalid State. The FPGA must be programmed before mounted.';
-        res.status(412).json(ans);
-      });
-      return;
-    }
-    // Mount the FPGA
-    scripts.exec('sudo install_driver.sh').on('exit', function (code) {
-      if (code != 0) {
-        // Internal Error
-        common.logError('Error mounting the FPGA');
-        res.sendStatus(500);
-        return;
-      }
-      // Mounted ok
-      common.sendJSON('fpga_mount_ok', res, 200);
-    });
-  });
-};
+// /player/install
+// Installs the driver and mounts the FPGA as a player
+exports.installPlayer = function (req, res) {
+  installFPGA(req, res, false);
+}
 
-
+// /recorder/install
+// Installs the driver and mounts the FPGA as a recorder
+exports.installRecorder = function (req, res) {
+  installFPGA(req, res, true);
+}
 
 // Internal Functions
 
@@ -111,6 +93,46 @@ function initBitstream(req, res, bitstream) {
       }
       // Programmed ok
       common.sendJSON('fpga_init_ok', res, 200);
+    });
+  });
+};
+
+// Mounts the FPGA
+function installFPGA(req, res, recorder) {
+  // Check if the FPGA is programmed
+  var code_script = scripts.exec(info.checkInitFPGAOn);
+  code_script.on('exit', function (code) {
+    if (code != 0) {
+      // FPGA not programmed: invalid state to mount the FPGA
+      common.readJSON('fpga_invalid_state', function (ans) {
+        ans.description = 'Invalid State. The FPGA must be programmed before mounted.';
+        res.status(412).json(ans);
+      });
+      return;
+    }
+    // Mount the FPGA
+    scripts.exec('sudo ./bin/install_driver.sh').on('exit', function (code) {
+      if (code != 0) {
+        // Internal Error
+        common.logError('Error mounting the FPGA');
+        res.sendStatus(500);
+        return;
+      }
+      if(recorder) {
+        scripts.exec('sudo ./bin/configureAel').on('exit', function (code) {
+          if (code != 0) {
+            // Internal Error
+            common.logError('Error configuring the FPGA');
+            res.sendStatus(500);
+            return;
+          }
+          // Mounted and configured ok
+          common.sendJSON('fpga_mount_ok', res, 200);
+        });
+      } else {
+        // Mounted ok
+        common.sendJSON('fpga_mount_ok', res, 200);
+      }
     });
   });
 };
