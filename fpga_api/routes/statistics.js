@@ -95,16 +95,13 @@ mountedFPGA = function (res, callbackList) {
 // Status of the FPGA (after being mounted)
 statusFPGA = function (res, callbackList) {
   modeFPGA(function (ans) {
-    if (ans == 'error') {
-      common.sendJSON('status_3_mount_off', res, 200);
-      return;
-    }
     // Set the type (player/recorder)
-    else if(ans == 'recorder') {
+    if(ans == 'recorder') {
       common.sendJSON('status_4_1_recorder_ready', res, 200);
-    }
-    else {
+    } else if(ans == 'player') {
       common.sendJSON('status_4_1_player_ready', res, 200);
+    } else {
+      common.sendJSON('status_3_mount_off', res, 200);      
     }
   });
 };

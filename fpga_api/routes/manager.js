@@ -111,7 +111,7 @@ function installFPGA(req, res, recorder) {
       return;
     }
     // Mount the FPGA
-    scripts.exec('sudo ./bin/install_driver.sh').on('exit', function (code) {
+    scripts.exec('sudo ./bin/installDriver.sh').on('exit', function (code) {
       if (code != 0) {
         // Internal Error
         common.logError('Error mounting the FPGA');
