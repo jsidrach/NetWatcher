@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+app.disable('x-powered-by');
 
 // Set the port
 var port = process.env.PORT || config.PORT;
@@ -26,6 +27,7 @@ var port = process.env.PORT || config.PORT;
 var router = express.Router();
 // Default routes (Not Found Error)
 var defError = express.Router();
+
 
 // Middleware to discard out of time request (reproduced calls with the FPGA)
 app.route('*')
