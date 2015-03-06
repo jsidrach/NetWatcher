@@ -1,0 +1,4 @@
+{
+  "status": "player_ready",
+  "description": "The FPGA is ready to reproduce a capture."
+}
