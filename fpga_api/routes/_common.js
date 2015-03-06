@@ -150,7 +150,7 @@ exports.validNewName = validNewName;
 
 // Checks if a capture has a valid simple format
 function validSimpleCapture(name) {
-  if (!validFile(name)) {  console.log('hey2');
+  if (!validFile(name)) {
     return false;
   }
   // 3rd and 4th byte are 0x69
