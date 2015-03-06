@@ -94,7 +94,7 @@ mountedFPGA = function (res, callbackList) {
 
 // Status of the FPGA (after being mounted)
 statusFPGA = function (res, callbackList) {
-  scripts.exec(modeFPGA, function (ans) {
+  modeFPGA(function (ans) {
     if (ans == 'error') {
       common.sendJSON('status_3_mount_off', res, 200);
       return;
