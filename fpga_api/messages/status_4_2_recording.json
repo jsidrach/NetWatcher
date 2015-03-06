@@ -1,0 +1,9 @@
+{
+  "status": "recording",
+  "description": "The FPGA is recording a capture.",
+  "capture": "",
+  "elapsed_time": "",
+  "bytes_captured": "",
+  "bytes_total": "",
+  "port": ""
+}

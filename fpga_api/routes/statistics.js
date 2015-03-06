@@ -94,31 +94,38 @@ mountedFPGA = function (res, callbackList) {
 
 // Status of the FPGA (after being mounted)
 statusFPGA = function (res, callbackList) {
-  var code_script = scripts.exec('cat /proc/nfp/nfp_report', function (error, stdout, stderr) {
-    if (error) {
-      common.logError(stderr);
+  scripts.exec(modeFPGA, function (ans) {
+    if (ans == 'error') {
       common.sendJSON('status_3_mount_off', res, 200);
       return;
     }
-    common.readJSON('status_4_fpga_ok', function (ans) {
-      // Set the type (player/recorder)
-      if (stdout.indexOf('PLA') != -1) {
-        ans.type = 'player';
-      } else if (stdout.indexOf('REC') != -1) {
-        ans.type = 'recorder';
-      } else {
-        common.logError('Neither a player nor recorder');
-        common.sendJSON('status_3_mount_off', res, 200);
-        return;
-      }
-
-      // Set the code (running, paused, stop, etc.)
-      // TODO: Ask type of codes, what they mean
-
-      // Send the response
-      res.status(200).json(ans);
-    });
+    // Set the type (player/recorder)
+    else if(ans == 'recorder') {
+      common.sendJSON('status_4_1_recorder_ready', res, 200);
+    }
+    else {
+      common.sendJSON('status_4_1_player_ready', res, 200);
+    }
   });
 };
 
-// Other Internal Functions
+// Other Internal+External Functions
+function modeFPGA(callback) {
+  scripts.exec('cat /proc/nfp/nfp_report | tail -n 1', function (error, stdout, stderr) {
+    var ans;
+    if (error) {
+      ans = 'error';
+      common.logError(stderr);
+    }
+    // Set the type (player/recorder)
+    else if (stdout.indexOf('PLA') != -1) {
+      ans = 'player';
+    } else if (stdout.indexOf('REC') != -1) {
+      ans = 'recorder';
+    } else {
+      ans = 'error';
+    }
+    callback(ans);
+  });
+};
+exports.modeFPGA = modeFPGA;
