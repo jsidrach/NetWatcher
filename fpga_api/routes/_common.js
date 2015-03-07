@@ -112,6 +112,25 @@ exports.csv2JSONobject = function (csv) {
   return result;
 };
 
+// Parses an etime string to the number of seconds it represents
+exports.etime2seconds = function (etime) {
+  // The format for etime is [[dd-]hh:]mm:ss
+  var parts = etime.trim().split(':');
+  var parts_length = parts.length;
+  if (parts_length == 2) {
+    return parseInt(parts[0])*60 + parseInt(parts[1]);
+  } else if (parts_length == 3) {
+    var parts_aux = parts[0].split('-');
+    if (parts_aux.length > 1) {
+      return ((parseInt(parts_aux[0])*24+parseInt(parts_aux[1]))*60 + parseInt(parts[1])) * 60 + parseInt(parts[2]);
+    } else {
+      return (parseInt(parts[0])*60 + parseInt(parts[1])) * 60 + parseInt(parts[2]);
+    }
+  }
+};
+
+
+
 // Exports that are also internal functions
 
 // Gets the delay (in seconds) between the petition timestamp and the petition
