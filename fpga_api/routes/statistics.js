@@ -2,6 +2,8 @@
 
 // Package dependencies
 var scripts = require('child_process');
+var fs = require('fs');
+var path = require('path');
 var config = require('../config.js');
 var common = require('./_common.js');
 
@@ -96,7 +98,7 @@ statusFPGA = function (res, callbackList) {
     if(ans == 'recorder') {
       runningFPGA(true, function(isRunning) {
         if(isRunning) {
-          common.sendJSON('status_4_2_recording', res, 200);
+          sendDataRecording(res);
         } else {
           common.sendJSON('status_4_1_recorder_ready', res, 200);
         }
@@ -115,7 +117,7 @@ statusFPGA = function (res, callbackList) {
   });
 };
 
-// Other Internal+External Functions
+// Internal+External Functions
 
 // Gets the mode of the FPGA (player/recorder/error)
 function modeFPGA(callback) {
@@ -146,3 +148,32 @@ function runningFPGA(recorder, callback) {
   });
 };
 exports.runningFPGA = runningFPGA;
+
+// Other Internal FUnctions
+
+// Sends the current info of the record in progress
+function sendDataRecording(res) {
+  common.readJSON('status_4_2_recording', function (ans) {
+    scripts.exec('ps -eo etime,command | grep launchRecorder.sh | grep -v grep | head -n1', function (error, stdout, stderr) {
+      if (error) {
+        // Internal error
+        common.logError(stderr);
+        res.sendStatus(500);
+        return;
+      }    
+      // Output format:
+      //    [etime] sudo -b nohup ./bin/launchRecorder.sh port bytes simple
+      var parts = stdout.match(/\S+/g);
+      if(parts.length >= 8) {
+        ans.elapsed_time = common.etime2seconds(parts[0]);
+        ans.bytes_total = parseInt(parts[6]);
+        ans.port = parseInt(parts[5]);
+        var capturePath = parts.slice(7).join(' ');
+        var captureStats = fs.statSync(capturePath);
+        ans.bytes_captured = captureStats['size'];
+        ans.capture = path.basename(capturePath);
+      }
+      res.status(200).json(ans);
+    });
+  });
+};
