@@ -11,7 +11,7 @@
 
 dir="/home/sid/Desktop/fpga_api/"
 user="sid"
-cmd="PATH=$PATH:$dir/iojs/bin/ ./iojs/bin/supervisor -w routes server"
+cmd="PATH=$PATH:$dir/iojs/bin/ ./iojs/bin/supervisor -w .,routes server"
 
 name="fpga_api"
 pid_file="/var/run/$name.pid"
