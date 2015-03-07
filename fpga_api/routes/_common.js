@@ -1,33 +1,37 @@
 // Common functions for the scripts
 
 // Package dependencies
-var scripts = require('child_process');
 var fs = require('fs');
 var path = require('path');
 var config = require('../config.js');
 
-// Function exports
+
+// Module exports
 
 // Checks the timestamp and discard not valid requests
-exports.handleRequest = function (req, res, next) {
+function handleRequest(req, res, next) {
   if (!validTimestamp(req)) {
     res.sendStatus(408);
   } else {
     next();
   }
 };
+exports.handleRequest = handleRequest;
 
 // Logs an error with a date
-exports.logError = function (string) {
+function logError(string) {
   var logHeader = '[' + new Date().toUTCString() + ']: ';
   console.error(logHeader + string);
 };
+exports.logError = logError;
 
 // Reads a json in the messages folder
-exports.readJSON = function (file, callback) {
-  fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
+function readJSON (file, callback) {
+  var filePath = path.resolve(__dirname, '../messages/', file + '.json');
+  fs.readFile(filePath, 'utf8', function (err, data) {
     var obj;
     if (err) {
+      logError('Unable to read ' + filePath);
       obj = {
         message: 'Not Found'
       };
@@ -37,12 +41,15 @@ exports.readJSON = function (file, callback) {
     callback(obj);
   });
 };
+exports.readJSON = readJSON;
 
 // Sends a json as a response
-exports.sendJSON = function (file, res, code) {
-  fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
+function sendJSON(file, res, code) {
+  var filePath = path.resolve(__dirname, '../messages/', file + '.json');
+  fs.readFile(filePath, 'utf8', function (err, data) {
     var obj;
     if (err) {
+      logError('Unable to read ' + filePath);
       obj = {
         message: 'Not Found'
       };
@@ -51,13 +58,16 @@ exports.sendJSON = function (file, res, code) {
     }
     res.status(code).json(obj);
   });
-}
+};
+exports.sendJSON = sendJSON;
 
 // Sends a jsonp as a response
-exports.sendJSONP = function (file, res, code) {
-  fs.readFile(path.resolve(__dirname, '../messages/', file + '.json'), 'utf8', function (err, data) {
+function sendJSONP(file, res, code) {
+  var filePath = path.resolve(__dirname, '../messages/', file + '.json');
+  fs.readFile(filePath, 'utf8', function (err, data) {
     var obj;
     if (err) {
+      logError('Unable to read ' + filePath);
       obj = {
         message: 'Not Found'
       };
@@ -66,54 +76,11 @@ exports.sendJSONP = function (file, res, code) {
     }
     res.status(code).jsonp(obj);
   });
-}
-
-// Parses a csv into a JSON string
-exports.csv2JSONstring = function (csv) {
-  var lines = csv.split("\n");
-  var result = [];
-  var headers = lines[0].split("|");
-
-  for (var i = 1; i < lines.length; i++) {
-    var obj = {};
-    var currentline = lines[i].split("|");
-
-    if (currentline.length == headers.length) {
-      for (var j = 0; j < headers.length; j++) {
-        obj[headers[j]] = currentline[j];
-      }
-      result.push(obj);
-    }
-  }
-
-  // Return JSON
-  return JSON.stringify(result);
 };
-
-// Parses a csv into a JSON Javascript object
-exports.csv2JSONobject = function (csv) {
-  var lines = csv.split("\n");
-  var result = [];
-  var headers = lines[0].split("|");
-
-  for (var i = 1; i < lines.length; i++) {
-    var obj = {};
-    var currentline = lines[i].split("|");
-
-    if (currentline.length == headers.length) {
-      for (var j = 0; j < headers.length; j++) {
-        obj[headers[j]] = currentline[j];
-      }
-      result.push(obj);
-    }
-  }
-
-  // Return Javascript Object
-  return result;
-};
+exports.sendJSONP = sendJSONP;
 
 // Parses an etime string to the number of seconds it represents
-exports.etime2seconds = function (etime) {
+function etime2seconds(etime) {
   // The format for etime is [[dd-]hh:]mm:ss
   var parts = etime.trim().split(':');
   var parts_length = parts.length;
@@ -128,10 +95,7 @@ exports.etime2seconds = function (etime) {
     }
   }
 };
-
-
-
-// Exports that are also internal functions
+exports.etime2seconds = etime2seconds;
 
 // Gets the delay (in seconds) between the petition timestamp and the petition
 function getDelay (req) {
@@ -153,61 +117,6 @@ function getDelay (req) {
 };
 exports.getDelay = getDelay;
 
-// Checks if a new name is available and valid
-function validNewName(name) {
-  // Valid name
-  if (!validName(name)) {
-    return false;
-  }
-  // File already exists
-  if (fs.existsSync(config.CAPTURES_DIR + name)) {
-    return false;
-  }
-  return true;
-};
-exports.validNewName = validNewName;
-
-// Checks if a capture has a valid simple format
-function validSimpleCapture(name) {
-  if (!validFile(name)) {
-    return false;
-  }
-  // 3rd and 4th byte are 0x69
-  var magicNumber = new Buffer([0x69, 0x69]);
-  var buffer = new Buffer([0x00, 0x00]);
-  var fd = fs.openSync(config.CAPTURES_DIR + name, 'r');
-  var len = fs.readSync(fd, buffer, 0, 2, 2);
-  if (len != magicNumber.length) {
-    return false;
-  }
-  return ((magicNumber[0] == buffer[0]) && (magicNumber[1] == buffer[1]));
-}
-exports.validSimpleCapture = validSimpleCapture;
-
-// Checks if a capture has a valid pcap format
-function validPcapCapture(name) {
-  if (!validFile(name) || validSimpleCapture(name)) {
-    return false;
-  }
-  // Check if it is a valid pcap capture
-  try {
-    scripts.execSync(
-      'sudo LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "'
-      + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"'
-      );
-  } catch (error) {
-    return false;
-  }
-  return true;
-}
-exports.validPcapCapture = validPcapCapture;
-
-// Checks if a capture exists with a given name (full name)
-function validCapture(name) {
-  return (validSimpleCapture(name) || validPcapCapture(name));
-}
-exports.validCapture = validCapture;
-
 
 
 // Internal functions
@@ -219,31 +128,4 @@ function validTimestamp(req) {
     return false;
   }
   return (getDelay(req) <= config.MAX_DELAY);
-};
-
-// Checks if a name is valid (syntactically)
-function validName(name) {
-  var flag = true;
-  // Name is valid if it does not have the following substrings:
-  ['\\/', '\\.\\.', '\\$', '\\~'].every(function (entry) {
-    if (name.search(entry) != -1) {
-      flag = false;
-      return false;
-    }
-    return true;
-  });
-  return flag;
-};
-
-// File exists and it is valid
-function validFile(name) {
-  // Valid name
-  if (!validName(name)) {
-    return false;
-  }
-  // File already exists
-  if (!fs.existsSync(config.CAPTURES_DIR + name)) {
-    return false;
-  }
-  return true;
 };
