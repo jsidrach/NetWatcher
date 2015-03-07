@@ -57,8 +57,7 @@ exports.installRecorder = function (req, res) {
 function initFPGA(req, res, bitstream) {
   // Prequisite: HugePages on
   // 0 if huge pages is not active, 1 if hugepages is active
-  var code_script = scripts.exec(info.checkHugePagesOff);
-  code_script.on('exit', function (code) {
+  scripts.exec(info.checkHugePagesOff).on('exit', function (code) {
     if (code == 0) {
       // HugePages off: invalid state to initialize the FPGA
       common.readJSON('fpga_invalid_state', function (ans) {
@@ -75,7 +74,7 @@ function initFPGA(req, res, bitstream) {
 // Programs and mounts the FPGA with a bitstream
 function initBitstream(req, res, bitstream) {
   // Program the FPGA
-  scripts.exec('./bin/impact.sh ' + bitstream).on('exit', function (code) {
+  scripts.exec('sudo ./bin/impact.sh ' + bitstream).on('exit', function (code) {
     // Check if the FPGA Is programmed
     if (code != 0) {
       // Internal error
@@ -100,8 +99,7 @@ function initBitstream(req, res, bitstream) {
 // Mounts the FPGA
 function installFPGA(req, res, recorder) {
   // Check if the FPGA is programmed
-  var code_script = scripts.exec(info.checkInitFPGAOn);
-  code_script.on('exit', function (code) {
+  scripts.exec(info.checkInitFPGAOn).on('exit', function (code) {
     if (code != 0) {
       // FPGA not programmed: invalid state to mount the FPGA
       common.readJSON('fpga_invalid_state', function (ans) {

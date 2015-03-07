@@ -71,10 +71,9 @@ exports.convertToPcap = function (req, res) {
   }
 
   // Convert the capture
-  var command = './bin/caputils/simple2pcap -o "' + config.CAPTURES_DIR + req.params.convertedname + '" "'
+  var command = 'sudo ./bin/simple2pcap -o "' + config.CAPTURES_DIR + req.params.convertedname + '" "'
                                                   + config.CAPTURES_DIR + req.params.name + '"';
-  var code_script = scripts.exec(command);
-  code_script.on('exit', function (code) {
+  scripts.exec(command).on('exit', function (code) {
     if (code != 0) {
       common.logError('Error executing the simple2pcap command. Code: ' + code);
       common.logError('Command: ' + command);
@@ -95,11 +94,10 @@ exports.convertToSimple = function (req, res) {
   }
 
   // Convert the capture
-  var command = 'export LD_LIBRARY_PATH=bin/caputils/ && ' +
+  var command = 'sudo LD_LIBRARY_PATH=bin/caputils/ ' +
                 './bin/caputils/editcap -F hw_gen "' + config.CAPTURES_DIR + req.params.name + '" "'
                                             + config.CAPTURES_DIR + req.params.convertedname + '"';
-  var code_script = scripts.exec(command);
-  code_script.on('exit', function (code) {
+  scripts.exec(command).on('exit', function (code) {
     if (code != 0) {
       common.logError('Error executing the editcap command. Code: ' + code);
       common.logError('Command: ' + command);

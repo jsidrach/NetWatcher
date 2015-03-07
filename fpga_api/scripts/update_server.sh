@@ -4,10 +4,11 @@
 # Run from the fpga_api dir
 
 # Change configuration here
-SERVER_IP=localhost
-SERVER_PATH=/home/sid/Desktop/fpga_api/
-USER=sid
+SERVER_IP=berilio.ii.uam.es
+SERVER_PATH=/home/hpcn/JSid/fpga_api/
 # End of configuration
+
+USER=root
 
 # Set up connection
 SSHSOCKET=~/.ssh/$USER@$SERVER_IP

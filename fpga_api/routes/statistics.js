@@ -54,8 +54,7 @@ nextCallback = function (res, callbackList) {
 hugePagesOn = function (res, callbackList) {
   var status_json = 'status_1_hugepages_off';
   // 0 if huge pages is not active, 1 if hugepages is active
-  var code_script = scripts.exec(checkHugePagesOff);
-  code_script.on('exit', function (code) {
+  scripts.exec(checkHugePagesOff).on('exit', function (code) {
     if (code == 0) {
       common.sendJSON(status_json, res, 200);
       return;
@@ -68,8 +67,7 @@ hugePagesOn = function (res, callbackList) {
 initializedFPGA = function (res, callbackList) {
   var status_json = 'status_2_init_off';
   // 0 if fpga initialized, 1 otherwise
-  var code_script = scripts.exec(checkInitFPGAOn);
-  code_script.on('exit', function (code) {
+  scripts.exec(checkInitFPGAOn).on('exit', function (code) {
     if (code != 0) {
       common.sendJSON(status_json, res, 200);
       return;
@@ -82,8 +80,7 @@ initializedFPGA = function (res, callbackList) {
 mountedFPGA = function (res, callbackList) {
   var status_json = 'status_3_mount_off';
   // 0 if fpga is mounted, 1 otherwise
-  var code_script = scripts.exec(checkFPGAMountedOn);
-  code_script.on('exit', function (code) {
+  scripts.exec(checkFPGAMountedOn).on('exit', function (code) {
     if (code != 0) {
       common.sendJSON(status_json, res, 200);
       return;
@@ -97,9 +94,21 @@ statusFPGA = function (res, callbackList) {
   modeFPGA(function (ans) {
     // Set the type (player/recorder)
     if(ans == 'recorder') {
-      common.sendJSON('status_4_1_recorder_ready', res, 200);
+      runningFPGA(true, function(isRunning) {
+        if(isRunning) {
+          common.sendJSON('status_4_2_recording', res, 200);
+        } else {
+          common.sendJSON('status_4_1_recorder_ready', res, 200);
+        }
+      });
     } else if(ans == 'player') {
-      common.sendJSON('status_4_1_player_ready', res, 200);
+      runningFPGA(false, function(isRunning) {
+        if(isRunning) {
+          common.sendJSON('status_4_2_playing', res, 200);
+        } else {
+          common.sendJSON('status_4_1_player_ready', res, 200);
+        }
+      });
     } else {
       common.sendJSON('status_3_mount_off', res, 200);      
     }
@@ -107,6 +116,8 @@ statusFPGA = function (res, callbackList) {
 };
 
 // Other Internal+External Functions
+
+// Gets the mode of the FPGA (player/recorder/error)
 function modeFPGA(callback) {
   scripts.exec('cat /proc/nfp/nfp_report | tail -n 1', function (error, stdout, stderr) {
     var ans;
@@ -126,3 +137,12 @@ function modeFPGA(callback) {
   });
 };
 exports.modeFPGA = modeFPGA;
+
+// Gets a boolean value that represents if the FPGA is running (true: yes, false: no)
+function runningFPGA(recorder, callback) {
+  var command = recorder ? 'pgrep launchRecorder || pgrep card2host' : 'pgrep launchPlayer || pgrep host2card';
+  scripts.exec(command).on('exit', function(code) {
+    callback(code == 0);
+  });
+};
+exports.runningFPGA = runningFPGA;
