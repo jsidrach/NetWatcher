@@ -58,7 +58,7 @@ function installFPGA(req, res, recorder) {
         res.sendStatus(500);
         return;
       }
-      if(recorder) {
+      if (recorder) {
         scripts.exec('sudo ./bin/configureAel').on('exit', function (code) {
           if (code != 0) {
             // Internal Error
@@ -77,6 +77,21 @@ function installFPGA(req, res, recorder) {
   });
 };
 exports.installFPGA = installFPGA;
+
+// Stops the recorder (in loop)
+function stopLoopRecorder(req, res) {
+  scripts.exec('sudo pkill -SIGINT launchRecorder; sudo pkill -SIGINT card2host').on('exit', function (code) {
+    statistics_utils.runningFPGA(true, function (isRunning) {
+      // Recursion
+      if (isRunning) {
+        stopLoopRecorder(req, res);
+      } else {
+        common.sendJSON('recorder_stop_success', res, 200);
+      }
+    });
+  });
+};
+exports.stopLoopRecorder = stopLoopRecorder;
 
 
 

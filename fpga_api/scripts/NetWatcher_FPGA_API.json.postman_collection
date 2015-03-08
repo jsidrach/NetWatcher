@@ -18,7 +18,10 @@
 		"f10800cf-3542-ee95-50ac-f38bbdeb1ffa",
 		"3571e7fa-181f-1724-d01b-d3f7d762926c",
 		"f0e286f8-10d5-9ea8-20d1-6b74ecdfdf61",
-		"f29110ab-2e36-a3ca-a982-8eebd99c5059"
+		"f29110ab-2e36-a3ca-a982-8eebd99c5059",
+		"197d29fd-3fb9-030b-6242-453282843fc1",
+		"757e05d4-996b-2f94-13cd-9d2ddcc8b92d",
+		"7f3aa24b-613a-cf92-377b-b1f5848999d3"
 	],
 	"folders": [],
 	"timestamp": 1424082764812,
@@ -31,11 +34,40 @@
 	"write": true,
 	"requests": [
 		{
+			"id": "197d29fd-3fb9-030b-6242-453282843fc1",
+			"headers": "timestamp: {{$timestamp}}\n",
+			"url": "{{url}}/recorder/start/:capturename/:port/:bytes",
+			"pathVariables": {
+				"capturename": "",
+				"port": "",
+				"bytes": ""
+			},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
+			"data": [],
+			"dataMode": "params",
+			"name": "/recorder/start/:capturename/:port/:bytes",
+			"description": "Start recording data with the FPGA",
+			"descriptionFormat": "html",
+			"time": 1425810733287,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"collectionOwner": 0,
+			"synced": false
+		},
+		{
 			"id": "2fff6c24-5cac-f7a8-73ae-8ce68ea71c85",
 			"headers": "timestamp: {{$timestamp}}\n",
-			"url": "{{url}}/captures/pcap/simple/2flujos_crc/2flujos_crc.simple",
+			"url": "{{url}}/captures/pcap/simple/:name/:convertedname",
 			"preRequestScript": "",
-			"pathVariables": {},
+			"pathVariables": {
+				"name": "",
+				"convertedname": ""
+			},
 			"method": "PUT",
 			"data": [],
 			"dataMode": "params",
@@ -43,13 +75,12 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1425285268660,
+			"time": 1425810892212,
 			"name": "/captures/pcap/simple/:name/:convertedname",
 			"description": "Converts a pcap capture into a simple capture",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false,
-			"owner": 0
+			"synced": false
 		},
 		{
 			"id": "3571e7fa-181f-1724-d01b-d3f7d762926c",
@@ -97,9 +128,12 @@
 		{
 			"id": "678e82a8-30ad-5c48-6454-2d7b4874e65b",
 			"headers": "timestamp: {{$timestamp}}\n",
-			"url": "{{url}}/captures/rename/2flujos_crc/2flujos2_crc",
+			"url": "{{url}}/captures/rename/:oldname/:newname",
 			"preRequestScript": "",
-			"pathVariables": {},
+			"pathVariables": {
+				"oldname": "",
+				"newname": ""
+			},
 			"method": "PUT",
 			"data": [],
 			"dataMode": "params",
@@ -107,13 +141,12 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1425285273982,
+			"time": 1425810899896,
 			"name": "/captures/rename/:oldname/:newname",
 			"description": "Renames a capture",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false,
-			"owner": 0
+			"synced": false
 		},
 		{
 			"id": "72ada2de-cef0-b7ee-5532-7a1690e4bb8e",
@@ -136,6 +169,50 @@
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"synced": false,
 			"owner": 0
+		},
+		{
+			"id": "757e05d4-996b-2f94-13cd-9d2ddcc8b92d",
+			"headers": "timestamp: {{$timestamp}}\n",
+			"url": "{{url}}/recorder/stop",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
+			"data": [],
+			"dataMode": "params",
+			"name": "/recorder/stop",
+			"description": "Stop recording data with the FPGA",
+			"descriptionFormat": "html",
+			"time": 1425810758096,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"collectionOwner": 0,
+			"synced": false
+		},
+		{
+			"id": "7f3aa24b-613a-cf92-377b-b1f5848999d3",
+			"headers": "timestamp: {{$timestamp}}\n",
+			"url": "{{url}}/player/stop",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
+			"data": [],
+			"dataMode": "params",
+			"name": "/player/stop",
+			"description": "Stop playing data with the FPGA",
+			"descriptionFormat": "html",
+			"time": 1425810930028,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"collectionOwner": 0,
+			"synced": false
 		},
 		{
 			"id": "83a757f4-a710-4112-0fb2-7c6388dbd252",
@@ -182,9 +259,12 @@
 		{
 			"id": "9f3373fd-3082-83c5-89fe-e36432ee34d3",
 			"headers": "timestamp: {{$timestamp}}\n",
-			"url": "{{url}}/captures/simple/pcap/2flujos_crc.simple/2flujos_crc",
+			"url": "{{url}}/captures/simple/pcap/:name/:convertedname",
 			"preRequestScript": "",
-			"pathVariables": {},
+			"pathVariables": {
+				"name": "",
+				"convertedname": ""
+			},
 			"method": "PUT",
 			"data": [],
 			"dataMode": "params",
@@ -192,13 +272,12 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1425285262302,
+			"time": 1425810882342,
 			"name": "/captures/simple/pcap/:name/:convertedname",
 			"description": "Converts a simple capture into a pcap capture",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false,
-			"owner": 0
+			"synced": false
 		},
 		{
 			"id": "a7f4e8f0-e554-c22d-fc6d-7a419360b4e2",
@@ -302,7 +381,8 @@
 			"description": "Installs the FPGA as a player",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "f10800cf-3542-ee95-50ac-f38bbdeb1ffa",
@@ -344,7 +424,8 @@
 			"description": "Installs the FPGA as a recorder",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "f97abae4-ea9a-1d96-faff-9bb5aad34380",

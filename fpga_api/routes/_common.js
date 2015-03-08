@@ -26,7 +26,7 @@ function logError(string) {
 exports.logError = logError;
 
 // Reads a json in the messages folder
-function readJSON (file, callback) {
+function readJSON(file, callback) {
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
   fs.readFile(filePath, 'utf8', function (err, data) {
     var obj;
@@ -85,20 +85,20 @@ function etime2seconds(etime) {
   var parts = etime.trim().split(':');
   var parts_length = parts.length;
   if (parts_length == 2) {
-    return parseInt(parts[0])*60 + parseInt(parts[1]);
+    return parseInt(parts[0]) * 60 + parseInt(parts[1]);
   } else if (parts_length == 3) {
     var parts_aux = parts[0].split('-');
     if (parts_aux.length > 1) {
-      return ((parseInt(parts_aux[0])*24+parseInt(parts_aux[1]))*60 + parseInt(parts[1])) * 60 + parseInt(parts[2]);
+      return ((parseInt(parts_aux[0]) * 24 + parseInt(parts_aux[1])) * 60 + parseInt(parts[1])) * 60 + parseInt(parts[2]);
     } else {
-      return (parseInt(parts[0])*60 + parseInt(parts[1])) * 60 + parseInt(parts[2]);
+      return (parseInt(parts[0]) * 60 + parseInt(parts[1])) * 60 + parseInt(parts[2]);
     }
   }
 };
 exports.etime2seconds = etime2seconds;
 
 // Gets the delay (in seconds) between the petition timestamp and the petition
-function getDelay (req) {
+function getDelay(req) {
   if (typeof req.headers.timestamp === 'undefined') {
     return false;
   }
@@ -124,7 +124,7 @@ exports.getDelay = getDelay;
 // Checks if a timestamp is valid
 function validTimestamp(req) {
   var delay = getDelay(req);
-  if(delay === false) {
+  if (delay === false) {
     return false;
   }
   return (getDelay(req) <= config.MAX_DELAY);

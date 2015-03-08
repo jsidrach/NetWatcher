@@ -107,9 +107,8 @@ function validPcapCapture(name) {
   // Check if it is a valid pcap capture
   try {
     scripts.execSync(
-      'sudo LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "'
-      + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"'
-      );
+      'sudo LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "' + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"'
+    );
   } catch (error) {
     return false;
   }
