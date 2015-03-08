@@ -18,7 +18,7 @@ exports.ping = function (req, res) {
 // Seconds of delay between the client and the server (of timestamps)
 exports.delay = function (req, res) {
   var delay = common.getDelay(req);
-  if(delay === false) {
+  if (delay === false) {
     res.sendStatus(408);
   } else {
     common.readJSON('statistics_delay', function (ans) {
@@ -33,11 +33,10 @@ exports.delay = function (req, res) {
 // Status of the FPGA
 exports.status = function (req, res) {
   // Finite State Machine. Every transition to a new status (state) is checked with a callback test function
-  statistics_utils.nextCallback(res,
-    [
-      statistics_utils.hugePagesOn,
-      statistics_utils.initializedFPGA,
-      statistics_utils.mountedFPGA,
-      statistics_utils.statusFPGA
-    ]);
+  statistics_utils.nextCallback(res, [
+    statistics_utils.hugePagesOn,
+    statistics_utils.initializedFPGA,
+    statistics_utils.mountedFPGA,
+    statistics_utils.statusFPGA
+  ]);
 };

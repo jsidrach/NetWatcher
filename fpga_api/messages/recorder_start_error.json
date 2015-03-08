@@ -1,0 +1,5 @@
+{
+  "code": "error",
+  "type": "notification",
+  "description": "Invalid parameters. The FPGA could not start recording data."
+}

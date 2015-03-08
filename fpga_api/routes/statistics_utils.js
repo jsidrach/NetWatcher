@@ -2,6 +2,7 @@
 
 // Package dependencies
 var scripts = require('child_process');
+var path = require('path');
 var fs = require('fs');
 var config = require('../config.js');
 var common = require('./_common.js');
@@ -71,24 +72,24 @@ exports.mountedFPGA = mountedFPGA;
 function statusFPGA(res, callbackList) {
   modeFPGA(function (ans) {
     // Set the type (player/recorder)
-    if(ans == 'recorder') {
-      runningFPGA(true, function(isRunning) {
-        if(isRunning) {
+    if (ans == 'recorder') {
+      runningFPGA(true, function (isRunning) {
+        if (isRunning) {
           sendDataRecording(res);
         } else {
           common.sendJSON('status_4_1_recorder_ready', res, 200);
         }
       });
-    } else if(ans == 'player') {
-      runningFPGA(false, function(isRunning) {
-        if(isRunning) {
+    } else if (ans == 'player') {
+      runningFPGA(false, function (isRunning) {
+        if (isRunning) {
           common.sendJSON('status_4_2_playing', res, 200);
         } else {
           common.sendJSON('status_4_1_player_ready', res, 200);
         }
       });
     } else {
-      common.sendJSON('status_3_mount_off', res, 200);      
+      common.sendJSON('status_3_mount_off', res, 200);
     }
   });
 };
@@ -96,7 +97,7 @@ exports.statusFPGA = statusFPGA;
 
 // Gets the mode of the FPGA (player/recorder/error)
 function modeFPGA(callback) {
-  scripts.exec('cat /proc/nfp/nfp_report | tail -n 1', function (error, stdout, stderr) {
+  scripts.exec('sleep 1 && cat /proc/nfp/nfp_report | tail -n 1', function (error, stdout, stderr) {
     var ans;
     if (error) {
       ans = 'error';
@@ -118,7 +119,7 @@ exports.modeFPGA = modeFPGA;
 // Gets a boolean value that represents if the FPGA is running (true: yes, false: no)
 function runningFPGA(recorder, callback) {
   var command = recorder ? 'pgrep launchRecorder || pgrep card2host' : 'pgrep launchPlayer || pgrep host2card';
-  scripts.exec(command).on('exit', function(code) {
+  scripts.exec(command).on('exit', function (code) {
     callback(code == 0);
   });
 };
@@ -137,13 +138,22 @@ function sendDataRecording(res) {
         common.logError(stderr);
         res.sendStatus(500);
         return;
-      }    
+      }
       // Output format:
       //    [etime] sudo -b nohup ./bin/launchRecorder.sh port bytes simple
       var parts = stdout.match(/\S+/g);
-      if(parts.length >= 8) {
+      if ((parts != null) && (parts.length >= 8)) {
         ans.elapsed_time = common.etime2seconds(parts[0]);
         ans.bytes_total = parseInt(parts[6]);
+        // Add the extension part
+        var extension = parts[6].slice(-1).toUpperCase();
+        if (extension == 'G') {
+          ans.bytes_total *= 1024 * 1024 * 1024;
+        } else if (extension == 'M') {
+          ans.bytes_total *= 1024 * 1024;
+        } else if (extension == 'K') {
+          ans.bytes_total *= 1024;
+        }
         ans.port = parseInt(parts[5]);
         var capturePath = parts.slice(7).join(' ');
         var captureStats = fs.statSync(capturePath);

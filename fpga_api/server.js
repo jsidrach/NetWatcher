@@ -41,27 +41,25 @@ app.route('*')
 // Manager
 
 router.post('/system/reboot', manager.reboot);
+
 router.post('/player/init', manager.initPlayer);
 router.post('/recorder/init', manager.initRecorder);
+
 router.post('/player/install', manager.installPlayer);
 router.post('/recorder/install', manager.installRecorder);
 
-// router.post('/player/configure/:param1/:param2/:param3...', manager.configurePlayer);
-// router.post('/recorder/configure/:param1/:param2/:param3...', manager.configureRecorder);
+router.post('/player/start/:capturename/:mask/:other', manager.startPlayer);
+router.post('/recorder/start/:capturename/:port/:bytes', manager.startRecorder);
 
-// router.post('/player/start', manager.startPlayer);
-// router.post('/recorder/start', manager.startRecorder);
+router.post('/player/stop', manager.stopPlayer);
+router.post('/recorder/stop', manager.stopRecorder);
 
-// router.post('/player/pause', manager.pausePlayer);
-// router.post('/recorder/pause', manager.pauseRecorder);
-
-// router.post('/player/stop', manager.stopPlayer);
-// router.post('/recorder/stop', manager.stopRecorder);
 
 // Real Time Statistics
 
 router.get('/info/ping', statistics.ping);
 router.get('/info/delay', statistics.delay);
+
 router.get('/info/status', statistics.status);
 // router.get('/player/statistics', statistics.playerStats);
 // router.get('/recorder/statistics', statistics.recorderStats);
@@ -72,10 +70,14 @@ router.get('/info/status', statistics.status);
 router.get('/captures/all', captures.all);
 router.get('/captures/simple', captures.simple);
 router.get('/captures/pcap', captures.pcap);
+
 router.get('/captures/path', captures.path);
+
 router.put('/captures/rename/:oldname/:newname', captures.rename);
+
 router.put('/captures/simple/pcap/:name/:convertedname', captures.convertToPcap);
 router.put('/captures/pcap/simple/:name/:convertedname', captures.convertToSimple);
+
 router.delete('/captures/delete/:name', captures.delete);
 
 
