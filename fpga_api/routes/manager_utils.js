@@ -84,7 +84,9 @@ function stopLoopRecorder(req, res) {
     statistics_utils.runningFPGA(true, function (isRunning) {
       // Recursion
       if (isRunning) {
-        stopLoopRecorder(req, res);
+        setTimeout(function () {
+          stopLoopRecorder(req, res);
+        }, 500);
       } else {
         common.sendJSON('recorder_stop_success', res, 200);
       }

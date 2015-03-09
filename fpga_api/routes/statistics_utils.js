@@ -70,7 +70,7 @@ exports.mountedFPGA = mountedFPGA;
 
 // Status of the FPGA (after being mounted)
 function statusFPGA(res, callbackList) {
-  modeFPGA(function (ans) {
+  modeFPGA(5, function (ans) {
     // Set the type (player/recorder)
     if (ans == 'recorder') {
       runningFPGA(true, function (isRunning) {
@@ -96,20 +96,24 @@ function statusFPGA(res, callbackList) {
 exports.statusFPGA = statusFPGA;
 
 // Gets the mode of the FPGA (player/recorder/error)
-function modeFPGA(callback) {
-  scripts.exec('sleep 1 && cat /proc/nfp/nfp_report | tail -n 1', function (error, stdout, stderr) {
+function modeFPGA(tries, callback) {
+  scripts.exec('cat /proc/nfp/nfp_report | tail -n 1', function (error, stdout, stderr) {
     var ans;
-    if (error) {
-      ans = 'error';
-      common.logError(stderr);
-    }
     // Set the type (player/recorder)
-    else if (stdout.indexOf('PLA') != -1) {
+    if (stdout.indexOf('PLA') != -1) {
       ans = 'player';
     } else if (stdout.indexOf('REC') != -1) {
       ans = 'recorder';
     } else {
-      ans = 'error';
+      tries--;
+      if (tries <= 0) {
+        ans = 'error';
+      } else {
+        setTimeout(function () {
+          modeFPGA(tries, callback);
+        }, 500);
+        return;
+      }
     }
     callback(ans);
   });
@@ -132,7 +136,7 @@ exports.runningFPGA = runningFPGA;
 // Sends the current info of the record in progress
 function sendDataRecording(res) {
   common.readJSON('status_4_2_recording', function (ans) {
-    scripts.exec('ps -eo etime,command | grep launchRecorder.sh | grep -v grep | head -n1', function (error, stdout, stderr) {
+    scripts.exec('ps -eo etime,command | grep launchRecorder.sh | grep -v grep | head -n 1', function (error, stdout, stderr) {
       if (error) {
         // Internal error
         common.logError(stderr);

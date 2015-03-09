@@ -124,8 +124,86 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         
+        $this->pLine('</div>', - 1);
+        
         /* FPGA initialization progress modal */
         $this->renderModalRequest('initModal', _('Initializing the FPGA'), 'initProgress', 'initLabel');
+    }
+
+    /**
+     * Renders recorder form
+     */
+    public function renderRecorderForm()
+    {
+        /* Form for start recording */
+        $this->pLine('<form id="startRecording" class="form-horizontal" role="form" action="javascript:void(0);" method="post">');
+        $this->pLine('<h3 class="col-sm-offset-2">' . _('Configure the FPGA to start recording') . '</h3><hr>', 1);
+        
+        /* Capture name */
+        $this->pLine('<div class="form-group has-feedback" id="recordCaptureNameControl">');
+        $this->pLine('<label for="recordCaptureName" class="col-sm-3 col-sm-offset-1 control-label">' . _('Name of the new capture') . '</label>', 1);
+        $this->pLine('<div class="col-sm-5">');
+        $this->pLine('<input type="text" class="form-control" name="recordCaptureName" id="recordCaptureName">', 1);
+        $this->pLine('<span class="glyphicon form-control-feedback" id="recordCaptureNameIcon" aria-hidden="true" ></span>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Bytes */
+        $this->pLine('<div class="form-group has-feedback" id="recordCaptureBytesControl">');
+        $this->pLine('<label for="recordCaptureBytes" class="col-sm-3 col-sm-offset-1 control-label">' . _('Bytes to capture') . '</label>', 1);
+        $this->pLine('<div class="col-sm-2">');
+        $this->pLine('<input type="number" min="1" class="form-control" name="recordCaptureBytes" id="recordCaptureBytes">', 1);
+        $this->pLine('<span class="glyphicon form-control-feedback" id="recordCaptureBytesIcon" aria-hidden="true" ></span>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="col-sm-3">');
+        $this->pLine('<div class="pull-right">', 1);
+        $this->moveIndent(1);
+        foreach (array(
+            'Bytes',
+            'K',
+            'M',
+            'G'
+        ) as $type) {
+            $this->pLine('<label class="radio-inline">');
+            if ($type == 'Bytes') {
+                $this->pLine('<input id="recordBytes' . $type . '" name="recordCaptureBytes" value="" type="radio" checked>', 1);
+                $this->pLine($type, 1);
+            } else {
+                $this->pLine('<input id="recordBytes' . $type . '" name="recordCaptureBytes" value="' . $type . '" type="radio">', 1);
+                $this->pLine($type . 'B', 1);
+            }
+            $this->pLine('</label>', - 2);
+        }
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Port */
+        $this->pLine('<div class="form-group has-feedback" id="recordCapturePortControl">');
+        $this->pLine('<label class="col-sm-3 col-sm-offset-1 control-label">' . _('Port to capture') . '</label>', 1);
+        $this->pLine('<div class="col-sm-5">');
+        $this->moveIndent(1);
+        foreach (range(0, 3) as $port) {
+            $this->pLine('<label class="radio-inline">');
+            if ($port == 0) {
+                $this->pLine('<input name="recordCapturePort" value="' . $port . '" type="radio" checked>', 1);
+            } else {
+                $this->pLine('<input name="recordCapturePort" value="' . $port . '" type="radio">', 1);
+            }
+            $this->pLine(_('Port') . ' ' . $port, 1);
+            $this->pLine('</label>', - 2);
+        }
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Save button */
+        $this->pLine('<div class="form-group">');
+        $this->pLine('<div class="col-sm-offset-7 col-sm-2">', 1);
+        $this->pLine('<button type="submit" class="btn btn-default pull-right">' . _('Start') . '</button>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        $this->pLine('</form>', - 1);
     }
 
     /**

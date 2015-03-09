@@ -26,7 +26,8 @@ class managerController extends Common\appController
         'error' => 'renderError',
         'hugepages_off' => 'renderErrorHP',
         'init_off' => 'renderModeSelection',
-        'mount_off' => 'renderModeSelection'
+        'mount_off' => 'renderModeSelection',
+        'recorder_ready' => 'renderRecorderForm'
     );
 
     /**
@@ -57,9 +58,10 @@ class managerController extends Common\appController
         if (isset($this->subPages[$status]) && method_exists($this->view, $this->subPages[$status])) {
             $callback = $this->subPages[$status];
         } else {
-            $callback = 'renderModeSelection';
+            $callback = 'renderError';
         }
-        $this->view->render($callback);
+        // $this->view->render($callback);
+        $this->view->render('renderRecorderForm');
     }
 }
 ?>
