@@ -61,7 +61,7 @@ exports.startPlayer = function (req, res) {
 // /recorder/start/:capturename/:port/:bytes
 // Records a capture
 exports.startRecorder = function (req, res) {
-  statistics_utils.modeFPGA(function (ans) {
+  statistics_utils.modeFPGA(5, function (ans) {
     // FPGA must be programmed as a recorder
     if (ans != 'recorder') {
       // FPGA programmed as a recorder

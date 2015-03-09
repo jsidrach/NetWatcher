@@ -5,6 +5,7 @@ TODO Future:
 
 Dudas Jose:
 -------
+  - Por que no funciona recorder?
   - Maquina de estados finitas FPGA, una vez programada y montada
   - Si ya está programada la fpga y quiero cambiar de modo, vale con ejecutar otra vez impact/install_driver
     - O hay antes que desmontarla/desprogramarla o algo...

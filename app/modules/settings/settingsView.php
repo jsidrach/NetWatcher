@@ -43,9 +43,8 @@ class settingsView extends Common\appView
         $this->pLine('<form class="form-horizontal" role="form" action="settings/save" method="post">');
         
         /* Server settings */
-        $this->pLine('<h3>' . _('Server Settings') . '</h3><hr>', 1);
-        $this->pLine('<div class="form-group has-feedback" id="serverIpForm">');
-        $this->pLine('<label for="serverIp" class="col-sm-2 control-label">' . _('FPGA API base address') . '</label>', 1);
+        $this->pLine('<div class="form-group has-feedback" id="serverIpForm">', 1);
+        $this->pLine('<label for="serverIp" class="col-sm-4 control-label">' . _('FPGA API base address') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<input type="text" class="form-control" name="serverIp" id="serverIp" value="' . \Core\Router::sanitize(\Core\Config::$REMOTE_SERVER_IP) . '">', 1);
         $this->pLine('<span class="glyphicon glyphicon-ok form-control-feedback" id="ipIcon" aria-hidden="true" ></span>');
@@ -53,10 +52,9 @@ class settingsView extends Common\appView
         $this->pLine('</div>', - 1);
         
         /* App settings */
-        $this->pLine('<h3>' . _('App Settings') . '</h3><hr>');
         /* Language */
         $this->pLine('<div class="form-group">');
-        $this->pLine('<label for="language" class="col-sm-2 control-label">' . _('Language') . '</label>', 1);
+        $this->pLine('<label for="language" class="col-sm-4 control-label">' . _('Language') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<select class="form-control custom" name="language" id="language">', 1);
         $this->moveIndent(1);
@@ -72,7 +70,7 @@ class settingsView extends Common\appView
         $this->pLine('</div>', - 1);
         /* Theme */
         $this->pLine('<div class="form-group">');
-        $this->pLine('<label for="theme" class="col-sm-2 control-label">' . _('Theme') . '</label>', 1);
+        $this->pLine('<label for="theme" class="col-sm-4 control-label">' . _('Theme') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<select class="form-control custom" name="theme" id="theme">', 1);
         $this->moveIndent(1);
@@ -86,11 +84,11 @@ class settingsView extends Common\appView
         $this->pLine('</select>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        
+
         /* Save button */
         $this->pLine('<div class="form-group">');
-        $this->pLine('<div class="col-sm-offset-2 col-sm-2">', 1);
-        $this->pLine('<button type="submit" class="btn btn-default">' . _('Save') . '</button>', 1);
+        $this->pLine('<div class="col-sm-offset-8 col-sm-2">', 1);
+        $this->pLine('<button type="submit" class="btn btn-default pull-right">' . _('Save') . '</button>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</form>', - 1);
