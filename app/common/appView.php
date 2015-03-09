@@ -211,7 +211,7 @@ abstract class appView extends \Core\View
         $this->pLine('<div class="container text-center">', 1);
         
         $this->pLine('<p class="muted credit">', 1);
-        $this->pLine('High Performance Computing and Networking');
+        $this->pLine('High Performance Computing and Networking', 1);
         $this->pLine('&middot;');
         $this->pLine('<a href="status">' . _('Status') . '</a>');
         $this->pLine('&middot;');
@@ -220,7 +220,7 @@ abstract class appView extends \Core\View
         $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher">' . _('Source') . '</a>');
         $this->pLine('&middot;');
         $this->pLine('<a href="" data-toggle="modal" data-target="#license">' . _('License') . '</a>');
-        $this->pLine('</p>');
+        $this->pLine('</p>', - 1);
         
         $this->pLine('</div>', - 1);
         
