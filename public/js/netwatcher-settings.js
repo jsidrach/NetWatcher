@@ -48,4 +48,4 @@ function setServerIpInput(value) {
     }
     serverIpIcon.addClass('glyphicon-warning-sign');
   }
-}
+};

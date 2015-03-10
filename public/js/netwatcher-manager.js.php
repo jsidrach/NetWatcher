@@ -52,6 +52,23 @@ $(document).ready(function () {
       }
     );
   }
+  // Configure the FPGA to start recording
+  else if($('#recordCaptureNameControl').length) {
+    $('#recordCaptureName').on('input', function () {
+      var checkTest = checkRecordName();
+      setRecordCaptureNameFeedback(checkTest);
+      setRecordCaptureOK(checkTest && checkRecordBytes());
+    });
+    $('#recordCaptureBytes').on('input', function () {
+      var checkTest = checkRecordBytes();
+      setRecordCaptureBytesFeedback(checkTest);
+      setRecordCaptureOK(checkTest && checkRecordName());
+    });
+    $('#recordCaptureStart').on('click', function () {
+      startRecording();
+    });
+    $('#recordCaptureStart').prop('disabled', !(checkRecordBytes() && checkRecordName()));
+  }
   // TODO: Rest of pages
 });
 
@@ -209,6 +226,120 @@ function installDriver(player) {
 };
 
 //
+// Configure the FPGA to start recording
+//
+
+// Sets the capture name visual feedback
+function setRecordCaptureNameFeedback(value) {
+  setFeedback(value, $('#recordCaptureNameControl'), $('#recordCaptureNameIcon'));
+};
+
+// Sets the bytes to capture visual feedback
+function setRecordCaptureBytesFeedback(value) {
+  setFeedback(value, $('#recordCaptureBytesControl'), $('#recordCaptureBytesIcon'));
+};
+
+// Sets the feedback of an input
+function setFeedback(value, input, icon) {
+  if (value) {
+    if (input.hasClass('has-error')) {
+      input.removeClass('has-error');
+    }
+    input.addClass('has-success');
+    if (icon.hasClass('glyphicon-remove')) {
+      icon.removeClass('glyphicon-remove');
+    }
+    icon.addClass('glyphicon-ok');
+  } else {
+    if (input.hasClass('has-success')) {
+      input.removeClass('has-success');
+    }
+    input.addClass('has-error');
+    if (icon.hasClass('glyphicon-ok')) {
+      icon.removeClass('glyphicon-ok');
+    }
+    icon.addClass('glyphicon-remove');
+  }
+};
+
+// Checks the name of the capture
+function checkRecordName() {
+  var name = $('#recordCaptureName').val();
+  if(name.length < 1) {
+    return false;
+  }
+  if(name.length > 50) {
+    return false;
+  }
+
+  // Name regexp
+  var regexpName = /[-a-zA-Z0-9_ \(\)]+\.{0,1}/g;
+  while(name.match(regexpName)) {
+    name = name.replace(regexpName, '');
+  }
+  return name.length == 0;
+};
+
+// Checks the bytes to capture
+function checkRecordBytes() {
+  return /^[1-9]+[0-9]*$/.test($('#recordCaptureBytes').val());
+};
+
+// Sets the OK button enabled property
+function setRecordCaptureOK(value) {
+  $('#recordCaptureStart').prop('disabled', !value);
+};
+
+// Starts recording
+function startRecording() {
+  // Checks the parameters
+  if(!checkRecordName()) {
+    notificationError(<?php echo '\'' . _('Invalid capture name') . '\'' ?>);
+    return;
+  }
+  if(!checkRecordBytes()) {
+    notificationError(<?php echo '\'' . _('Invalid number of bytes to record') . '\'' ?>);
+    return;
+  }
+
+  // Disable the inputs
+  $('#recordCaptureName').prop('disabled', true);
+  $('#recordCaptureBytes').prop('disabled', true);
+  $('input:radio[name=recordCapturePort]').prop('disabled', true);
+  $('input:radio[name=recordCaptureBytes]').prop('disabled', true);
+
+  // Do the petition
+  var startURL = baseURL
+                   + $('#recordCaptureName').val() + '/'
+                   + $('input:radio[name=recordCapturePort]:checked').val() + '/'
+                   + $('#recordCaptureBytes').val() + $('input:radio[name=recordCaptureBytes]:checked').val();
+  $.ajax({
+    type: 'POST',
+    url: startURL,
+    headers: {
+      'timestamp': Date.now()
+    },
+    dataType: 'json',
+    success: function (resp) {
+      // Recording
+      $.bootstrapGrowl(<?php echo '\'' . _('Recording now! Reloading...') . '\'' ?>, {
+        type: 'info'
+      });
+      setTimeout(function () {
+        location.reload(true);
+      }, 3000);
+    },
+    error: function (e) {
+      notificationError(<?php echo '\'' . _('Invalid state or capture name already taken. Reloading...') . '\'' ?>);
+      setTimeout(function () {
+        location.reload(true)
+      }, 3000);
+    }
+  });
+};
+
+
+//
 // Auxiliary functions
 //
 
@@ -228,4 +359,12 @@ function waitUntilUp(callback) {
       }
     });
   }, 3000);
+};
+
+// Creates an error notification
+function notificationError(stringERR) {
+  // Notification of the error
+  $.bootstrapGrowl(stringERR, {
+    type: 'danger'
+  });
 };

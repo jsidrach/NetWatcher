@@ -136,16 +136,19 @@ function sendDataCaptures(res, dataCaptures) {
 
 // Checks if a name is valid (syntactically)
 function validName(name) {
-  var flag = true;
-  // Name is valid if it does not have the following substrings:
-  ['\\/', '\\.\\.', '\\$', '\\~'].every(function (entry) {
-    if (name.search(entry) != -1) {
-      flag = false;
-      return false;
-    }
-    return true;
-  });
-  return flag;
+  if(name.length < 1) {
+    return false;
+  }
+  if(name.length > 50) {
+    return false;
+  }
+
+  // Name regexp
+  var regexpName = /[-a-zA-Z0-9_ \(\)]+\.{0,1}/g;
+  while(name.match(regexpName)) {
+    name = name.replace(regexpName, '');
+  }
+  return name.length == 0;
 };
 
 // File exists and it is valid
