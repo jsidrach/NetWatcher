@@ -27,7 +27,8 @@ class managerController extends Common\appController
         'hugepages_off' => 'renderErrorHP',
         'init_off' => 'renderModeSelection',
         'mount_off' => 'renderModeSelection',
-        'recorder_ready' => 'renderRecorderForm'
+        'recorder_ready' => 'renderRecorderForm',
+        'recording' => 'renderRecording'
     );
 
     /**
@@ -53,15 +54,16 @@ class managerController extends Common\appController
      */
     public function display(Array $args)
     {
-        $status = $this->model->getStatus();
+        $action = $this->model->getManagerStatus()->status;
         
-        if (isset($this->subPages[$status]) && method_exists($this->view, $this->subPages[$status])) {
-            $callback = $this->subPages[$status];
+        if (isset($this->subPages[$action]) && method_exists($this->view, $this->subPages[$action])) {
+            $callback = $this->subPages[$action];
         } else {
             $callback = 'renderError';
         }
-        // $this->view->render($callback);
-        $this->view->render('renderRecorderForm');
+        //$this->view->render($callback);
+        // TODO: Uncomment when finish
+        $this->view->render('renderRecording');
     }
 }
 ?>
