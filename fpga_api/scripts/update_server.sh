@@ -29,8 +29,7 @@ ssh -t -o ControlPath=$SSHSOCKET ${USER}@${SERVER_IP} "cd ${SERVER_PATH}
                              chmod +x ./scripts/do_chmod.sh
                              ./scripts/install_dependencies.sh
                              ./scripts/do_chmod.sh
-                             ./scripts/install_service.sh ${SERVER_PATH} ${USER}
-                             sudo service fpga_api start"
+                             ./scripts/install_service.sh ${SERVER_PATH} ${USER}"
 # Close the connection
 ssh -S $SSHSOCKET -O exit $USER@$SERVER_IP
 

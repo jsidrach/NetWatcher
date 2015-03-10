@@ -166,10 +166,10 @@ class managerView extends Common\appView
         ) as $type) {
             $this->pLine('<label class="radio-inline">');
             if ($type == 'Bytes') {
-                $this->pLine('<input id="recordBytes' . $type . '" name="recordCaptureBytes" value="" type="radio" checked>', 1);
+                $this->pLine('<input name="recordCaptureBytes" value="" type="radio" checked>', 1);
                 $this->pLine($type, 1);
             } else {
-                $this->pLine('<input id="recordBytes' . $type . '" name="recordCaptureBytes" value="' . $type . '" type="radio">', 1);
+                $this->pLine('<input name="recordCaptureBytes" value="' . $type . '" type="radio">', 1);
                 $this->pLine($type . 'B', 1);
             }
             $this->pLine('</label>', - 2);
@@ -199,7 +199,7 @@ class managerView extends Common\appView
         /* Save button */
         $this->pLine('<div class="form-group">');
         $this->pLine('<div class="col-sm-offset-7 col-sm-2">', 1);
-        $this->pLine('<button type="submit" class="btn btn-default pull-right">' . _('Start') . '</button>', 1);
+        $this->pLine('<button id="recordCaptureStart" type="submit" class="btn btn-default pull-right">' . _('Start') . '</button>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         

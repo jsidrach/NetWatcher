@@ -57,6 +57,20 @@ $(document).ready(function () {
   // Delete capture
   $('#confirmDelete').click(deleteCapture);
 
+  // Enable the buttons only when the input is OK
+  $('#newName').on('input', function() {
+    var valid = validName($(this).val());
+    $('#renameOK').prop('disabled', !valid);
+    setFeedback(valid, $('#renameInputFeedback'));
+  });
+  $('#convertedName').on('input', function() {
+    var valid = validName($(this).val());
+    $('#convertOK').prop('disabled', !valid);
+    setFeedback(valid, $('#convertInputFeedback'));
+  });
+  $('#convertOK').attr('disabled', true);
+  $('#renameOK').attr('disabled', true);
+
   // Initial refresh of data
   refreshData();
 });
@@ -64,9 +78,7 @@ $(document).ready(function () {
 // Enables/Disables the right panels
 function toggleRightPanels(value) {
   $('#convertedName').attr('disabled', !value);
-  $('#convertOK').attr('disabled', !value);
   $('#newName').attr('disabled', !value);
-  $('#renameOK').attr('disabled', !value);
   $('#deleteCapture').attr('disabled', !value);
   if (!value) {
     $('#captureName').text(noCaptureText);
@@ -75,10 +87,14 @@ function toggleRightPanels(value) {
     selectedCaptureType = null;
     $('#convertedName').val('');
     $('#newName').val('');
+    $('#convertOK').attr('disabled', true);
+    $('#renameOK').attr('disabled', true);
+    disableFeedback($('#convertInputFeedback'));
+    disableFeedback($('#renameInputFeedback'));
   } else {
     $('#captureNamePanel').removeClass('panel-info').addClass('panel-primary');
   }
-}
+};
 
 // Refreshes the table data
 function refreshData() {
@@ -107,7 +123,7 @@ function refreshData() {
       setAutoRefresh(false);
     }
   });
-}
+};
 
 // AutoRefresh check button handler
 function autoRefreshHandler() {
@@ -116,7 +132,7 @@ function autoRefreshHandler() {
   } else {
     setAutoRefresh(false);
   }
-}
+};
 
 // Sets the autorefresh
 function setAutoRefresh(value) {
@@ -126,7 +142,7 @@ function setAutoRefresh(value) {
     interval = setInterval(refreshData, 5000);
   }
   $('#autoRefresh').prop('checked', value);
-}
+};
 
 // Selects a capture from the table
 function selectCapture() {
@@ -138,7 +154,7 @@ function selectCapture() {
   }
   $('#captureName').text(selectedCaptureName);
   toggleRightPanels(true);
-}
+};
 
 // Convert the selected capture
 function convertCapture() {
@@ -182,7 +198,7 @@ function convertCapture() {
   $.bootstrapGrowl(<?php echo '\'' . _('Capture queued for conversion') . '\''; ?>, {
       type: 'info'
     });
-}
+};
 
 // Rename the selected capture
 function renameCapture() {
@@ -215,7 +231,7 @@ function renameCapture() {
       handleResponse(null, null, stringERR);
     }
   });
-}
+};
 
 // Delete the selected capture
 function deleteCapture() {
@@ -245,7 +261,7 @@ function deleteCapture() {
       handleResponse(null, null, stringERR);
     }
   });
-}
+};
 
 // Handles a petition response
 function handleResponse(resp, stringOK, stringERR) {
@@ -266,7 +282,7 @@ function handleResponse(resp, stringOK, stringERR) {
   }
   toggleRightPanels(false);
   refreshData();
-}
+};
 
 // Creates an error notification
 function notificationError(stringERR) {
@@ -274,21 +290,46 @@ function notificationError(stringERR) {
   $.bootstrapGrowl(stringERR, {
     type: 'danger'
   });
-}
+};
+
+// Sets the feedback of an input
+function setFeedback(value, input) {
+  if (value) {
+    if (input.hasClass('has-error')) {
+      input.removeClass('has-error');
+    }
+    input.addClass('has-success');
+  } else {
+    if (input.hasClass('has-success')) {
+      input.removeClass('has-success');
+    }
+    input.addClass('has-error');
+  }
+};
+
+// Disables the feedback of an input
+function disableFeedback(input) {
+  if (input.hasClass('has-error')) {
+    input.removeClass('has-error');
+  }
+  if (input.hasClass('has-success')) {
+    input.removeClass('has-success');
+  }
+};
 
 // Checks if a name is valid (syntactically)
 function validName(name) {
-  if (name.length < 1) {
+  if(name.length < 1) {
     return false;
   }
-  var flag = true;
-  // Name is valid if it does not have the following substrings:
-  ['\\/', '\\.\\.', '\\$', '\\~'].every(function (entry) {
-    if (name.search(entry) != -1) {
-      flag = false;
-      return false;
-    }
-    return true;
-  });
-  return flag;
+  if(name.length > 50) {
+    return false;
+  }
+
+  // Name regexp
+  var regexpName = /[-a-zA-Z0-9_ \(\)]+\.{0,1}/g;
+  while(name.match(regexpName)) {
+    name = name.replace(regexpName, '');
+  }
+  return name.length == 0;
 };
