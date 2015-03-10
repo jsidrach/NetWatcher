@@ -205,6 +205,29 @@ class managerView extends Common\appView
         
         $this->pLine('</form>', - 1);
     }
+    
+    /**
+     * Renders the _currently_ recording page
+     */
+    public function renderRecording() {
+        // TODO
+        /*
+                            'Recording...'
+              [Barra superior con porcentaje]
+        Name           | [Name]         Port      | [Port]
+        Bytes Captured | [Bytes]     Elapsed Time | [00:00]
+        Bytes Total    | [Bytes]      Recent Rate | [213KB/s]
+  
+  - La información inicial ya está en el primer status $this->model->getManagerStatus()
+  - Transformar los números:
+    - Ir dividiendo por 1024 hasta que sea menor que 1024, cambiando de letra
+  - Al finalizar, botón de refrescar
+    - Finaliza cuando status ya no devuelva recording
+  - Conection error > poner notificación
+        
+        */
+        print_r($this->model->getManagerStatus());
+    }
 
     /**
      * Renders a modal overlay (for ajax petitions)

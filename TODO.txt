@@ -1,3 +1,18 @@
+TODO Week:
+-------
+                      'Recording...'
+              [Barra superior con porcentaje]
+Name           | [Name]         Port      | [Port]
+Bytes Captured | [Bytes]     Elapsed Time | [00:00]
+Bytes Total    | [Bytes]      Recent Rate | [213KB/s]
+  
+  - La información inicial ya está en el primer status
+  - Transformar los números:
+    - Ir dividiendo por 1024 hasta que sea menor que 1024, cambiando de letra
+  - Al finalizar, botón de refrescar
+    - Finaliza cuando status ya no devuelva recording
+  - Conection error > poner notificación
+
 TODO Future:
 -------
   - Maquina de estados finita FPGA? Terminar tipos de códigos status
