@@ -1,5 +1,11 @@
 TODO Week:
 -------
+- Ajustar titulos pagina settings a como estaban anteriormente, 2 categorias
+- Probar que las distintas paginas del manager se vean bien
+
+
+
+
                       'Recording...'
               [Barra superior con porcentaje]
 Name           | [Name]         Port      | [Port]
