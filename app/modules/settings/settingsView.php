@@ -43,7 +43,17 @@ class settingsView extends Common\appView
         $this->pLine('<form class="form-horizontal" role="form" action="settings/save" method="post">');
         
         /* Server settings */
-        $this->pLine('<div class="form-group has-feedback" id="serverIpForm">', 1);
+        $this->pLine('<div class="row">', 1);
+        $this->pLine('<div class="col-md-4">', 1);
+        $this->pLine('<h3 class="pull-right">' . _('Server Settings') . '</h3>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
+        $this->pLine('<hr>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="form-group has-feedback" id="serverIpForm">');
         $this->pLine('<label for="serverIp" class="col-sm-4 control-label">' . _('FPGA API base address') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<input type="text" class="form-control" name="serverIp" id="serverIp" value="' . \Core\Router::sanitize(\Core\Config::$REMOTE_SERVER_IP) . '">', 1);
@@ -53,6 +63,16 @@ class settingsView extends Common\appView
         
         /* App settings */
         /* Language */
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-4">', 1);
+        $this->pLine('<h3 class="pull-right">' . _('App Settings') . '</h3>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
+        $this->pLine('<hr>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
         $this->pLine('<div class="form-group">');
         $this->pLine('<label for="language" class="col-sm-4 control-label">' . _('Language') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
@@ -84,7 +104,7 @@ class settingsView extends Common\appView
         $this->pLine('</select>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-
+        
         /* Save button */
         $this->pLine('<div class="form-group">');
         $this->pLine('<div class="col-sm-offset-8 col-sm-2">', 1);
