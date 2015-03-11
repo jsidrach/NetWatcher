@@ -123,6 +123,11 @@ exports.getDelay = getDelay;
 
 // Checks if a timestamp is valid
 function validTimestamp(req) {
+  // Set it off if MAX_DELAY is <= 0
+  if(config.MAX_DELAY <= 0) {
+    return true;
+  }
+  // Get the delay and compare
   var delay = getDelay(req);
   if (delay === false) {
     return false;

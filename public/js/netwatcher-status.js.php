@@ -48,7 +48,7 @@ function setDelayOK(delay, maxDelay) {
   var status = $('#checkTimestamp');
   var info = $('#checkTimestampInfo');
   var desc = $('#checkTimestampDesc');
-  if (delay <= maxDelay) {
+  if ((delay <= maxDelay) || (maxDelay <= 0)) {
     status.removeClass('panel-info').addClass('panel-success');
     info.text(<?php echo '\'' . _('Passed') . '\''; ?>);
     setStatsPassed(true);

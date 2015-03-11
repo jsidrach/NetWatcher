@@ -32,5 +32,6 @@ ssh -t -o ControlPath=$SSHSOCKET ${USER}@${SERVER_IP} "cd ${SERVER_PATH}
                              ./scripts/install_service.sh ${SERVER_PATH} ${USER}"
 # Close the connection
 ssh -S $SSHSOCKET -O exit $USER@$SERVER_IP
+# Don't forget to login in your remote server and start it: sudo service fpga_api start
 
 

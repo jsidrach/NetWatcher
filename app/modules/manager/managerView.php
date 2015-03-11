@@ -103,9 +103,7 @@ class managerView extends Common\appView
         $this->pLine('<div class="row">');
         /* Select one mode */
         $this->pLine('<div class="col-md-8 col-md-offset-2 text-center">', 1);
-        $this->pLine('<div class="alert alert-info" role="alert" id="selectMode">', 1);
-        $this->pLine('<h3>' . _('Select a mode to initialize the FPGA') . '</h3>', 1);
-        $this->pLine('</div>', - 1);
+        $this->pLine('<h3 id="selectMode">' . _('Select a mode to initialize the FPGA') . '</h3><hr>', 1);
         $this->pLine('</div>', - 1);
         
         $this->pLine('</div>', - 1);
@@ -138,7 +136,7 @@ class managerView extends Common\appView
         /* Form for start recording */
         $this->pLine('<form id="startRecording" class="form-horizontal" role="form" action="javascript:void(0);" method="post">');
         $this->pLine('<div class="row">', 1);
-        $this->pLine('<div class="text-center">', 1);
+        $this->pLine('<div class="col-md-10 col-md-offset-1 text-center">', 1);
         $this->pLine('<h3>' . _('Configure the FPGA to start recording') . '</h3><hr>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
@@ -217,7 +215,7 @@ class managerView extends Common\appView
     {
         /* Heading */
         $this->pLine('<div class="row" id="recordingControl">');
-        $this->pLine('<div class="text-center">', 1);
+        $this->pLine('<div class="col-md-offset-2 col-md-8 text-center">', 1);
         $this->pLine('<h3 id="recordingTitle">' . _('Recording...') . '</h3><hr>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);

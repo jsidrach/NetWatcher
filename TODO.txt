@@ -1,11 +1,6 @@
 TODO Week:
 -------
-- Ajustar titulos pagina settings a como estaban anteriormente, 2 categorias
-- Probar que las distintas paginas del manager se vean bien
-
-
-
-
+- Aspecto visual recording:
                       'Recording...'
               [Barra superior con porcentaje]
 Name           | [Name]         Port      | [Port]
@@ -18,16 +13,19 @@ Bytes Total    | [Bytes]      Recent Rate | [213KB/s]
   - Al finalizar, botón de refrescar
     - Finaliza cuando status ya no devuelva recording
   - Conection error > poner notificación
+  - Botón de stop?
+
 
 TODO Future:
 -------
+  - Cambiar modo?
   - Maquina de estados finita FPGA? Terminar tipos de códigos status
     - Terminar página de manager
 
 Dudas Jose:
 -------
-  - Por que no funciona recorder?
-  - Maquina de estados finitas FPGA, una vez programada y montada
+  - Como se para el recorder? Actualmente: SIGINT
+  - Maquina de estados finitas FPGA player, una vez programada y montada
   - Si ya está programada la fpga y quiero cambiar de modo, vale con ejecutar otra vez impact/install_driver
     - O hay antes que desmontarla/desprogramarla o algo...
   - Tipo de códigos en /proc/nfp/nfp_report
