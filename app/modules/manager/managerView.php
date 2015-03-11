@@ -137,7 +137,11 @@ class managerView extends Common\appView
     {
         /* Form for start recording */
         $this->pLine('<form id="startRecording" class="form-horizontal" role="form" action="javascript:void(0);" method="post">');
-        $this->pLine('<h3 class="col-sm-offset-2">' . _('Configure the FPGA to start recording') . '</h3><hr>', 1);
+        $this->pLine('<div class="row">', 1);
+        $this->pLine('<div class="text-center">', 1);
+        $this->pLine('<h3>' . _('Configure the FPGA to start recording') . '</h3><hr>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
         
         /* Capture name */
         $this->pLine('<div class="form-group has-feedback" id="recordCaptureNameControl">');
@@ -205,27 +209,45 @@ class managerView extends Common\appView
         
         $this->pLine('</form>', - 1);
     }
-    
+
     /**
      * Renders the _currently_ recording page
      */
-    public function renderRecording() {
+    public function renderRecording()
+    {
+        /* Heading */
+        $this->pLine('<div class="row" id="recordingControl">');
+        $this->pLine('<div class="text-center">', 1);
+        $this->pLine('<h3 id="recordingTitle">' . _('Recording...') . '</h3><hr>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        /* Progress bar */
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-offset-2 col-md-8">', 1);
+        $this->pLine('<div class="progress">', 1);
+        $this->pLine('<span style="position:absolute;text-align:center;width:95%"><strong id="recordingLabel">' . '0%' . '</strong></span>', 1);
+        $this->pLine('<div id="recordingProgress" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width: 80%"></div>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        /* Info */
         // TODO
         /*
-                            'Recording...'
-              [Barra superior con porcentaje]
-        Name           | [Name]         Port      | [Port]
-        Bytes Captured | [Bytes]     Elapsed Time | [00:00]
-        Bytes Total    | [Bytes]      Recent Rate | [213KB/s]
-  
-  - La información inicial ya está en el primer status $this->model->getManagerStatus()
-  - Transformar los números:
-    - Ir dividiendo por 1024 hasta que sea menor que 1024, cambiando de letra
-  - Al finalizar, botón de refrescar
-    - Finaliza cuando status ya no devuelva recording
-  - Conection error > poner notificación
+         * 'Recording...'
+         * [Barra superior con porcentaje]
+         * Name | [Name] Port | [Port]
+         * Bytes Captured | [Bytes] Elapsed Time | [00:00]
+         * Bytes Total | [Bytes] Recent Rate | [213KB/s]
+         *
+         * - La información inicial ya está en el primer status $this->model->getManagerStatus()
+         * - Transformar los números:
+         * - Ir dividiendo por 1024 hasta que sea menor que 1024, cambiando de letra
+         * - Al finalizar, botón de refrescar
+         * - Finaliza cuando status ya no devuelva recording
+         * - Conection error > poner notificación
+         *
+         */
         
-        */
         print_r($this->model->getManagerStatus());
     }
 
