@@ -362,7 +362,7 @@ function setRefreshRecording() {
   recording_elapsedInterval = setInterval(refreshElapsedTime, 1000);
 
   // Data refresh
-  var recording_refreshInterval = setInterval(function() {
+  recording_refreshInterval = setInterval(function() {
     var statusURL = baseURL + 'info/status';
     $.ajax({
       type: 'GET',
