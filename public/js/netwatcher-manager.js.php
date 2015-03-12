@@ -68,7 +68,7 @@ $(document).ready(function () {
   // Recording
   else if($('#recordingControl').length) {
     setRefreshRecording();
-    // TODO: Stop button
+    $('#confirmStop').on('click', stopRecording);
   }
   // TODO: Rest of pages
 });
@@ -349,10 +349,13 @@ function startRecording() {
 
 // Global vars for the recording page (recording_ prefix)
 var recording_elapsedTime;
+var recording_lastCapturedBytes;
 
 // Sets the api calls for refreshing the info
 function setRefreshRecording() {
   // Counter refresh
+  recording_elapsedTime = parseInt($('#recordingElapsedTime').text());
+  recording_lastCapturedBytes = 0;
   var elapsedTime = setInterval(refreshElapsedTime, 1000);
 
   // Data refresh
@@ -372,7 +375,7 @@ function setRefreshRecording() {
         }
         // Recording has ended
         else {
-          $('#recordingTitle').text(<?php echo '\'' . _('Capture recorded successfully') . '\'' ?>)
+          $('#recordingTitle').text(<?php echo '\'' . _('Capture recording has ended') . '\'' ?>)
           $('#stopRecording').prop('disabled', true);
           $('#recordingCurrentRate').text('--');
           clearInterval(refreshInterval);
@@ -394,12 +397,63 @@ function setRefreshRecording() {
   }, 3000);
 };
 
+// Refresh the elapsed time
 function refreshElapsedTime() {
-  // TODO
+  $('#recordingElapsedTime').text(parseSeconds(++recording_elapsedTime));
 };
 
+// Process the recording data and renders the new info in the page
 function processRecordingData(data) {
-  // TODO
+  var elapsed = data.elapsed_time - recording_elapsedTime;
+  var recordedBytes = data.bytes_captured - recording_lastCapturedBytes;
+  recording_lastCapturedBytes = data.bytes_captured;
+  recording_elapsedTime = data.elapsed_time;
+  $('#recordingName').text(data.capture);
+  $('#recordingPort').text(data.port);
+  $('#recordingElapsedTime').text(parseSeconds(data.elapsed_time));
+  $('#recordingBytesCaptured').text(parseBytes(data.bytes_captured));
+  $('#recordingBytesTotal').text(parseBytes(data.bytes_total));
+  $('#recordingAverageRate').text(parseBytes(data.bytes_captured/data.elapsed_time) + '/s');
+  if(recordedBytes != data.bytes_captured) {
+    $('#recordingCurrentRate').text(parseBytes(recordedBytes/elapsed) + '/s');
+  }
+  var percent = Math.floor(100 * data.bytes_captured / data.bytes_total);
+  $('#recordingLabel').text(percent + '%');
+  $('#recordingProgress').css('width', percent + '%');
+};
+
+// Stops recording
+function stopRecording() {
+  $('#recordingTitle').text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
+  $('#stopRecording').prop('disabled', true);
+  $('#recordingCurrentRate').text('--');
+  clearInterval(refreshInterval);
+  clearInterval(elapsedTime);
+  var stopURL = baseURL + 'recorder/stop';
+  $.ajax({
+    type: 'POST',
+    url: stopURL,
+    dataType: 'json',
+    headers: {
+    'timestamp': Date.now()
+    },
+    success: function (resp) {
+      $('#recordingTitle').text(<?php echo '\'' . _('Capture recording has been stopped') . '\'' ?>)
+      $.bootstrapGrowl(<?php echo '\'' . _('Reloading...') . '\'' ?>, {
+        type: 'info'
+      });
+      setTimeout(function () {
+        location.reload(true)
+      }, 3000);
+    },
+    error: function (e) {
+      // Error on the request. Refresh
+      notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+      setTimeout(function () {
+        location.reload(true)
+      }, 3000);
+    }
+  });
 };
 
 // Parses a number of bytes into a string
@@ -427,27 +481,6 @@ function parseSeconds(seconds) {
   return date.slice(0, -1);
 };
 
-/*
-  - Cuando llega una respuesta del status:
-    - Si es del estado bueno:
-      - Actualizar nombre, puerto, elapsed Time, captured bytes, total, average
-      - Con la diferencia de tiempos y de bytes, calcular la tasa inmediata
-    - Si el estado no es bueno:
-      - Notificacion de finalizacion
-      - Tasa inmediata --
-      - Parar elapsed time
-      - disable stop
-      - Parar de actualizar
-    - Si connection error:
-      - Notificacion. Reload en 10, 9, ...
-      - Parar elapsed time
-      - disable stop
-  - Botón de stop? Controlar el modal
-
-      width: 250,
-    delay: 4000,
-    allow_dismiss: true,
-  */
 
 //
 // Auxiliary functions

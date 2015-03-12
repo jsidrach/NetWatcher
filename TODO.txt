@@ -1,27 +1,15 @@
-TODO Week:
--------
-  - Cuando llega una respuesta del status:
-    - Si es del estado bueno:
-      - Actualizar nombre, puerto, elapsed Time, captured bytes, total, average
-      - Con la diferencia de tiempos y de bytes, calcular la tasa inmediata
-    - Si el estado no es bueno:
-      - Notificacion de finalizacion
-      - Tasa inmediata --
-      - Parar elapsed time
-      - disable stop
-    - Si connection error:
-      - Notificacion. Reload en 10, 9, ...
-      - Parar elapsed time
-      - disable stop
-  - Botón de stop? Controlar el modal
-
-
-TODO Future:
+TODO Weekend:
 -------
   - Cambiar modo? > recorder_ready, player_ready
     - Comprobaciones para cambiar de modo solo cuando se puede?
+
+TODO Future:
+-------
+  - Statistics: dd discos, estadisticas, resetear
   - Maquina de estados finita FPGA? Terminar tipos de códigos status
     - Terminar página de manager
+      - Cambiar de modo
+      - (player, playing)
 
 Dudas Jose:
 -------

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-03-03 11:23+0100\n"
-"PO-Revision-Date: 2015-03-03 11:26+0100\n"
+"POT-Creation-Date: 2015-03-12 15:46+0100\n"
+"PO-Revision-Date: 2015-03-12 15:46+0100\n"
 "Last-Translator: JSid <***REMOVED***>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -83,24 +83,24 @@ msgstr "Remote FPGA Server"
 msgid "Timestamp delay between the client and the FPGA host: "
 msgstr "Timestamp delay between the client and the FPGA host: "
 
-#: app/modules/status/statusModel.php:81 public/js/netwatcher-status.js.php:51
+#: app/modules/status/statusModel.php:80 public/js/netwatcher-status.js.php:53
 msgid "Passed"
 msgstr "Passed"
 
-#: app/modules/status/statusModel.php:82
+#: app/modules/status/statusModel.php:81
 msgid "Not Implemented"
 msgstr "Not Implemented"
 
-#: app/modules/status/statusModel.php:83
+#: app/modules/status/statusModel.php:82
 msgid "In Progress..."
 msgstr "In Progress..."
 
-#: app/modules/status/statusModel.php:84 public/js/netwatcher-status.js.php:55
-#: public/js/netwatcher-status.js.php:68
+#: app/modules/status/statusModel.php:83 public/js/netwatcher-status.js.php:57
+#: public/js/netwatcher-status.js.php:70
 msgid "Failed"
 msgstr "Failed"
 
-#: app/modules/status/statusView.php:32 app/common/appView.php:213
+#: app/modules/status/statusView.php:32 app/common/appView.php:216
 msgid "Status"
 msgstr "Status"
 
@@ -108,7 +108,7 @@ msgstr "Status"
 msgid "Total"
 msgstr "Total"
 
-#: app/modules/manager/managerView.php:33 app/common/appModel.php:46
+#: app/modules/manager/managerView.php:33 app/common/appModel.php:48
 msgid "Manager"
 msgstr "Manager"
 
@@ -158,7 +158,8 @@ msgid "Reboot"
 msgstr "Reboot"
 
 #: app/modules/manager/managerView.php:89
-#: app/modules/captures/capturesView.php:51
+#: app/modules/manager/managerView.php:270
+#: app/modules/captures/capturesView.php:52
 msgid "Cancel"
 msgstr "Cancel"
 
@@ -166,20 +167,20 @@ msgstr "Cancel"
 msgid "Rebooting Web Service"
 msgstr "Rebooting Web Service"
 
-#: app/modules/manager/managerView.php:107
+#: app/modules/manager/managerView.php:106
 msgid "Select a mode to initialize the FPGA"
 msgstr "Select a mode to initialize the FPGA"
 
-#: app/modules/manager/managerView.php:117
-#: app/modules/manager/managerView.php:123
+#: app/modules/manager/managerView.php:115
+#: app/modules/manager/managerView.php:121
 msgid "Initialize the FPGA as a"
 msgstr "Initialize the FPGA as a"
 
-#: app/modules/manager/managerView.php:117
+#: app/modules/manager/managerView.php:115
 msgid "player"
 msgstr "player"
 
-#: app/modules/manager/managerView.php:123
+#: app/modules/manager/managerView.php:121
 msgid "recorder"
 msgstr "recorder"
 
@@ -187,7 +188,76 @@ msgstr "recorder"
 msgid "Initializing the FPGA"
 msgstr "Initializing the FPGA"
 
+#: app/modules/manager/managerView.php:140
+msgid "Configure the FPGA to start recording"
+msgstr "Configure the FPGA to start recording"
+
 #: app/modules/manager/managerView.php:146
+msgid "Name of the new capture"
+msgstr "Name of the new capture"
+
+#: app/modules/manager/managerView.php:155
+msgid "Bytes to capture"
+msgstr "Bytes to capture"
+
+#: app/modules/manager/managerView.php:185
+msgid "Port to capture"
+msgstr "Port to capture"
+
+#: app/modules/manager/managerView.php:195
+#: app/modules/manager/managerView.php:247
+msgid "Port"
+msgstr "Port"
+
+#: app/modules/manager/managerView.php:204
+msgid "Start"
+msgstr "Start"
+
+#: app/modules/manager/managerView.php:232
+msgid "Recording..."
+msgstr "Recording..."
+
+#: app/modules/manager/managerView.php:246
+msgid "Name of the capture"
+msgstr "Name of the capture"
+
+#: app/modules/manager/managerView.php:248
+msgid "Elapsed Time"
+msgstr "Elapsed Time"
+
+#: app/modules/manager/managerView.php:249
+msgid "Captured Bytes"
+msgstr "Captured Bytes"
+
+#: app/modules/manager/managerView.php:250
+msgid "Total Bytes"
+msgstr "Total Bytes"
+
+#: app/modules/manager/managerView.php:251
+msgid "Average Rate"
+msgstr "Average Rate"
+
+#: app/modules/manager/managerView.php:252
+msgid "Current Rate"
+msgstr "Current Rate"
+
+#: app/modules/manager/managerView.php:257
+msgid "Stop recording"
+msgstr "Stop recording"
+
+#: app/modules/manager/managerView.php:266
+msgid ""
+"The current capture will be deleted. Are you sure you want to stop the "
+"recording?"
+msgstr ""
+"The current capture will be deleted. Are you sure you want to stop the "
+"recording?"
+
+#: app/modules/manager/managerView.php:269
+msgid "Stop"
+msgstr "Stop"
+
+#: app/modules/manager/managerView.php:301
 msgid "Sending request..."
 msgstr "Sending request..."
 
@@ -199,39 +269,39 @@ msgstr "Settings saved successfully"
 msgid "Error saving settings"
 msgstr "Error saving settings"
 
-#: app/modules/settings/settingsView.php:32 app/common/appModel.php:51
+#: app/modules/settings/settingsView.php:32 app/common/appModel.php:53
 msgid "Settings"
 msgstr "Settings"
 
-#: app/modules/settings/settingsView.php:46
+#: app/modules/settings/settingsView.php:48
 msgid "Server Settings"
 msgstr "Server Settings"
 
-#: app/modules/settings/settingsView.php:48
+#: app/modules/settings/settingsView.php:57
 msgid "FPGA API base address"
 msgstr "FPGA API base address"
 
-#: app/modules/settings/settingsView.php:56
+#: app/modules/settings/settingsView.php:68
 msgid "App Settings"
 msgstr "App Settings"
 
-#: app/modules/settings/settingsView.php:59
+#: app/modules/settings/settingsView.php:77
 msgid "Language"
 msgstr "Language"
 
-#: app/modules/settings/settingsView.php:75
+#: app/modules/settings/settingsView.php:93
 msgid "Theme"
 msgstr "Theme"
 
-#: app/modules/settings/settingsView.php:93
+#: app/modules/settings/settingsView.php:111
 msgid "Save"
 msgstr "Save"
 
-#: app/modules/captures/capturesView.php:32 app/common/appModel.php:48
+#: app/modules/captures/capturesView.php:32 app/common/appModel.php:50
 msgid "Captures"
 msgstr "Captures"
 
-#: app/modules/captures/capturesView.php:47
+#: app/modules/captures/capturesView.php:48
 msgid ""
 "Selected capture will be permanently deleted, are you sure you want to "
 "delete it?"
@@ -239,73 +309,73 @@ msgstr ""
 "Selected capture will be permanently deleted, are you sure you want to "
 "delete it?"
 
-#: app/modules/captures/capturesView.php:50
-#: app/modules/captures/capturesView.php:141
+#: app/modules/captures/capturesView.php:51
+#: app/modules/captures/capturesView.php:142
 msgid "Delete"
 msgstr "Delete"
 
-#: app/modules/captures/capturesView.php:71
+#: app/modules/captures/capturesView.php:72
 msgid "All"
 msgstr "All"
 
-#: app/modules/captures/capturesView.php:72
+#: app/modules/captures/capturesView.php:73
 msgid "Simple"
 msgstr "Simple"
 
-#: app/modules/captures/capturesView.php:73
+#: app/modules/captures/capturesView.php:74
 msgid "Pcap"
 msgstr "Pcap"
 
-#: app/modules/captures/capturesView.php:74
+#: app/modules/captures/capturesView.php:75
 msgid "Auto Refresh"
 msgstr "Auto Refresh"
 
-#: app/modules/captures/capturesView.php:87
+#: app/modules/captures/capturesView.php:88
 msgid "Name"
 msgstr "Name"
 
-#: app/modules/captures/capturesView.php:88
+#: app/modules/captures/capturesView.php:89
 msgid "Type"
 msgstr "Type"
 
-#: app/modules/captures/capturesView.php:89
+#: app/modules/captures/capturesView.php:90
 msgid "Size"
 msgstr "Size"
 
-#: app/modules/captures/capturesView.php:90
+#: app/modules/captures/capturesView.php:91
 msgid "Date"
 msgstr "Date"
 
-#: app/modules/captures/capturesView.php:102
+#: app/modules/captures/capturesView.php:103
 msgid "Select a capture from the table"
 msgstr "Select a capture from the table"
 
-#: app/modules/captures/capturesView.php:109
+#: app/modules/captures/capturesView.php:110
 msgid "Convert"
 msgstr "Convert"
 
-#: app/modules/captures/capturesView.php:113
+#: app/modules/captures/capturesView.php:114
 msgid "Converted name"
 msgstr "Converted name"
 
-#: app/modules/captures/capturesView.php:116
-#: app/modules/captures/capturesView.php:132
+#: app/modules/captures/capturesView.php:117
+#: app/modules/captures/capturesView.php:133
 msgid "OK"
 msgstr "OK"
 
-#: app/modules/captures/capturesView.php:125
+#: app/modules/captures/capturesView.php:126
 msgid "Rename"
 msgstr "Rename"
 
-#: app/modules/captures/capturesView.php:129
+#: app/modules/captures/capturesView.php:130
 msgid "New name"
 msgstr "New name"
 
-#: app/modules/captures/capturesView.php:145
+#: app/modules/captures/capturesView.php:146
 msgid "Delete this capture (permanently)"
 msgstr "Delete this capture (permanently)"
 
-#: app/modules/captures/capturesView.php:159
+#: app/modules/captures/capturesView.php:160
 msgid ""
 "Add additional captures generated outside NetWatcher by copying the capture "
 "file (or adding symbolic link to it) to the captures directory on the FPGA "
@@ -315,19 +385,19 @@ msgstr ""
 "file (or adding symbolic link to it) to the captures directory on the FPGA "
 "remote server"
 
-#: app/common/appModel.php:47
+#: app/common/appModel.php:49
 msgid "Statistics"
 msgstr "Statistics"
 
-#: app/common/appView.php:177 app/common/appView.php:219
+#: app/common/appView.php:180 app/common/appView.php:222
 msgid "License"
 msgstr "License"
 
-#: app/common/appView.php:215
+#: app/common/appView.php:218
 msgid "Wiki"
 msgstr "Wiki"
 
-#: app/common/appView.php:217
+#: app/common/appView.php:220
 msgid "Source"
 msgstr "Source"
 
@@ -351,87 +421,124 @@ msgstr "Sorry, an error has occured. Requested page not found!"
 msgid "Take me Home"
 msgstr "Take me Home"
 
-#: public/js/netwatcher-manager.js.php:94
+#: public/js/netwatcher-manager.js.php:118
 msgid "Waiting for the server to reboot..."
 msgstr "Waiting for the server to reboot..."
 
-#: public/js/netwatcher-manager.js.php:102
-#: public/js/netwatcher-manager.js.php:148
-#: public/js/netwatcher-manager.js.php:189
+#: public/js/netwatcher-manager.js.php:128
+#: public/js/netwatcher-manager.js.php:178
+#: public/js/netwatcher-manager.js.php:223
 msgid "Error sending the request"
 msgstr "Error sending the request"
 
-#: public/js/netwatcher-manager.js.php:121
+#: public/js/netwatcher-manager.js.php:149
 msgid "as a player"
 msgstr "as a player"
 
-#: public/js/netwatcher-manager.js.php:123
+#: public/js/netwatcher-manager.js.php:151
 msgid "as a recorder"
 msgstr "as a recorder"
 
-#: public/js/netwatcher-manager.js.php:128
+#: public/js/netwatcher-manager.js.php:156
 msgid "Programming the FPGA..."
 msgstr "Programming the FPGA..."
 
-#: public/js/netwatcher-manager.js.php:139
+#: public/js/netwatcher-manager.js.php:169
 msgid "FPGA programmed. Rebooting the system..."
 msgstr "FPGA programmed. Rebooting the system..."
 
-#: public/js/netwatcher-manager.js.php:163
+#: public/js/netwatcher-manager.js.php:195
 msgid "Installing the driver..."
 msgstr "Installing the driver"
 
-#: public/js/netwatcher-manager.js.php:177
+#: public/js/netwatcher-manager.js.php:211
 msgid "Driver successfully installed. Refreshing..."
 msgstr "Driver successfully installed. Refreshing..."
 
-#: public/js/netwatcher-status.js.php:69
+#: public/js/netwatcher-manager.js.php:302
+msgid "Invalid capture name"
+msgstr "Invalid capture name"
+
+#: public/js/netwatcher-manager.js.php:306
+msgid "Invalid number of bytes to record"
+msgstr "Invalid number of bytes to record"
+
+#: public/js/netwatcher-manager.js.php:330
+msgid "Recording now! Reloading..."
+msgstr "Recording now! Reloading..."
+
+#: public/js/netwatcher-manager.js.php:338
+msgid "Invalid state or capture name already taken. Reloading..."
+msgstr "Invalid state or capture name already taken. Reloading..."
+
+#: public/js/netwatcher-manager.js.php:378
+msgid "Capture recording has ended"
+msgstr "Capture recording has ended"
+
+#: public/js/netwatcher-manager.js.php:391
+#: public/js/netwatcher-manager.js.php:451
+msgid "Connection Error. Reloading..."
+msgstr "Connection Error. Reloading..."
+
+#: public/js/netwatcher-manager.js.php:427
+msgid "Stopping..."
+msgstr "Stopping..."
+
+#: public/js/netwatcher-manager.js.php:441
+msgid "Capture recording has been stopped"
+msgstr "Capture recording has been stopped"
+
+#: public/js/netwatcher-manager.js.php:442
+msgid "Reloading..."
+msgstr "Reloading..."
+
+#: public/js/netwatcher-status.js.php:71
 msgid "No Response"
 msgstr "No Response"
 
-#: public/js/netwatcher-captures.js.php:106
+#: public/js/netwatcher-captures.js.php:122
 msgid "Connection error"
 msgstr "Connection error"
 
-#: public/js/netwatcher-captures.js.php:142
-#: public/js/netwatcher-captures.js.php:184
-#: public/js/netwatcher-captures.js.php:215
+#: public/js/netwatcher-captures.js.php:162
+#: public/js/netwatcher-captures.js.php:206
+#: public/js/netwatcher-captures.js.php:239
 msgid "No capture is selected"
 msgstr "No capture is selected"
 
-#: public/js/netwatcher-captures.js.php:147
+#: public/js/netwatcher-captures.js.php:167
 msgid "Converted capture\\'s name is not valid"
 msgstr "Converted capture\\'s name is not valid"
 
-#: public/js/netwatcher-captures.js.php:159
+#: public/js/netwatcher-captures.js.php:179
 msgid "Capture converted successfully"
 msgstr "Capture converted successfully"
 
-#: public/js/netwatcher-captures.js.php:160
+#: public/js/netwatcher-captures.js.php:180
 msgid "Capture could not be converted"
 msgstr "Capture could not be converted"
 
-#: public/js/netwatcher-captures.js.php:176
+#: public/js/netwatcher-captures.js.php:198
 msgid "Capture queued for conversion"
 msgstr "Capture queued for conversion"
 
-#: public/js/netwatcher-captures.js.php:189
+#: public/js/netwatcher-captures.js.php:211
 msgid "New name is not valid"
 msgstr "New name is not valid"
 
-#: public/js/netwatcher-captures.js.php:193
+#: public/js/netwatcher-captures.js.php:215
 msgid "Capture renamed successfully"
 msgstr "Capture renamed successfully"
 
-#: public/js/netwatcher-captures.js.php:194
+#: public/js/netwatcher-captures.js.php:216
 msgid "Capture could not be renamed"
 msgstr "Capture could not be renamed"
 
-#: public/js/netwatcher-captures.js.php:220
+#: public/js/netwatcher-captures.js.php:244
 msgid "Capture deleted successfully"
 msgstr "Capture deleted successfully"
 
-#: public/js/netwatcher-captures.js.php:221
+#: public/js/netwatcher-captures.js.php:245
 msgid "Capture could not be deleted"
 msgstr "Capture could not be deleted"
 
