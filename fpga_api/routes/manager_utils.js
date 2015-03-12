@@ -2,6 +2,7 @@
 
 // Package dependencies
 var scripts = require('child_process');
+var fs = require('fs');
 var config = require('../config.js');
 var common = require('./_common.js');
 var captures_utils = require('./captures_utils.js');
@@ -79,15 +80,17 @@ function installFPGA(req, res, recorder) {
 exports.installFPGA = installFPGA;
 
 // Stops the recorder (in loop)
-function stopLoopRecorder(req, res) {
+function stopLoopRecorder(req, res, capturename) {
   scripts.exec('sudo pkill -SIGINT launchRecorder; sudo pkill -SIGINT card2host').on('exit', function (code) {
     statistics_utils.runningFPGA(true, function (isRunning) {
       // Recursion
       if (isRunning) {
         setTimeout(function () {
-          stopLoopRecorder(req, res);
+          stopLoopRecorder(req, res, capturename);
         }, 500);
       } else {
+        // Delete the capture
+        fs.unlink(config.CAPTURES_DIR + capturename);
         common.sendJSON('recorder_stop_success', res, 200);
       }
     });

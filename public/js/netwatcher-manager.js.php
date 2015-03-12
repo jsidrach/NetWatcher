@@ -9,10 +9,6 @@ require_once ('../../lib/vendor/autoload.php');
 // Base URL of the ajax calls
 var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
 
-// Global vars
-// Count down to refresh (in seconds)
-var countdownSecs = 11;
-
 // Sets the events
 $(document).ready(function () {
   // Connection error page
@@ -69,6 +65,11 @@ $(document).ready(function () {
     });
     $('#recordCaptureStart').prop('disabled', !(checkRecordBytes() && checkRecordName()));
   }
+  // Recording
+  else if($('#recordingControl').length) {
+    setRefreshRecording();
+    // TODO: Stop button
+  }
   // TODO: Rest of pages
 });
 
@@ -76,12 +77,16 @@ $(document).ready(function () {
 // Connection error page
 //
 
+// Global vars for the recording page (error_ prefix)
+// Count down to refresh (in seconds)
+var error_countdownSecs = 11;
+
 // Countdown to refresh the page
 function countdownTimer() {
-  countdownSecs--;
-  $('#connectionErrorCountdown').text(countdownSecs);
-  if (countdownSecs <= 0) {
-    clearInterval(countdownTimer);
+  error_countdownSecs--;
+  $('#connectionErrorCountdown').text(error_countdownSecs);
+  if (error_countdownSecs <= 0) {
+    clearInterval(error_countdownSecs);
     location.reload(true);
   }
 };
@@ -338,6 +343,111 @@ function startRecording() {
   });
 };
 
+//
+// Recording
+//
+
+// Global vars for the recording page (recording_ prefix)
+var recording_elapsedTime;
+
+// Sets the api calls for refreshing the info
+function setRefreshRecording() {
+  // Counter refresh
+  var elapsedTime = setInterval(refreshElapsedTime, 1000);
+
+  // Data refresh
+  var refreshInterval = setInterval(function() {
+    var statusURL = baseURL + 'info/status';
+    $.ajax({
+      type: 'GET',
+      url: statusURL,
+      dataType: 'json',
+      timeout: 2500,
+      success: function (resp) {
+        // Process new data
+        if(resp.status == 'recording') {
+          processRecordingData(resp);
+          clearInterval(elapsedTime);
+          elapsedTime = setInterval(refreshElapsedTime, 1000);
+        }
+        // Recording has ended
+        else {
+          $('#recordingTitle').text(<?php echo '\'' . _('Capture recorded successfully') . '\'' ?>)
+          $('#stopRecording').prop('disabled', true);
+          $('#recordingCurrentRate').text('--');
+          clearInterval(refreshInterval);
+          clearInterval(elapsedTime);
+        }
+      },
+      error: function (e) {
+        // Error on the request. Refresh
+        $('#stopRecording').prop('disabled', true);
+        $('#recordingCurrentRate').text('--');
+        clearInterval(refreshInterval);
+        clearInterval(elapsedTime);
+        notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+        setTimeout(function () {
+          location.reload(true)
+        }, 3000);
+      }
+    });
+  }, 3000);
+};
+
+function refreshElapsedTime() {
+  // TODO
+};
+
+function processRecordingData(data) {
+  // TODO
+};
+
+// Parses a number of bytes into a string
+function parseBytes(bytes) {
+  var suffix = '';
+  ['K', 'M', 'G'].forEach(function(scale) {
+    if(bytes >= 1024) {
+      suffix = scale;
+      bytes = bytes/1024;
+    }
+  });
+  return bytes.toFixed(2) + ' ' + suffix + 'B';
+};
+
+// Parses a number of seconds into a string
+function parseSeconds(seconds) {
+  var date = '';
+  [86400, 3600, 60, 1].forEach(function(scale) {
+    var digits = Math.floor(seconds/scale);
+    if((date != '') || (seconds >= scale)) {
+      date = date + (digits < 10 ? '0' + digits : digits) + ':';
+      seconds = seconds % scale;
+    }
+  });
+  return date.slice(0, -1);
+};
+
+/*
+  - Cuando llega una respuesta del status:
+    - Si es del estado bueno:
+      - Actualizar nombre, puerto, elapsed Time, captured bytes, total, average
+      - Con la diferencia de tiempos y de bytes, calcular la tasa inmediata
+    - Si el estado no es bueno:
+      - Notificacion de finalizacion
+      - Tasa inmediata --
+      - Parar elapsed time
+      - disable stop
+      - Parar de actualizar
+    - Si connection error:
+      - Notificacion. Reload en 10, 9, ...
+      - Parar elapsed time
+      - disable stop
+  - Botón de stop? Controlar el modal
+
+      width: 250,
+    delay: 4000,
+    allow_dismiss: true,
+  */
 
 //
 // Auxiliary functions

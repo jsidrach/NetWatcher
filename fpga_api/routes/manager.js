@@ -134,6 +134,12 @@ exports.stopRecorder = function (req, res) {
       });
       return;
     }
-    manager_utils.stopLoopRecorder(req, res);
+    statistics_utils.getDataRecording(function (ans) {
+      if (ans == 'error') {
+        res.sendStatus(500);
+        return;
+      }
+      manager_utils.stopLoopRecorder(req, res, ans.capture);
+    });
   });
 };

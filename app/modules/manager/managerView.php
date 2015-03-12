@@ -213,6 +213,19 @@ class managerView extends Common\appView
      */
     public function renderRecording()
     {
+        /* Values needed */
+        $status = $this->model->getManagerStatus();
+        $name = $status->capture;
+        $port = $status->port;
+        $capturedBytes = $this->formatBytes($status->bytes_captured);
+        $totalBytes = $this->formatBytes($status->bytes_total);
+        if ($status->elapsed_time <= 0) {
+            $status->elapsed_time = 1;
+        }
+        $elapsedTime = $this->formatDateSeconds($status->elapsed_time);
+        $averageRate = $this->formatBytes($bytesCaptured / $status->elapsed_time) . '/s';
+        $percent = floor(100 * $bytesCaptured / $bytesTotal);
+        
         /* Heading */
         $this->pLine('<div class="row" id="recordingControl">');
         $this->pLine('<div class="col-md-offset-2 col-md-8 text-center">', 1);
@@ -223,30 +236,42 @@ class managerView extends Common\appView
         $this->pLine('<div class="row">');
         $this->pLine('<div class="col-md-offset-2 col-md-8">', 1);
         $this->pLine('<div class="progress">', 1);
-        $this->pLine('<span style="position:absolute;text-align:center;width:95%"><strong id="recordingLabel">' . '0%' . '</strong></span>', 1);
-        $this->pLine('<div id="recordingProgress" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width: 80%"></div>');
+        $this->pLine('<span style="position:absolute;text-align:center;width:95%"><strong id="recordingLabel">' . $percent . '%</strong></span>', 1);
+        $this->pLine('<div id="recordingProgress" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width: ' . $percent . '%"></div>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        /* Info */
-        // TODO
-        /*
-         * 'Recording...'
-         * [Barra superior con porcentaje]
-         * Name | [Name] Port | [Port]
-         * Bytes Captured | [Bytes] Elapsed Time | [00:00]
-         * Bytes Total | [Bytes] Recent Rate | [213KB/s]
-         *
-         * - La información inicial ya está en el primer status $this->model->getManagerStatus()
-         * - Transformar los números:
-         * - Ir dividiendo por 1024 hasta que sea menor que 1024, cambiando de letra
-         * - Al finalizar, botón de refrescar
-         * - Finaliza cuando status ya no devuelva recording
-         * - Conection error > poner notificación
-         *
-         */
         
-        print_r($this->model->getManagerStatus());
+        /* Info */
+        $this->printInfoElement('recordingName', _('Name of the capture'), $name);
+        $this->printInfoElement('recordingPort', _('Port'), $port);
+        $this->printInfoElement('recordingElapsedTime', _('Elapsed Time'), $elapsedTime);
+        $this->printInfoElement('recordingBytesCaptured', _('Captured Bytes'), $capturedBytes);
+        $this->printInfoElement('recordingBytesTotal', _('Total Bytes'), $totalBytes);
+        $this->printInfoElement('recordingAverageRate', _('Average Rate'), $averageRate);
+        $this->printInfoElement('recordingCurrentRate', _('Current Rate'), '--');
+        
+        /* Stop button */
+        $this->pLine('<div class="row" style="text-align:center">');
+        $this->pLine('<button type="button" class="btn btn-danger" id="stopRecording" data-toggle="modal" data-target="#confirmStopRecording">', 1);
+        $this->pLine(_('Stop recording'), 1);
+        $this->pLine('</button>', -1);
+        $this->pLine('</div>', -1);
+        /* Stop confirmation modal */
+        $this->pLine('<!-- Stop confirmation -->');
+        $this->pLine('<div id="confirmStopRecording" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');
+        $this->pLine('<div class="modal-dialog">', 1);
+        $this->pLine('<div class="modal-content">', 1);
+        $this->pLine('<div class="modal-body text-justify">', 1);
+        $this->pLine(_('The current capture will be deleted. Are you sure you want to stop the recording?'), 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="modal-footer">');
+        $this->pLine('<button type="button" data-dismiss="modal" class="btn btn-danger" id="confirmStop">' . _('Stop') . '</button>', 1);
+        $this->pLine('<button type="button" data-dismiss="modal" class="btn btn-default">' . _('Cancel') . '</button>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
     }
 
     /**
@@ -278,6 +303,77 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+    }
+
+    /**
+     * Parses a number of bytes into a string
+     *
+     * @param Bytes $bytes
+     *            Number of bytes
+     * @return string Bytes parsed into a string
+     */
+    private function formatBytes($bytes)
+    {
+        $bytesFormat = array(
+            'K' => 1024,
+            'M' => 1024,
+            'G' => 1024
+        );
+        $suffix = '';
+        foreach ($bytesFormat as $key => $scale) {
+            if ($bytes >= $scale) {
+                $suffix = $key;
+                $bytes /= $scale;
+            }
+        }
+        return sprintf('%.2f %sB', round($bytes, 2), $suffix);
+    }
+
+    /**
+     * Parses a number of seconds into a time string
+     *
+     * @param Seconds $seconds
+     *            Number of seconds
+     * @return string Date parsed into a string
+     */
+    private function formatDateSeconds($seconds)
+    {
+        $dateFormat = array(
+            'd' => 86400,
+            'h' => 3600,
+            'm' => 60,
+            's' => 1
+        );
+        $date = '';
+        foreach ($dateFormat as $scale) {
+            if (($date != '') || ($seconds >= $scale)) {
+                $date .= sprintf('%02d:', floor($seconds / $scale));
+                $seconds = $seconds % $scale;
+            }
+        }
+        return substr($date, 0, - 1);
+    }
+
+    /**
+     * Prints an info element
+     *
+     * @param Id $id
+     *            Id of the info value element
+     * @param Label $label
+     *            Label of the info
+     * @param Value $value
+     *            Value of the info
+     */
+    private function printInfoElement($id, $label, $value)
+    {
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-xs-6 control-label">', 1);
+        $this->pLine('<label class="pull-right">' . $label . '</label>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="col-xs-6">');
+        $this->pLine('<span id="' . $id . '">' . $value . '</span>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
     }
