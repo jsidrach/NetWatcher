@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-03-12 15:59+0100\n"
-"PO-Revision-Date: 2015-03-12 15:59+0100\n"
+"POT-Creation-Date: 2015-03-12 16:24+0100\n"
+"PO-Revision-Date: 2015-03-12 16:24+0100\n"
 "Last-Translator: JSid <***REMOVED***>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -465,30 +465,26 @@ msgstr "Número inválido de bytes a capturar"
 msgid "Recording now! Reloading..."
 msgstr "¡Captura en curso! Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:338
+#: public/js/netwatcher-manager.js.php:339
 msgid "Invalid state or capture name already taken. Reloading..."
 msgstr "Estado inválido o nombre de traza ya existente. Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:378
+#: public/js/netwatcher-manager.js.php:381
 msgid "Capture recording has ended"
 msgstr "Se ha finalizado con éxito la captura de la traza"
 
-#: public/js/netwatcher-manager.js.php:391
+#: public/js/netwatcher-manager.js.php:394
 #: public/js/netwatcher-manager.js.php:451
 msgid "Connection Error. Reloading..."
 msgstr "Error en la conexión. Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:427
+#: public/js/netwatcher-manager.js.php:430
 msgid "Stopping..."
 msgstr "Parando..."
 
-#: public/js/netwatcher-manager.js.php:441
-msgid "Capture recording has been stopped"
-msgstr "Se ha detenido la captura de la traza"
-
-#: public/js/netwatcher-manager.js.php:442
-msgid "Reloading..."
-msgstr "Actualizando..."
+#: public/js/netwatcher-manager.js.php:444
+msgid "Capture recording has been stopped. Reloading...."
+msgstr "Se ha detenido la captura de la traza. Actualizando..."
 
 #: public/js/netwatcher-status.js.php:71
 msgid "No Response"
@@ -576,6 +572,9 @@ msgstr "Interruptor"
 #: public/js/bootstrap-table-localization.js.php:28
 msgid "Columns"
 msgstr "Columnas"
+
+#~ msgid "Reloading..."
+#~ msgstr "Actualizando..."
 
 #~ msgid ""
 #~ "Add additional captures generated outside NetWatcher by copying the "

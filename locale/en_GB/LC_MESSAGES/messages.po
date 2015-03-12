@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-03-12 15:46+0100\n"
-"PO-Revision-Date: 2015-03-12 15:46+0100\n"
+"POT-Creation-Date: 2015-03-12 16:23+0100\n"
+"PO-Revision-Date: 2015-03-12 16:23+0100\n"
 "Last-Translator: JSid <***REMOVED***>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -467,30 +467,26 @@ msgstr "Invalid number of bytes to record"
 msgid "Recording now! Reloading..."
 msgstr "Recording now! Reloading..."
 
-#: public/js/netwatcher-manager.js.php:338
+#: public/js/netwatcher-manager.js.php:339
 msgid "Invalid state or capture name already taken. Reloading..."
 msgstr "Invalid state or capture name already taken. Reloading..."
 
-#: public/js/netwatcher-manager.js.php:378
+#: public/js/netwatcher-manager.js.php:381
 msgid "Capture recording has ended"
 msgstr "Capture recording has ended"
 
-#: public/js/netwatcher-manager.js.php:391
+#: public/js/netwatcher-manager.js.php:394
 #: public/js/netwatcher-manager.js.php:451
 msgid "Connection Error. Reloading..."
 msgstr "Connection Error. Reloading..."
 
-#: public/js/netwatcher-manager.js.php:427
+#: public/js/netwatcher-manager.js.php:430
 msgid "Stopping..."
 msgstr "Stopping..."
 
-#: public/js/netwatcher-manager.js.php:441
-msgid "Capture recording has been stopped"
-msgstr "Capture recording has been stopped"
-
-#: public/js/netwatcher-manager.js.php:442
-msgid "Reloading..."
-msgstr "Reloading..."
+#: public/js/netwatcher-manager.js.php:444
+msgid "Capture recording has been stopped. Reloading...."
+msgstr "Capture recording has been stopped. Reloading..."
 
 #: public/js/netwatcher-status.js.php:71
 msgid "No Response"
@@ -578,6 +574,9 @@ msgstr "Toggle"
 #: public/js/bootstrap-table-localization.js.php:28
 msgid "Columns"
 msgstr "Columns"
+
+#~ msgid "Reloading..."
+#~ msgstr "Reloading..."
 
 #~ msgid "FPGA API URL"
 #~ msgstr "FPGA API URL"
