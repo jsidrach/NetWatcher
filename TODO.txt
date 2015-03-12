@@ -1,38 +1,36 @@
 TODO Week:
 -------
-- Aspecto visual recording:
-                      'Recording...'
-              [Barra superior con porcentaje]
-Name           | [Name]         Port      | [Port]
-Bytes Captured | [Bytes]     Elapsed Time | [00:00]
-Bytes Total    | [Bytes]      Recent Rate | [213KB/s]
-  
-  - La información inicial ya está en el primer status
-  - Transformar los números:
-    - Ir dividiendo por 1024 hasta que sea menor que 1024, cambiando de letra
-  - Al finalizar, botón de refrescar
-    - Finaliza cuando status ya no devuelva recording
-  - Conection error > poner notificación
-  - Botón de stop?
+  - Cuando llega una respuesta del status:
+    - Si es del estado bueno:
+      - Actualizar nombre, puerto, elapsed Time, captured bytes, total, average
+      - Con la diferencia de tiempos y de bytes, calcular la tasa inmediata
+    - Si el estado no es bueno:
+      - Notificacion de finalizacion
+      - Tasa inmediata --
+      - Parar elapsed time
+      - disable stop
+    - Si connection error:
+      - Notificacion. Reload en 10, 9, ...
+      - Parar elapsed time
+      - disable stop
+  - Botón de stop? Controlar el modal
 
 
 TODO Future:
 -------
-  - Cambiar modo?
+  - Cambiar modo? > recorder_ready, player_ready
+    - Comprobaciones para cambiar de modo solo cuando se puede?
   - Maquina de estados finita FPGA? Terminar tipos de códigos status
     - Terminar página de manager
 
 Dudas Jose:
 -------
-  - Como se para el recorder? Actualmente: SIGINT
-  - Maquina de estados finitas FPGA player, una vez programada y montada
+  - Nuevos binarios host2card card2host, bitstreams, etc
   - Si ya está programada la fpga y quiero cambiar de modo, vale con ejecutar otra vez impact/install_driver
     - O hay antes que desmontarla/desprogramarla o algo...
-  - Tipo de códigos en /proc/nfp/nfp_report
   - Qué hace readRegisters, testControl
 
-
-Ideas adicionales
+Ideas pagina de statistics
 ------
   - Testear raid (dd), rendimiento, formatear
 

@@ -75,7 +75,13 @@ function statusFPGA(res, callbackList) {
     if (ans == 'recorder') {
       runningFPGA(true, function (isRunning) {
         if (isRunning) {
-          sendDataRecording(res);
+          getDataRecording(function (ans) {
+            if (ans == 'error') {
+              res.sendStatus(500);
+            } else {
+              res.status(200).json(ans);
+            }
+          });
         } else {
           common.sendJSON('status_4_1_recorder_ready', res, 200);
         }
@@ -129,18 +135,14 @@ function runningFPGA(recorder, callback) {
 };
 exports.runningFPGA = runningFPGA;
 
-
-
-// Internal functions
-
-// Sends the current info of the record in progress
-function sendDataRecording(res) {
+// Gets the current recording info
+function getDataRecording(callback) {
   common.readJSON('status_4_2_recording', function (ans) {
     scripts.exec('ps -eo etime,command | grep launchRecorder.sh | grep -v grep | head -n 1', function (error, stdout, stderr) {
       if (error) {
         // Internal error
         common.logError(stderr);
-        res.sendStatus(500);
+        callback('error');
         return;
       }
       // Output format:
@@ -164,7 +166,8 @@ function sendDataRecording(res) {
         ans.bytes_captured = captureStats['size'];
         ans.capture = path.basename(capturePath);
       }
-      res.status(200).json(ans);
+      callback(ans);
     });
   });
 };
+exports.getDataRecording = getDataRecording;
