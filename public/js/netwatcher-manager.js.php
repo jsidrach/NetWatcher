@@ -314,7 +314,7 @@ function startRecording() {
   $('input:radio[name=recordCaptureBytes]').prop('disabled', true);
 
   // Do the petition
-  var startURL = baseURL
+  var startURL = baseURL + 'recorder/start/'
                    + $('#recordCaptureName').val() + '/'
                    + $('input:radio[name=recordCapturePort]:checked').val() + '/'
                    + $('#recordCaptureBytes').val() + $('input:radio[name=recordCaptureBytes]:checked').val();
@@ -335,6 +335,7 @@ function startRecording() {
       }, 3000);
     },
     error: function (e) {
+      console.log(e);
       notificationError(<?php echo '\'' . _('Invalid state or capture name already taken. Reloading...') . '\'' ?>);
       setTimeout(function () {
         location.reload(true)
@@ -350,16 +351,18 @@ function startRecording() {
 // Global vars for the recording page (recording_ prefix)
 var recording_elapsedTime;
 var recording_lastCapturedBytes;
+var recording_elapsedInterval;
+var recording_refreshInterval;
 
 // Sets the api calls for refreshing the info
 function setRefreshRecording() {
   // Counter refresh
   recording_elapsedTime = parseInt($('#recordingElapsedTime').text());
   recording_lastCapturedBytes = 0;
-  var elapsedTime = setInterval(refreshElapsedTime, 1000);
+  recording_elapsedInterval = setInterval(refreshElapsedTime, 1000);
 
   // Data refresh
-  var refreshInterval = setInterval(function() {
+  var recording_refreshInterval = setInterval(function() {
     var statusURL = baseURL + 'info/status';
     $.ajax({
       type: 'GET',
@@ -370,24 +373,24 @@ function setRefreshRecording() {
         // Process new data
         if(resp.status == 'recording') {
           processRecordingData(resp);
-          clearInterval(elapsedTime);
-          elapsedTime = setInterval(refreshElapsedTime, 1000);
+          clearInterval(recording_elapsedInterval);
+          recording_elapsedInterval = setInterval(refreshElapsedTime, 1000);
         }
         // Recording has ended
         else {
           $('#recordingTitle').text(<?php echo '\'' . _('Capture recording has ended') . '\'' ?>)
           $('#stopRecording').prop('disabled', true);
           $('#recordingCurrentRate').text('--');
-          clearInterval(refreshInterval);
-          clearInterval(elapsedTime);
+          clearInterval(recording_refreshInterval);
+          clearInterval(recording_elapsedInterval);
         }
       },
       error: function (e) {
         // Error on the request. Refresh
         $('#stopRecording').prop('disabled', true);
         $('#recordingCurrentRate').text('--');
-        clearInterval(refreshInterval);
-        clearInterval(elapsedTime);
+        clearInterval(recording_refreshInterval);
+        clearInterval(recording_elapsedInterval);
         notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
         setTimeout(function () {
           location.reload(true)
@@ -427,8 +430,8 @@ function stopRecording() {
   $('#recordingTitle').text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
   $('#stopRecording').prop('disabled', true);
   $('#recordingCurrentRate').text('--');
-  clearInterval(refreshInterval);
-  clearInterval(elapsedTime);
+  clearInterval(recording_refreshInterval);
+  clearInterval(recording_elapsedInterval);
   var stopURL = baseURL + 'recorder/stop';
   $.ajax({
     type: 'POST',
@@ -438,10 +441,7 @@ function stopRecording() {
     'timestamp': Date.now()
     },
     success: function (resp) {
-      $('#recordingTitle').text(<?php echo '\'' . _('Capture recording has been stopped') . '\'' ?>)
-      $.bootstrapGrowl(<?php echo '\'' . _('Reloading...') . '\'' ?>, {
-        type: 'info'
-      });
+      $('#recordingTitle').text(<?php echo '\'' . _('Capture recording has been stopped. Reloading....') . '\'' ?>)
       setTimeout(function () {
         location.reload(true)
       }, 3000);

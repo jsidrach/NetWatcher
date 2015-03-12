@@ -61,9 +61,9 @@ class managerController extends Common\appController
         } else {
             $callback = 'renderError';
         }
-        //$this->view->render($callback);
+        $this->view->render($callback);
         // TODO: Uncomment when finish
-        $this->view->render('renderRecording');
+        //$this->view->render('renderModeSelection');
     }
 }
 ?>
