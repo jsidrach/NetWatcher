@@ -110,7 +110,7 @@ class capturesView extends Common\appView
         $this->pLine('<h3 class="panel-title">' . _('Convert') . '</h3>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="panel-body">');
-        $this->pLine('<div class="input-group">', 1);
+        $this->pLine('<div id="convertInputFeedback" class="input-group has-feedback">', 1);
         $this->pLine('<input type="text" class="form-control" placeholder="' . _('Converted name') . '" id="convertedName" name="convertedName">', 1);
         $this->pLine('<span class="input-group-btn">');
         $this->pLine('<button class="btn btn-default" type="button" id="convertOK" name="convertOK">', 1);
@@ -126,8 +126,8 @@ class capturesView extends Common\appView
         $this->pLine('<h3 class="panel-title">' . _('Rename') . '</h3>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="panel-body">');
-        $this->pLine('<div class="input-group">', 1);
-        $this->pLine('<input type="text" class="form-control" placeholder="' . _('New name') . '" id="newName">', 1);
+        $this->pLine('<div id="renameInputFeedback" class="input-group has-feedback">', 1);
+        $this->pLine('<input type="text" class="form-control has-feedback" placeholder="' . _('New name') . '" id="newName">', 1);
         $this->pLine('<span class="input-group-btn">');
         $this->pLine('<button class="btn btn-default" type="button" id="renameOK">', 1);
         $this->pLine(_('OK'), 1);

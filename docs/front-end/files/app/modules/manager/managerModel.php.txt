@@ -22,6 +22,13 @@ class managerModel extends Common\appModel
 {
 
     /**
+     * JSON object (singleton)
+     * 
+     * @var JSON object with the manager status (singleton)
+     */
+    private $status = null;
+
+    /**
      * Constructor for the managerModel class.
      * Sets the strings (with localization support)
      */
@@ -36,19 +43,23 @@ class managerModel extends Common\appModel
     /**
      * Get the current status of the FPGA
      */
-    public function getStatus()
+    public function getManagerStatus()
     {
-        $context = stream_context_create(array(
-            'http' => array(
-                'timeout' => 2
-            )
-        ));
-        $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', 0, $context);
-        if ($data === FALSE) {
-            return 'error';
-        } else {
-            return json_decode($data)->status;
+        if ($this->status == null) {
+            $context = stream_context_create(array(
+                'http' => array(
+                    'timeout' => 3
+                )
+            ));
+            $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', 0, $context);
+            if ($data === FALSE) {
+                return array(
+                    'status' => 'error'
+                );
+            }
+            $this->status = json_decode($data);
         }
+        return $this->status;
     }
 }
 ?>
