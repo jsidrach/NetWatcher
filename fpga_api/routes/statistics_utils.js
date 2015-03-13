@@ -126,7 +126,7 @@ function modeFPGA(tries, callback) {
 };
 exports.modeFPGA = modeFPGA;
 
-// Gets a boolean value that represents if the FPGA is running (true: yes, false: no)
+// Gets a boolean value that represents if the FPGA is running in a specific mode (true: yes, false: no)
 function runningFPGA(recorder, callback) {
   var command = recorder ? 'pgrep launchRecorder || pgrep card2host' : 'pgrep launchPlayer || pgrep host2card';
   scripts.exec(command).on('exit', function (code) {
@@ -134,6 +134,15 @@ function runningFPGA(recorder, callback) {
   });
 };
 exports.runningFPGA = runningFPGA;
+
+// Gets a boolean value that represents if the FPGA is running in any mode
+function runningAny(callback) {
+  var command = 'pgrep launchRecorder || pgrep card2host || pgrep launchPlayer || pgrep host2card';
+  scripts.exec(command).on('exit', function(code) {
+    callback(code == 0);
+  });
+};
+exports.runningAny = runningAny;
 
 // Gets the current recording info
 function getDataRecording(callback) {

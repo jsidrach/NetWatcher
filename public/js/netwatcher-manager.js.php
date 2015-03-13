@@ -175,7 +175,7 @@ function initFPGA(player) {
       setTimeout(function () {
         progressBar.css('width', '100%');
         progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
-        progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
+        progressLabel.text(<?php echo '\'' . _('The FPGA cannot be programmed if it is active (stop the player/recorder)') . '\'' ?>);
         setTimeout(function () {
           location.reload(true)
         }, 2000);
