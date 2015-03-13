@@ -33,8 +33,18 @@ function initFPGA(req, res, recorder) {
       });
       return;
     }
-    // HugePages on: initialize the FPGA
-    initBitstream(req, res, bitstream);
+    statistics_utils.runningAny(function(code) {
+      if(code) {
+        // FPGA is running
+        common.readJSON('fpga_invalid_state', function (ans) {
+          ans.description = 'Invalid State. The FPGA is already running, stop it to init the FPGA.';
+          res.status(412).json(ans);
+        });
+        return;
+      }
+      // Initialize the FPGA
+      initBitstream(req, res, bitstream);
+    });
   });
 };
 exports.initFPGA = initFPGA;
@@ -51,29 +61,39 @@ function installFPGA(req, res, recorder) {
       });
       return;
     }
-    // Mount the FPGA
-    scripts.exec('sudo ./bin/installDriver.sh').on('exit', function (code) {
-      if (code != 0) {
-        // Internal Error
-        common.logError('Error mounting the FPGA');
-        res.sendStatus(500);
+    statistics_utils.runningAny(function(code) {
+      if(code) {
+        // FPGA is running
+        common.readJSON('fpga_invalid_state', function (ans) {
+          ans.description = 'Invalid State. The FPGA is already running, stop it to install the FPGA.';
+          res.status(412).json(ans);
+        });
         return;
       }
-      if (recorder) {
-        scripts.exec('sudo ./bin/configureAel').on('exit', function (code) {
-          if (code != 0) {
-            // Internal Error
-            common.logError('Error configuring the FPGA');
-            res.sendStatus(500);
-            return;
-          }
-          // Mounted and configured ok
+      // Mount the FPGA
+      scripts.exec('sudo ./bin/installDriver.sh').on('exit', function (code) {
+        if (code != 0) {
+          // Internal Error
+          common.logError('Error mounting the FPGA');
+          res.sendStatus(500);
+          return;
+        }
+        if (recorder) {
+          scripts.exec('sudo ./bin/configureAel').on('exit', function (code) {
+            if (code != 0) {
+              // Internal Error
+              common.logError('Error configuring the FPGA');
+              res.sendStatus(500);
+              return;
+            }
+            // Mounted and configured ok
+            common.sendJSON('fpga_mount_ok', res, 200);
+          });
+        } else {
+          // Mounted ok
           common.sendJSON('fpga_mount_ok', res, 200);
-        });
-      } else {
-        // Mounted ok
-        common.sendJSON('fpga_mount_ok', res, 200);
-      }
+        }
+      });
     });
   });
 };

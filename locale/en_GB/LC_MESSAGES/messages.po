@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-03-12 16:23+0100\n"
-"PO-Revision-Date: 2015-03-12 16:23+0100\n"
+"POT-Creation-Date: 2015-03-13 10:32+0100\n"
+"PO-Revision-Date: 2015-03-13 10:32+0100\n"
 "Last-Translator: JSid <juan.sidrach@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -158,7 +158,7 @@ msgid "Reboot"
 msgstr "Reboot"
 
 #: app/modules/manager/managerView.php:89
-#: app/modules/manager/managerView.php:270
+#: app/modules/manager/managerView.php:280
 #: app/modules/captures/capturesView.php:52
 msgid "Cancel"
 msgstr "Cancel"
@@ -205,7 +205,7 @@ msgid "Port to capture"
 msgstr "Port to capture"
 
 #: app/modules/manager/managerView.php:195
-#: app/modules/manager/managerView.php:247
+#: app/modules/manager/managerView.php:257
 msgid "Port"
 msgstr "Port"
 
@@ -213,39 +213,43 @@ msgstr "Port"
 msgid "Start"
 msgstr "Start"
 
-#: app/modules/manager/managerView.php:232
+#: app/modules/manager/managerView.php:215
+msgid "Back to mode selection"
+msgstr "Back to mode selection"
+
+#: app/modules/manager/managerView.php:242
 msgid "Recording..."
 msgstr "Recording..."
 
-#: app/modules/manager/managerView.php:246
+#: app/modules/manager/managerView.php:256
 msgid "Name of the capture"
 msgstr "Name of the capture"
 
-#: app/modules/manager/managerView.php:248
+#: app/modules/manager/managerView.php:258
 msgid "Elapsed Time"
 msgstr "Elapsed Time"
 
-#: app/modules/manager/managerView.php:249
+#: app/modules/manager/managerView.php:259
 msgid "Captured Bytes"
 msgstr "Captured Bytes"
 
-#: app/modules/manager/managerView.php:250
+#: app/modules/manager/managerView.php:260
 msgid "Total Bytes"
 msgstr "Total Bytes"
 
-#: app/modules/manager/managerView.php:251
+#: app/modules/manager/managerView.php:261
 msgid "Average Rate"
 msgstr "Average Rate"
 
-#: app/modules/manager/managerView.php:252
+#: app/modules/manager/managerView.php:262
 msgid "Current Rate"
 msgstr "Current Rate"
 
-#: app/modules/manager/managerView.php:257
+#: app/modules/manager/managerView.php:267
 msgid "Stop recording"
 msgstr "Stop recording"
 
-#: app/modules/manager/managerView.php:266
+#: app/modules/manager/managerView.php:276
 msgid ""
 "The current capture will be deleted. Are you sure you want to stop the "
 "recording?"
@@ -253,11 +257,11 @@ msgstr ""
 "The current capture will be deleted. Are you sure you want to stop the "
 "recording?"
 
-#: app/modules/manager/managerView.php:269
+#: app/modules/manager/managerView.php:279
 msgid "Stop"
 msgstr "Stop"
 
-#: app/modules/manager/managerView.php:301
+#: app/modules/manager/managerView.php:311
 msgid "Sending request..."
 msgstr "Sending request..."
 
@@ -385,7 +389,7 @@ msgstr ""
 "file (or adding symbolic link to it) to the captures directory on the FPGA "
 "remote server"
 
-#: app/common/appModel.php:49
+#: app/modules/statistics/statisticsView.php:32 app/common/appModel.php:49
 msgid "Statistics"
 msgstr "Statistics"
 
@@ -426,7 +430,6 @@ msgid "Waiting for the server to reboot..."
 msgstr "Waiting for the server to reboot..."
 
 #: public/js/netwatcher-manager.js.php:128
-#: public/js/netwatcher-manager.js.php:178
 #: public/js/netwatcher-manager.js.php:223
 msgid "Error sending the request"
 msgstr "Error sending the request"
@@ -446,6 +449,12 @@ msgstr "Programming the FPGA..."
 #: public/js/netwatcher-manager.js.php:169
 msgid "FPGA programmed. Rebooting the system..."
 msgstr "FPGA programmed. Rebooting the system..."
+
+#: public/js/netwatcher-manager.js.php:178
+msgid ""
+"The FPGA cannot be programmed if it is active (stop the player/recorder)"
+msgstr ""
+"The FPGA cannot be programmed if it is active (stop the player/recorder)"
 
 #: public/js/netwatcher-manager.js.php:195
 msgid "Installing the driver..."

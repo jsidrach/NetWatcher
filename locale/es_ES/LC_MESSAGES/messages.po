@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-03-12 16:24+0100\n"
-"PO-Revision-Date: 2015-03-12 16:24+0100\n"
+"POT-Creation-Date: 2015-03-13 10:34+0100\n"
+"PO-Revision-Date: 2015-03-13 10:34+0100\n"
 "Last-Translator: JSid <juan.sidrach@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -157,7 +157,7 @@ msgid "Reboot"
 msgstr "Reiniciar"
 
 #: app/modules/manager/managerView.php:89
-#: app/modules/manager/managerView.php:270
+#: app/modules/manager/managerView.php:280
 #: app/modules/captures/capturesView.php:52
 msgid "Cancel"
 msgstr "Cancelar"
@@ -204,7 +204,7 @@ msgid "Port to capture"
 msgstr "Puerto a capturar"
 
 #: app/modules/manager/managerView.php:195
-#: app/modules/manager/managerView.php:247
+#: app/modules/manager/managerView.php:257
 msgid "Port"
 msgstr "Puerto"
 
@@ -212,50 +212,54 @@ msgstr "Puerto"
 msgid "Start"
 msgstr "Empezar"
 
-#: app/modules/manager/managerView.php:232
+#: app/modules/manager/managerView.php:215
+msgid "Back to mode selection"
+msgstr "Volver a seleccionar modo"
+
+#: app/modules/manager/managerView.php:242
 msgid "Recording..."
 msgstr "Capturando..."
 
-#: app/modules/manager/managerView.php:246
+#: app/modules/manager/managerView.php:256
 msgid "Name of the capture"
 msgstr "Nombre de la traza"
 
-#: app/modules/manager/managerView.php:248
+#: app/modules/manager/managerView.php:258
 msgid "Elapsed Time"
 msgstr "Tiempo Transcurrido"
 
-#: app/modules/manager/managerView.php:249
+#: app/modules/manager/managerView.php:259
 msgid "Captured Bytes"
 msgstr "Bytes Capturados"
 
-#: app/modules/manager/managerView.php:250
+#: app/modules/manager/managerView.php:260
 msgid "Total Bytes"
 msgstr "Bytes Totales"
 
-#: app/modules/manager/managerView.php:251
+#: app/modules/manager/managerView.php:261
 msgid "Average Rate"
 msgstr "Ratio Medio"
 
-#: app/modules/manager/managerView.php:252
+#: app/modules/manager/managerView.php:262
 msgid "Current Rate"
 msgstr "Ratio Actual"
 
-#: app/modules/manager/managerView.php:257
+#: app/modules/manager/managerView.php:267
 msgid "Stop recording"
 msgstr "Parar la captura"
 
-#: app/modules/manager/managerView.php:266
+#: app/modules/manager/managerView.php:276
 msgid ""
 "The current capture will be deleted. Are you sure you want to stop the "
 "recording?"
 msgstr ""
 "La traza actual será eliminada. ¿Seguro que deseas parar la captura en curso?"
 
-#: app/modules/manager/managerView.php:269
+#: app/modules/manager/managerView.php:279
 msgid "Stop"
 msgstr "Parar"
 
-#: app/modules/manager/managerView.php:301
+#: app/modules/manager/managerView.php:311
 msgid "Sending request..."
 msgstr "Enviando petición..."
 
@@ -383,7 +387,7 @@ msgstr ""
 "de traza (o añadiendo un enlace simbólico a él) al directorio de las trazas "
 "en el servidor FPGA remoto"
 
-#: app/common/appModel.php:49
+#: app/modules/statistics/statisticsView.php:32 app/common/appModel.php:49
 msgid "Statistics"
 msgstr "Estadísticas"
 
@@ -424,7 +428,6 @@ msgid "Waiting for the server to reboot..."
 msgstr "Esperando a que el servidor se reinicie..."
 
 #: public/js/netwatcher-manager.js.php:128
-#: public/js/netwatcher-manager.js.php:178
 #: public/js/netwatcher-manager.js.php:223
 msgid "Error sending the request"
 msgstr "Error al enviar la petición"
@@ -444,6 +447,13 @@ msgstr "Programando la FPGA..."
 #: public/js/netwatcher-manager.js.php:169
 msgid "FPGA programmed. Rebooting the system..."
 msgstr "FPGA programada. Reiniciando el sistema..."
+
+#: public/js/netwatcher-manager.js.php:178
+msgid ""
+"The FPGA cannot be programmed if it is active (stop the player/recorder)"
+msgstr ""
+"La FPGA no puede ser programada si está en uso (para el reproductor/"
+"capturador)"
 
 #: public/js/netwatcher-manager.js.php:195
 msgid "Installing the driver..."

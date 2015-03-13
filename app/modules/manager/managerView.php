@@ -206,6 +206,16 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         
         $this->pLine('</form>', - 1);
+        
+        /* Change Mode */
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-5 col-md-offset-4 text-center"><hr>', 1);
+        $this->pLine('<a href="manager/mode">', 1);
+        $this->pLine('<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>', 1);
+        $this->pLine(_('Back to mode selection'));
+        $this->pLine('</a>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
     }
 
     /**
@@ -255,8 +265,8 @@ class managerView extends Common\appView
         $this->pLine('<div class="row" style="text-align:center">');
         $this->pLine('<button type="button" class="btn btn-danger" id="stopRecording" data-toggle="modal" data-target="#confirmStopRecording">', 1);
         $this->pLine(_('Stop recording'), 1);
-        $this->pLine('</button>', -1);
-        $this->pLine('</div>', -1);
+        $this->pLine('</button>', - 1);
+        $this->pLine('</div>', - 1);
         /* Stop confirmation modal */
         $this->pLine('<!-- Stop confirmation -->');
         $this->pLine('<div id="confirmStopRecording" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');

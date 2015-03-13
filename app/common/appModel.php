@@ -46,7 +46,7 @@ abstract class appModel extends \Core\Model
     {
         $this->leftNavbar = array(
             'manager' => _('Manager'),
-            '#notImplemented2' => _('Statistics'),
+            'statistics' => _('Statistics'),
             'captures' => _('Captures')
         );
         $this->rightNavbar = array(

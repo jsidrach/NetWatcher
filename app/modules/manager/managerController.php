@@ -14,7 +14,7 @@ namespace App;
 
 /**
  * managerController class.
- * Manages the fpga as a finite state machine
+ * Manages the FPGA as a finite state machine
  */
 class managerController extends Common\appController
 {
@@ -61,9 +61,19 @@ class managerController extends Common\appController
         } else {
             $callback = 'renderError';
         }
+        
         $this->view->render($callback);
-        // TODO: Uncomment when finish
-        //$this->view->render('renderModeSelection');
+    }
+
+    /**
+     * Forces to display the change mode page
+     *
+     * @param array $args
+     *            Params of the mode (unused)
+     */
+    public function mode(Array $args)
+    {
+        $this->view->render('renderModeSelection');
     }
 }
 ?>
