@@ -283,7 +283,89 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
     }
-
+    
+    /**
+     * Renders player form
+     */
+    public function renderPlayerForm() {
+        /* Captures table */
+        $this->pLine('<div id="startPlaying" class="row">');
+        $this->pLine('<div class="col-md-8">', 1);
+        
+        /* Toolbar of the table */
+        $this->pLine('<div id="toolbar">', 1);
+        $this->pLine('<label><input type="checkbox" id="autoRefresh">' . _('Auto Refresh') . '</label>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="table-responsive">');
+        $this->pLine('<table id="tableCaptures"', 1);
+        $this->pLine('       class="table"');
+        $this->pLine('       data-toggle="table"');
+        $this->pLine('       data-height="500"');
+        $this->pLine('       data-search="true"');
+        $this->pLine('       data-show-refresh="true"');
+        $this->pLine('       data-toolbar="#toolbar"');
+        $this->pLine('       style="cursor: pointer">');
+        $this->pLine('<thead>', 1);
+        $this->pLine('<tr>', 1);
+        $this->pLine('<th data-field="name" data-sortable="true">' . _('Name') . '</th>', 1);
+        $this->pLine('<th data-field="type" data-sortable="true">' . _('Type') . '</th>');
+        $this->pLine('<th data-field="size" data-sortable="true">' . _('Size') . '</th>');
+        $this->pLine('<th data-field="date" data-sortable="true">' . _('Date') . '</th>');
+        $this->pLine('</tr>', - 1);
+        $this->pLine('</thead>', - 1);
+        $this->pLine('</table>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Right action menu */
+        $this->pLine('<div class="col-md-4">');
+        /* Selected capture */
+        $this->pLine('<div id="captureNamePanel" class="panel panel-info">', 1);
+        $this->pLine('<div class="panel-heading">', 1);
+        $this->pLine('<h3 id="captureName" class="panel-title">' . _('Select a capture to reproduce') . '</h3>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+    }
+    
+    /**
+     * Renders the _currently_ playing page
+     */
+    public function renderPlaying() {
+        // TODO: Add title to the h3?
+        /* Heading */
+        $this->pLine('<div class="row" id="playingControl">');
+        $this->pLine('<div class="col-md-offset-2 col-md-8 text-center">', 1);
+        $this->pLine('<h3 id="playingTitle">' . _('Reproducing...') . '</h3><hr>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Info */
+        // TODO
+        // $this->printInfoElement('recordingName', _('Name of the capture'), $name);
+        
+        /* Stop button */
+        $this->pLine('<div class="row" style="text-align:center">');
+        $this->pLine('<button type="button" class="btn btn-danger" id="stopRecording" data-toggle="modal" data-target="#confirmStopPlaying">', 1);
+        $this->pLine(_('Stop reproducing'), 1);
+        $this->pLine('</button>', - 1);
+        $this->pLine('</div>', - 1);
+        /* Stop confirmation modal */
+        $this->pLine('<!-- Stop confirmation -->');
+        $this->pLine('<div id="confirmStopPlaying" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');
+        $this->pLine('<div class="modal-dialog">', 1);
+        $this->pLine('<div class="modal-content">', 1);
+        $this->pLine('<div class="modal-body text-justify">', 1);
+        $this->pLine(_('Are you sure you want to stop reproducing the capture?'), 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="modal-footer">');
+        $this->pLine('<button type="button" data-dismiss="modal" class="btn btn-danger" id="confirmStop">' . _('Stop') . '</button>', 1);
+        $this->pLine('<button type="button" data-dismiss="modal" class="btn btn-default">' . _('Cancel') . '</button>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+    }
+    
     /**
      * Renders a modal overlay (for ajax petitions)
      *
