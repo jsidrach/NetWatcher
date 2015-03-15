@@ -1,22 +1,20 @@
 TODO Weekend:
 -------
-  - Cambiar modo? > recorder_ready, player_ready
-    - Comprobaciones para cambiar de modo solo cuando se puede?
+  - Draft páginas del reproductor
 
 TODO Future:
 -------
   - Statistics: dd discos, estadisticas, resetear
+    - Estadisticas adicionales readRegisters?
   - Maquina de estados finita FPGA? Terminar tipos de códigos status
     - Terminar página de manager
       - Cambiar de modo
       - (player, playing)
 
-Dudas Jose:
+Jose:
 -------
   - Nuevos binarios host2card card2host, bitstreams, etc
-  - Si ya está programada la fpga y quiero cambiar de modo, vale con ejecutar otra vez impact/install_driver
-    - O hay antes que desmontarla/desprogramarla o algo...
-  - Qué hace readRegisters, testControl
+  - Qué hace readRegisters, testControl, sendRandom
 
 Ideas pagina de statistics
 ------
