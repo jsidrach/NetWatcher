@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 
 //
-// Connection error page
+// Connection error
 //
 (function( ConnectionError, $, undefined ) {
 
@@ -75,7 +75,7 @@ $(document).ready(function () {
 }( window.ConnectionError = window.ConnectionError || {}, jQuery ));
 
 //
-// HugePages off page
+// HugePages off
 //
 (function( HugePagesOff, $, undefined ) {
 
@@ -611,6 +611,7 @@ $(document).ready(function () {
   var captureNamePanel;
   // Refresh button
   var refreshButton;
+  // TODO: Add the rest (form controls?)
 
   // Initializes the module
   ConfigurePlayer.init = function() {
