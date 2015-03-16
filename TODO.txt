@@ -1,5 +1,7 @@
 TODO Future:
 -------
+  - testSimple para detectar trazas simple validas?
+    - añadir en pcap2simple? hace falta?
   - Statistics: dd discos, estadisticas, resetear
     - Estadisticas adicionales readRegisters?
   - Maquina de estados finita FPGA? Terminar tipos de códigos status

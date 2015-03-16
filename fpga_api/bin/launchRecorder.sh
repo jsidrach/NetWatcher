@@ -10,3 +10,4 @@ fi
 
 sudo ./bin/writeControl -n -1 -l ${1} -r &&
 sudo ./bin/card2host -n ${2} ${3}
+sleep 5
