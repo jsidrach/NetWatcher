@@ -9,6 +9,9 @@ require_once ('../../lib/vendor/autoload.php');
 // Base URL of the ajax calls
 var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
 
+// URL of the base page
+var pageURL = 'manager';
+
 // Sets the events
 $(document).ready(function () {
   // Connection error page
@@ -68,7 +71,7 @@ $(document).ready(function () {
     countdownText.text(countdownSecs);
     if (countdownSecs <= 0) {
       clearInterval(countdownInterval);
-      location.reload(true);
+      window.location = pageURL;
     }
   };
 
@@ -113,7 +116,7 @@ $(document).ready(function () {
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
           progressLabel.text(<?php echo '\'' . _('Waiting for the server to reboot...') . '\'' ?>);
           setTimeout(waitUntilUp(function () {
-            location.reload(true);
+            window.location = pageURL;
           }), 10000);
         }, 2000);
       },
@@ -250,7 +253,7 @@ $(document).ready(function () {
 
           // Reload the page
           setTimeout(function () {
-            location.reload(true);
+            window.location = pageURL;
           }, 2000);
         }, 2000);
       },
@@ -261,7 +264,7 @@ $(document).ready(function () {
           progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
           // Reload the page
           setTimeout(function () {
-            location.reload(true);
+            window.location = pageURL;
           }, 2000);
         }, 2000);
       }
@@ -425,7 +428,7 @@ $(document).ready(function () {
           type: 'info'
         });
         setTimeout(function () {
-          location.reload(true);
+          window.location = pageURL;
         }, 3000);
       },
       error: function (e) {

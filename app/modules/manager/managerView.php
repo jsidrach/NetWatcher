@@ -283,18 +283,19 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
     }
-    
+
     /**
      * Renders player form
      */
-    public function renderPlayerForm() {
+    public function renderPlayerForm()
+    {
         /* Captures table */
         $this->pLine('<div id="startPlaying" class="row">');
         $this->pLine('<div class="col-md-8">', 1);
         
         /* Toolbar of the table */
         $this->pLine('<div id="toolbar">', 1);
-        $this->pLine('<label><input type="checkbox" id="autoRefresh">' . _('Auto Refresh') . '</label>');
+        $this->pLine('<label><input type="checkbox" id="autoRefresh">' . _('Auto Refresh') . '</label>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="table-responsive">');
         $this->pLine('<table id="tableCaptures"', 1);
@@ -325,12 +326,28 @@ class managerView extends Common\appView
         $this->pLine('<h3 id="captureName" class="panel-title">' . _('Select a capture to reproduce') . '</h3>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
+        // TODO Parameters
+        
+        
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Change Mode */
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-5 col-md-offset-4 text-center"><hr>', 1);
+        $this->pLine('<a href="manager/mode">', 1);
+        $this->pLine('<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>', 1);
+        $this->pLine(_('Back to mode selection'));
+        $this->pLine('</a>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
     }
-    
+
     /**
      * Renders the _currently_ playing page
      */
-    public function renderPlaying() {
+    public function renderPlaying()
+    {
         // TODO: Add title to the h3?
         /* Heading */
         $this->pLine('<div class="row" id="playingControl">');
@@ -365,7 +382,7 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
     }
-    
+
     /**
      * Renders a modal overlay (for ajax petitions)
      *
