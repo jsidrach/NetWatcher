@@ -157,6 +157,22 @@ function startPlaying(req, res, loop) {
 };
 exports.startPlaying = startPlaying;
 
+// Stops the player (in loop)
+function stopLoopPlayer(req, res) {
+  scripts.exec('sudo pkill -SIGINT launchPlayer; sudo pkill -SIGINT host2card').on('exit', function (code) {
+    statistics_utils.runningFPGA(false, function (isRunning) {
+      // Recursion
+      if (isRunning) {
+        setTimeout(function () {
+          stopLoopPlayer(req, res);
+        }, 500);
+      } else {
+        common.sendJSON('player_stop_success', res, 200);
+      }
+    });
+  });
+};
+exports.stopLoopPlayer = stopLoopPlayer;
 
 // Stops the recorder (in loop)
 function stopLoopRecorder(req, res, capturename) {

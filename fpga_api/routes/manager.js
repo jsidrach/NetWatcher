@@ -123,8 +123,16 @@ exports.startRecorder = function (req, res) {
 // /player/stop
 // Stops the player
 exports.stopPlayer = function (req, res) {
-  // TODO: Implement function
-  res.sendStatus(404);
+  statistics_utils.runningFPGA(false, function (isRunning) {
+    if (!isRunning) {
+      common.readJSON('fpga_invalid_state', function (ans) {
+        ans.description = 'Invalid State. The FPGA is not playing a capture.';
+        res.status(412).json(ans);
+      });
+      return;
+    }
+    manager_utils.stopLoopPlayer(req, res);
+  });
 };
 
 // /recorder/stop

@@ -19,9 +19,11 @@
 		"3571e7fa-181f-1724-d01b-d3f7d762926c",
 		"f0e286f8-10d5-9ea8-20d1-6b74ecdfdf61",
 		"f29110ab-2e36-a3ca-a982-8eebd99c5059",
+		"e317ea2c-e561-561a-5a47-4c3282528032",
+		"8b2fd1f0-fb6a-3d4d-aa41-fecb2c1094f9",
 		"197d29fd-3fb9-030b-6242-453282843fc1",
-		"757e05d4-996b-2f94-13cd-9d2ddcc8b92d",
-		"7f3aa24b-613a-cf92-377b-b1f5848999d3"
+		"7f3aa24b-613a-cf92-377b-b1f5848999d3",
+		"757e05d4-996b-2f94-13cd-9d2ddcc8b92d"
 	],
 	"folders": [],
 	"timestamp": 1424082764812,
@@ -57,7 +59,8 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"collectionOwner": 0,
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "2fff6c24-5cac-f7a8-73ae-8ce68ea71c85",
@@ -80,7 +83,8 @@
 			"description": "Converts a pcap capture into a simple capture",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "3571e7fa-181f-1724-d01b-d3f7d762926c",
@@ -146,7 +150,8 @@
 			"description": "Renames a capture",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "72ada2de-cef0-b7ee-5532-7a1690e4bb8e",
@@ -190,7 +195,8 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"collectionOwner": 0,
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "7f3aa24b-613a-cf92-377b-b1f5848999d3",
@@ -212,7 +218,8 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"collectionOwner": 0,
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "83a757f4-a710-4112-0fb2-7c6388dbd252",
@@ -234,6 +241,32 @@
 			"responses": [],
 			"synced": false,
 			"owner": 0
+		},
+		{
+			"id": "8b2fd1f0-fb6a-3d4d-aa41-fecb2c1094f9",
+			"headers": "timestamp: {{$timestamp}}\n",
+			"url": "{{url}}/player/start/loop/:capturename/:mask/:ifg",
+			"pathVariables": {
+				"mask": "",
+				"ifg": "",
+				"capturename": ""
+			},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
+			"data": [],
+			"dataMode": "params",
+			"name": "/player/start/loop/:capturename/:mask/:ifg",
+			"description": "Start playing a capture in a loop with the FPGA",
+			"descriptionFormat": "html",
+			"time": 1426625463528,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"collectionOwner": 0,
+			"synced": false
 		},
 		{
 			"id": "92e08fd9-4da6-e8e7-529e-f3f774dca1a6",
@@ -277,7 +310,8 @@
 			"description": "Converts a simple capture into a pcap capture",
 			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0
 		},
 		{
 			"id": "a7f4e8f0-e554-c22d-fc6d-7a419360b4e2",
@@ -362,6 +396,32 @@
 			"responses": [],
 			"synced": false,
 			"owner": 0
+		},
+		{
+			"id": "e317ea2c-e561-561a-5a47-4c3282528032",
+			"headers": "timestamp: {{$timestamp}}\n",
+			"url": "{{url}}/player/start/:capturename/:mask/:ifg",
+			"pathVariables": {
+				"capturename": "",
+				"mask": "",
+				"ifg": ""
+			},
+			"preRequestScript": "",
+			"method": "POST",
+			"collectionId": "bd6d68d5-7da3-aae1-153e-43a7c19a5ec8",
+			"data": [],
+			"dataMode": "params",
+			"name": "/player/start/:capturename/:mask/:ifg",
+			"description": "Start playing a capture with the FPGA",
+			"descriptionFormat": "html",
+			"time": 1426625405838,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"collectionOwner": 0,
+			"synced": false
 		},
 		{
 			"id": "f0e286f8-10d5-9ea8-20d1-6b74ecdfdf61",

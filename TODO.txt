@@ -1,14 +1,13 @@
 TODO week:
 ------
   API:
-    - /player/stop
-      - Mandar sigint
     - /status > playing
       - Parametros
       - readregisters total played
       - Estad´isticas del archivo elegido
-  PHP:
-    - Interfaz playing
+  Probar todo manager
+  Poedit
+  Doc
 
 TODO Future:
 -------
