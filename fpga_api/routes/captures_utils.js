@@ -85,6 +85,7 @@ exports.validNewName = validNewName;
 
 // Checks if a capture has a valid simple format
 function validSimpleCapture(name) {
+  // TODO: Use something different (testSimple?) to determine if its a valid simple capture with the #packets at the end
   if (!validFile(name)) {
     return false;
   }

@@ -63,8 +63,7 @@ class managerController extends Common\appController
         } else {
             $callback = 'renderError';
         }
-        $this->view->render('renderPlayerForm');
-        //$this->view->render($callback);
+        $this->view->render($callback);
     }
 
     /**

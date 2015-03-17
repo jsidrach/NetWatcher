@@ -99,6 +99,65 @@ function installFPGA(req, res, recorder) {
 };
 exports.installFPGA = installFPGA;
 
+// Starts the player
+function startPlaying(req, res, loop) {
+  statistics_utils.modeFPGA(5, function (ans) {
+    // FPGA must be programmed as a recorder
+    if (ans != 'player') {
+      // FPGA not programmed as a player
+      common.readJSON('fpga_invalid_state', function (ans) {
+        ans.description = 'Invalid State. The FPGA is not programmed and mounted as a player.';
+        res.status(412).json(ans);
+      });
+      return;
+    }
+    statistics_utils.runningFPGA(false, function (isRunning) {
+      // FPGA player must not be running
+      if (isRunning) {
+        common.readJSON('fpga_invalid_state', function (ans) {
+          ans.description = 'Invalid State. The FPGA is already playing a capture.';
+          res.status(412).json(ans);
+        });
+        return;
+      }
+
+      // Valid simple capture
+      if (!captures_utils.validSimpleCapture(req.params.capturename)) {
+        common.readJSON('player_start_error', function (ans) {
+          ans.description = 'Invalid capture (must exist and be in simple format).';
+          res.status(400).json(ans);
+        });
+        return;
+      }
+
+      // Valid mask (0,1,2,3)
+      if (!/^[0123]$/.test(req.params.mask)) {
+        common.readJSON('player_start_error', function (ans) {
+          ans.description = 'Invalid mask.';
+          res.status(400).json(ans);
+        });
+        return;
+      }
+
+      // Valid interframe gap
+      if (!/^[0-9]+$/.test(req.params.ifg)) {
+        common.readJSON('player_start_error', function (ans) {
+          ans.description = 'Invalid interframe gap.';
+          res.status(400).json(ans);
+        });
+        return;
+      }
+
+      // sudo -b nohup ./bin/launchPlayer.sh MASK IFG LOOP SIMPLE_FILE
+      var command = 'sudo -b nohup ./bin/launchPlayer.sh ' + req.params.mask + ' ' + req.params.ifg + ' ' + (loop? '1' : '0') + ' "' + config.CAPTURES_DIR + req.params.capturename + '"';
+      scripts.exec(command);
+      common.sendJSON('player_start_success', res, 200);
+    });
+  });
+};
+exports.startPlaying = startPlaying;
+
+
 // Stops the recorder (in loop)
 function stopLoopRecorder(req, res, capturename) {
   scripts.exec('sudo pkill -SIGINT launchRecorder; sudo pkill -SIGINT card2host').on('exit', function (code) {

@@ -48,7 +48,8 @@ router.post('/recorder/init', manager.initRecorder);
 router.post('/player/install', manager.installPlayer);
 router.post('/recorder/install', manager.installRecorder);
 
-router.post('/player/start/:capturename/:mask/:other', manager.startPlayer);
+router.post('/player/start/:capturename/:mask/:ifg', startPlayer);
+router.post('/player/start/loop/:capturename/:mask/:ifg', startPlayerLoop);
 router.post('/recorder/start/:capturename/:port/:bytes', manager.startRecorder);
 
 router.post('/player/stop', manager.stopPlayer);
@@ -61,8 +62,8 @@ router.get('/info/ping', statistics.ping);
 router.get('/info/delay', statistics.delay);
 
 router.get('/info/status', statistics.status);
-// router.get('/player/statistics', statistics.playerStats);
-// router.get('/recorder/statistics', statistics.recorderStats);
+// router.get('/disk/stats', statistics.diskStats);
+// router.delete('/disk/:id', statistics.diskDelete);
 
 
 // Captures
