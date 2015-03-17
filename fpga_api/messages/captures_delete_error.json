@@ -1,5 +1,5 @@
 {
   "code": "error",
   "type": "notification",
-  "description": "The capture could not be deleted (it does not exist)."
+  "description": "The capture could not be deleted (it is in use or it does not exist)."
 }

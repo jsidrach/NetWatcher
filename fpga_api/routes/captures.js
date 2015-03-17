@@ -53,14 +53,21 @@ exports.rename = function (req, res) {
     return;
   }
 
-  // Rename
-  fs.rename(config.CAPTURES_DIR + req.params.oldname, config.CAPTURES_DIR + req.params.newname, function (err) {
-    if (err) {
-      common.logError(err.message);
+  // Check if it is being used
+  captures_utils.inUse(req.params.oldName, function(flag) {
+    if(flag) {
       common.sendJSON('captures_rename_error', res, 400);
       return;
     }
-    common.sendJSON('captures_rename_success', res, 200);
+    // Rename
+    fs.rename(config.CAPTURES_DIR + req.params.oldname, config.CAPTURES_DIR + req.params.newname, function (err) {
+      if (err) {
+        common.logError(err.message);
+        common.sendJSON('captures_rename_error', res, 400);
+        return;
+      }
+      common.sendJSON('captures_rename_success', res, 200);
+    });
   });
 };
 
@@ -118,13 +125,20 @@ exports.delete = function (req, res) {
     return;
   }
 
-  // Delete
-  fs.unlink(config.CAPTURES_DIR + req.params.name, function (err) {
-    if (err) {
-      common.logError(err.message);
-      common.sendJSON('captures_delete_error', res, 400);
+  // Check if it is being used
+  captures_utils.inUse(req.params.name, function(flag) {
+    if(flag) {
+      common.sendJSON('captures_rename_error', res, 400);
       return;
     }
-    common.sendJSON('captures_delete_success', res, 200);
+    // Delete
+    fs.unlink(config.CAPTURES_DIR + req.params.name, function (err) {
+      if (err) {
+        common.logError(err.message);
+        common.sendJSON('captures_delete_error', res, 400);
+        return;
+      }
+      common.sendJSON('captures_delete_success', res, 200);
+    });
   });
 };

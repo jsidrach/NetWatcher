@@ -274,7 +274,7 @@ $(document).ready(function () {
     }
     var renameURL = capturesURL + 'rename/' + selectedCaptureName + '/' + newName;
     var stringOK = <?php echo '\'' . _('Capture renamed successfully') . '\''; ?>;
-    var stringERR = <?php echo '\'' . _('Capture could not be renamed') . '\''; ?>;
+    var stringERR = <?php echo '\'' . _('Capture could not be renamed (it may be in use)') . '\''; ?>;
 
     // Put the rename request
     $.ajax({
@@ -303,7 +303,7 @@ $(document).ready(function () {
 
     var deleteURL = capturesURL + 'delete/' + selectedCaptureName;
     var stringOK = <?php echo '\'' . _('Capture deleted successfully') . '\''; ?>;
-    var stringERR = <?php echo '\'' . _('Capture could not be deleted') . '\''; ?>;
+    var stringERR = <?php echo '\'' . _('Capture could not be deleted (it may be in use)') . '\''; ?>;
 
     // Get the new data
     $.ajax({
@@ -355,26 +355,15 @@ $(document).ready(function () {
   // Sets the feedback of an input
   function setFeedback(value, input) {
     if (value) {
-      if (input.hasClass('has-error')) {
-        input.removeClass('has-error');
-      }
-      input.addClass('has-success');
+      input.removeClass('has-error').addClass('has-success');
     } else {
-      if (input.hasClass('has-success')) {
-        input.removeClass('has-success');
-      }
-      input.addClass('has-error');
+      input.removeClass('has-success').addClass('has-error');
     }
   };
 
   // Disables the feedback of an input
   function disableFeedback(input) {
-    if (input.hasClass('has-error')) {
-      input.removeClass('has-error');
-    }
-    if (input.hasClass('has-success')) {
-      input.removeClass('has-success');
-    }
+    input.removeClass('has-error has-success');
   };
 
   // Checks if a name is valid (syntactically)

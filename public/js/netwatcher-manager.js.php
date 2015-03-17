@@ -347,23 +347,9 @@ $(document).ready(function () {
   // Sets the feedback of an input
   function setFeedback(value, input, icon) {
     if (value) {
-      if (input.hasClass('has-error')) {
-        input.removeClass('has-error');
-      }
-      input.addClass('has-success');
-      if (icon.hasClass('glyphicon-remove')) {
-        icon.removeClass('glyphicon-remove');
-      }
-      icon.addClass('glyphicon-ok');
+      input.removeClass('has-error glyphicon-remove').addClass('has-success glyphicon-ok');
     } else {
-      if (input.hasClass('has-success')) {
-        input.removeClass('has-success');
-      }
-      input.addClass('has-error');
-      if (icon.hasClass('glyphicon-ok')) {
-        icon.removeClass('glyphicon-ok');
-      }
-      icon.addClass('glyphicon-remove');
+      input.removeClass('has-success glyphicon-ok').addClass('has-error glyphicon-remove');
     }
   };
 
@@ -614,7 +600,22 @@ $(document).ready(function () {
   var captureNamePanel;
   // Refresh button
   var refreshButton;
-  // TODO: Add the rest (form controls?)
+  // Loop checkbox
+  var loopCheckbox;
+  // Output mask
+  var outputMask;
+  // Interframe gap checkbox
+  var ifgCheckbox;
+  // Interframe gap input
+  var ifgInput;
+  // Interframe gap input control
+  var ifgControl;
+  // Interframe gap input control icon
+  var ifgIcon;
+  // Interframe gap regexp
+  var ifgRegexp;
+  // Start button
+  var startButton;
 
   // Initializes the module
   ConfigurePlayer.init = function() {
@@ -630,8 +631,17 @@ $(document).ready(function () {
     captureNamePanel = $('#captureNamePanel');
     autoRefresh = $('#autoRefresh');
     refreshButton = $('button[name="refresh"]');
+    loopCheckbox = $('#playLoop');
+    outputMask = $('input:radio[name=playCaptureMask]');
+    ifgCheckbox = $('#playIFGCheck');
+    ifgInput = $('#playIFG');
+    ifgControl = $('#playIFGControl');
+    ifgIcon = $('#playIFGIcon');
+    ifgRegexp = /^[1-9]+[0-9]*$/;
+    startButton = $('#startPlayingGO');
     // Disable right panels
     toggleRightPanels(false);
+    ifgInput.prop('disabled', true);
     // Set AutoRefresh with the check button
     autoRefresh.change(autoRefreshHandler);    
     // Refresh button
@@ -639,8 +649,9 @@ $(document).ready(function () {
     // Select row from captures table
     tableCaptures.on('click', 'tbody tr', selectCapture);
 
-    // Enable the buttons only when the input is OK
-    // TODO
+    // Right panel events
+    ifgInput.on('input', ifgInputValidator);
+    ifgCheckbox.on('click', ifgCheckboxClick);
 
     // Initial refresh of data
     refreshData();
@@ -648,7 +659,10 @@ $(document).ready(function () {
 
   // Enables/Disables the right panels
   function toggleRightPanels(value) {
-    // TODO Add more
+    loopCheckbox.prop('disabled', !value);
+    outputMask.prop('disabled', !value);
+    ifgCheckbox.prop('disabled', !value);
+    startButton.prop('disabled', !value);
     if (!value) {
       captureName.text(noCaptureText);
       captureNamePanel.removeClass('panel-primary').addClass('panel-info');
@@ -710,6 +724,33 @@ $(document).ready(function () {
     captureName.text(selectedCaptureName);
     toggleRightPanels(true);
   };
+
+  // Turns the input on/off
+  function ifgCheckboxClick() {
+    var checked = ifgCheckbox.prop('checked');
+    ifgInput.prop('disabled', !checked);
+    startButton.prop('disabled', checked);
+    if(!checked) {
+      ifgInput.val('');      
+      ifgControl.removeClass('has-success has-error');
+      ifgIcon.removeClass('glyphicon-ok glyphicon-remove has-success has-error');
+    }
+  };
+
+  // Checks the interframe gap input
+  function ifgInputValidator() {
+    if(ifgRegexp.test(ifgInput.val())) {
+      ifgControl.removeClass('has-error').addClass('has-success');
+      ifgIcon.removeClass('glyphicon-remove has-error').addClass('glyphicon-ok has-success');
+      startButton.prop('disabled', false);
+    } else {
+      ifgControl.removeClass('has-success').addClass('has-error');
+      ifgIcon.removeClass('glyphicon-ok has-success').addClass('glyphicon-remove has-error');
+      startButton.prop('disabled', true);
+    }
+  };
+
+  //TODO: Petition
 
 }( window.ConfigurePlayer = window.ConfigurePlayer || {}, jQuery ));
 

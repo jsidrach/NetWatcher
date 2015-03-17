@@ -32,4 +32,7 @@
 - http://techslides.com/convert-csv-to-json-in-javascript
 
 ##### Fork of editcap with hwgen support (wireshark-hwgen)
-* https://github.com/jfzazo/wireshark-hwgen
+- https://github.com/jfzazo/wireshark-hwgen
+
+##### JQuery Module Pattern
+- http://appendto.com/2010/10/how-good-c-habits-can-encourage-bad-javascript-habits-part-1/

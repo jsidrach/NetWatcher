@@ -1,13 +1,22 @@
+TODO now:
+------
+  - Click en start
+    - Hacer peticion
+  Draft playing
+    - Parametros
+    - Estad´isticas del archivo elegido!
+
+poedit
+doc
+
+
 TODO Future:
 -------
   - testSimple para detectar trazas simple validas?
     - añadir en pcap2simple? hace falta?
   - Statistics: dd discos, estadisticas, resetear
     - Estadisticas adicionales readRegisters?
-  - Maquina de estados finita FPGA? Terminar tipos de códigos status
-    - Terminar página de manager
-      - Cambiar de modo
-      - (player, playing)
+  - Terminar player/playing
 
 Jose:
 -------

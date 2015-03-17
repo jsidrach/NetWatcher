@@ -201,7 +201,7 @@ class managerView extends Common\appView
         /* Save button */
         $this->pLine('<div class="form-group">');
         $this->pLine('<div class="col-sm-offset-7 col-sm-2">', 1);
-        $this->pLine('<button id="recordCaptureStart" type="submit" class="btn btn-default pull-right">' . _('Start') . '</button>', 1);
+        $this->pLine('<button id="recordCaptureStart" type="submit" class="btn btn-primary pull-right">' . _('Start') . '</button>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         
@@ -321,13 +321,78 @@ class managerView extends Common\appView
         /* Right action menu */
         $this->pLine('<div class="col-md-4">');
         /* Selected capture */
+        $this->pLine('<div class="row">', 1);
         $this->pLine('<div id="captureNamePanel" class="panel panel-info">', 1);
         $this->pLine('<div class="panel-heading">', 1);
         $this->pLine('<h3 id="captureName" class="panel-title">' . _('Select a capture to reproduce') . '</h3>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        // TODO Parameters
+        $this->pLine('</div>', - 1);
         
+        /* Parameters */
+        
+        /* Loop */
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-12">', 1);
+        $this->pLine('<div class="checkbox pull-right">', 1);
+        $this->pLine('<label for="playLoop">', 1);
+        $this->pLine('<input id="playLoop" type="checkbox" value="1">', 1);
+        $this->pLine(_('Play the capture in loop'));
+        $this->pLine('</label>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Mask */
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-12"><hr>', 1);
+        $this->pLine('<label class="pull-right">' . _('Output mask (set of ports) ') . '</label>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="row pull-right">');
+        $this->pLine('<div class="col-md-12">', 1);
+        $this->moveIndent(1);
+        $maskString = '';
+        foreach (range(0, 3) as $mask) {
+            $maskString .= $mask . '-';
+            $this->pLine('<label class="radio-inline">');
+            if ($mask == 0) {
+                $this->pLine('<input name="playCaptureMask" value="' . $mask . '" type="radio" checked>', 1);
+            } else {
+                $this->pLine('<input name="playCaptureMask" value="' . $mask . '" type="radio">', 1);
+            }
+            $this->pLine(substr($maskString, 0, - 1), 1);
+            $this->pLine('</label>', - 2);
+        }
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Interframe gap */        
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-12"><hr>', 1);
+        $this->pLine('<label class="pull-right">' . _('Interframe Gap (uncheck to captured rate)') . '</label>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="row">');
+        $this->pLine('<div id="playIFGControl" class="col-md-12 form-group has-feedback">', 1);
+        $this->pLine('<div class="input-group">', 1);
+        $this->pLine('<span class="input-group-addon">', 1);
+        $this->pLine('<input id="playIFGCheck" type="checkbox">', 1);
+        $this->pLine('</span>', - 1);
+        $this->pLine('<input type="number" min="1" id="playIFG" type="text" class="form-control">');
+        $this->pLine('<span class="glyphicon form-control-feedback" id="playIFGIcon" aria-hidden="true" ></span>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+
+        /* Reproduce button */
+        $this->pLine('<div class="row">');
+        $this->pLine('<div class="col-md-12"><hr>', 1);
+        $this->pLine('<button type="button" class="btn btn-primary pull-right" id="startPlayingGO">', 1);
+        $this->pLine(_('Start'), 1);
+        $this->pLine('</button>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
         
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
