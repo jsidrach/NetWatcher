@@ -3,5 +3,8 @@
   "description": "The FPGA is reproducing a capture.",
   "capture": "",
   "elapsed_time": "",
+  "packets_sent": "",
+  "loop": "",
+  "interframe_gap": "",
   "mask": ""
 }

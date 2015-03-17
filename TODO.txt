@@ -1,27 +1,26 @@
-TODO now:
+TODO week:
 ------
-  - Click en start
-    - Hacer peticion
-  Draft playing
-    - Parametros
-    - Estad´isticas del archivo elegido!
-
-poedit
-doc
-
+  API:
+    - /player/stop
+      - Mandar sigint
+    - /status > playing
+      - Parametros
+      - readregisters total played
+      - Estad´isticas del archivo elegido
+  PHP:
+    - Interfaz playing
 
 TODO Future:
 -------
-  - testSimple para detectar trazas simple validas?
-    - añadir en pcap2simple? hace falta?
+  - testSimple para detectar trazas simple validas
+  - actualizar testSimple.c para que añada al final el nº de paquetes
+    - en launchRecorder.sh, que se llame despues a testSimple y añada esto
   - Statistics: dd discos, estadisticas, resetear
-    - Estadisticas adicionales readRegisters?
   - Terminar player/playing
 
 Jose:
 -------
-  - Nuevos binarios host2card card2host, bitstreams, etc
-  - Qué hace readRegisters, testControl, sendRandom
+  - Nuevos binarios finales de todo cuando este listo testSimple.c (solo queda eso!!! :D)
 
 Ideas pagina de statistics
 ------

@@ -28,9 +28,6 @@
 ##### HugePage documentation
 - https://www.kernel.org/doc/Documentation/vm/hugetlbpage.txt
 
-##### Convert CSV to JSON
-- http://techslides.com/convert-csv-to-json-in-javascript
-
 ##### Fork of editcap with hwgen support (wireshark-hwgen)
 - https://github.com/jfzazo/wireshark-hwgen
 

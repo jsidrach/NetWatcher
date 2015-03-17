@@ -50,12 +50,16 @@ exports.installRecorder = function (req, res) {
   manager_utils.installFPGA(req, res, true);
 };
 
-// /player/start/:capturename/:mask/:other
+// /player/start/:capturename/:mask/:ifg
 // Reproduces a capture
 exports.startPlayer = function (req, res) {
-  // TODO: Choose parameters
-  // TODO: Implement function
-  res.sendStatus(404);
+  manager_utils.startPlaying(req, res, false);
+};
+
+// /player/start/loop/:capturename/:mask/:ifg
+// Reproduces a capture in loop
+exports.startPlayerLoop = function (res, req) {
+  manager_utils.startPlaying(req, res, true);
 };
 
 // /recorder/start/:capturename/:port/:bytes
@@ -64,7 +68,7 @@ exports.startRecorder = function (req, res) {
   statistics_utils.modeFPGA(5, function (ans) {
     // FPGA must be programmed as a recorder
     if (ans != 'recorder') {
-      // FPGA programmed as a recorder
+      // FPGA not programmed as a recorder
       common.readJSON('fpga_invalid_state', function (ans) {
         ans.description = 'Invalid State. The FPGA is not programmed and mounted as a recorder.';
         res.status(412).json(ans);

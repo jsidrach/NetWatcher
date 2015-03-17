@@ -328,9 +328,7 @@ $(document).ready(function () {
       setRecordCaptureBytesFeedback(checkTest);
       setRecordCaptureOK(checkTest && checkRecordName());
     });
-    startRecordingButton.on('click', function () {
-      startRecording();
-    });
+    startRecordingButton.on('click', startRecording);
     startRecordingButton.prop('disabled', !(checkRecordBytes() && checkRecordName()));
   };
 
@@ -652,6 +650,7 @@ $(document).ready(function () {
     // Right panel events
     ifgInput.on('input', ifgInputValidator);
     ifgCheckbox.on('click', ifgCheckboxClick);
+    startButton.on('click', startPlaying);
 
     // Initial refresh of data
     refreshData();
@@ -750,7 +749,51 @@ $(document).ready(function () {
     }
   };
 
-  //TODO: Petition
+  // Start playing a capture
+  function startPlaying() {
+    // Parameters should be valid at this point since start button is disabled until everything is allright
+    // Disable the inputs
+    loopCheckbox.prop('disabled', true);
+    outputMask.prop('disabled', true);
+    ifgCheckbox.prop('disabled', true);
+    ifgInput.prop('disabled', true);
+    startButton.prop('disabled', true);
+    tableCaptures.off('click');
+
+    // Petition
+    // player/start/capturename/mask/ifg
+    // player/start/capturename/mask/ifg/loop
+    var ifg = (ifgCheckbox.prop('checked') ? ifgInput.val() : 0);
+    var loop = loopCheckbox.prop('checked') ? 'loop/' : '';
+    var startURL = baseURL + 'player/start/'
+                     + loop
+                     + selectedCaptureName + '/'
+                     + outputMask.filter(':checked').val() + '/'
+                     + ifg;
+    $.ajax({
+      type: 'POST',
+      url: startURL,
+      headers: {
+        'timestamp': Date.now()
+      },
+      dataType: 'json',
+      success: function (resp) {
+        // Recording
+        $.bootstrapGrowl(<?php echo '\'' . _('Playing now! Reloading...') . '\'' ?>, {
+          type: 'info'
+        });
+        setTimeout(function () {
+          window.location = pageURL;
+        }, 3000);
+      },
+      error: function (e) {
+        notificationError(<?php echo '\'' . _('Invalid state or capture. Reloading...') . '\'' ?>);
+        setTimeout(function () {
+          location.reload(true)
+        }, 3000);
+      }
+    });
+  };
 
 }( window.ConfigurePlayer = window.ConfigurePlayer || {}, jQuery ));
 

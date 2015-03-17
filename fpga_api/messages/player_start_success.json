@@ -1,0 +1,5 @@
+{
+  "code": "success",
+  "type": "notification",
+  "description": "The FPGA has started playing a capture."
+}
