@@ -2,6 +2,7 @@
 
 // Package dependencies
 var scripts = require('child_process');
+var path = require('path');
 var fs = require('fs');
 var config = require('../config.js');
 var common = require('./_common.js');
@@ -122,6 +123,15 @@ function validCapture(name) {
 };
 exports.validCapture = validCapture;
 
+// Checks if a capture is in use
+function inUse(name, callback) {
+  var capturePath = path.normalize(config.CAPTURES_DIR + name);
+  var command = 'sudo lsof "' + capturePath + '"';
+  scripts.exec(command).on('exit', function (code) {
+    callback(code == 0);
+  });
+};
+exports.inUse = inUse;
 
 
 // Internal functions

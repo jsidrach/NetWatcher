@@ -51,23 +51,9 @@ $(document).ready(function () {
   // Sets the input to error or success
   function setServerIpInput(value) {
     if (value) {
-      if (serverIpForm.hasClass('has-warning')) {
-        serverIpForm.removeClass('has-warning');
-      }
-      serverIpForm.addClass('has-success');
-      if (serverIpIcon.hasClass('glyphicon-warning-sign')) {
-        serverIpIcon.removeClass('glyphicon-warning-sign');
-      }
-      serverIpIcon.addClass('glyphicon-ok');
+      serverIpForm.removeClass('has-warning glyphicon-warning-sign').addClass('has-success glyphicon-ok');
     } else {
-      if (serverIpForm.hasClass('has-success')) {
-        serverIpForm.removeClass('has-success');
-      }
-      serverIpForm.addClass('has-warning');
-      if (serverIpIcon.hasClass('glyphicon-ok')) {
-        serverIpIcon.removeClass('glyphicon-ok');
-      }
-      serverIpIcon.addClass('glyphicon-warning-sign');
+      serverIpForm.removeClass('has-success glyphicon-ok').addClass('has-warning glyphicon-warning-sign');
     }
   };
 
