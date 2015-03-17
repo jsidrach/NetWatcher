@@ -2,6 +2,8 @@
   "status": "playing",
   "description": "The FPGA is reproducing a capture.",
   "capture": "",
+  "size": "",
+  "date": "",
   "elapsed_time": "",
   "packets_sent": "",
   "loop": "",

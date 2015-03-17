@@ -367,10 +367,10 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         
-        /* Interframe gap */        
+        /* Interframe gap */
         $this->pLine('<div class="row">');
         $this->pLine('<div class="col-md-12"><hr>', 1);
-        $this->pLine('<label class="pull-right">' . _('Interframe Gap (uncheck to captured rate)') . '</label>', 1);
+        $this->pLine('<label class="pull-right">' . _('Interframe Gap (uncheck to original rate)') . '</label>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('<div class="row">');
@@ -384,7 +384,7 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-
+        
         /* Reproduce button */
         $this->pLine('<div class="row">');
         $this->pLine('<div class="col-md-12"><hr>', 1);
@@ -413,7 +413,21 @@ class managerView extends Common\appView
      */
     public function renderPlaying()
     {
-        // TODO: Add title to the h3?
+        /* Values needed */
+        $status = $this->model->getManagerStatus();
+        $name = $status->capture;
+        $size = $this->formatBytes($status->size);
+        $date = $status->date;
+        $elapsedTime = $this->formatDateSeconds($status->elapsed_time);
+        $packetsSent = $this->packets_sent;
+        $ifg = ($status->interframe_gap == 0) ? _('Original captured rate') : $status->interframe_gap;
+        $loop = $status->loop ? _('Yes') : _('No');
+        $mask = '';
+        foreach (range(0, $status->mask) as $port) {
+            $mask .= $port . '-';
+        }
+        $mask = substr($mask, 0, - 1);
+        
         /* Heading */
         $this->pLine('<div class="row" id="playingControl">');
         $this->pLine('<div class="col-md-offset-2 col-md-8 text-center">', 1);
@@ -422,12 +436,18 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         
         /* Info */
-        // TODO
-        // $this->printInfoElement('recordingName', _('Name of the capture'), $name);
+        $this->printInfoElement('playingName', _('Name of the capture'), $name);
+        $this->printInfoElement('playingSize', _('Size'), $size);
+        $this->printInfoElement('playingDate', _('Date'), $date);
+        $this->printInfoElement('playingElapsedTime', _('Elapsed Time'), $elapsedTime);
+        $this->printInfoElement('playingPacketsSent', _('Packets Sent'), $packetsSent);
+        $this->printInfoElement('playingLoop', _('Playing on Loop'), $loop);
+        $this->printInfoElement('playingIFG', _('Interframe Gap'), $ifg);
+        $this->printInfoElement('playingMask', _('Mask'), $mask);
         
         /* Stop button */
         $this->pLine('<div class="row" style="text-align:center">');
-        $this->pLine('<button type="button" class="btn btn-danger" id="stopRecording" data-toggle="modal" data-target="#confirmStopPlaying">', 1);
+        $this->pLine('<button type="button" class="btn btn-danger" id="stopPlaying" data-toggle="modal" data-target="#confirmStopPlaying">', 1);
         $this->pLine(_('Stop reproducing'), 1);
         $this->pLine('</button>', - 1);
         $this->pLine('</div>', - 1);

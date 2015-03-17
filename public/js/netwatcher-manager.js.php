@@ -39,7 +39,7 @@ $(document).ready(function () {
     ConfigurePlayer.init();
   }
   // Playing a capture
-  else if($('#playerControl').length) {
+  else if($('#playingControl').length) {
     Playing.init();
   }
 });
@@ -115,7 +115,7 @@ $(document).ready(function () {
           // Request OK. Waiting for the server to reboot
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
           progressLabel.text(<?php echo '\'' . _('Waiting for the server to reboot...') . '\'' ?>);
-          setTimeout(waitUntilUp(function () {
+          setTimeout(Common.waitUntilUp(function () {
             window.location = pageURL;
           }), 10000);
         }, 2000);
@@ -126,7 +126,7 @@ $(document).ready(function () {
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
           progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
           setTimeout(function () {
-            location.reload(true)
+            window.location = pageURL;
           }, 2000);
         }, 2000);
       }
@@ -212,7 +212,7 @@ $(document).ready(function () {
         progressBar.css('width', '70%');
         progressLabel.text(<?php echo '\'' . _('FPGA programmed. Rebooting the system...') . '\'' ?>);
         setTimeout(function () {
-          waitUntilUp(function() { installDriver(player); });
+          Common.waitUntilUp(function() { installDriver(player); });
         }, 10000);
       },
       error: function (e) {
@@ -221,7 +221,7 @@ $(document).ready(function () {
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
           progressLabel.text(<?php echo '\'' . _('The FPGA cannot be programmed if it is active (stop the player/recorder)') . '\'' ?>);
           setTimeout(function () {
-            location.reload(true)
+            window.location = pageURL;
           }, 2000);
         }, 2000);
       }
@@ -380,11 +380,11 @@ $(document).ready(function () {
   function startRecording() {
     // Checks the parameters
     if(!checkRecordName()) {
-      notificationError(<?php echo '\'' . _('Invalid capture name') . '\'' ?>);
+      Common.notificationError(<?php echo '\'' . _('Invalid capture name') . '\'' ?>);
       return;
     }
     if(!checkRecordBytes()) {
-      notificationError(<?php echo '\'' . _('Invalid number of bytes to record') . '\'' ?>);
+      Common.notificationError(<?php echo '\'' . _('Invalid number of bytes to record') . '\'' ?>);
       return;
     }
 
@@ -416,9 +416,9 @@ $(document).ready(function () {
         }, 3000);
       },
       error: function (e) {
-        notificationError(<?php echo '\'' . _('Invalid state or capture name already taken. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Invalid state or capture name already taken. Reloading...') . '\'' ?>);
         setTimeout(function () {
-          location.reload(true)
+          window.location = pageURL;
         }, 3000);
       }
     });
@@ -431,22 +431,65 @@ $(document).ready(function () {
 //
 (function( Recording, $, undefined ) {
 
+  // Internal variables
+  // Title of the heading
+  var recordingTitle;
+  // Elapsed time label
+  var elapsedTimeLabel;
+  // Name of the capture
+  var recordingName;
+  // Port
+  var recordingPort;
+  // Bytes captured label
+  var recordingBytesCaptured;
+  // Bytes total label
+  var recordingBytesTotal;
+  // Average rate label
+  var recordingAverageRate; 
+  // Current rate label
+  var currentRate;
+  // % of the progress bar
+  var recordingLabel;
+  // Progress bar
+  var recordingProgress;
+  // Stop recording button
+  var stopRecordingButton;
+  // Confirm stop recording button
+  var confirmStopRecording;
+  // Elapsed time in seconds
+  var elapsedTime;
+  // Last request captured bytes
+  var lastCapturedBytes;
+  // Elapsed time clock handler
+  var elapsedInterval;
+  // Refresh interval handler
+  var refreshInterval;
+
   // Initializes the module
   Recording.init = function() {
-    setRefreshRecording();
-    $('#confirmStop').on('click', stopRecording);
-  };
+    // Set the internal variables
+    recordingTitle = $('#recordingTitle');
+    elapsedTimeLabel = $('#recordingElapsedTime');
+    recordingName = $('#recordingName');
+    recordingPort = $('#recordingPort');
+    recordingBytesCaptured = $('#recordingBytesCaptured');
+    recordingBytesTotal = $('#recordingBytesTotal');
+    recordingAverageRate = $('#recordingAverageRate');
+    currentRate = $('#recordingCurrentRate');
+    recordingLabel = $('#recordingLabel');
+    recordingProgress = $('#recordingProgress');
+    stopRecording = $('#stopRecording');
+    confirmStopRecording = $('#confirmStop');
 
-  // Internal variables
-  var elapsedTime;
-  var lastCapturedBytes;
-  var elapsedInterval;
-  var refreshInterval;
+    // Set the events
+    setRefreshRecording();
+    confirmStopRecording.on('click', stopRecording);
+  };
 
   // Sets the api calls for refreshing the info
   function setRefreshRecording() {
     // Counter refresh
-    elapsedTime = parseInt($('#recordingElapsedTime').text());
+    elapsedTime = parseInt(elapsedTimeLabel.text());
     lastCapturedBytes = 0;
     elapsedInterval = setInterval(refreshElapsedTime, 1000);
 
@@ -467,22 +510,22 @@ $(document).ready(function () {
           }
           // Recording has ended
           else {
-            $('#recordingTitle').text(<?php echo '\'' . _('Capture recording has ended') . '\'' ?>)
-            $('#stopRecording').prop('disabled', true);
-            $('#recordingCurrentRate').text('--');
+            recordingTitle.text(<?php echo '\'' . _('Capture recording has ended') . '\'' ?>)
+            stopRecordingButton.prop('disabled', true);
+            currentRate.text('--');
             clearInterval(refreshInterval);
             clearInterval(elapsedInterval);
           }
         },
         error: function (e) {
           // Error on the request. Refresh
-          $('#stopRecording').prop('disabled', true);
-          $('#recordingCurrentRate').text('--');
+          stopRecordingButton.prop('disabled', true);
+          currentRate.text('--');
           clearInterval(refreshInterval);
           clearInterval(elapsedInterval);
-          notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+          Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
           setTimeout(function () {
-            location.reload(true)
+            window.location = pageURL;
           }, 3000);
         }
       });
@@ -491,7 +534,7 @@ $(document).ready(function () {
 
   // Refresh the elapsed time
   function refreshElapsedTime() {
-    $('#recordingElapsedTime').text(parseSeconds(++elapsedTime));
+    elapsedTimeLabel.text(Common.parseSeconds(++elapsedTime));
   };
 
   // Process the recording data and renders the new info in the page
@@ -500,25 +543,25 @@ $(document).ready(function () {
     var recordedBytes = data.bytes_captured - lastCapturedBytes;
     lastCapturedBytes = data.bytes_captured;
     elapsedTime = data.elapsed_time;
-    $('#recordingName').text(data.capture);
-    $('#recordingPort').text(data.port);
-    $('#recordingElapsedTime').text(parseSeconds(data.elapsed_time));
-    $('#recordingBytesCaptured').text(parseBytes(data.bytes_captured));
-    $('#recordingBytesTotal').text(parseBytes(data.bytes_total));
-    $('#recordingAverageRate').text(parseBytes(data.bytes_captured/data.elapsed_time) + '/s');
+    recordingName.text(data.capture);
+    recordingPort.text(data.port);
+    elapsedTimeLabel.text(Common.parseSeconds(data.elapsed_time));
+    recordingBytesCaptured.text(Common.parseBytes(data.bytes_captured));
+    recordingBytesTotal.text(Common.parseBytes(data.bytes_total));
+    recordingAverageRate.text(Common.parseBytes(data.bytes_captured/data.elapsed_time) + '/s');
     if(recordedBytes != data.bytes_captured) {
-      $('#recordingCurrentRate').text(parseBytes(recordedBytes/elapsed) + '/s');
+      currentRate.text(Common.parseBytes(recordedBytes/elapsed) + '/s');
     }
     var percent = Math.floor(100 * data.bytes_captured / data.bytes_total);
-    $('#recordingLabel').text(percent + '%');
-    $('#recordingProgress').css('width', percent + '%');
+    recordingLabel.text(percent + '%');
+    recordingProgress.css('width', percent + '%');
   };
 
   // Stops recording
   function stopRecording() {
-    $('#recordingTitle').text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
-    $('#stopRecording').prop('disabled', true);
-    $('#recordingCurrentRate').text('--');
+    recordingTitle.text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
+    stopRecordingButton.prop('disabled', true);
+    currentRate.text('--');
     clearInterval(refreshInterval);
     clearInterval(elapsedInterval);
     var stopURL = baseURL + 'recorder/stop';
@@ -530,44 +573,19 @@ $(document).ready(function () {
       'timestamp': Date.now()
       },
       success: function (resp) {
-        $('#recordingTitle').text(<?php echo '\'' . _('Capture recording has been stopped. Reloading....') . '\'' ?>)
+        recordingTitle.text(<?php echo '\'' . _('Capture recording has been stopped. Reloading....') . '\'' ?>)
         setTimeout(function () {
-          location.reload(true)
+          window.location = pageURL;
         }, 3000);
       },
       error: function (e) {
         // Error on the request. Refresh
-        notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
         setTimeout(function () {
-          location.reload(true)
+          window.location = pageURL;
         }, 3000);
       }
     });
-  };
-
-  // Parses a number of bytes into a string
-  function parseBytes(bytes) {
-    var suffix = '';
-    ['K', 'M', 'G'].forEach(function(scale) {
-      if(bytes >= 1024) {
-        suffix = scale;
-        bytes = bytes/1024;
-      }
-    });
-    return bytes.toFixed(2) + ' ' + suffix + 'B';
-  };
-
-  // Parses a number of seconds into a string
-  function parseSeconds(seconds) {
-    var date = '';
-    [86400, 3600, 60, 1].forEach(function(scale) {
-      var digits = Math.floor(seconds/scale);
-      if((date != '') || (seconds >= scale)) {
-        date = date + (digits < 10 ? '0' + digits : digits) + ':';
-        seconds = seconds % scale;
-      }
-    });
-    return date.slice(0, -1);
   };
 
 }( window.Recording = window.Recording || {}, jQuery ));
@@ -685,7 +703,7 @@ $(document).ready(function () {
       },
       error: function (e) {
         // Notification of the error (timeout most of the times)
-        notificationError(<?php echo '\'' . _('Connection error') . '\''; ?>);
+        Common.notificationError(<?php echo '\'' . _('Connection error') . '\''; ?>);
         setAutoRefresh(false);
       }
     });
@@ -787,9 +805,9 @@ $(document).ready(function () {
         }, 3000);
       },
       error: function (e) {
-        notificationError(<?php echo '\'' . _('Invalid state or capture. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Invalid state or capture. Reloading...') . '\'' ?>);
         setTimeout(function () {
-          location.reload(true)
+          window.location = pageURL;
         }, 3000);
       }
     });
@@ -802,39 +820,207 @@ $(document).ready(function () {
 //
 (function( Playing, $, undefined ) {
 
+  // Internal variables
+  // Title of the heading
+  var playingTitle;
+  // Elapsed time label
+  var elapsedTimeLabel;
+  // Name of the capture
+  var playingName;
+  // Capture size label
+  var playingSize;
+  // Capture date label
+  var playingDate;
+  // Packets sent label
+  var playingPacketsSent;
+  // Loop label
+  var playingLoop;
+  // Interframe Gap label
+  var playingIFG;
+  // Mask label
+  var playingMask;
+  // Stop recording button
+  var stopPlayingButton;
+  // Confirm stop playing button
+  var confirmStopPlaying;
+  // Elapsed time in seconds
+  var elapsedTime;
+  // Elapsed time clock handler
+  var elapsedInterval;
+  // Refresh interval handler
+  var refreshInterval;
+
   // Initializes the module
   Playing.init = function() {
-    // TODO
+    // Set the internal variables
+    playingTitle = $('#playingTitle');
+    elapsedTimeLabel = $('#playingElapsedTime');
+    playingName = $('#playingName');
+    playingSize = $('#playingSize');
+    playingDate = $('#playingDate');
+    playingPacketsSent = $('#playingPacketsSent');
+    playingLoop = $('#playingLoop');
+    playingIFG = $('#playingIFG');
+    playingMask = $('#playingMask');
+    stopPlayingButton = $('#stopPlaying');
+    confirmStopPlaying = $('#confirmStop');
+
+    // Set the events
+    setRefreshPlaying();
+    confirmStopPlaying.on('click', stopPlaying);
+  };
+
+  // Sets the api calls for refreshing the info
+  function setRefreshPlaying() {
+    // Counter refresh
+    elapsedTime = parseInt(elapsedTimeLabel.text());
+    elapsedInterval = setInterval(refreshElapsedTime, 1000);
+
+    // Data refresh
+    refreshInterval = setInterval(function() {
+      var statusURL = baseURL + 'info/status';
+      $.ajax({
+        type: 'GET',
+        url: statusURL,
+        dataType: 'json',
+        timeout: 2500,
+        success: function (resp) {
+          // Process new data
+          if(resp.status == 'recording') {
+            processPlayingData(resp);
+            clearInterval(elapsedInterval);
+            elapsedInterval = setInterval(refreshElapsedTime, 1000);
+          }
+          // Recording has ended
+          else {
+            playingTitle.text(<?php echo '\'' . _('Capture reproduction has ended') . '\'' ?>)
+            stopPlayingButton.prop('disabled', true);
+            clearInterval(refreshInterval);
+            clearInterval(elapsedInterval);
+          }
+        },
+        error: function (e) {
+          // Error on the request. Refresh
+          stopPlayingButton.prop('disabled', true);
+          clearInterval(refreshInterval);
+          clearInterval(elapsedInterval);
+          Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+          setTimeout(function () {
+            window.location = pageURL;
+          }, 3000);
+        }
+      });
+    }, 3000);
+  };
+
+  // Refresh the elapsed time
+  function refreshElapsedTime() {
+    elapsedTimeLabel.text(Common.parseSeconds(++elapsedTime));
+  };
+
+  // Process the playing data and renders the new info in the page
+  function processPlayingData(data) {
+    elapsedTime = data.elapsed_time;
+    playingName.text(data.capture);
+    playingDate.text(data.date);
+    playingSize.text(Common.parseBytes(data.size));
+    playingPacketsSent.text(data.packets_sent);
+    elapsedTimeLabel.text(Common.parseSeconds(data.elapsed_time));
+    playingIFG.text((data.interframe_gap == 0) ? <?php echo '\'' . _('Original captured rate') . '\'' ?> : data.interframe_gap);
+    playingLoop.text(data.loop ? <?php echo '\'' . _('Yes') . '\'' ?> : <?php echo '\'' . _('No') . '\'' ?> );
+    var mask = '';
+    for (var i = 0; i <= data.mask; i++) {
+      mask = mask + i + '-';
+    }
+    playingMask.text(mask.slice(0, -1));
+  };
+
+  // Stops playing
+  function stopPlaying() {
+    playingTitle.text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
+    stopPlayingButton.prop('disabled', true);
+    clearInterval(refreshInterval);
+    clearInterval(elapsedInterval);
+    var stopURL = baseURL + 'player/stop';
+    $.ajax({
+      type: 'POST',
+      url: stopURL,
+      dataType: 'json',
+      headers: {
+      'timestamp': Date.now()
+      },
+      success: function (resp) {
+        playingTitle.text(<?php echo '\'' . _('Capture reproduction has been stopped. Reloading....') . '\'' ?>)
+        setTimeout(function () {
+          window.location = pageURL;
+        }, 3000);
+      },
+      error: function (e) {
+        // Error on the request. Refresh
+        Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+        setTimeout(function () {
+          window.location = pageURL;
+        }, 3000);
+      }
+    });
   };
 
 }( window.Playing = window.Playing || {}, jQuery ));
 
 //
-// Auxiliary common functions
+// Auxiliary Common module
 //
+(function( Common, $, undefined ) {
 
-// Waits until the server is up again
-function waitUntilUp(callback) {
-  var pingURL = baseURL + 'info/ping';
-  var timer = setInterval(function () {
-    $.ajax({
-      type: 'GET',
-      url: pingURL,
-      dataType: 'json',
-      timeout: 1000,
-      success: function (resp) {
-        // Server up. Callback
-        clearInterval(timer);
-        callback();
+  // Parses a number of bytes into a string
+  Common.parseBytes = function (bytes) {
+    var suffix = '';
+    ['K', 'M', 'G'].forEach(function(scale) {
+      if(bytes >= 1024) {
+        suffix = scale;
+        bytes = bytes/1024;
       }
     });
-  }, 3000);
-};
+    return bytes.toFixed(2) + ' ' + suffix + 'B';
+  };
 
-// Creates an error notification
-function notificationError(stringERR) {
-  // Notification of the error
-  $.bootstrapGrowl(stringERR, {
-    type: 'danger'
-  });
-};
+  // Parses a number of seconds into a string
+  Common.parseSeconds = function (seconds) {
+    var date = '';
+    [86400, 3600, 60, 1].forEach(function(scale) {
+      var digits = Math.floor(seconds/scale);
+      if((date != '') || (seconds >= scale)) {
+        date = date + (digits < 10 ? '0' + digits : digits) + ':';
+        seconds = seconds % scale;
+      }
+    });
+    return date.slice(0, -1);
+  };
+
+  // Waits until the server is up again
+  Common.waitUntilUp = function (callback) {
+    var pingURL = baseURL + 'info/ping';
+    var timer = setInterval(function () {
+      $.ajax({
+        type: 'GET',
+        url: pingURL,
+        dataType: 'json',
+        timeout: 1000,
+        success: function (resp) {
+          // Server up. Callback
+          clearInterval(timer);
+          callback();
+        }
+      });
+    }, 3000);
+  };
+
+  // Creates an error notification
+  Common.notificationError = function (stringERR) {
+    // Notification of the error
+    $.bootstrapGrowl(stringERR, {
+      type: 'danger'
+    });
+  };
+
+}( window.Common = window.Common || {}, jQuery ));
