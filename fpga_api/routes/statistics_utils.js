@@ -89,7 +89,13 @@ function statusFPGA(res, callbackList) {
     } else if (ans == 'player') {
       runningFPGA(false, function (isRunning) {
         if (isRunning) {
-          common.sendJSON('status_4_2_playing', res, 200);
+          getDataPlaying(function (ans) {
+            if (ans == 'error') {
+              res.sendStatus(500);
+            } else {
+              res.status(200).json(ans);
+            }
+          });
         } else {
           common.sendJSON('status_4_1_player_ready', res, 200);
         }
@@ -180,3 +186,38 @@ function getDataRecording(callback) {
   });
 };
 exports.getDataRecording = getDataRecording;
+
+// Gets the current playing info
+function getDataPlaying(callback) {
+  common.readJSON('status_4_2_playing', function (ans) {
+    scripts.exec('ps -eo etime,command | grep launchPlayer.sh | grep -v grep | head -n 1', function (error, stdout, stderr) {
+      if (error) {
+        // Internal error
+        common.logError(stderr);
+        callback('error');
+        return;
+      }
+      // Output format:
+      //    [etime] sudo -b nohup ./bin/launchRecorder.sh mask ifg loop simple_file
+      var parts = stdout.match(/\S+/g);
+      if ((parts != null) && (parts.length >= 9)) {
+        ans.elapsed_time = common.etime2seconds(parts[0]);
+        ans.mask = parseInt(parts[5]);
+        ans.interframe_gap = parseInt(parts[6]);
+        ans.loop = (parts[7] == '1');
+        var capturePath = parts.slice(8).join(' ');
+        var captureStats = fs.statSync(capturePath);
+        ans.size = captureStats['size'];
+        ans.capture = path.basename(capturePath);
+        ans.date = common.mtime2string(captureStats['mtime']);
+      }
+      scripts.exec('sudo ./bin/readRegisters 2>&1 | grep "total packets" | awk \'{print $5}\'', function (error, stdout, stderr) {
+        if(stdout.length > 0) {
+          ans.packets_sent = parseInt(stdout);
+        }
+        callback(ans);
+      });
+    });
+  });
+};
+exports.getDataPlaying = getDataPlaying;

@@ -1,6 +1,6 @@
 <?php
 /**
- * View class of the statistics
+ * View class of the storage
  *
  * Inherits from appView class
  *
@@ -13,23 +13,23 @@
 namespace App;
 
 /**
- * statisticsView class.
- * Renders the visual representation of the statistics
+ * storageView class.
+ * Renders the visual representation of the storage statistics
  */
-class statisticsView extends Common\appView
+class storageView extends Common\appView
 {
 
     /**
-     * Constructor for the statisticsView class.
+     * Constructor for the storageView class.
      * Sets the page title
      *
-     * @param StatisticsModel $model
-     *            Data model of the Statistics page
+     * @param StorageModel $model
+     *            Data model of the Storage page
      */
-    public function __construct(StatisticsModel $model)
+    public function __construct(StorageModel $model)
     {
         parent::__construct($model);
-        $this->title = _('Statistics');
+        $this->title = _('Storage');
     }
 
     /**

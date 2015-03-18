@@ -11,23 +11,24 @@ var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?>;
 
 // Sets the events
 $(document).ready(function () {
-  Statistics.init();
+  Storage.init();
 });
 
 //
-// Statistics
+// Storage
 //
-(function( Statistics, $, undefined ) {
+(function( Storage, $, undefined ) {
 
   // Internal variables
   // TODO
 
   // Initializes the module
-  Statistics.init = function() {
+  Storage.init = function() {
     // TODO
   };
 
-
-
-}( window.Statistics = window.Statistics || {}, jQuery ));
+  // Functions
+  // TODO
+  
+}( window.Storage = window.Storage || {}, jQuery ));
 

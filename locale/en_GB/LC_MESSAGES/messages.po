@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-03-13 10:32+0100\n"
-"PO-Revision-Date: 2015-03-13 10:32+0100\n"
+"POT-Creation-Date: 2015-03-18 10:39+0100\n"
+"PO-Revision-Date: 2015-03-18 10:39+0100\n"
 "Last-Translator: JSid <juan.sidrach@gmail.com>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -83,7 +83,7 @@ msgstr "Remote FPGA Server"
 msgid "Timestamp delay between the client and the FPGA host: "
 msgstr "Timestamp delay between the client and the FPGA host: "
 
-#: app/modules/status/statusModel.php:80 public/js/netwatcher-status.js.php:53
+#: app/modules/status/statusModel.php:80 public/js/netwatcher-status.js.php:77
 msgid "Passed"
 msgstr "Passed"
 
@@ -95,8 +95,8 @@ msgstr "Not Implemented"
 msgid "In Progress..."
 msgstr "In Progress..."
 
-#: app/modules/status/statusModel.php:83 public/js/netwatcher-status.js.php:57
-#: public/js/netwatcher-status.js.php:70
+#: app/modules/status/statusModel.php:83 public/js/netwatcher-status.js.php:81
+#: public/js/netwatcher-status.js.php:91
 msgid "Failed"
 msgstr "Failed"
 
@@ -107,6 +107,10 @@ msgstr "Status"
 #: app/modules/status/statusView.php:73
 msgid "Total"
 msgstr "Total"
+
+#: app/modules/storage/storageView.php:32 app/common/appModel.php:49
+msgid "Storage"
+msgstr "Storage"
 
 #: app/modules/manager/managerView.php:33 app/common/appModel.php:48
 msgid "Manager"
@@ -159,6 +163,7 @@ msgstr "Reboot"
 
 #: app/modules/manager/managerView.php:89
 #: app/modules/manager/managerView.php:280
+#: app/modules/manager/managerView.php:464
 #: app/modules/captures/capturesView.php:52
 msgid "Cancel"
 msgstr "Cancel"
@@ -210,10 +215,12 @@ msgid "Port"
 msgstr "Port"
 
 #: app/modules/manager/managerView.php:204
+#: app/modules/manager/managerView.php:392
 msgid "Start"
 msgstr "Start"
 
 #: app/modules/manager/managerView.php:215
+#: app/modules/manager/managerView.php:405
 msgid "Back to mode selection"
 msgstr "Back to mode selection"
 
@@ -222,10 +229,12 @@ msgid "Recording..."
 msgstr "Recording..."
 
 #: app/modules/manager/managerView.php:256
+#: app/modules/manager/managerView.php:439
 msgid "Name of the capture"
 msgstr "Name of the capture"
 
 #: app/modules/manager/managerView.php:258
+#: app/modules/manager/managerView.php:442
 msgid "Elapsed Time"
 msgstr "Elapsed Time"
 
@@ -258,10 +267,97 @@ msgstr ""
 "recording?"
 
 #: app/modules/manager/managerView.php:279
+#: app/modules/manager/managerView.php:463
 msgid "Stop"
 msgstr "Stop"
 
+#: app/modules/manager/managerView.php:298
+#: app/modules/captures/capturesView.php:75
+msgid "Auto Refresh"
+msgstr "Auto Refresh"
+
 #: app/modules/manager/managerView.php:311
+#: app/modules/captures/capturesView.php:88
+msgid "Name"
+msgstr "Name"
+
+#: app/modules/manager/managerView.php:312
+#: app/modules/captures/capturesView.php:89
+msgid "Type"
+msgstr "Type"
+
+#: app/modules/manager/managerView.php:313
+#: app/modules/manager/managerView.php:440
+#: app/modules/captures/capturesView.php:90
+msgid "Size"
+msgstr "Size"
+
+#: app/modules/manager/managerView.php:314
+#: app/modules/manager/managerView.php:441
+#: app/modules/captures/capturesView.php:91
+msgid "Date"
+msgstr "Date"
+
+#: app/modules/manager/managerView.php:327
+msgid "Select a capture to reproduce"
+msgstr "Select a capture to reproduce"
+
+#: app/modules/manager/managerView.php:340
+msgid "Play the capture in loop"
+msgstr "Play the capture in loop"
+
+#: app/modules/manager/managerView.php:349
+msgid "Output mask (set of ports) "
+msgstr "Output mask (set of ports) "
+
+#: app/modules/manager/managerView.php:373
+msgid "Interframe Gap (uncheck to original rate)"
+msgstr "Interframe Gap (uncheck to original rate)"
+
+#: app/modules/manager/managerView.php:423
+#: public/js/netwatcher-manager.js.php:929
+msgid "Original captured rate"
+msgstr "Original captured rate"
+
+#: app/modules/manager/managerView.php:424
+#: public/js/netwatcher-manager.js.php:930
+msgid "Yes"
+msgstr "Yes"
+
+#: app/modules/manager/managerView.php:424
+#: public/js/netwatcher-manager.js.php:930
+msgid "No"
+msgstr "No"
+
+#: app/modules/manager/managerView.php:434
+msgid "Reproducing..."
+msgstr "Reproducing..."
+
+#: app/modules/manager/managerView.php:443
+msgid "Packets Sent"
+msgstr "Packets Sent"
+
+#: app/modules/manager/managerView.php:444
+msgid "Playing on Loop"
+msgstr "Playing on Loop"
+
+#: app/modules/manager/managerView.php:445
+msgid "Interframe Gap"
+msgstr "Interframe Gap"
+
+#: app/modules/manager/managerView.php:446
+msgid "Mask"
+msgstr "Mask"
+
+#: app/modules/manager/managerView.php:451
+msgid "Stop reproducing"
+msgstr "Stop reproducing"
+
+#: app/modules/manager/managerView.php:460
+msgid "Are you sure you want to stop reproducing the capture?"
+msgstr "Are you sure you want to stop reproducing the capture?"
+
+#: app/modules/manager/managerView.php:495
 msgid "Sending request..."
 msgstr "Sending request..."
 
@@ -330,26 +426,6 @@ msgstr "Simple"
 msgid "Pcap"
 msgstr "Pcap"
 
-#: app/modules/captures/capturesView.php:75
-msgid "Auto Refresh"
-msgstr "Auto Refresh"
-
-#: app/modules/captures/capturesView.php:88
-msgid "Name"
-msgstr "Name"
-
-#: app/modules/captures/capturesView.php:89
-msgid "Type"
-msgstr "Type"
-
-#: app/modules/captures/capturesView.php:90
-msgid "Size"
-msgstr "Size"
-
-#: app/modules/captures/capturesView.php:91
-msgid "Date"
-msgstr "Date"
-
 #: app/modules/captures/capturesView.php:103
 msgid "Select a capture from the table"
 msgstr "Select a capture from the table"
@@ -389,10 +465,6 @@ msgstr ""
 "file (or adding symbolic link to it) to the captures directory on the FPGA "
 "remote server"
 
-#: app/modules/statistics/statisticsView.php:32 app/common/appModel.php:49
-msgid "Statistics"
-msgstr "Statistics"
-
 #: app/common/appView.php:180 app/common/appView.php:222
 msgid "License"
 msgstr "License"
@@ -425,127 +497,147 @@ msgstr "Sorry, an error has occured. Requested page not found!"
 msgid "Take me Home"
 msgstr "Take me Home"
 
-#: public/js/netwatcher-manager.js.php:118
+#: public/js/netwatcher-manager.js.php:117
 msgid "Waiting for the server to reboot..."
 msgstr "Waiting for the server to reboot..."
 
-#: public/js/netwatcher-manager.js.php:128
-#: public/js/netwatcher-manager.js.php:223
+#: public/js/netwatcher-manager.js.php:127
+#: public/js/netwatcher-manager.js.php:264
 msgid "Error sending the request"
 msgstr "Error sending the request"
 
-#: public/js/netwatcher-manager.js.php:149
+#: public/js/netwatcher-manager.js.php:193
 msgid "as a player"
 msgstr "as a player"
 
-#: public/js/netwatcher-manager.js.php:151
+#: public/js/netwatcher-manager.js.php:195
 msgid "as a recorder"
 msgstr "as a recorder"
 
-#: public/js/netwatcher-manager.js.php:156
+#: public/js/netwatcher-manager.js.php:200
 msgid "Programming the FPGA..."
 msgstr "Programming the FPGA..."
 
-#: public/js/netwatcher-manager.js.php:169
+#: public/js/netwatcher-manager.js.php:213
 msgid "FPGA programmed. Rebooting the system..."
 msgstr "FPGA programmed. Rebooting the system..."
 
-#: public/js/netwatcher-manager.js.php:178
+#: public/js/netwatcher-manager.js.php:222
 msgid ""
 "The FPGA cannot be programmed if it is active (stop the player/recorder)"
 msgstr ""
 "The FPGA cannot be programmed if it is active (stop the player/recorder)"
 
-#: public/js/netwatcher-manager.js.php:195
+#: public/js/netwatcher-manager.js.php:237
 msgid "Installing the driver..."
 msgstr "Installing the driver"
 
-#: public/js/netwatcher-manager.js.php:211
+#: public/js/netwatcher-manager.js.php:252
 msgid "Driver successfully installed. Refreshing..."
 msgstr "Driver successfully installed. Refreshing..."
 
-#: public/js/netwatcher-manager.js.php:302
+#: public/js/netwatcher-manager.js.php:383
 msgid "Invalid capture name"
 msgstr "Invalid capture name"
 
-#: public/js/netwatcher-manager.js.php:306
+#: public/js/netwatcher-manager.js.php:387
 msgid "Invalid number of bytes to record"
 msgstr "Invalid number of bytes to record"
 
-#: public/js/netwatcher-manager.js.php:330
+#: public/js/netwatcher-manager.js.php:411
 msgid "Recording now! Reloading..."
 msgstr "Recording now! Reloading..."
 
-#: public/js/netwatcher-manager.js.php:339
+#: public/js/netwatcher-manager.js.php:419
 msgid "Invalid state or capture name already taken. Reloading..."
 msgstr "Invalid state or capture name already taken. Reloading..."
 
-#: public/js/netwatcher-manager.js.php:381
+#: public/js/netwatcher-manager.js.php:513
 msgid "Capture recording has ended"
 msgstr "Capture recording has ended"
 
-#: public/js/netwatcher-manager.js.php:394
-#: public/js/netwatcher-manager.js.php:451
+#: public/js/netwatcher-manager.js.php:526
+#: public/js/netwatcher-manager.js.php:583
+#: public/js/netwatcher-manager.js.php:907
+#: public/js/netwatcher-manager.js.php:960
 msgid "Connection Error. Reloading..."
 msgstr "Connection Error. Reloading..."
 
-#: public/js/netwatcher-manager.js.php:430
+#: public/js/netwatcher-manager.js.php:562
+#: public/js/netwatcher-manager.js.php:940
 msgid "Stopping..."
 msgstr "Stopping..."
 
-#: public/js/netwatcher-manager.js.php:444
+#: public/js/netwatcher-manager.js.php:576
 msgid "Capture recording has been stopped. Reloading...."
 msgstr "Capture recording has been stopped. Reloading..."
 
-#: public/js/netwatcher-status.js.php:71
-msgid "No Response"
-msgstr "No Response"
-
-#: public/js/netwatcher-captures.js.php:122
+#: public/js/netwatcher-manager.js.php:706
+#: public/js/netwatcher-captures.js.php:181
 msgid "Connection error"
 msgstr "Connection error"
 
-#: public/js/netwatcher-captures.js.php:162
-#: public/js/netwatcher-captures.js.php:206
-#: public/js/netwatcher-captures.js.php:239
+#: public/js/netwatcher-manager.js.php:800
+msgid "Playing now! Reloading..."
+msgstr "Playing now! Reloading..."
+
+#: public/js/netwatcher-manager.js.php:808
+msgid "Invalid state or capture. Reloading..."
+msgstr "Invalid state or capture. Reloading..."
+
+#: public/js/netwatcher-manager.js.php:896
+msgid "Capture reproduction has ended"
+msgstr "Capture reproduction has ended"
+
+#: public/js/netwatcher-manager.js.php:953
+msgid "Capture reproduction has been stopped. Reloading...."
+msgstr "Capture reproduction has been stopped. Reloading...."
+
+#: public/js/netwatcher-status.js.php:92
+msgid "No Response"
+msgstr "No Response"
+
+#: public/js/netwatcher-captures.js.php:223
+#: public/js/netwatcher-captures.js.php:267
+#: public/js/netwatcher-captures.js.php:300
 msgid "No capture is selected"
 msgstr "No capture is selected"
 
-#: public/js/netwatcher-captures.js.php:167
+#: public/js/netwatcher-captures.js.php:228
 msgid "Converted capture\\'s name is not valid"
 msgstr "Converted capture\\'s name is not valid"
 
-#: public/js/netwatcher-captures.js.php:179
+#: public/js/netwatcher-captures.js.php:240
 msgid "Capture converted successfully"
 msgstr "Capture converted successfully"
 
-#: public/js/netwatcher-captures.js.php:180
+#: public/js/netwatcher-captures.js.php:241
 msgid "Capture could not be converted"
 msgstr "Capture could not be converted"
 
-#: public/js/netwatcher-captures.js.php:198
+#: public/js/netwatcher-captures.js.php:259
 msgid "Capture queued for conversion"
 msgstr "Capture queued for conversion"
 
-#: public/js/netwatcher-captures.js.php:211
+#: public/js/netwatcher-captures.js.php:272
 msgid "New name is not valid"
 msgstr "New name is not valid"
 
-#: public/js/netwatcher-captures.js.php:215
+#: public/js/netwatcher-captures.js.php:276
 msgid "Capture renamed successfully"
 msgstr "Capture renamed successfully"
 
-#: public/js/netwatcher-captures.js.php:216
-msgid "Capture could not be renamed"
-msgstr "Capture could not be renamed"
+#: public/js/netwatcher-captures.js.php:277
+msgid "Capture could not be renamed (it may be in use)"
+msgstr "Capture could not be renamed (it may be in use)"
 
-#: public/js/netwatcher-captures.js.php:244
+#: public/js/netwatcher-captures.js.php:305
 msgid "Capture deleted successfully"
 msgstr "Capture deleted successfully"
 
-#: public/js/netwatcher-captures.js.php:245
-msgid "Capture could not be deleted"
-msgstr "Capture could not be deleted"
+#: public/js/netwatcher-captures.js.php:306
+msgid "Capture could not be deleted (it may be in use)"
+msgstr "Capture could not be deleted (it may be in use)"
 
 #: public/js/bootstrap-table-localization.js.php:12
 msgid "Loading, please wait..."
@@ -583,6 +675,9 @@ msgstr "Toggle"
 #: public/js/bootstrap-table-localization.js.php:28
 msgid "Columns"
 msgstr "Columns"
+
+#~ msgid "Statistics"
+#~ msgstr "Statistics"
 
 #~ msgid "Reloading..."
 #~ msgstr "Reloading..."

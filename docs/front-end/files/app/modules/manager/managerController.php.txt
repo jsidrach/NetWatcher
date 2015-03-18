@@ -28,7 +28,9 @@ class managerController extends Common\appController
         'init_off' => 'renderModeSelection',
         'mount_off' => 'renderModeSelection',
         'recorder_ready' => 'renderRecorderForm',
-        'recording' => 'renderRecording'
+        'recording' => 'renderRecording',
+        'player_ready' => 'renderPlayerForm',
+        'playing' => 'renderPlaying'
     );
 
     /**
@@ -61,7 +63,6 @@ class managerController extends Common\appController
         } else {
             $callback = 'renderError';
         }
-        
         $this->view->render($callback);
     }
 

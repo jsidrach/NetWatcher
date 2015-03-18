@@ -97,6 +97,12 @@ function etime2seconds(etime) {
 };
 exports.etime2seconds = etime2seconds;
 
+// Parses a mtime into a string
+function mtime2string(mtime) {
+  return mtime.toISOString().replace('T', ' ').substr(0, 19);
+};
+exports.mtime2string = mtime2string;
+
 // Gets the delay (in seconds) between the petition timestamp and the petition
 function getDelay(req) {
   if (typeof req.headers.timestamp === 'undefined') {

@@ -57,7 +57,7 @@ function dataCaptures(simple, pcap, res) {
           dataCapture['size'] = stats['size'];
 
           // Date
-          dataCapture['date'] = stats['mtime'].toISOString().replace('T', ' ').substr(0, 19);
+          dataCapture['date'] = common.mtime2string(stats['mtime']);
 
           // Push the object into the array
           dataCaptures.push(dataCapture);

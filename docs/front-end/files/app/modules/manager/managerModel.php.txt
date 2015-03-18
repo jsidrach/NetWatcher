@@ -53,9 +53,9 @@ class managerModel extends Common\appModel
             ));
             $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', 0, $context);
             if ($data === FALSE) {
-                return array(
-                    'status' => 'error'
-                );
+                $tempStatus = new \stdClass();
+                $tempStatus->status = 'error';
+                return $tempStatus;
             }
             $this->status = json_decode($data);
         }

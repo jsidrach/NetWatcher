@@ -48,8 +48,8 @@ router.post('/recorder/init', manager.initRecorder);
 router.post('/player/install', manager.installPlayer);
 router.post('/recorder/install', manager.installRecorder);
 
-router.post('/player/start/:capturename/:mask/:ifg', startPlayer);
-router.post('/player/start/loop/:capturename/:mask/:ifg', startPlayerLoop);
+router.post('/player/start/:capturename/:mask/:ifg', manager.startPlayer);
+router.post('/player/start/loop/:capturename/:mask/:ifg', manager.startPlayerLoop);
 router.post('/recorder/start/:capturename/:port/:bytes', manager.startRecorder);
 
 router.post('/player/stop', manager.stopPlayer);

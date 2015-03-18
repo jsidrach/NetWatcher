@@ -108,7 +108,7 @@ class settingsView extends Common\appView
         /* Save button */
         $this->pLine('<div class="form-group">');
         $this->pLine('<div class="col-sm-offset-8 col-sm-2">', 1);
-        $this->pLine('<button type="submit" class="btn btn-default pull-right">' . _('Save') . '</button>', 1);
+        $this->pLine('<button type="submit" class="btn btn-primary pull-right">' . _('Save') . '</button>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</form>', - 1);

@@ -1,6 +1,6 @@
 <?php
 /**
- * Model class of the statistics
+ * Model class of the storage
  *
  * Inherits from appModel class
  *
@@ -13,19 +13,19 @@
 namespace App;
 
 /**
- * statisticsModel class.
+ * storageModel class.
  */
-class statisticsModel extends Common\appModel
+class storageModel extends Common\appModel
 {
 
     /**
-     * Constructor for the statistics model
+     * Constructor for the storage model
      */
     public function __construct()
     {
         parent::__construct();
         /* Additional libraries */
-        array_push($this->jsLibraries, 'netwatcher-statistics.js.php');
+        array_push($this->jsLibraries, 'netwatcher-storage.js.php');
     }
 }
 ?>
