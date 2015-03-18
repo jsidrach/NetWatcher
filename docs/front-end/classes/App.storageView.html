@@ -145,28 +145,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-633996273"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-622835576"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-633996273" class="accordion-body collapse in">
+            <div id="namespace-622835576" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-151842064"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2032905407"></a>
                                 <a href="../namespaces/App.html" style="margin-left: 30px; padding-left: 0">App</a>
             </div>
-            <div id="namespace-151842064" class="accordion-body collapse ">
+            <div id="namespace-2032905407" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-328175410"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-137843696"></a>
                                 <a href="../namespaces/App.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
             </div>
-            <div id="namespace-328175410" class="accordion-body collapse ">
+            <div id="namespace-137843696" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -191,12 +191,12 @@
                                                     <li class="class"><a href="../classes/App.settingsController.html">settingsController</a></li>
                                                     <li class="class"><a href="../classes/App.settingsModel.html">settingsModel</a></li>
                                                     <li class="class"><a href="../classes/App.settingsView.html">settingsView</a></li>
-                                                    <li class="class"><a href="../classes/App.statisticsController.html">statisticsController</a></li>
-                                                    <li class="class"><a href="../classes/App.statisticsModel.html">statisticsModel</a></li>
-                                                    <li class="class"><a href="../classes/App.statisticsView.html">statisticsView</a></li>
                                                     <li class="class"><a href="../classes/App.statusController.html">statusController</a></li>
                                                     <li class="class"><a href="../classes/App.statusModel.html">statusModel</a></li>
                                                     <li class="class"><a href="../classes/App.statusView.html">statusView</a></li>
+                                                    <li class="class"><a href="../classes/App.storageController.html">storageController</a></li>
+                                                    <li class="class"><a href="../classes/App.storageModel.html">storageModel</a></li>
+                                                    <li class="class"><a href="../classes/App.storageView.html">storageView</a></li>
                                             </ul>
                 </div>
             </div>
@@ -206,10 +206,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-415178586"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1274107167"></a>
                                 <a href="../namespaces/Core.html" style="margin-left: 30px; padding-left: 0">Core</a>
             </div>
-            <div id="namespace-415178586" class="accordion-body collapse ">
+            <div id="namespace-1274107167" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -245,10 +245,9 @@
                                             </nav>
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
-                    <h1><small>\App</small>statisticsController</h1>
-                    <p><em>statisticsController class
-Displays different statistics as disk usage</em></p>
-                    
+                    <h1><small>\App</small>storageView</h1>
+                    <p><em>storageView class.</em></p>
+                    <p>Renders the visual representation of the storage statistics</p>
                     
                                         
                     <section id="summary">
@@ -266,11 +265,15 @@ Displays different statistics as disk usage</em></p>
                         </section>
                         <section class="row-fluid public">
                             <section class="span4">
-                                                                    <a href="../classes/App.statisticsController.html#method___construct" class="">__construct()</a><br />
-                                                                    <a href="../classes/App.Common.appController.html#method_display" class="">display()</a><br />
+                                                                    <a href="../classes/App.storageView.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/App.Common.appView.html#method_render" class="">render()</a><br />
+                                                                    <a href="../classes/Core.View.html#method_printBase" class="">printBase()</a><br />
+                                                                    <a href="../classes/Core.View.html#method_pLine" class="">pLine()</a><br />
+                                                                    <a href="../classes/Core.View.html#method_moveIndent" class="">moveIndent()</a><br />
+                                                                    <a href="../classes/Core.View.html#method_renderNotification" class="">renderNotification()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <em>No public properties found</em>
+                                                                    <a href="../classes/Core.View.html#property_title" class="">$title</a><br />
                                                             </section>
                             <section class="span4">
                                                                     <em>No constants found</em>
@@ -278,11 +281,17 @@ Displays different statistics as disk usage</em></p>
                         </section>
                         <section class="row-fluid protected">
                             <section class="span4">
-                                                                    <em>No protected methods found</em>
+                                                                    <a href="../classes/App.Common.appView.html#method_renderHead" class="">renderHead()</a><br />
+                                                                    <a href="../classes/App.Common.appView.html#method_renderTail" class="">renderTail()</a><br />
+                                                                    <a href="../classes/App.Common.appView.html#method_renderHeader" class="">renderHeader()</a><br />
+                                                                    <a href="../classes/App.Common.appView.html#method_renderNavbar" class="">renderNavbar()</a><br />
+                                                                    <a href="../classes/App.storageView.html#method_renderContent" class="">renderContent()</a><br />
+                                                                    <a href="../classes/App.Common.appView.html#method_renderModals" class="">renderModals()</a><br />
+                                                                    <a href="../classes/App.Common.appView.html#method_renderFooter" class="">renderFooter()</a><br />
+                                                                    <a href="../classes/App.Common.appView.html#method_renderClose" class="">renderClose()</a><br />
                                                             </section>
                             <section class="span4">
-                                                                    <a href="../classes/Core.Controller.html#property_model" class="">$model</a><br />
-                                                                    <a href="../classes/Core.Controller.html#property_view" class="">$view</a><br />
+                                                                    <a href="../classes/Core.View.html#property_model" class="">$model</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -293,7 +302,7 @@ Displays different statistics as disk usage</em></p>
                                                                     <em>No private methods found</em>
                                                             </section>
                             <section class="span4">
-                                                                    <em>No private properties found</em>
+                                                                    <a href="../classes/Core.View.html#property_indent" class="">$indent</a><br />
                                                             </section>
                             <section class="span4">
                                 <em>N/A</em>
@@ -306,16 +315,16 @@ Displays different statistics as disk usage</em></p>
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/app.modules.statistics.statisticsController.html"><div class="path-wrapper">app/modules/statistics/statisticsController.php</div></a></dd>
+                            <dd><a href="../files/app.modules.storage.storageView.html"><div class="path-wrapper">app/modules/storage/storageView.php</div></a></dd>
                                                 <dt>Package</dt>
                             <dd><div class="namespace-wrapper">App</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                                        <div class="namespace-wrapper"><a href="../classes/Core.Controller.html">\Core\Controller</a></div>
+                                        <div class="namespace-wrapper"><a href="../classes/Core.View.html">\Core\View</a></div>
                                                                     
-                                        <div class="namespace-wrapper"><a href="../classes/App.Common.appController.html">\App\Common\appController</a></div>
-                                                                                                    <div class="namespace-wrapper">\App\statisticsController</div>
+                                        <div class="namespace-wrapper"><a href="../classes/App.Common.appView.html">\App\Common\appView</a></div>
+                                                                                                    <div class="namespace-wrapper">\App\storageView</div>
                             </dd>
 
                         
@@ -339,6 +348,32 @@ Displays different statistics as disk usage</em></p>
                 <aside class="span4 detailsbar"></aside>
             </div>
 
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_title" name="property_title" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$title</h3>
+                <pre class="signature">$title : \Core\Title</pre>
+                <p><em>Title</em></p>
+                
+
+                                <h4>Type</h4>
+                \Core\Title
+                &mdash; title of the page                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Core.View.html"><div class="path-wrapper">\Core\View</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
                                                     <div class="row-fluid">
         <div class="span8 content class">
             <a id="property_model" name="property_model" class="anchor"></a>
@@ -350,13 +385,13 @@ Displays different statistics as disk usage</em></p>
 
                                 <h4>Type</h4>
                 <a href="../classes/Core.Model.html">\Core\Model</a>
-                &mdash; model associated to the controller                            </article>
+                &mdash; model associated to the view                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                         <dl>
                                     <dt>Inherited from</dt>
-                    <dd><a href="../classes/Core.Controller.html"><div class="path-wrapper">\Core\Controller</div></a></dd>
+                    <dd><a href="../classes/Core.View.html"><div class="path-wrapper">\Core\View</div></a></dd>
                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -365,24 +400,24 @@ Displays different statistics as disk usage</em></p>
         </aside>
     </div>
 
-                                    <div class="row-fluid">
+                                                    <div class="row-fluid">
         <div class="span8 content class">
-            <a id="property_view" name="property_view" class="anchor"></a>
+            <a id="property_indent" name="property_indent" class="anchor"></a>
             <article class="property">
-                <h3 class="protected ">$view</h3>
-                <pre class="signature">$view : \Core\View</pre>
-                <p><em>View</em></p>
+                <h3 class="private ">$indent</h3>
+                <pre class="signature">$indent : \Core\Indent</pre>
+                <p><em>Indent</em></p>
                 
 
                                 <h4>Type</h4>
-                <a href="../classes/Core.View.html">\Core\View</a>
-                &mdash; view associated to the controller                            </article>
+                \Core\Indent
+                &mdash; actual indent of the printed page                            </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                         <dl>
                                     <dt>Inherited from</dt>
-                    <dd><a href="../classes/Core.Controller.html"><div class="path-wrapper">\Core\Controller</div></a></dd>
+                    <dd><a href="../classes/Core.View.html"><div class="path-wrapper">\Core\View</div></a></dd>
                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -391,7 +426,7 @@ Displays different statistics as disk usage</em></p>
         </aside>
     </div>
 
-                                            
+                            
                                     <a id="methods" name="methods"></a>
             <div class="row-fluid">
                 <div class="span8 content class"><h2>Methods</h2></div>
@@ -404,21 +439,16 @@ Displays different statistics as disk usage</em></p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(\App\StatisticsModel  <span class="argument">$model</span>, \App\StatisticsView  <span class="argument">$view</span>) </pre>
-                <p><em>Default inherited constructor for the statisticsController class</em></p>
-                <p>Associates a model and a view to the controller</p>
+                <pre class="signature" style="margin-right: 54px;">__construct(\App\StorageModel  <span class="argument">$model</span>) </pre>
+                <p><em>Constructor for the storageView class.</em></p>
+                <p>Sets the page title</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\App\StatisticsModel</td>
+                                <td>\App\StorageModel</td>
                                 <td>$model </td>
-                                <td><p>Data model of the Statistics page</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>\App\StatisticsView</td>
-                                <td>$view </td>
-                                <td><p>View representation of the Statistics page</p></td>
+                                <td><p>Data model of the Storage page</p></td>
                             </tr>
                                             </table>
                 
@@ -439,20 +469,20 @@ Displays different statistics as disk usage</em></p>
 
                                     <div class="row-fluid">
         <div class="span8 content class">
-            <a id="method_display" name="method_display" class="anchor"></a>
+            <a id="method_render" name="method_render" class="anchor"></a>
             <article class="method">
-                <h3 class="public ">display()</h3>
+                <h3 class="public ">render()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">display(array  <span class="argument">$args</span>) </pre>
-                <p><em>Calls the render of the model</em></p>
+                <pre class="signature" style="margin-right: 54px;">render(Callback  <span class="argument">$callback = &#039;renderContent&#039;</span>) </pre>
+                <p><em>Renders the model (page)</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>array</td>
-                                <td>$args </td>
-                                <td><p>Params of the display</p></td>
+                                <td>Callback</td>
+                                <td>$callback </td>
+                                <td><p>Callback to the function that renders the main content (optional)</p></td>
                             </tr>
                                             </table>
                 
@@ -464,7 +494,7 @@ Displays different statistics as disk usage</em></p>
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                                     <dt>Inherited from</dt>
-                    <dd><a href="../classes/App.Common.appController.html"><div class="path-wrapper">\App\Common\appController</div></a></dd>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -473,16 +503,386 @@ Displays different statistics as disk usage</em></p>
         </aside>
     </div>
 
-                                                                    </div>
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_printBase" name="method_printBase" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">printBase()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">printBase() </pre>
+                <p><em>Prints the base path of the page</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Core.View.html"><div class="path-wrapper">\Core\View</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pLine" name="method_pLine" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">pLine()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">pLine(String  <span class="argument">$string</span>, Int  <span class="argument">$offset</span>) </pre>
+                <p><em>Prints a string line indented</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>String</td>
+                                <td>$string </td>
+                                <td><p>String to print</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>Int</td>
+                                <td>$offset </td>
+                                <td><p>Offset change of the indent</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Core.View.html"><div class="path-wrapper">\Core\View</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_moveIndent" name="method_moveIndent" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">moveIndent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">moveIndent(Int  <span class="argument">$offset</span>) </pre>
+                <p><em>Changes the indent</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>Int</td>
+                                <td>$offset </td>
+                                <td><p>Offset change of the indent</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Core.View.html"><div class="path-wrapper">\Core\View</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderNotification" name="method_renderNotification" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">renderNotification()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderNotification(String  <span class="argument">$string</span>, String  <span class="argument">$type</span>) </pre>
+                <p><em>Prints a notification popup</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>String</td>
+                                <td>$string </td>
+                                <td><p>Message in the popup</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>String</td>
+                                <td>$type </td>
+                                <td><p>Type of the notification</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/Core.View.html"><div class="path-wrapper">\Core\View</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderHead" name="method_renderHead" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderHead()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderHead() </pre>
+                <p><em>Renders the head of the page</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderTail" name="method_renderTail" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderTail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderTail() </pre>
+                <p><em>Renders the tail of the page</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderHeader" name="method_renderHeader" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderHeader()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderHeader() </pre>
+                <p><em>Renders the header</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderNavbar" name="method_renderNavbar" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderNavbar()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderNavbar() </pre>
+                <p><em>Renders the navbar</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderContent" name="method_renderContent" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderContent()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderContent() </pre>
+                <p><em>Renders the main content of the page inside the rest of the page</em></p>
+                <p>This function must be coded in the child class</p>
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href=""><span class="namespace-wrapper"></span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderModals" name="method_renderModals" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderModals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderModals() </pre>
+                <p><em>Renders the modal dialogs</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderFooter" name="method_renderFooter" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderFooter()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderFooter() </pre>
+                <p><em>Renders the footer</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_renderClose" name="method_renderClose" class="anchor"></a>
+            <article class="method">
+                <h3 class="protected ">renderClose()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">renderClose() </pre>
+                <p><em>Renders the end of the document</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/App.Common.appView.html"><div class="path-wrapper">\App\Common\appView</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">statisticsController.php</h3>
+            <h3 id="source-view-label">storageView.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/app/modules/statistics/statisticsController.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/app/modules/storage/storageView.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
@@ -524,7 +924,7 @@ Displays different statistics as disk usage</em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 13th, 2015 at 10:35.
+                    on March 18th, 2015 at 10:54.
                 </section>
             </section>
         </section>

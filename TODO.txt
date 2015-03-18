@@ -2,9 +2,8 @@ TODO week:
 ------
   API:
     - /status > playing
-      - Parametros
       - readregisters total played
-      - Estad´isticas del archivo elegido
+  Renombrar statistics por disks
   Probar todo manager
   Poedit
   Doc
