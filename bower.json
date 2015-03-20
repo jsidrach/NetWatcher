@@ -9,6 +9,7 @@
         "bootstrap": "3.*",
         "bootstrap-table": "1.*",
         "remarkable-bootstrap-notify": "3.*",
+        "animate.css": "3.*",
         "chartjs": "1.*"
     }
 }

@@ -1,14 +1,3 @@
-TODO Weekend
--------
-- Bug iconos no salen correctamente
-- Quitar bootstrap-growl
-- Nuevas notificaciones bootstrap-notify
-- Añadir dependencia Chart.js pagina de storage
-- Renovar readme:
-  - Nuevas dependencias: bowerPHP, bootstrap-notify, Chart.js
-  - Dependencias quitadas: growl
-  Mejorar subapartados dependencias
-
 TODO Future:
 -------
   - testSimple para detectar trazas simple validas

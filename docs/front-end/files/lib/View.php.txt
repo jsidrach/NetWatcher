@@ -109,9 +109,11 @@ abstract class View
     {
         $this->pLine('<script>', 0);
         
-        $this->pLine('$.bootstrapGrowl("' . $string . '", {', 1);
-        $this->pLine('  type: "' . $type . '"', 0);
-        $this->pLine('});', 0);
+        $this->pLine('$.notify({', 1);
+        $this->pLine('message: "' . $string . '"', 1);
+        $this->pLine('},{', - 1);
+        $this->pLine('type: "' . $type . '"', 1);
+        $this->pLine('});', - 1);
         
         $this->pLine('</script>', - 1);
     }

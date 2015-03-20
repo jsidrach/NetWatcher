@@ -251,9 +251,7 @@ $(document).ready(function () {
         handleResponse(null, null, stringERR);
       }
     });
-    $.bootstrapGrowl(<?php echo '\'' . _('Capture queued for conversion') . '\''; ?>, {
-        type: 'info'
-      });
+    $.notify(<?php echo '\'' . _('Capture queued for conversion') . '\''; ?>);
   };
 
   // Rename the selected capture
@@ -325,7 +323,9 @@ $(document).ready(function () {
     } else {
       try {
         if (resp.code == 'success') {
-          $.bootstrapGrowl(stringOK, {
+          $.notify({
+            message: stringOK 
+          },{
             type: 'success'
           });
         } else {
@@ -342,7 +342,9 @@ $(document).ready(function () {
   // Creates an error notification
   function notificationError(stringERR) {
     // Notification of the error
-    $.bootstrapGrowl(stringERR, {
+    $.notify({
+      message: stringERR 
+    },{
       type: 'danger'
     });
   };

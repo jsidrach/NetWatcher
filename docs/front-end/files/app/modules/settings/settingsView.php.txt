@@ -57,7 +57,7 @@ class settingsView extends Common\appView
         $this->pLine('<label for="serverIp" class="col-sm-4 control-label">' . _('FPGA API base address') . '</label>', 1);
         $this->pLine('<div class="col-sm-6">');
         $this->pLine('<input type="text" class="form-control" name="serverIp" id="serverIp" value="' . \Core\Router::sanitize(\Core\Config::$REMOTE_SERVER_IP) . '">', 1);
-        $this->pLine('<span class="glyphicon glyphicon-ok form-control-feedback" id="ipIcon" aria-hidden="true" ></span>');
+        $this->pLine('<span class="glyphicon form-control-feedback" id="ipIcon" aria-hidden="true"></span>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         
