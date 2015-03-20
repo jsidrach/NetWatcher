@@ -16,6 +16,7 @@ while [[ $# > 0 ]]
       ;;
       -u|--upgrade)
       ./scripts/upgrade.sh
+      ./scripts/do_chmod.sh
       shift
       ;;
       -i|--install)
@@ -30,10 +31,6 @@ while [[ $# > 0 ]]
       ;;
       -p|--permissions)
       ./scripts/do_chmod.sh
-      shift
-      ;;
-      -u|--update)
-      ./lib/vendor/composer.phar update
       shift
       ;;
       -r|--clear)

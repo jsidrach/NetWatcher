@@ -56,14 +56,12 @@ abstract class appModel extends \Core\Model
         $this->cssLibraries = array(
             'bootstrap.min.css',
             'theme',
-            'sticky-footer.css',
-            'bootstrap-table.css'
+            'sticky-footer.css'
         );
         $this->jsLibraries = array(
-            'jquery.js',
-            'bootstrap.js',
-            'jquery.bootstrap-growl.js',
-            'growl-settings.js'
+            'jquery.min.js',
+            'bootstrap.min.js',
+            'bootstrap-notify.min.js'
         );
     }
 }

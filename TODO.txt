@@ -1,20 +1,21 @@
-TODO week:
-------
-  API:
-    - /status > playing
-      - readregisters total played
-  Renombrar statistics por disks
-  Probar todo manager
-  Poedit
-  Doc
+TODO Weekend
+-------
+- Bug iconos no salen correctamente
+- Quitar bootstrap-growl
+- Nuevas notificaciones bootstrap-notify
+- Añadir dependencia Chart.js pagina de storage
+- Renovar readme:
+  - Nuevas dependencias: bowerPHP, bootstrap-notify, Chart.js
+  - Dependencias quitadas: growl
+  Mejorar subapartados dependencias
 
 TODO Future:
 -------
   - testSimple para detectar trazas simple validas
   - actualizar testSimple.c para que añada al final el nº de paquetes
     - en launchRecorder.sh, que se llame despues a testSimple y añada esto
-  - Statistics: dd discos, estadisticas, resetear
-  - Terminar player/playing
+  - Storage: dd discos, estadisticas, resetear
+  - Terminar de probar todo con los binarios nuevos
 
 Jose:
 -------
@@ -24,111 +25,13 @@ Ideas pagina de statistics
 ------
   - Testear raid (dd), rendimiento, formatear
 
-
-_________________________________________________________________________________
-Esquema aplicación php:
-
-NetWatcher (sin enlace)
-
-Manager
-  > Estado actual, y cambiar de estado, mediante distintos pasos de formulario
-
-Statistics
-  > Estado actual, y cuando esté reproduciendo/capturando algunas estadística
-    > Velocidad del raid. Botón de formatear si no alcanza tasa > Muchas confirmaciones!
-
-Manage Captures
-  > Ver capturas actuales (todas, simples, pcap, ordenación, búsqueda)
-  > Convertir capturas entre formatos
-    > Identificar formatos de pcap distintos al aceptado y transformar con capedit antes de pasar a simple (pipes?)
-  > Delete > con confirmación
-  > Rename
-  Explicación de como subir nuevas en una caja, scp etc
-
-Settings
-  > Idioma, servidor, temas
-  
-  
-_________________________________________________________________________________
-
-API JSON (root: /fpga/api/) - Servidor io.js+express
--------
-[Proceso del servidor FPGA]
-
-<status_1_hugepages_off>
-1) Saber si HugePages está activo
-------
-0 si huge pages está activo, 1 sino
-cat /proc/meminfo | grep "HugePages_Total:       0"
-
-2) Para cambiar a HugePages
------
-Solución óptima: hacer grub-reboot [número]                               [ ]
-Solución no óptima: guardar para que por defecto se ponga el de HugePages [x]
-  - Reboot
-
-<status_2_init_off>
-3) Para inicializar
-----
-impact.sh Argumento fichero de configuración (bitstream) > DESDE AQUI PLAYER O RECORDER
-Reboot
-
-4) Para comprobar que esté programada
-----
-lspci | grep 19aa:e004
-Si sale 0 es que está programada
-
-<status_3_mount_off>
-5) Instanciar y montar
-----
-./install_driver.sh
-
-6) Para ver si está instanciada y montada
-----
-lsmod | grep nfp_driver
-Si sale 0 es que está montada
-
-7) Para ver si está en reproductor o capturador
-----
-cat /proc/nfp/nfp_report | grep PLA
-Si sale 0, está en player
-cat /proc/nfp/nfp_report | grep REC
-Si sale 0, está en recorder
-
-<status_4_fpga.json>
-
-
-PONER SIEMPRE CUANDO SE MONTA EN MODO CAPTURA ./CONFIGUREAEL
-8.1) Configuración adicional recepción
-----
-./configureAel para eliminar ruido
-
-(Para detectar aquí, buscar el proceso?)
-8) Configurar cuanto va a enviar/recibir
-----
-./writeControl para controlar cuanto va a enviar, -l mascara [0,1,2,3] (Agregado)
-                                         /recibir, -l puerto [0,1,2,3]
-                                         -r siempre (reset hw)
-                                         -n -1 (reproduce )
-  > Reinicia la maquina de estados
-  > Configurar ciertas opciones
-
-
-
-9.1) Recepción
-----
-./card2host
-
-9.2) Captura
-----
-./host2card
-
-
 _________________________________________________________________________________________
 
 Cosas a mencionar en la memoria:
   - Esquema de la arquitectura
     - Por qué PHP
+      - Composer
+    - Bower
     - Por qué io.js
     - Restricciones (red local entre php e io.js)
       - Redes distintas para control/tráfico

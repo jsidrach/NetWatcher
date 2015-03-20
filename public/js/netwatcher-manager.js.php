@@ -1,7 +1,7 @@
 <?php
 Header("content-type: application/x-javascript");
 /* Autoload libraries */
-require_once ('../../lib/vendor/autoload.php');
+require_once ('../../vendor/autoload.php');
 /* Loads the config */
 \Core\Config::load('../..');
 ?>
@@ -43,7 +43,6 @@ $(document).ready(function () {
     Playing.init();
   }
 });
-
 
 //
 // Connection error
