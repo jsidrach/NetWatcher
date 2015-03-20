@@ -1,29 +1,25 @@
 #!/bin/bash
 # Upgrades the libraries
-# Delete Libraries
-rm -rf "lib/vendor"
 rm -f "composer.lock"
-mkdir lib/vendor
+mkdir -p vendor/bin
 # Get Composer
-curl -sS https://getcomposer.org/installer | php -- --install-dir=lib/vendor
-# Get Php Documentor
-curl -o lib/vendor/phpDocumentor.phar http://www.phpdoc.org/phpDocumentor.phar
-# Get Dependencies
-./lib/vendor/composer.phar install
-# JQuery
-cp lib/vendor/components/jquery/jquery.js public/js/
-# Growl notifications
-cp -rf lib/vendor/ifightcrime/bootstrap-growl/jquery.bootstrap-growl.js public/js/
-# Copy Bootstrap to public dir
-cp -rf "lib/vendor/twbs/bootstrap/dist/"* "public/"
-rm -rf "public/js/bootstrap.min.js"
-rm -rf "public/css/bootstrap-theme.css" "public/css/bootstrap-theme.css.map" "public/css/bootstrap.css" "public/css/bootstrap.css.map"
-rm -rf "components/"
-mv public/css/bootstrap-theme.min.css public/themes/default.min.css
+curl -sS https://getcomposer.org/installer | php -- --install-dir=vendor/bin
+# Get Back-End Dependencies
+./vendor/bin/composer.phar install
+curl -o vendor/bin/phpDocumentor.phar http://www.phpdoc.org/phpDocumentor.phar
+# Get Front-End Dependencies
+sudo php vendor/bin/bowerphp install
+# Move the libraries
+cp vendor/bower_components/jquery/dist/jquery.min.js public/js/
+cp vendor/bower_components/jquery/dist/jquery.min.map public/js/
+cp vendor/bower_components/bootstrap/dist/js/bootstrap.min.js public/js/
+cp vendor/bower_components/bootstrap/dist/css/bootstrap.min.css public/css/
+cp vendor/bower_components/bootstrap/dist/fonts/* public/fonts/
+cp vendor/bower_components/bootstrap-table/dist/bootstrap-table.min.js public/js/
+cp vendor/bower_components/bootstrap-table/dist/bootstrap-table.min.css public/css/
+cp vendor/bower_components/chartjs/Chart.min.js public/js/
+cp vendor/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js public/js/
+# Default Bootstrap Theme
+mv vendor/bower_components/bootstrap/dist/css/bootstrap-theme.min.css public/themes/default.min.css
 # Bootstrap Themes
 curl http://api.bootswatch.com/3/ | cut -b2- | tr '"' '\n' | grep .min.css | grep latest | sed 's/^..//' | awk -F'/' '{ORS=""} {print "public/themes/"$4".min.css "; print; print "\n"}' | awk -F'$' '{system("curl -o "$1)}'
-# Bootstrap Table
-curl -o public/js/bootstrap-table.js https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.js
-curl -o public/css/bootstrap-table.css https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.6.0/bootstrap-table.min.css
-rm -rf public/js/npm.js
-sudo ./scripts/do_chmod.sh

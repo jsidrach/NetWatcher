@@ -4,20 +4,17 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "Juan Sidrach de Cardona Mora",
+      "name": "JSidrach",
       "email": "juan.sidrach@gmail.com",
       "role": "Developer"
     }
   ],
   "config": {
-    "vendor-dir": "lib/vendor"
+    "vendor-dir": "vendor/"
    },
   "require": {
     "php": ">=5.5.0",
-    "twbs/bootstrap": ">=3.2.0",
-    "components/jquery": "dev-master",
-    "ifightcrime/bootstrap-growl": "dev-master"
-    
+    "beelab/bowerphp": "dev-master"
   },
   "autoload": {
     "psr-4": {

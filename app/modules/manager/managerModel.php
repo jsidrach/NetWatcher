@@ -36,8 +36,9 @@ class managerModel extends Common\appModel
     {
         parent::__construct();
         
-        /* Additional libraries */
-        array_push($this->jsLibraries, 'bootstrap-table.js', 'bootstrap-table-localization.js.php', 'netwatcher-manager.js.php');
+        /* Additional libraries */        
+        array_push($this->cssLibraries, 'bootstrap-table.min.css');
+        array_push($this->jsLibraries, 'bootstrap-table.min.js', 'bootstrap-table-localization.js.php', 'netwatcher-manager.js.php');
     }
 
     /**

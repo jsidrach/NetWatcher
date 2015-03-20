@@ -1,0 +1,14 @@
+{
+    "name": "NetWatcher",
+    "authors": [
+        "JSidrach <juan.sidrach@gmail.com>"
+    ],
+    "private": true,
+    "dependencies": {
+        "jquery": "2.*",
+        "bootstrap": "3.*",
+        "bootstrap-table": "1.*",
+        "remarkable-bootstrap-notify": "3.*",
+        "chartjs": "1.*"
+    }
+}

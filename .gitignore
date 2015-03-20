@@ -1,7 +1,7 @@
 # Project files and folders
 composer.lock
 log/
-lib/vendor/
+vendor/
 fpga_api/iojs/
 fpga_api/node_modules/
 fpga_api/data/

@@ -1,18 +1,13 @@
 <?php
 Header("content-type: application/x-javascript");
 /* Autoload libraries */
-require_once ('../../lib/vendor/autoload.php');
+require_once ('../../vendor/autoload.php');
 /* Loads the config */
 \Core\Config::load('../..');
 ?>
 
 // Base url for all the calls
 var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?>;
-
-// Resize the table headers on window resize
-$(window).on('resize', function () {
-  tableCaptures.bootstrapTable('resetView');
-});
 
 // Sets the events
 $(document).ready(function () {
