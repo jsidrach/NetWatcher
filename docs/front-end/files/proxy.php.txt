@@ -6,7 +6,7 @@
 /**
  * Autoload libraries
  */
-require_once ('lib/vendor/autoload.php');
+require_once ('vendor/autoload.php');
 
 /**
  * Number of subparts of the URL

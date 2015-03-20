@@ -19,6 +19,7 @@ cp vendor/bower_components/bootstrap-table/dist/bootstrap-table.min.js public/js
 cp vendor/bower_components/bootstrap-table/dist/bootstrap-table.min.css public/css/
 cp vendor/bower_components/chartjs/Chart.min.js public/js/
 cp vendor/bower_components/remarkable-bootstrap-notify/dist/bootstrap-notify.min.js public/js/
+cp vendor/bower_components/animate.css/animate.min.css public/css/
 # Default Bootstrap Theme
 mv vendor/bower_components/bootstrap/dist/css/bootstrap-theme.min.css public/themes/default.min.css
 # Bootstrap Themes

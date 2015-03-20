@@ -30,12 +30,15 @@ NetWatcher uses a number of open source projects to work properly:
 
 * [Twitter Bootstrap](https://twitter.github.com/bootstrap/index.html) - great UI boilerplate for modern web apps
     * [Bootswatch](http://bootswatch.com/) - themes for Bootstrap
-    * [Bootstrap Growl](https://github.com/ifightcrime/bootstrap-growl) - notifications
+    * [Notify](https://github.com/mouse0270/bootstrap-notify) - notifications
+    * [Chart.js](http://www.chartjs.org/) - charts and data visualization
+    * [animate.css](http://daneden.github.io/animate.css/) - CSS animations
 * [io.js](https://iojs.org/) - evented I/O for the backend server
 * [Express](http://expressjs.com/) - web framework for io.js
 * [Supervisor](https://github.com/isaacs/node-supervisor) - supervisor and hot-code reloader
 * [jQuery](https://jquery.com) - JavaScript library
-* [Composer](https://getcomposer.org) - PHP library for external dependencies
+* [Composer](https://getcomposer.org) - PHP library for back-end external dependencies
+    * [BowerPHP](http://bowerphp.org/) - a PHP implementation of Bower (for front-end dependencies) 
 
 The FPGA design and implementation has been developed by [jfzazo](https://github.com/jfzazo). In addition, a full list of references used can be found [here](REFERENCES.md).
 
@@ -59,9 +62,9 @@ Installation
 #### Web Interface
 1. **Prerequisites**: apache http server installed, with mod_rewrite support enabled
 2. Download the repository and extract it (inside a PHP server). Change directory to the repository folder
-3. Install required packages
+3. Install required packages and libraries
 
-        $ ./scripts/install_dependencies.sh
+        $ sudo ./scripts/build.sh --install
 4. Connect the web interface with the FPGA Web Service visiting the settings page on your browser and editing the IP
 
 If you run into any issue, visit the [troubleshooting page](https://github.com/JSidrach/NetWatcher/wiki/Troubleshooting).

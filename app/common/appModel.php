@@ -56,12 +56,14 @@ abstract class appModel extends \Core\Model
         $this->cssLibraries = array(
             'bootstrap.min.css',
             'theme',
-            'sticky-footer.css'
+            'animate.min.css',
+            'netwatcher.css'
         );
         $this->jsLibraries = array(
             'jquery.min.js',
             'bootstrap.min.js',
-            'bootstrap-notify.min.js'
+            'bootstrap-notify.min.js',
+            'bootstrap-notify-settings.js'
         );
     }
 }

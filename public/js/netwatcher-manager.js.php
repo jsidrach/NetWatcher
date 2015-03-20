@@ -407,9 +407,7 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (resp) {
         // Recording
-        $.bootstrapGrowl(<?php echo '\'' . _('Recording now! Reloading...') . '\'' ?>, {
-          type: 'info'
-        });
+        $.notify(<?php echo '\'' . _('Recording now! Reloading...') . '\'' ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -795,10 +793,8 @@ $(document).ready(function () {
       },
       dataType: 'json',
       success: function (resp) {
-        // Recording
-        $.bootstrapGrowl(<?php echo '\'' . _('Playing now! Reloading...') . '\'' ?>, {
-          type: 'info'
-        });
+        // Playing
+        $.notify(<?php echo '\'' . _('Playing now! Reloading...') . '\'' ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -1017,7 +1013,9 @@ $(document).ready(function () {
   // Creates an error notification
   Common.notificationError = function (stringERR) {
     // Notification of the error
-    $.bootstrapGrowl(stringERR, {
+    $.notify({
+      message: stringERR 
+    },{
       type: 'danger'
     });
   };
