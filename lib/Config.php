@@ -210,6 +210,10 @@ class Config
          */
         define('LOGGER_ACTION', LOGGER_DIR . 'action.log');
         /**
+         * Path to the proxy log file
+         */
+        define('LOGGER_PROXY', LOGGER_DIR . 'proxy.log');
+        /**
          * Path to the warning log file
          */
         define('LOGGER_WARNING', LOGGER_DIR . 'warning.log');
