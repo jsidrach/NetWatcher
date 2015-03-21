@@ -15,6 +15,8 @@ $(document).ready(function () {
   var serverIpForm;
   // Server IP icon
   var serverIpIcon;
+  // Last ajax request
+  var lastRequest;
 
   // Initializes the module
   Settings.init = function() {
@@ -22,6 +24,7 @@ $(document).ready(function () {
     serverIp = $('#serverIp');
     serverIpForm = $('#serverIpForm');
     serverIpIcon = $('#ipIcon');
+    lastRequest = null;
     // Set the events
     serverIp.on('input', function () {
       checkIp();
@@ -31,13 +34,17 @@ $(document).ready(function () {
 
   // Checks the ip
   function checkIp() {
-    var pingURL = serverIp.val() + '/info/ping';
-    // Get the new data
-    $.ajax({
+    // Cancel the last request
+    if(lastRequest != null) {
+      lastRequest.abort();
+      lastRequest = null;
+    }
+
+    // Check the new ip
+    var pingURL = 'settings/checkIp/url?' + encodeURIComponent(serverIp.val());
+    lastRequest = $.ajax({
       type: 'GET',
       url: pingURL,
-      dataType: 'jsonp',
-      data: '',
       timeout: '500',
       success: function (resp) {
         setServerIpInput(true);

@@ -1,6 +1,21 @@
+<?php
+header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found', true, 404);
+header('Status: 404 Not Found');
+
+$_SERVER['REDIRECT_STATUS'] = 404;
+?>
 <!DOCTYPE html>
 <html>
 <head>
+<?php
+$basePath = '<base href="';
+$numberOfSubPaths = RELATIVE_SUBPATHS - 1;
+for ($i = 0; $i < RELATIVE_SUBPATHS - 1; ++ $i) {
+    $basePath .= '../';
+}
+$basePath .= '." />';
+echo $basePath;
+?>
 <meta charset="UTF-8">
 <title><?php echo _('404 - Not Found') . ' - ' . APP_NAME; ?></title>
 <?php

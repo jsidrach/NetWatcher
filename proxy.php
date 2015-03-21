@@ -89,6 +89,7 @@ if (isset($_REQUEST[CSURL])) {
         header('Status: 404 Not Found');
         $_SERVER['REDIRECT_STATUS'] = 404;
         require (ERROR_404);
+        \Core\Logger::logProxy('Request URL parameter not found');
         exit();
     }
 }
@@ -102,7 +103,7 @@ if (is_array($request_params) && array_key_exists(CSURL, $request_params)) {
 
 // Ignore requests for proxy :)
 if (preg_match('!' . $_SERVER['SCRIPT_NAME'] . '!', $request_url) || empty($request_url) || count($p_request_url) == 1) {
-    \Core\Logger::logWarning('Proxy: Invalid request - make sure that CSURL variable is not empty');
+    \Core\Logger::logProxy('Invalid request - make sure that CSURL variable is not empty');
     exit();
 }
 
@@ -111,7 +112,7 @@ if (CSAJAX_FILTERS) {
     $parsed = $p_request_url;
     if (CSAJAX_FILTER_DOMAIN) {
         if (! in_array($parsed['host'], $valid_requests)) {
-            \Core\Logger::logWarning('Proxy: Invalid domain - ' . $parsed['host'] . ' does not included in valid requests');
+            \Core\Logger::logProxy('Invalid domain - ' . $parsed['host'] . ' does not included in valid requests');
             exit();
         }
     } else {
@@ -149,6 +150,7 @@ if ('POST' == $request_method) {
 
 // Retrieve response (headers and content)
 $response = curl_exec($ch);
+$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
 // Split response to header and content
@@ -176,3 +178,5 @@ foreach ($response_headers as $key => $response_header) {
 if (isset($response_content)) {
     print($response_content);
 }
+// Log the call
+\Core\Logger::logProxy('[Code: ' . ($status_code == 0 ? '404' : $status_code) . '][Method: ' . $request_method . '][URL: ' . $request_url . ']');
