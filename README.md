@@ -40,7 +40,7 @@ NetWatcher uses a number of open source projects to work properly:
 * [Composer](https://getcomposer.org) - PHP library for back-end external dependencies
     * [BowerPHP](http://bowerphp.org/) - a PHP implementation of Bower (for front-end dependencies) 
 
-The FPGA design and implementation has been developed by [jfzazo](https://github.com/jfzazo). In addition, a full list of references used can be found [here](REFERENCES.md).
+The FPGA design and implementation has been developed by [jfzazo](https://github.com/jfzazo). In addition, a full list of references used can be found [here](docs/wiki/References.md).
 
 Installation
 ----
@@ -67,11 +67,11 @@ Installation
         $ sudo ./scripts/build.sh --install
 4. Connect the web interface with the FPGA Web Service visiting the settings page on your browser and editing the IP
 
-If you run into any issue, visit the [troubleshooting page](https://github.com/JSidrach/NetWatcher/wiki/Troubleshooting).
+If you run into any issue, visit the [troubleshooting page](docs/wiki/Troubleshooting.md).
 
 Documentation
 ----
-NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA Web Service documentation is available on [docs/back-end/](docs/back-end/). Further documentation about the project architecture and additional reading can be found in the [project's wiki](https://github.com/JSidrach/NetWatcher/wiki).
+NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA Web Service documentation is available on [docs/back-end/](docs/back-end/). Further documentation about the project architecture and additional reading can be found in the [project's docs](docs/).
 
 Bugs and feature requests
 ----
