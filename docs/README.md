@@ -6,6 +6,7 @@ Welcome to the NetWatcher documentation! Below is the list of topics covered.
 
 #### FPGA Web Service (Back-End)
 * [REST API documentation](#todo)
+* [Configuration options](wiki/FPGA_Configuration.md)
 
 #### Miscellaneous
 * [Troubleshooting](wiki/Troubleshooting.md)

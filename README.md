@@ -54,7 +54,7 @@ Installation
 
         $ ./scripts/update_server.sh
 5. Log into the FPGA Web Service host
-6. Configure the server (if needed) by editing the `config.js` file
+6. Configure the server (if needed) by editing the `config.js` file ([detailed explanation here](docs/wiki/FPGA_Configuration.md)).
 7. Start the service
 
         $ sudo service fpga_api start
