@@ -6,6 +6,6 @@ To configure the FPGA Web service to your needs, edit the `config.js` file and s
 | PORT         | Integer          | Port the server is listening to                                                                                                          |
 | MAX_DELAY    | Integer          | Maximum delay between the petition timestamp and the server timestamp. Set it to <= 0 to not discard any petition based on its timestamp |
 | CAPTURES_DIR | String           | Directory where the captures are stored (end it with /)                                                                                  |
-| RAID         | Boolean          | Raid active flag. Set it to true only if the CAPTURES_DIR is within a RAID and RAID_DEV/RAID_DISKS are set                               |
-| RAID_DEV     | String           | Raid device                                                                                                                              |
-| RAID_DISKS   | Array of Strings | Raid physical devices (e.g., /dev/sdc, /dev/sdd)                                                                                         |
+| RAID         | Boolean          | RAID active flag. Set it to true only if the `CAPTURES_DIR` is within a RAID and `RAID_DEV/RAID_DISKS` are set                               |
+| RAID_DEV     | String           | RAID device                                                                                                                              |
+| RAID_DISKS   | Array of Strings | RAID physical devices (e.g., /dev/sdc, /dev/sdd)                                                                                         |
