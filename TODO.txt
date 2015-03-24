@@ -3,9 +3,47 @@ TODO Week:
 - Sistema de estadisticas del raid
 - Raid
 
+- Obtener distintos discos que forman la raid
+- Medir la velocidad de cada uno de los dicos
+- Resetear el disco? Se formatea el disco
 
 
+####### TODO ROOT #######
 
+## Check rendimiento ##
+
+raid-devices=contar el numero de devices
+
+raid_de
+# Configuracion para el raid de disco (guardada donde la fpga)
+--raid-devices=8 /dev/sdc /dev/sdd /dev/sde /dev/sdf /dev/sdg /dev/sdh /dev/sdi /dev/sdj
+ls
+
+
+#check global
+dd if=/dev/md0 of=/dev/null bs=16M  count=256  iflag=direct
+
+#check unitario por cada sd[c-j]
+dd if=/dev/sde of=/dev/null bs=4M  count=256  iflag=direct
+
+## Formatear ##
+
+umount /mnt/raid
+mdadm --stop /dev/md0
+mdadm --remove /dev/md0
+
+## Ejecutar por cada sd[c-j], en este caso de ejemplo sde
+hdparm --user-master u --security-set-pass Eins /dev/sde
+hdparm --user-master u --security-erase Eins /dev/sde
+
+## Recrear raid ##
+
+mdadm --create /dev/md0  --level=0 --raid-devices=8 /dev/sdc /dev/sdd /dev/sde /dev/sdf /dev/sdg /dev/sdh /dev/sdi /dev/sdj 
+mkfs.xfs /dev/md0
+mount /dev/md0 /mnt/raid #montamos el disco, o reiniciamos y se monta solo con la linea de abajo
+
+## Asegurarse de que en FSTAB esta la linea, para que se monte de forma automatica al reiniciar
+/dev/md0             /mnt/raid               xfs     defaults        1 2
 
 
 TODO Future:
