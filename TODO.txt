@@ -1,3 +1,13 @@
+TODO Week:
+-------
+- Sistema de estadisticas del raid
+- Raid
+
+
+
+
+
+
 TODO Future:
 -------
   - testSimple para detectar trazas simple validas

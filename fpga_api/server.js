@@ -88,7 +88,7 @@ defError.get('*', function (req, res) {
 });
 
 // All of our correct routes will be prefixed with /fpga/api
-app.use('/fpga/api', router)
+app.use(config.BASE_PREFIX, router)
   // Other routes will return 404 - Not Found 
 app.use('/', defError);
 
