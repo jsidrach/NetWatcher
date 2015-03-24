@@ -62,8 +62,8 @@ router.get('/info/ping', statistics.ping);
 router.get('/info/delay', statistics.delay);
 
 router.get('/info/status', statistics.status);
-// router.get('/disk/stats', statistics.diskStats);
-// router.delete('/disk/:id', statistics.diskDelete);
+router.get('/storage/stats', statistics.storageStats);
+router.delete('/storage/raid', statistics.deleteRaid);
 
 
 // Captures

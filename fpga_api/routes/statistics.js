@@ -40,3 +40,17 @@ exports.status = function (req, res) {
     statistics_utils.statusFPGA
   ]);
 };
+
+// /storage/stats
+// Statistics of the storage
+exports.storageStats = function (req, res) {
+  // TODO
+  res.sendStatus(404);
+};
+
+// /storage/raid
+// Delete (format and reset) the storage raid
+exports.deleteRaid = function (req, res) {
+  // TODO
+  res.sendStatus(404);
+};
