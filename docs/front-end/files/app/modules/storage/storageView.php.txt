@@ -39,7 +39,22 @@ class storageView extends Common\appView
      */
     protected function renderContent()
     {
-        // TODO
+        /* Loading message */
+        $this->pLine('<div id="loadingDiskStats" class="row">');
+        $this->pLine('<div class="col-md-4 col-md-offset-4 text-center">', 1);
+        $this->pLine('<h3>' . _('Gathering disk statistics...') . '</h3><hr>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Chart placeholder */
+        $this->pLine('<div id="chartRow" class="row hidden">');
+        $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
+        $this->pLine('<canvas id="chart" width="400" height="400">', 1);
+        $this->pLine('</canvas>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        
+        /* Detailed statistics and actions placeholder */
     }
 }
 ?>

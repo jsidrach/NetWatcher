@@ -23,7 +23,7 @@ class managerModel extends Common\appModel
 
     /**
      * JSON object (singleton)
-     * 
+     *
      * @var JSON object with the manager status (singleton)
      */
     private $status = null;
@@ -36,7 +36,7 @@ class managerModel extends Common\appModel
     {
         parent::__construct();
         
-        /* Additional libraries */        
+        /* Additional libraries */
         array_push($this->cssLibraries, 'bootstrap-table.min.css');
         array_push($this->jsLibraries, 'bootstrap-table.min.js', 'bootstrap-table-localization.js.php', 'netwatcher-manager.js.php');
     }

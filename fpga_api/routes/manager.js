@@ -155,3 +155,10 @@ exports.stopRecorder = function (req, res) {
     });
   });
 };
+
+// /storage/raid
+// Delete (format and reset) the storage raid
+exports.deleteRaid = function (req, res) {
+  // TODO
+  res.sendStatus(404);
+};

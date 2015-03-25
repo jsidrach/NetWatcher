@@ -81,5 +81,36 @@ class settingsController extends Common\appController
             \Core\Logger::logWarning('Failed to save settings');
         }
     }
+
+    /**
+     * Checks if a remote IP is a valid FPGA API (via ping)
+     *
+     * @param array $args
+     *            Array containing the request
+     */
+    public function checkIp(array $args)
+    {
+        $context = stream_context_create(array(
+            'http' => array(
+                'timeout' => 0.5
+            )
+        ));
+        $urlIdentifier = 'url&';
+        if ((! isset($args[0])) || (strrpos($args[0], $urlIdentifier) != 0)) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            header('Status: 404 Not Found');
+            $_SERVER['REDIRECT_STATUS'] = 404;
+            return;
+        }
+        $query = urldecode(substr($args[0], strlen($urlIdentifier)) . '/info/ping');
+        $response = file_get_contents($query, 0, $context);
+        $response_json = json_decode($response, true);
+        if (($response === FALSE) || ($response_json == null) || (! isset($response_json['code'])) || ($response_json['code'] != 'success')) {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
+            header('Status: 404 Not Found');
+            $_SERVER['REDIRECT_STATUS'] = 404;
+            return;
+        }
+    }
 }
 ?>
