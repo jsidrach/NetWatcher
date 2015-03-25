@@ -30,6 +30,20 @@ class Logger
     }
 
     /**
+     * Adds a formatted text to the proxy log file
+     *
+     * @param string $text
+     *            Text to append to the log file
+     */
+    public static function logProxy($text)
+    {
+        if ($text[0] != '[') {
+            $text = ' ' . $text;
+        }
+        return self::logText('[Proxy]' . $text, LOGGER_PROXY);
+    }
+
+    /**
      * Adds a formatted text to the warning log file
      *
      * @param string $text
@@ -156,7 +170,7 @@ class Logger
     {
         /* [DD/MM/YY - HH:MM][USER]: $description */
         $timestamp = date('d/m/y - H:i:s');
-        $log = '[' . $timestamp . ']' . $text . PHP_EOL;
+        $log = '[' . $timestamp . '][' . $_SERVER['REMOTE_ADDR'] . ']' . $text . PHP_EOL;
         file_put_contents($file, $log, FILE_APPEND);
         file_put_contents(LOGGER_GENERAL, $log, FILE_APPEND);
         return true;

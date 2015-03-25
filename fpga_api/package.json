@@ -1,6 +1,6 @@
 {
   "name": "fpga_api",
-  "description": "FPGA API server",
+  "description": "FPGA Web Service API",
   "version": "0.0.1",
   "private": true,
   "dependencies": {

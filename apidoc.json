@@ -1,0 +1,16 @@
+{
+  "name": "FPGA Web Service API",
+  "version": "0.1",
+  "description": "Web Service to manage a traffic player/recorder FPGA",
+  "title": "FPGA Web Service API documentation",
+  "url": "proxy.php?csurl=",
+  "order": [
+    "Manager",
+    "Statistics",
+    "Captures"
+  ],
+  "template": {
+    "withCompare": false,
+    "withGenerator": false
+  }
+}

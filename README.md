@@ -71,7 +71,7 @@ If you run into any issue, visit the [troubleshooting page](docs/wiki/Troublesho
 
 Documentation
 ----
-NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA Web Service documentation is available on [docs/back-end/](docs/back-end/). Further documentation about the project architecture and additional reading can be found in the [project's docs](docs/).
+NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA Web Service documentation is build with [apiDoc](http://apidocjs.com/) and included in the [docs/back-end/](docs/back-end/) folder as a webpage too. Further documentation about the project architecture and additional reading can be found in the [project's docs](docs/).
 
 Bugs and feature requests
 ----

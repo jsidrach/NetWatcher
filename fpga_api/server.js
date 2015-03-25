@@ -37,7 +37,6 @@ app.route('*')
 
 // Routes and Modules
 
-
 // Manager
 
 router.post('/system/reboot', manager.reboot);
@@ -55,6 +54,7 @@ router.post('/recorder/start/:capturename/:port/:bytes', manager.startRecorder);
 router.post('/player/stop', manager.stopPlayer);
 router.post('/recorder/stop', manager.stopRecorder);
 
+router.delete('/storage/raid', manager.deleteRaid);
 
 // Real Time Statistics
 
@@ -63,8 +63,6 @@ router.get('/info/delay', statistics.delay);
 
 router.get('/info/status', statistics.status);
 router.get('/storage/stats', statistics.storageStats);
-router.delete('/storage/raid', statistics.deleteRaid);
-
 
 // Captures
 

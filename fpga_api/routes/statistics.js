@@ -47,10 +47,3 @@ exports.storageStats = function (req, res) {
   // TODO
   res.sendStatus(404);
 };
-
-// /storage/raid
-// Delete (format and reset) the storage raid
-exports.deleteRaid = function (req, res) {
-  // TODO
-  res.sendStatus(404);
-};
