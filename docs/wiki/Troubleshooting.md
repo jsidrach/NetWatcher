@@ -11,6 +11,7 @@ NetWatcher not working for you? Make sure first that you followed the installati
      - [FPGA Web Service does not reboot with HugePages selected](#hugepages-issue)
      - [Invalid sudoers file after updating the web service](#invalid-sudoers)
      - [FPGA Web Service unable to program the FPGA](#error-impact)
+     - [](#mount-raid)
 
 ## <a name="web-interface"> </a>Web Interface
 #### <a name="access-forbiden"> </a>Access Forbiden error on every page
@@ -54,3 +55,8 @@ Run `pkexec visudo` and fix the last lines that are causing the sintax error
 
 #### <a name="error-impact"> </a>FPGA Web Service unable to program the FPGA
 Make sure that `./fpga-api/bin/impact.sh` contains a valid call for Xilinx's impact binary
+
+#### <a name="mount-raid"> </a>RAID does not mount automatically after reboot
+Check that `/etc/fstab` contains a line with the RAID_DEV. For example, if `RAID_DEV` is set to `/dev/md0`, `cat /etc/fstab` should have one of its return lines like this:
+
+`/dev/md0             /mnt/raid               xfs     defaults        1 2`
