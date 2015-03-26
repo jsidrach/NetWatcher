@@ -169,7 +169,21 @@ exports.deleteRaid = function (req, res) {
       common.sendJSON('raid_delete_error', res, 412);
       return;
     }
-    // TODO
-    res.sendStatus(404);
+    // Format the RAID
+    scripts.execSync('umount /mnt/raid');
+    scripts.execSync('mdadm --stop "' + config.RAID_DEV + '"');
+    scripts.execSync('mdadm --remove "' + config.RAID_DEV + '"');
+
+    // Format each disk
+    config.RAID_DISKS.forEach(function (disk) {
+      scripts.execSync('hdparm --user-master u --security-set-pass Eins "' + disk + '"');
+      scripts.execSync('hdparm --user-master u --security-erase Eins "' + disk + '"');
+    });
+
+    // Re-create raid
+    scripts.execSync('mdadm --create "' + config.RAID_DEV + '" --level=0 --raid-devices=' + config.RAID_DISKS.length + ' "' + config.RAID_DISKS.join('" "') + '"');
+    scripts.execSync('mkfs.xfs "' + config.RAID_DEV + '"');
+    scripts.execSync('mount "' + config.RAID_DEV + '" /mnt/raid');
+    res.sendJSON('raid_delete_success', res, 200);
   });
 };
