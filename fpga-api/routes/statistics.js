@@ -45,7 +45,7 @@ exports.status = function (req, res) {
 // Statistics of the storage
 exports.storageStats = function (req, res) {
   common.readJSON('storage_stats', function (ans) {
-    var command = 'df "' + config.CAPTURES_DIR + '" | tail -n1 | awk \'{print $2"000 "$3"000"}\'';
+    var command = 'df "' + config.CAPTURES_DIR + '" | tail -n1 | awk \'{print $2" "$3}\'';
     scripts.exec(command, function (error, stdout, stderr) {
       if (error) {
         // Internal error
@@ -62,9 +62,10 @@ exports.storageStats = function (req, res) {
         res.sendStatus(500);
         return;
       }
-      ans.total_space = parseInt(parts[0]);
-      ans.used_space = parseInt(parts[1]);
+      ans.total_space = parseInt(parts[0])*1024;
+      ans.used_space = parseInt(parts[1])*1024;
       if (config.RAID) {
+        // Get individual disk statistics
         ans.raid_stats.raid_active = true;
         statistics_utils.getRaidStats(res, ans);
         return;

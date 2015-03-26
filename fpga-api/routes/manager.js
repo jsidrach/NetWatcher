@@ -159,6 +159,17 @@ exports.stopRecorder = function (req, res) {
 // /storage/raid
 // Delete (format and reset) the storage raid
 exports.deleteRaid = function (req, res) {
-  // TODO
-  res.sendStatus(404);
+  // Do not allow to reset the raid if RAID flag is not set or the FPGA is running
+  if (!config.RAID) {
+    common.sendJSON('raid_delete_error', res, 412);
+    return;
+  }
+  statistics_utils.runningAny(function (isRunning) {
+    if (isRunning) {
+      common.sendJSON('raid_delete_error', res, 412);
+      return;
+    }
+    // TODO
+    res.sendStatus(404);
+  });
 };
