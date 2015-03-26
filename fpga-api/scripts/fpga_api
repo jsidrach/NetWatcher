@@ -1,19 +1,19 @@
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          fpga_api
+# Provides:          fpga-api
 # Required-Start:    $remote_fs $syslog
 # Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: Start fpga_api daemon
-# Description:       Enable fpga_api service, provided by daemon.
+# Short-Description: Start fpga-api daemon
+# Description:       Enable fpga-api service, provided by daemon.
 ### END INIT INFO
 
-dir="/home/sid/Desktop/fpga_api/"
+dir="/home/sid/Desktop/fpga-api/"
 user="sid"
 cmd="PATH=$PATH:$dir/iojs/bin/ ./iojs/bin/supervisor -w .,routes server"
 
-name="fpga_api"
+name="fpga-api"
 pid_file="/var/run/$name.pid"
 stdout_log="/var/log/$name.log"
 stderr_log="/var/log/$name.err"

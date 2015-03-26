@@ -1,0 +1,5 @@
+{
+  "code": "error",
+  "type": "notification",
+  "description": "The RAID could not be formatted, RAID configuration option is not set or the FPGA is running."
+}

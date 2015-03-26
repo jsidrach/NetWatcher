@@ -1,5 +1,5 @@
 {
-  "name": "fpga_api",
+  "name": "fpga-api",
   "description": "FPGA Web Service API",
   "version": "0.0.1",
   "private": true,

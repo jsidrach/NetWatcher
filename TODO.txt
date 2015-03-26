@@ -1,11 +1,8 @@
 TODO Week:
 -------
-- Sistema de estadisticas del raid
-- Raid
-
-- Obtener distintos discos que forman la raid
-- Medir la velocidad de cada uno de los dicos
+- Raid Delete
 - Resetear el disco? Se formatea el disco
+// No dejar formatear si se est´a reproduciendo o capturando
 
 
 ####### TODO ROOT #######
@@ -21,10 +18,10 @@ ls
 
 
 #check global
-dd if=/dev/md0 of=/dev/null bs=16M  count=256  iflag=direct
+dd if="/dev/md0" of=/dev/null bs=16MB  count=256  iflag=direct 2>&1 | tail -n1 | awk '{print int($1/$6)}'
 
 #check unitario por cada sd[c-j]
-dd if=/dev/sde of=/dev/null bs=4M  count=256  iflag=direct
+dd if="/dev/sde" of=/dev/null bs=4MB  count=256  iflag=direct 2>&1 | tail -n1 | awk '{print int($1/$6)}'
 
 ## Formatear ##
 
@@ -78,6 +75,7 @@ Cosas a mencionar en la memoria:
     - rewrite (htaccess)
     - gettext
     - composer
+    - bower
   - Localización
     - Importancia, gettext()
     - PHP+JavaScript, reto
@@ -94,6 +92,7 @@ Cosas a mencionar en la memoria:
   - Documentación
     - Wiki
     - phpDocumentor
+    - apiDoc
     - Web Service
   - Posibles mejoras
     - Estandarización, futuras fpgas con características parecidas

@@ -32,7 +32,7 @@ There is a problem with mod_rewrite
 ## <a name="fpga-web-service"> </a>FPGA Web Service
 #### <a name="reboot-issue"> </a>FPGA Web Service does not start automatically after reboot
 
-* Make sure you installed the service via `./fpga_api/scripts/update_server.sh`
+* Make sure you installed the service via `./fpga-api/scripts/update_server.sh`
 * Open `/etc/sudoers` and comment the line `# Defaults    requiretty`
 
 #### <a name="port-issue"> </a>FPGA Web Service not accessible from anything but localhost
@@ -41,7 +41,7 @@ The port may be blocked by iptables. You need to open the port on iptables. For 
 `-A INPUT -m state --state NEW -m tcp -p tcp --dport 1337 -j ACCEPT`
 
 #### <a name="timeout-issue"> </a>Every request to the FPGA Web Service fails, returning 'timeout'
-NetWatcher Web Service rejects petitions with more than a fixed delay (set it on `./fpga_api/config.js`). Sync the clock of the PHP server, the FPGA Web Service and the client machine running `sudo ntpdate pool.ntp.org`
+NetWatcher Web Service rejects petitions with more than a fixed delay (set it on `./fpga-api/config.js`). Sync the clock of the PHP server, the FPGA Web Service and the client machine running `sudo ntpdate pool.ntp.org`
 
 #### <a name="hugepages-issue"> </a>FPGA Web Service does not reboot with HugePages selected
 NetWatcher requires HugePages to be the default grub option. To configure the grub this way:
@@ -53,4 +53,4 @@ NetWatcher requires HugePages to be the default grub option. To configure the gr
 Run `pkexec visudo` and fix the last lines that are causing the sintax error
 
 #### <a name="error-impact"> </a>FPGA Web Service unable to program the FPGA
-Make sure that `./fpga_api/bin/impact.sh` contains a valid call for Xilinx's impact binary
+Make sure that `./fpga-api/bin/impact.sh` contains a valid call for Xilinx's impact binary

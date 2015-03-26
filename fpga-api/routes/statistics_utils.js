@@ -144,7 +144,7 @@ exports.runningFPGA = runningFPGA;
 // Gets a boolean value that represents if the FPGA is running in any mode
 function runningAny(callback) {
   var command = 'pgrep launchRecorder || pgrep card2host || pgrep launchPlayer || pgrep host2card';
-  scripts.exec(command).on('exit', function(code) {
+  scripts.exec(command).on('exit', function (code) {
     callback(code == 0);
   });
 };
@@ -212,7 +212,7 @@ function getDataPlaying(callback) {
         ans.date = common.mtime2string(captureStats['mtime']);
       }
       scripts.exec('sudo ./bin/readRegisters 2>&1 | grep "total packets" | awk \'{print $5}\'', function (error, stdout, stderr) {
-        if(stdout.length > 0) {
+        if (stdout.length > 0) {
           ans.packets_sent = parseInt(stdout);
         }
         callback(ans);
@@ -221,3 +221,28 @@ function getDataPlaying(callback) {
   });
 };
 exports.getDataPlaying = getDataPlaying;
+
+// Get raid statistics
+function getRaidStats(res, ans) {
+  var command = 'dd if="' + config.RAID_DEV + '" of=/dev/null bs=16MB  count=256  iflag=direct 2>&1 | tail -n1 | awk \'{print int($1/$6)}\'';
+  scripts.exec(command, function (error, stdout, stderr) {
+    if (error) {
+      // Internal error
+      common.logError(stderr);
+      res.sendStatus(500);
+      return;
+    }
+    ans.raid_stats.write_speed = parseInt(stdout);
+    ans.raid_stats.raid_name = config.RAID_DEV;
+    ans.raid_stats.disks = [];
+    config.RAID_DISKS.forEach(function (disk) {
+      var diskStats = {};
+      var diskCommand = 'dd if="' + disk + '" of=/dev/null bs=4MB  count=256  iflag=direct 2>&1 | tail -n1 | awk \'{print int($1/$6)}\'';
+      diskStats['write_speed'] = parseInt(scripts.execSync(diskCommand));
+      diskStats['name'] = disk;
+      ans.raid_stats.disks.push(diskStats);
+    });
+    common.sendJSON(ans, res, 200);
+  });
+};
+exports.getRaidStats = getRaidStats;

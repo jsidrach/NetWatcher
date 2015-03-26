@@ -48,8 +48,8 @@ Installation
 
 #### FPGA Web Service
 1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active
-2. Edit the file `./fpga_api/scripts/update_server.sh` setting the `SERVER_IP` and `SERVER_PATH` vars. **Note**: root user must exist.
-3. Change path to `./fpga_api/`
+2. Edit the file `./fpga-api/scripts/update_server.sh` setting the `SERVER_IP` and `SERVER_PATH` vars. **Note**: root user must exist.
+3. Change path to `./fpga-api/`
 4. Deploy the io.js server on the remote host
 
         $ ./scripts/update_server.sh
@@ -57,7 +57,7 @@ Installation
 6. Configure the server (if needed) by editing the `config.js` file ([detailed explanation here](docs/wiki/FPGA_Configuration.md)).
 7. Start the service
 
-        $ sudo service fpga_api start
+        $ sudo service fpga-api start
 
 #### Web Interface
 1. **Prerequisites**: apache http server installed, with mod_rewrite support enabled
@@ -71,7 +71,7 @@ If you run into any issue, visit the [troubleshooting page](docs/wiki/Troublesho
 
 Documentation
 ----
-NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA Web Service documentation is build with [apiDoc](http://apidocjs.com/) and included in the [docs/back-end/](docs/back-end/) folder as a webpage too. Further documentation about the project architecture and additional reading can be found in the [project's docs](docs/).
+NetWatcher's web interface documentation is built with [phpDocumentor](https://www.phpdoc.org) and included in the [docs/front-end/](docs/front-end/) folder as a webpage. The FPGA Web Service documentation is build with [apiDoc](http://apidocjs.com/) and included in the [docs/back-end/](docs/back-end/) folder as a webpage too. To explore the available calls, it is also possible to import the file `fpga-api/api-docs/fpga-api.json.postman_collection` into [Postman](www.getpostman.com). Further documentation about the project architecture and additional reading can be found in the [project's docs](docs/).
 
 Bugs and feature requests
 ----

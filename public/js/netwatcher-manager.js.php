@@ -970,7 +970,7 @@ $(document).ready(function () {
   // Parses a number of bytes into a string
   Common.parseBytes = function (bytes) {
     var suffix = '';
-    ['K', 'M', 'G'].forEach(function(scale) {
+    ['K', 'M', 'G', 'T'].forEach(function(scale) {
       if(bytes >= 1024) {
         suffix = scale;
         bytes = bytes/1024;
