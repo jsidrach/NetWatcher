@@ -1,0 +1,5 @@
+{
+  "code": "success",
+  "type": "notification",
+  "description": "The RAID has been formatted and mounted properly."
+}

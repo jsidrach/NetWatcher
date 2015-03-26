@@ -11,7 +11,7 @@ var statistics_utils = require('./statistics_utils.js');
 // /ping
 // Simple ping
 exports.ping = function (req, res) {
-  common.sendJSONP('statistics_ping', res, 200);
+  common.sendJSON('statistics_ping', res, 200);
 };
 
 // /delay
@@ -19,7 +19,7 @@ exports.ping = function (req, res) {
 exports.delay = function (req, res) {
   var delay = common.getDelay(req);
   if (delay === false) {
-    res.sendStatus(408);
+    res.sendStatus(400);
   } else {
     common.readJSON('statistics_delay', function (ans) {
       ans.delay = delay;
@@ -44,6 +44,33 @@ exports.status = function (req, res) {
 // /storage/stats
 // Statistics of the storage
 exports.storageStats = function (req, res) {
-  // TODO
-  res.sendStatus(404);
+  common.readJSON('storage_stats', function (ans) {
+    var command = 'df "' + config.CAPTURES_DIR + '" | tail -n1 | awk \'{print $2"000 "$3"000"}\'';
+    scripts.exec(command, function (error, stdout, stderr) {
+      if (error) {
+        // Internal error
+        common.logError(stderr);
+        res.sendStatus(500);
+        return;
+      }
+      // Output format:
+      // total_bytes used_bytes
+      var parts = stdout.split(' ');
+      if ((parts == null) || (parts.length < 2)) {
+        // Internal error
+        common.logError(stderr);
+        res.sendStatus(500);
+        return;
+      }
+      ans.total_space = parseInt(parts[0]);
+      ans.used_space = parseInt(parts[1]);
+      if (config.RAID) {
+        ans.raid_stats.raid_active = true;
+        statistics_utils.getRaidStats(res, ans);
+        return;
+      }
+      ans.raid_stats.raid_active = false;
+      common.sendJSON(ans, res, 200);
+    });
+  });
 };

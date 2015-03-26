@@ -5,4 +5,4 @@
 cd ./vendor/apidoc/apidoc
 sudo npm install
 cd ../../..
-./vendor/apidoc/apidoc/bin/apidoc -i fpga_api/ -o docs/back-end/
+./vendor/apidoc/apidoc/bin/apidoc -i fpga-api/ -o docs/back-end/

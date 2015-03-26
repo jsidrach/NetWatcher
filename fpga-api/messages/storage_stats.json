@@ -1,0 +1,10 @@
+{
+  "total_space": "",
+  "used_space": "",
+  "raid_stats": {
+    "raid_active": "",
+    "raid_name": "",
+    "write_speed": "",
+    "disks": ""
+  }
+}

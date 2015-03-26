@@ -5,7 +5,7 @@ Welcome to the NetWatcher documentation! Below is the list of topics covered.
 * [Translating NetWatcher to additional languages](wiki/Translation.md)
 
 #### FPGA Web Service (Back-End)
-* [REST API documentation](#todo)
+* [REST API documentation](back-end/)
 * [Configuration options](wiki/FPGA_Configuration.md)
 
 #### Miscellaneous
