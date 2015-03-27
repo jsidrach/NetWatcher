@@ -1,4 +1,6 @@
 {
+  "code": "success",
+  "type": "data",
   "total_space": "",
   "used_space": "",
   "raid_stats": {

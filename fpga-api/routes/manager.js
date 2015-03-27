@@ -14,15 +14,22 @@ var manager_utils = require('./manager_utils.js');
 // /system/reboot
 // Reboots the system
 exports.reboot = function (req, res) {
-  // Reboot the system
-  scripts.exec(manager_utils.rebootCommand, function (error, stdout, stderr) {
-    if (error) {
-      // Internal error
-      common.logError(stderr);
-      res.sendStatus(500);
+  // Check the FPGA is not running
+  statistics_utils.runningAny(function (isRunning) {
+    if (isRunning) {
+      common.sendJSON('system_reboot_error', res, 412);
       return;
     }
-    common.sendJSON('system_reboot_success', res, 200);
+    // Reboot the system
+    scripts.exec(manager_utils.rebootCommand, function (error, stdout, stderr) {
+      if (error) {
+        // Internal error
+        common.logError(stderr);
+        res.sendStatus(500);
+        return;
+      }
+      common.sendJSON('system_reboot_success', res, 200);
+    });
   });
 };
 
@@ -157,7 +164,7 @@ exports.stopRecorder = function (req, res) {
 };
 
 // /storage/raid
-// Delete (format and reset) the storage raid
+// Deletes (format and reset) the storage raid
 exports.deleteRaid = function (req, res) {
   // Do not allow to reset the raid if RAID flag is not set or the FPGA is running
   if (!config.RAID) {

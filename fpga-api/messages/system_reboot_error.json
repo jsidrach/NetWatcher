@@ -1,0 +1,5 @@
+{
+  "code": "error",
+  "type": "notification",
+  "description": "The host can not be rebooted. The FPGA is being used."
+}

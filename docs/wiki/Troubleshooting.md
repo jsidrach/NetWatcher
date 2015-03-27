@@ -11,7 +11,7 @@ NetWatcher not working for you? Make sure first that you followed the installati
      - [FPGA Web Service does not reboot with HugePages selected](#hugepages-issue)
      - [Invalid sudoers file after updating the web service](#invalid-sudoers)
      - [FPGA Web Service unable to program the FPGA](#error-impact)
-     - [](#mount-raid)
+     - [RAID does not mount automatically after reboot](#mount-raid)
 
 ## <a name="web-interface"> </a>Web Interface
 #### <a name="access-forbiden"> </a>Access Forbiden error on every page

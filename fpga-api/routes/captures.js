@@ -32,16 +32,18 @@ exports.pcap = function (req, res) {
 // /captures/path
 // Gets the path where the captures are stored
 exports.path = function (req, res) {
-  var dataPath = {};
-  // Absolute path
-  if (config.CAPTURES_DIR.charAt(0) == '/') {
-    dataPath['path'] = path.resolve(config.CAPTURES_DIR);
-  }
-  // Relative path
-  else {
-    dataPath['path'] = path.resolve(__dirname, '..', config.CAPTURES_DIR);
-  }
-  res.json(dataPath);
+  common.readJSON('captures_path', function (ans) {
+    // Absolute path
+    if (config.CAPTURES_DIR.charAt(0) == '/') {
+      ans.path = path.resolve(config.CAPTURES_DIR);
+    }
+    // Relative path
+    else {
+      ans.path = path.resolve(__dirname, '..', config.CAPTURES_DIR);
+    }
+    ans.path = dataCaptures;
+    res.status(200).json(ans);
+  });
 };
 
 // /captures/rename/:oldname/:newname
@@ -54,8 +56,8 @@ exports.rename = function (req, res) {
   }
 
   // Check if it is being used
-  captures_utils.inUse(req.params.oldName, function(flag) {
-    if(flag) {
+  captures_utils.inUse(req.params.oldName, function (flag) {
+    if (flag) {
       common.sendJSON('captures_rename_error', res, 400);
       return;
     }
@@ -126,9 +128,9 @@ exports.delete = function (req, res) {
   }
 
   // Check if it is being used
-  captures_utils.inUse(req.params.name, function(flag) {
-    if(flag) {
-      common.sendJSON('captures_rename_error', res, 400);
+  captures_utils.inUse(req.params.name, function (flag) {
+    if (flag) {
+      common.sendJSON('captures_delete_error', res, 400);
       return;
     }
     // Delete
