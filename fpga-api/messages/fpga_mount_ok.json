@@ -1,5 +1,5 @@
 {
   "code": "success",
   "type": "notification",
-  "description": "The FPGA has been mounted."
+  "description": "The FPGA has been mounted and is ready to be used."
 }

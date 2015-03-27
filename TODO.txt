@@ -1,24 +1,20 @@
-TODO Friday
+TODO Week
 -------
-  - Moar apiDoc!
-  - Start storage ui draft
+  - Status apiDoc
+  - Storage UI
 
 TODO Future:
 -------
   - testSimple para detectar trazas simple validas
   - actualizar testSimple.c para que añada al final el nº de paquetes
     - en launchRecorder.sh, que se llame despues a testSimple y añada esto
-  - Storage: dd discos, estadisticas, resetear
   - Terminar de probar todo con los binarios nuevos
+  - Probar storage
 
 Jose:
 -------
   - Nuevos binarios finales de todo cuando este listo testSimple.c (solo queda eso!!! :D)
-
-Ideas pagina de statistics
-------
-  - Testear raid (dd), rendimiento, formatear
-
+  
 _________________________________________________________________________________________
 
 Cosas a mencionar en la memoria:
