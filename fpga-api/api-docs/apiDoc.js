@@ -171,7 +171,7 @@
  *
  * @apiHeader {Number} timestamp Milliseconds elapsed since 1 January 1970 00:00:00 UTC until now (output of Date.now())
  *
- * @apiParam {String} capturename Name of the capture to be reproduced
+ * @apiParam {String} capturename Name of the capture to be reproduced (it must be in simple format)
  * @apiParam {Number} mask Mask (set of ports) where the capture is going to be reproduced (0-1-2-3)
  * @apiParam {Number} ifg Interframe gap (0 to original captured rate)
  *
@@ -446,7 +446,79 @@
  */
 
 // get '/info/status'
-// TODO
+/**
+ * @api {get} /info/status /info/status
+ * @apiDescription Request the status of the FPGA
+ * @apiName InfoStatus
+ * @apiGroup Statistics
+ *
+ * @apiSuccess {String} status Current status of the FPGA. If the status is either 'playing' or 'recording', additional data is returned (see examples below)
+ * @apiSuccess {String} description Description of the current status of the FPGA
+ * 
+ * @apiSuccess {String} capture [Only when status is 'playing']: name of the capture being reproduced
+ * @apiSuccess {Number} size [Only when status is 'playing']: size of the capture being reproduced (in bytes)
+ * @apiSuccess {String} date [Only when status is 'playing']: date of the capture being reproduced (yyyy-mm-dd hh:mm:ss)
+ * @apiSuccess {Number} elapsed_time [Only when status is 'playing']: time since the capture started being reproduced (in seconds)
+ * @apiSuccess {Number} packets_sent [Only when status is 'playing']: packets sent
+ * @apiSuccess {Boolean} loop [Only when status is 'playing']: true if the capture is being reproduced in loop, false otherwise
+ * @apiSuccess {Number} interframe_gap [Only when status is 'playing']: interframe gap the capture is being reproduced at (0 means original captured rate)
+ * @apiSuccess {Number} mask [Only when status is 'playing']: mask (set of ports) where the capture is being reroduced (0-1-2-3)
+ *
+ * @apiSuccess {String} capture [Only when status is 'recording']: Name of the capture being recorded
+ * @apiSuccess {String} elapsed_time [Only when status is 'recording']: time since the FPGA started recording (in seconds)
+ * @apiSuccess {String} bytes_captured [Only when status is 'recording']: bytes captured until now
+ * @apiSuccess {String} bytes_total [Only when status is 'recording']: bytes to be recorded in total
+ * @apiSuccess {String} port [Only when status is 'recording']: port the FPGA is capturing from (0-1-2-3)
+ *
+ * @apiSuccessExample {json} HugePages Off
+ * {
+ *   "status": "hugepages_off",
+ *   "description": "HugePages is not enabled. To fix this, the host should be rebooted with this option selected on the GRUB menu."
+ * }
+ * @apiSuccessExample {json} Init Off
+ * {
+ *   "status": "init_off",
+ *   "description": "The FPGA is not configured either as player or as recorder yet."
+ * }
+ * @apiSuccessExample {json} Mount Off
+ * {
+ *   "status": "mount_off",
+ *   "description": "The FPGA is initialized but not mounted."
+ * }
+ * @apiSuccessExample {json} Player Ready
+ * {
+ *   "status": "player_ready",
+ *   "description": "The FPGA is ready to reproduce a capture."
+ * }
+ * @apiSuccessExample {json} Recorder Ready
+ * {
+ *   "status": "recorder_ready",
+ *   "description": "The FPGA is ready to record a capture."
+ * }
+ * @apiSuccessExample {json} Playing
+ * {
+ *   "status": "playing",
+ *   "description": "The FPGA is reproducing a capture.",
+ *   "capture": "my_capture0.simple",
+ *   "size": 714131923845,
+ *   "date": "2014-09-29 15:40:34",
+ *   "elapsed_time": 548,
+ *   "packets_sent": 394578123,
+ *   "loop": true,
+ *   "interframe_gap": 0,
+ *   "mask": 3
+ * }
+ * @apiSuccessExample {json} Recording
+ * {
+ *   "status": "recording",
+ *   "description": "The FPGA is recording a capture.",
+ *   "capture": "2flows_test",
+ *   "elapsed_time": 447,
+ *   "bytes_captured": 5984234711238,
+ *   "bytes_total": 234856352341724128,
+ *   "port": 2
+ * }
+ */
 
 // get '/storage/stats'
 /**
