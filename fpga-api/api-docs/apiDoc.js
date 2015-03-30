@@ -462,7 +462,7 @@
  * @apiSuccess {Number} packets_sent [Only when status is 'playing']: packets sent
  * @apiSuccess {Boolean} loop [Only when status is 'playing']: true if the capture is being reproduced in loop, false otherwise
  * @apiSuccess {Number} interframe_gap [Only when status is 'playing']: interframe gap the capture is being reproduced at (0 means original captured rate)
- * @apiSuccess {Number} mask [Only when status is 'playing']: mask (set of ports) where the capture is being reroduced (0-1-2-3)
+ * @apiSuccess {Number} mask [Only when status is 'playing']: set of ports where the capture is being reproduced (0-1-2-3)
  *
  * @apiSuccess {String} capture [Only when status is 'recording']: Name of the capture being recorded
  * @apiSuccess {String} elapsed_time [Only when status is 'recording']: time since the FPGA started recording (in seconds)
