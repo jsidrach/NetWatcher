@@ -854,7 +854,7 @@
             "type": "String",
             "field": "capturename",
             "optional": false,
-            "description": "<p>Name of the capture to be reproduced</p>"
+            "description": "<p>Name of the capture to be reproduced (it must be in simple format)</p>"
           },
           {
             "group": "Parameter",
@@ -1909,6 +1909,150 @@
         {
           "title": "Example data on success",
           "content": "{\n\"code\": \"success\"\n}\n",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "fpga-api/api-docs/apiDoc.js"
+  },
+  {
+    "type": "get",
+    "url": "/info/status",
+    "title": "/info/status",
+    "description": "<p>Request the status of the FPGA</p>",
+    "name": "InfoStatus",
+    "group": "Statistics",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "status",
+            "optional": false,
+            "description": "<p>Current status of the FPGA. If the status is either &#39;playing&#39; or &#39;recording&#39;, additional data is returned (see examples below)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "description",
+            "optional": false,
+            "description": "<p>Description of the current status of the FPGA</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "capture",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: name of the capture being reproduced</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "size",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: size of the capture being reproduced (in bytes)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "date",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: date of the capture being reproduced (yyyy-mm-dd hh:mm:ss)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "elapsed_time",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: time since the capture started being reproduced (in seconds)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "packets_sent",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: packets sent</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Boolean",
+            "field": "loop",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: true if the capture is being reproduced in loop, false otherwise</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "interframe_gap",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: interframe gap the capture is being reproduced at (0 means original captured rate)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "field": "mask",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;playing&#39;]: set of ports where the capture is being reproduced (0-1-2-3)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "bytes_captured",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;recording&#39;]: bytes captured until now</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "bytes_total",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;recording&#39;]: bytes to be recorded in total</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "field": "port",
+            "optional": false,
+            "description": "<p>[Only when status is &#39;recording&#39;]: port the FPGA is capturing from (0-1-2-3)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "HugePages Off",
+          "content": "{\n \"status\": \"hugepages_off\",\n \"description\": \"HugePages is not enabled. To fix this, the host should be rebooted with this option selected on the GRUB menu.\"\n}\n",
+          "type": "json"
+        },
+        {
+          "title": "Init Off",
+          "content": "{\n \"status\": \"init_off\",\n \"description\": \"The FPGA is not configured either as player or as recorder yet.\"\n}\n",
+          "type": "json"
+        },
+        {
+          "title": "Mount Off",
+          "content": "{\n \"status\": \"mount_off\",\n \"description\": \"The FPGA is initialized but not mounted.\"\n}\n",
+          "type": "json"
+        },
+        {
+          "title": "Player Ready",
+          "content": "{\n \"status\": \"player_ready\",\n \"description\": \"The FPGA is ready to reproduce a capture.\"\n}\n",
+          "type": "json"
+        },
+        {
+          "title": "Recorder Ready",
+          "content": "{\n \"status\": \"recorder_ready\",\n \"description\": \"The FPGA is ready to record a capture.\"\n}\n",
+          "type": "json"
+        },
+        {
+          "title": "Playing",
+          "content": "{\n \"status\": \"playing\",\n \"description\": \"The FPGA is reproducing a capture.\",\n \"capture\": \"my_capture0.simple\",\n \"size\": 714131923845,\n \"date\": \"2014-09-29 15:40:34\",\n \"elapsed_time\": 548,\n \"packets_sent\": 394578123,\n \"loop\": true,\n \"interframe_gap\": 0,\n \"mask\": 3\n}\n",
+          "type": "json"
+        },
+        {
+          "title": "Recording",
+          "content": "{\n \"status\": \"recording\",\n \"description\": \"The FPGA is recording a capture.\",\n \"capture\": \"2flows_test\",\n \"elapsed_time\": 447,\n \"bytes_captured\": 5984234711238,\n \"bytes_total\": 234856352341724128,\n \"port\": 2\n}\n",
           "type": "json"
         }
       ]

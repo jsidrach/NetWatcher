@@ -215,7 +215,7 @@ abstract class appView extends \Core\View
         $this->pLine('&middot;');
         $this->pLine('<a href="status">' . _('Status') . '</a>');
         $this->pLine('&middot;');
-        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher/wiki">' . _('Wiki') . '</a>');
+        $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher/tree/master/docs">' . _('Wiki') . '</a>');
         $this->pLine('&middot;');
         $this->pLine('<a target="_blank" href="https://github.com/JSidrach/NetWatcher">' . _('Source') . '</a>');
         $this->pLine('&middot;');
