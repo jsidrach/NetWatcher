@@ -1,6 +1,6 @@
 TODO Week
 -------
-  - Status apiDoc
+  - Plantilla LaTeX TFG
   - Storage UI
 
 TODO Future:

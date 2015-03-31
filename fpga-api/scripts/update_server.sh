@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Install/Updates the fpga server
+# Install/Updates the FPGA server
 # Run from the fpga-api dir
 
 # Change configuration here

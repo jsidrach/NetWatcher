@@ -37,12 +37,12 @@ There is a problem with mod_rewrite
 * Open `/etc/sudoers` and comment the line `# Defaults    requiretty`
 
 #### <a name="port-issue"> </a>FPGA Web Service not accessible from anything but localhost
-The port may be blocked by iptables. You need to open the port on iptables. For instance, if the service port is `1337`, edit `/etc/sysconfig/iptables` and add the line
+The port may be blocked by iptables. You need to open the port in iptables. For instance, if the service port is `1337`, edit `/etc/sysconfig/iptables` and add the line
 
 `-A INPUT -m state --state NEW -m tcp -p tcp --dport 1337 -j ACCEPT`
 
 #### <a name="timeout-issue"> </a>Every request to the FPGA Web Service fails, returning 'timeout'
-NetWatcher Web Service rejects petitions with more than a fixed delay (set it on `./fpga-api/config.js`). Sync the clock of the PHP server, the FPGA Web Service and the client machine running `sudo ntpdate pool.ntp.org`
+NetWatcher Web Service rejects petitions with more than a fixed delay (set it in `./fpga-api/config.js`). Sync the clock of the PHP server, the FPGA Web Service and the client machine running `sudo ntpdate pool.ntp.org`
 
 #### <a name="hugepages-issue"> </a>FPGA Web Service does not reboot with HugePages selected
 NetWatcher requires HugePages to be the default grub option. To configure the grub this way:
@@ -54,7 +54,7 @@ NetWatcher requires HugePages to be the default grub option. To configure the gr
 Run `pkexec visudo` and fix the last lines that are causing the sintax error
 
 #### <a name="error-impact"> </a>FPGA Web Service unable to program the FPGA
-Make sure that `./fpga-api/bin/impact.sh` contains a valid call for Xilinx's impact binary
+Make sure that `IMPACT_BIN` param in `./fpga-api/config.js` contains a valid call for Xilinx's impact binary
 
 #### <a name="mount-raid"> </a>RAID does not mount automatically after reboot
 Check that `/etc/fstab` contains a line with the RAID_DEV. For example, if `RAID_DEV` is set to `/dev/md0`, `cat /etc/fstab` should have one of its return lines like this:

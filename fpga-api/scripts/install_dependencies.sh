@@ -1,6 +1,7 @@
 #!/bin/sh
 
-# Run from the fpga server
+# Install the FPGA Web Server dependencies
+# Run from the fpga-api dir
 
 # Install io.js
 CURRENT=$(./iojs/bin/iojs -v)

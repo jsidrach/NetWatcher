@@ -65,7 +65,7 @@ exports.startPlayer = function (req, res) {
 
 // /player/start/loop/:capturename/:mask/:ifg
 // Reproduces a capture in loop
-exports.startPlayerLoop = function (res, req) {
+exports.startPlayerLoop = function (req, res) {
   manager_utils.startPlaying(req, res, true);
 };
 
@@ -131,6 +131,7 @@ exports.startRecorder = function (req, res) {
 // Stops the player
 exports.stopPlayer = function (req, res) {
   statistics_utils.runningFPGA(false, function (isRunning) {
+    // Error if the player is not running
     if (!isRunning) {
       common.readJSON('fpga_invalid_state', function (ans) {
         ans.description = 'Invalid State. The FPGA is not playing a capture.';
@@ -138,6 +139,7 @@ exports.stopPlayer = function (req, res) {
       });
       return;
     }
+    // Stop the player in a loop
     manager_utils.stopLoopPlayer(req, res);
   });
 };
@@ -146,6 +148,7 @@ exports.stopPlayer = function (req, res) {
 // Stops the recorder
 exports.stopRecorder = function (req, res) {
   statistics_utils.runningFPGA(true, function (isRunning) {
+    // Error if the recorder is not running
     if (!isRunning) {
       common.readJSON('fpga_invalid_state', function (ans) {
         ans.description = 'Invalid State. The FPGA is not recording data.';
@@ -153,6 +156,7 @@ exports.stopRecorder = function (req, res) {
       });
       return;
     }
+    // Get the capture name and stop the recorder
     statistics_utils.getDataRecording(function (ans) {
       if (ans == 'error') {
         res.sendStatus(500);
