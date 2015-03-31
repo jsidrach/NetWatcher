@@ -62,14 +62,17 @@ exports.storageStats = function (req, res) {
         res.sendStatus(500);
         return;
       }
+      // Total space and used space are in KBytes, and output in Bytes
       ans.total_space = parseInt(parts[0])*1024;
       ans.used_space = parseInt(parts[1])*1024;
+      // Raid active
       if (config.RAID) {
         // Get individual disk statistics
         ans.raid_stats.raid_active = true;
         statistics_utils.getRaidStats(res, ans);
         return;
       }
+      // Raid not active
       ans.raid_stats.raid_active = false;
       common.sendJSON(ans, res, 200);
     });

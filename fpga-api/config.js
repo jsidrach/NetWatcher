@@ -13,6 +13,9 @@ config.PORT = 1337;
 // Set to <= 0 to not control the delay of the petition
 config.MAX_DELAY = 30;
 
+// Xilinx's impact binary
+config.IMPACT_BIN = '/opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/impact';
+
 // Captures dir (end it with /)
 config.CAPTURES_DIR = 'data/';
 

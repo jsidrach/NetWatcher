@@ -200,7 +200,7 @@ exports.stopLoopRecorder = stopLoopRecorder;
 // Programs and mounts the FPGA with a bitstream
 function initBitstream(req, res, bitstream) {
   // Program the FPGA
-  scripts.exec('sudo ./bin/impact.sh ' + bitstream).on('exit', function (code) {
+  scripts.exec('sudo ./bin/impact.sh "' + bitstream + '" "' + config.IMPACT_BIN + '"').on('exit', function (code) {
     // Check if the FPGA Is programmed
     if (code != 0) {
       // Internal error

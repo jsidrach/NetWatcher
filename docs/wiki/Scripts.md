@@ -12,7 +12,7 @@ $ ./scripts/check_php.sh
 $ ./scripts/do_chmod.sh
 ```
 
-#### Generate PHP Documentation
+#### Generate Automatic Documentation (back-end and front-end)
 ```sh
 $ ./scripts/gen_doc.sh
 ```
