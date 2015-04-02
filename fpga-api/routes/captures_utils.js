@@ -108,6 +108,7 @@ function validPcapCapture(name) {
   }
   // Check if it is a valid pcap capture
   try {
+    // TODO: Buscar forma de optimizar y que sea mas rapido
     scripts.execSync(
       'sudo LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "' + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"'
     );

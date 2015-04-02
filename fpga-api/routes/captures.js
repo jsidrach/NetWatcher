@@ -41,7 +41,6 @@ exports.path = function (req, res) {
     else {
       ans.path = path.resolve(__dirname, '..', config.CAPTURES_DIR);
     }
-    ans.path = dataCaptures;
     res.status(200).json(ans);
   });
 };

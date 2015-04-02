@@ -26,6 +26,7 @@ rsync -avzR -e "$RSYNCSOCKET" . ${USER}@${SERVER_IP}:${SERVER_PATH}
 #     Restart the fpga-api service
 ssh -t -o ControlPath=$SSHSOCKET ${USER}@${SERVER_IP} "cd ${SERVER_PATH}
                              [ -d data ] || mkdir data
+                             sudo service fpga-api stop
                              chmod +x ./scripts/do_chmod.sh
                              ./scripts/install_dependencies.sh
                              ./scripts/do_chmod.sh
