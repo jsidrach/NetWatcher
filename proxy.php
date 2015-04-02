@@ -47,8 +47,11 @@ $context = stream_context_create($opts);
 /* Optimization */
 session_write_close();
 
+/* Enconde whitespaces */
+$request_url = str_replace(' ', '%20', $_REQUEST[PROXY_ID]);
+
 /* Call the FPGA Web Service */
-$result = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . $_REQUEST[PROXY_ID], false, $context);
+$result = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . $request_url, false, $context);
 
 /* Output the content */
 header($http_response_header[0]);

@@ -38,7 +38,7 @@ class managerModel extends Common\appModel
         
         /* Additional libraries */
         array_push($this->cssLibraries, 'bootstrap-table.min.css');
-        array_push($this->jsLibraries, 'bootstrap-table.min.js', 'bootstrap-table-localization.js.php', 'netwatcher-manager.js.php');
+        array_push($this->jsLibraries, 'bootstrap-table.min.js', 'bootstrap-table-localization.js.php', 'netwatcher-utils.js', 'netwatcher-manager.js.php');
     }
 
     /**
@@ -47,7 +47,7 @@ class managerModel extends Common\appModel
     public function getManagerStatus()
     {
         if ($this->status == null) {
-            $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', false, $context);
+            $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status');
             if ($data === FALSE) {
                 $tempStatus = new \stdClass();
                 $tempStatus->status = 'error';

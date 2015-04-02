@@ -6,14 +6,13 @@ require_once ('../../vendor/autoload.php');
 \Core\Config::load('../..');
 ?>
 
+// Required: Common, AjaxQueueHandler
+
 // Base URL for the ajax calls
 var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?>;
 
 // Sets the events
 $(document).ready(function () {
-  // Ajax Queue Handler
-  AjaxQueueHandler.init();
-
   // Storage module
   Storage.init();
 });

@@ -49,7 +49,7 @@ class managerModel extends Common\appModel
         if ($this->status == null) {
             $context = stream_context_create(array(
                 'http' => array(
-                    'timeout' => 3
+                    'timeout' => 5
                 )
             ));
             $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', 0, $context);

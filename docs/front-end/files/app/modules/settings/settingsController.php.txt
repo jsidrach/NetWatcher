@@ -92,7 +92,7 @@ class settingsController extends Common\appController
     {
         $context = stream_context_create(array(
             'http' => array(
-                'timeout' => 0.5
+                'timeout' => 3
             )
         ));
         $urlIdentifier = 'url&';

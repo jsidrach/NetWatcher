@@ -90,11 +90,6 @@ class settingsController extends Common\appController
      */
     public function checkIp(array $args)
     {
-        $context = stream_context_create(array(
-            'http' => array(
-                'timeout' => 0.5
-            )
-        ));
         $urlIdentifier = 'url&';
         if ((! isset($args[0])) || (strrpos($args[0], $urlIdentifier) != 0)) {
             header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
@@ -103,7 +98,7 @@ class settingsController extends Common\appController
             return;
         }
         $query = urldecode(substr($args[0], strlen($urlIdentifier)) . '/info/ping');
-        $response = file_get_contents($query, 0, $context);
+        $response = file_get_contents($query);
         $response_json = json_decode($response, true);
         if (($response === FALSE) || ($response_json == null) || (! isset($response_json['code'])) || ($response_json['code'] != 'success')) {
             header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found', true, 404);
