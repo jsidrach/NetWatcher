@@ -96,14 +96,14 @@ class Config
         define('DEFAULT_METHOD', 'display');
         
         /**
-         * Define the target URL Parameter 'csurl' for proxy calls
+         * Define the target URL Parameter ID for proxy calls
          */
-        define('CSURL', 'csurl');
+        define('PROXY_ID', 'url');
         
         /**
          * Base path for the proxy queries
          */
-        define('PROXY_PATH', 'proxy.php?' . CSURL . '=');
+        define('PROXY_PATH', 'proxy.php?' . PROXY_ID . '=');
         
         /**
          * Routes

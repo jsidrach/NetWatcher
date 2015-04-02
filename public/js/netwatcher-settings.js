@@ -45,7 +45,6 @@ $(document).ready(function () {
     lastRequest = $.ajax({
       type: 'GET',
       url: pingURL,
-      timeout: '500',
       success: function (resp) {
         setServerIpInput(true);
       },

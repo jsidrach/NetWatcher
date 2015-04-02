@@ -47,12 +47,7 @@ class managerModel extends Common\appModel
     public function getManagerStatus()
     {
         if ($this->status == null) {
-            $context = stream_context_create(array(
-                'http' => array(
-                    'timeout' => 3
-                )
-            ));
-            $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', 0, $context);
+            $data = file_get_contents(\Core\Config::$REMOTE_SERVER_IP . '/info/status', false, $context);
             if ($data === FALSE) {
                 $tempStatus = new \stdClass();
                 $tempStatus->status = 'error';
