@@ -1,6 +1,7 @@
 TODO Week
 -------
-  - Storage UI
+  - Storage UI: ver esquemas libreta
+  - Mejorar estilo del codigo
 
 TODO Future:
 -------
@@ -8,8 +9,10 @@ TODO Future:
   - actualizar testSimple.c para que añada al final el nº de paquetes
     - en launchRecorder.sh, que se llame despues a testSimple y añada esto
   - Terminar de probar todo con los binarios nuevos
-  - Probar storage
+    - Sobre todo captura/reproduccion, y conversion finalmente
+  - Probar delete_raid, storage gui
   - Captures/all va lento por el capinfos -t, como mejorar?
+      - Ver si va mejor en dagda
 
 Jose:
 -------

@@ -10,6 +10,13 @@ SERVER_PATH=/home/hpcn/JSid/fpga-api/
 
 USER=root
 
+# Light update if parameters == 1
+if [ "$#" -eq 1 ]; then
+    echo "Light update"
+    scp -r routes/ ${USER}@${SERVER_IP}:${SERVER_PATH}
+    exit 0;
+fi
+
 # Set up connection
 SSHSOCKET=~/.ssh/$USER@$SERVER_IP
 ssh -M -f -N -o ControlPath=$SSHSOCKET $USER@$SERVER_IP

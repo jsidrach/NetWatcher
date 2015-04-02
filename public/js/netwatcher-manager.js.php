@@ -14,9 +14,6 @@ var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
 // URL of the base page
 var pageURL = 'manager';
 
-// User changed page
-var userCancelledRequest = false;
-
 // Sets the events
 $(document).ready(function () {
   // Connection error page
@@ -494,13 +491,13 @@ $(document).ready(function () {
     currentRate = $('#recordingCurrentRate');
     recordingLabel = $('#recordingLabel');
     recordingProgress = $('#recordingProgress');
-    stopRecording = $('#stopRecording');
+    stopRecordingButton = $('#stopRecording');
     confirmStopRecording = $('#confirmStop');
     lastRequest = null;
 
     // Set the events
     setRefreshRecording();
-    confirmStopRecording.on('click', stopRecording);
+    confirmStopRecording.on('click', stopRecordingCapture);
   };
 
   // Sets the api calls for refreshing the info
@@ -584,7 +581,7 @@ $(document).ready(function () {
   };
 
   // Stops recording
-  function stopRecording() {
+  function stopRecordingCapture() {
     recordingTitle.text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
     stopRecordingButton.prop('disabled', true);
     currentRate.text('--');

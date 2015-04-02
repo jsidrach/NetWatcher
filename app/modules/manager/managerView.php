@@ -419,7 +419,7 @@ class managerView extends Common\appView
         $size = $this->formatBytes($status->size);
         $date = $status->date;
         $elapsedTime = $this->formatDateSeconds($status->elapsed_time);
-        $packetsSent = $this->packets_sent;
+        $packetsSent = isset($this->packets_sent) ? $this->packets_sent : 0;
         $ifg = ($status->interframe_gap == 0) ? _('Original captured rate') : $status->interframe_gap;
         $loop = $status->loop ? _('Yes') : _('No');
         $mask = '';

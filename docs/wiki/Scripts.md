@@ -47,6 +47,13 @@ Modify the `./fpga-api/scripts/update_server.sh` and set the configuration (`SER
 ```sh
 $ ./scripts/update_server.sh
 ```
+When the update finishes, login on the remote server and start the fpga-api service
+
+#### Light update (only the routes folder)
+Run from the `./fpga-api/` folder:
+```sh
+$ ./scripts/update_server.sh --light
+```
 
 #### Manage the FPGA Web Service
 Once installed, use it as a regular service
