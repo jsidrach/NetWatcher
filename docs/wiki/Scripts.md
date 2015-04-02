@@ -33,23 +33,29 @@ $ ./scripts/upgrade.sh
 #### Fix permissions
 On the FPGA Web Service host
 ```sh
-$ ./fpga-api/scripts/do_chmod.sh
+$ ./scripts/do_chmod.sh
 ```
 
 #### Install dependencies
 On the FPGA Web Service host
 ```sh
-$ ./fpga-api/scripts/do_chmod.sh
+$ ./scripts/do_chmod.sh
 ```
 
 #### Update server remotely
-Modify the `./fpga-api/scripts/update_server.sh` and set the configuration (`SERVER_IP`, `SERVER_PATH`, `USER`). Run
+Modify the `./fpga-api/scripts/update_server.sh` and set the configuration (`SERVER_IP`, `SERVER_PATH`, `USER`). Run from the `./fpga-api/` folder:
 ```sh
-$ ./fpga-api/scripts/do_chmod.sh
+$ ./scripts/update_server.sh
 ```
 
 #### Manage the FPGA Web Service
 Once installed, use it as a regular service
 ```sh
 $ sudo service fpga-api {start|stop|restart|status}
+```
+
+#### Remove the FPGA Web Service
+On the FPGA Web Service host
+```sh
+$ ./scripts/remove_service.sh fpga-api
 ```
