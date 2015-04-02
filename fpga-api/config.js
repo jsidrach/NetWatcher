@@ -17,7 +17,7 @@ config.MAX_DELAY = 30;
 config.IMPACT_BIN = '/opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/impact';
 
 // Captures dir (end it with /)
-config.CAPTURES_DIR = 'data/';
+config.CAPTURES_DIR = '/home/hpcn/Desktop/Trazas/';
 
 // Raid active
 config.RAID = false;

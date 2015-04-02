@@ -12,8 +12,14 @@ var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
 // URL of the base page
 var pageURL = 'manager';
 
+// User changed page
+var userCancelledRequest = false;
+
 // Sets the events
 $(document).ready(function () {
+  // Ajax Queue Handler
+  AjaxQueueHandler.init();
+
   // Connection error page
   if ($('#connectionError').length) {
     ConnectionError.init();
@@ -119,7 +125,10 @@ $(document).ready(function () {
           }), 10000);
         }, 2000);
       },
-      error: function (e) {
+      error: function (e) {        
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         setTimeout(function () {
           // Error on the request. Error and refresh
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
@@ -215,6 +224,9 @@ $(document).ready(function () {
         }, 10000);
       },
       error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         setTimeout(function () {
           progressBar.css('width', '100%');
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
@@ -257,6 +269,9 @@ $(document).ready(function () {
         }, 2000);
       },
       error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         setTimeout(function () {
           progressBar.css('width', '100%');
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
@@ -413,6 +428,9 @@ $(document).ready(function () {
         }, 3000);
       },
       error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         Common.notificationError(<?php echo '\'' . _('Invalid state or capture name already taken. Reloading...') . '\'' ?>);
         setTimeout(function () {
           window.location = pageURL;
@@ -515,6 +533,9 @@ $(document).ready(function () {
           }
         },
         error: function (e) {
+          if(AjaxQueueHandler.userLeft()) {
+            return;
+          }
           // Error on the request. Refresh
           stopRecordingButton.prop('disabled', true);
           currentRate.text('--');
@@ -576,6 +597,9 @@ $(document).ready(function () {
         }, 3000);
       },
       error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         // Error on the request. Refresh
         Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
         setTimeout(function () {
@@ -699,6 +723,9 @@ $(document).ready(function () {
         tableCaptures.bootstrapTable('load', resp.captures);
       },
       error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         // Notification of the error (timeout most of the times)
         Common.notificationError(<?php echo '\'' . _('Connection error') . '\''; ?>);
         setAutoRefresh(false);
@@ -800,6 +827,9 @@ $(document).ready(function () {
         }, 3000);
       },
       error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         Common.notificationError(<?php echo '\'' . _('Invalid state or capture. Reloading...') . '\'' ?>);
         setTimeout(function () {
           window.location = pageURL;
@@ -895,6 +925,9 @@ $(document).ready(function () {
           }
         },
         error: function (e) {
+          if(AjaxQueueHandler.userLeft()) {
+            return;
+          }
           // Error on the request. Refresh
           stopPlayingButton.prop('disabled', true);
           clearInterval(refreshInterval);
@@ -951,6 +984,9 @@ $(document).ready(function () {
         }, 3000);
       },
       error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
         // Error on the request. Refresh
         Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
         setTimeout(function () {
@@ -1021,3 +1057,50 @@ $(document).ready(function () {
   };
 
 }( window.Common = window.Common || {}, jQuery ));
+
+//
+// Ajax Queue Handler
+//
+(function( AjaxQueueHandler, $, undefined ) {
+
+  // Internal variables
+  // Pool of requests
+  var pool;
+  // User left the page
+  var userLeftPage;
+
+  // Initializes the module
+  AjaxQueueHandler.init = function() {
+    pool = [];
+    userLeftPage = false;
+    $.ajaxSetup({
+      beforeSend: function(jqXHR) {
+        pool.push(jqXHR);
+      },
+      complete: function(jqXHR) {
+        var index = pool.indexOf(jqXHR);
+        if (index > -1) {
+          pool.splice(index, 1);
+        }
+      }
+    });
+    $(window).on('beforeunload', function () {
+      userLeftPage = true;
+      abortAll();
+    });
+  };
+
+  // User left the page
+  AjaxQueueHandler.userLeft = function() {
+    return userLeftPage;
+  };
+
+  // Abort all the ajax requests
+  function abortAll () {
+    $.each(pool, function(idx, jqXHR) {
+      jqXHR.abort();
+    });
+    pool = [];
+  };
+
+}( window.AjaxQueueHandler = window.AjaxQueueHandler || {}, jQuery ));
