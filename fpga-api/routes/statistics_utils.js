@@ -211,6 +211,7 @@ function getDataPlaying(callback) {
         ans.capture = path.basename(capturePath);
         ans.date = common.mtime2string(captureStats['mtime']);
       }
+      ans.packets_sent = 0;
       scripts.exec('sudo ./bin/readRegisters 2>&1 | grep "total packets" | awk \'{print $5}\'', function (error, stdout, stderr) {
         if (stdout.length > 0) {
           ans.packets_sent = parseInt(stdout);
