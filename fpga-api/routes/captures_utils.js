@@ -94,6 +94,7 @@ function validSimpleCapture(name) {
   var buffer = new Buffer([0x00, 0x00]);
   var fd = fs.openSync(config.CAPTURES_DIR + name, 'r');
   var len = fs.readSync(fd, buffer, 0, 2, 2);
+  fs.closeSync(fd);
   if (len != magicNumber.length) {
     return false;
   }
