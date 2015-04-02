@@ -1,7 +1,5 @@
 TODO Week
 -------
-  - No funcionan los delete? relacionado con convert etc
-  - Captures/all va lento por el pcap, intentar paralelizar? como mejorar?
   - Storage UI
 
 TODO Future:
@@ -11,6 +9,7 @@ TODO Future:
     - en launchRecorder.sh, que se llame despues a testSimple y añada esto
   - Terminar de probar todo con los binarios nuevos
   - Probar storage
+  - Captures/all va lento por el capinfos -t, como mejorar?
 
 Jose:
 -------
