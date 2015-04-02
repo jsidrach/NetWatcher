@@ -1,7 +1,6 @@
 <?php
 header($_SERVER['SERVER_PROTOCOL'].' 404 Not Found', true, 404);
 header('Status: 404 Not Found');
-
 $_SERVER['REDIRECT_STATUS'] = 404;
 ?>
 <!DOCTYPE html>

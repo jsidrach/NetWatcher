@@ -1096,7 +1096,7 @@ $(document).ready(function () {
   };
 
   // Abort all the ajax requests
-  function abortAll () {
+  function abortAll() {
     $.each(pool, function(idx, jqXHR) {
       jqXHR.abort();
     });
