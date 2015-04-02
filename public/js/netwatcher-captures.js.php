@@ -6,14 +6,13 @@ require_once ('../../vendor/autoload.php');
 \Core\Config::load('../..');
 ?>
 
+// Required: Common, AjaxQueueHandler
+
 // Base url for all the calls
 var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?>;
 
 // Sets the events
 $(document).ready(function () {
-  // Ajax Queue Handler
-  AjaxQueueHandler.init();
-
   // Captures Module
   Captures.init();
 });
@@ -67,7 +66,9 @@ $(document).ready(function () {
   // Convert input feedback
   var convertInputFeedback;
   // Regexp for the name
-  var regexpName;
+  var regexpName;  
+  // Last ajax request (refresh data)
+  var lastRequest;
 
   // Initializes the module
   Captures.init = function() {
@@ -95,6 +96,7 @@ $(document).ready(function () {
     renameInputFeedback = $('#renameInputFeedback');
     convertInputFeedback = $('#convertInputFeedback');
     regexpName = /[-a-zA-Z0-9_ \(\)]+\.{0,1}/g;
+    lastRequest = null;
 
     // Disable right panels
     toggleRightPanels(false);
@@ -156,6 +158,12 @@ $(document).ready(function () {
 
   // Refreshes the table data
   function refreshData() {
+    // Cancel the last request
+    if(lastRequest != null) {
+      lastRequest.abort();
+      lastRequest = null;
+    }
+    
     // Set the petition url
     var refreshURL = capturesURL;
     if (simpleCaptures.is(':checked')) {
@@ -167,7 +175,7 @@ $(document).ready(function () {
     }
 
     // Get the new data
-    $.ajax({
+    lastRequest = $.ajax({
       type: 'GET',
       url: refreshURL,
       dataType: 'json',
@@ -180,7 +188,7 @@ $(document).ready(function () {
           return;
         }
         // Notification of the error (timeout most of the times)
-        notificationError(<?php echo '\'' . _('Connection error') . '\''; ?>);
+        Common.notificationError(<?php echo '\'' . _('Connection error') . '\''; ?>);
         setAutoRefresh(false);
       }
     });
@@ -222,12 +230,12 @@ $(document).ready(function () {
   // Convert the selected capture
   function convertCapture() {
     if (selectedCaptureName == null) {
-      notificationError(<?php echo '\'' . _('No capture is selected') . '\''; ?>);
+      Common.notificationError(<?php echo '\'' . _('No capture is selected') . '\''; ?>);
       return;
     }
     var convertedName = convertedNameInput.val();
     if (!validName(convertedName)) {
-      notificationError(<?php echo '\'' . _('Converted capture\\\'s name is not valid') . '\''; ?>);
+      Common.notificationError(<?php echo '\'' . _('Converted capture\\\'s name is not valid') . '\''; ?>);
       return;
     }
     var convertURL = capturesURL;
@@ -267,12 +275,12 @@ $(document).ready(function () {
   // Rename the selected capture
   function renameCapture() {
     if (selectedCaptureName == null) {
-      notificationError( <?php echo '\'' . _('No capture is selected') . '\''; ?>);
+      Common.notificationError( <?php echo '\'' . _('No capture is selected') . '\''; ?>);
       return;
     }
     var newName = newNameInput.val();
     if (!validName(newName)) {
-      notificationError(<?php echo '\'' . _('New name is not valid') . '\''; ?>);
+      Common.notificationError(<?php echo '\'' . _('New name is not valid') . '\''; ?>);
       return;
     }
     var renameURL = capturesURL + 'rename/' + selectedCaptureName + '/' + newName;
@@ -303,7 +311,7 @@ $(document).ready(function () {
   // Delete the selected capture
   function deleteCapture() {
     if (selectedCaptureName == null) {
-      notificationError( <?php echo '\'' . _('No capture is selected') . '\''; ?>);
+      Common.notificationError( <?php echo '\'' . _('No capture is selected') . '\''; ?>);
       return;
     }
 
@@ -335,7 +343,7 @@ $(document).ready(function () {
   // Handles a petition response
   function handleResponse(resp, stringOK, stringERR) {
     if (resp == null) {
-      notificationError(stringERR);
+      Common.notificationError(stringERR);
     } else {
       try {
         if (resp.code == 'success') {
@@ -345,24 +353,14 @@ $(document).ready(function () {
             type: 'success'
           });
         } else {
-          notificationError(stringERR);
+          Common.notificationError(stringERR);
         }
       } catch (e) {
-        notificationError(stringERR);
+        Common.notificationError(stringERR);
       }
     }
     toggleRightPanels(false);
     refreshData();
-  };
-
-  // Creates an error notification
-  function notificationError(stringERR) {
-    // Notification of the error
-    $.notify({
-      message: stringERR 
-    },{
-      type: 'danger'
-    });
   };
 
   // Sets the feedback of an input
@@ -394,50 +392,3 @@ $(document).ready(function () {
   };
 
 }( window.Captures = window.Captures || {}, jQuery ));
-
-//
-// Ajax Queue Handler
-//
-(function( AjaxQueueHandler, $, undefined ) {
-
-  // Internal variables
-  // Pool of requests
-  var pool;
-  // User left the page
-  var userLeftPage;
-
-  // Initializes the module
-  AjaxQueueHandler.init = function() {
-    pool = [];
-    userLeftPage = false;
-    $.ajaxSetup({
-      beforeSend: function(jqXHR) {
-        pool.push(jqXHR);
-      },
-      complete: function(jqXHR) {
-        var index = pool.indexOf(jqXHR);
-        if (index > -1) {
-          pool.splice(index, 1);
-        }
-      }
-    });
-    $(window).on('beforeunload', function () {
-      userLeftPage = true;
-      abortAll();
-    });
-  };
-
-  // User left the page
-  AjaxQueueHandler.userLeft = function() {
-    return userLeftPage;
-  };
-
-  // Abort all the ajax requests
-  function abortAll () {
-    $.each(pool, function(idx, jqXHR) {
-      jqXHR.abort();
-    });
-    pool = [];
-  };
-
-}( window.AjaxQueueHandler = window.AjaxQueueHandler || {}, jQuery ));
