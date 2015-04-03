@@ -38,83 +38,98 @@ function dataCaptures(simple, pcap, res) {
           if (err) {
             common.logError(err);
             callback(false);
-          } else if (validator(entry)) {
-            callback(true);
           } else {
-            callback(false);
+            validator(entry, function(valid) {
+              callback(valid);
+            });
           }
-        })
+        });
       },
       function(results) {
         // Get the info for each capture
         async.map(results,
           function(name, callback) {
             getInfoCapture(name, simple, pcap, callback);
-          }, function(error, captures) {
-          common.readJSON('captures_data', function(ans) {
-            ans.captures = captures;
-            res.status(200).json(ans);
+          },
+          function(error, captures) {
+            common.readJSON('captures_data', function(ans) {
+              ans.captures = captures;
+              res.status(200).json(ans);
+            });
           });
-        });
       });
   });
 };
 exports.dataCaptures = dataCaptures;
 
 // Checks if a new name is available and valid
-function validNewName(name) {
+function validNewName(name, callback) {
   // Valid name
   if (!validName(name)) {
-    return false;
+    callback(false);
   }
   // File already exists
-  if (fs.existsSync(config.CAPTURES_DIR + name)) {
-    return false;
-  }
-  return true;
+  fs.exists(config.CAPTURES_DIR + name, function(exists) {
+    callback(!exists);
+  });
 };
 exports.validNewName = validNewName;
 
 // Checks if a capture has a valid simple format
-function validSimpleCapture(name) {
+function validSimpleCapture(name, callback) {
   // TODO: Use something different (testSimple?) to determine if its a valid simple capture with the #packets at the end
-  if (!validFile(name)) {
-    return false;
+  if (!validName(name)) {
+    callback(false);
   }
   // 3rd and 4th byte are 0x69
   var magicNumber = new Buffer([0x69, 0x69]);
-  var buffer = new Buffer([0x00, 0x00]);
-  var fd = fs.openSync(config.CAPTURES_DIR + name, 'r');
-  var len = fs.readSync(fd, buffer, 0, 2, 2);
-  fs.closeSync(fd);
-  if (len != magicNumber.length) {
-    return false;
-  }
-  return ((magicNumber[0] == buffer[0]) && (magicNumber[1] == buffer[1]));
+  var buff = new Buffer([0x00, 0x00]);
+  fs.open(config.CAPTURES_DIR + name, 'r', function(err, fd) {
+    if (err) {
+      callback(false);
+    }
+    fs.read(fd, buff, 0, 2, 2, function(error, bytes, buffer) {
+      fs.close(fd);
+      if (bytes != magicNumber.length) {
+        callback(false);
+      } else {
+        callback((magicNumber[0] == buffer[0]) && (magicNumber[1] == buffer[1]));
+      }
+    });
+  });
 };
 exports.validSimpleCapture = validSimpleCapture;
 
 // Checks if a capture has a valid pcap format
-function validPcapCapture(name) {
-  if (!validFile(name) || validSimpleCapture(name)) {
-    return false;
+function validPcapCapture(name, callback) {
+  if (!validName(name)) {
+    callback(false);
   }
-  // Check if it is a valid pcap capture
-  try {
-    // TODO: Buscar forma de optimizar y que sea mas rapido
-    scripts.execSync(
-      'sudo LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "' + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"'
-    );
-  } catch (error) {
-    return false;
-  }
-  return true;
+  validSimpleCapture(name, function(valid) {
+    if (valid) {
+      callback(false);
+    } else {
+      // Check if it is a valid pcap capture
+      var validPcapCommand = 'sudo LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "' + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"';
+      scripts.exec(validPcapCommand).on('exit', function(code) {
+        callback(code == 0);
+      });
+    }
+  });
 };
 exports.validPcapCapture = validPcapCapture;
 
 // Checks if a capture exists with a given name (full name)
-function validCapture(name) {
-  return (validSimpleCapture(name) || validPcapCapture(name));
+function validCapture(name, callback) {
+  validSimpleCapture(name, function(validSimple) {
+    if (validSimple) {
+      callback(true);
+    } else {
+      validPcapCapture(name, function(validPcap) {
+        callback(validPcap);
+      });
+    }
+  });
 };
 exports.validCapture = validCapture;
 
@@ -134,34 +149,41 @@ exports.inUse = inUse;
 // Gets the info for a capture
 function getInfoCapture(name, simple, pcap, callback) {
   fs.stat(config.CAPTURES_DIR + name, function(err, stats) {
+    if(err) {
+      callback('error', null);
+    }
+
     // Name
     var dataCapture = {};
     dataCapture['name'] = name;
-
-    // Type
-    if (simple != pcap) {
-      dataCapture['type'] = simple ? 'simple' : 'pcap';
-    } else if (validSimpleCapture(name)) {
-      dataCapture['type'] = 'simple';
-    } else {
-      dataCapture['type'] = 'pcap';
-    }
 
     // Size
     dataCapture['size'] = stats['size'];
 
     // Date
     dataCapture['date'] = common.mtime2string(stats['mtime']);
-    callback(null, dataCapture);
+
+    // Type
+    if (simple != pcap) {
+      dataCapture['type'] = simple ? 'simple' : 'pcap';
+      callback(null, dataCapture);
+    } else {
+      validSimpleCapture(name, function(valid) {
+        if (valid) {
+          dataCapture['type'] = 'simple';
+        } else {
+          dataCapture['type'] = 'pcap';
+        }
+        callback(null, dataCapture);
+      });
+    }
   });
 };
 
 // Checks if a name is valid (syntactically)
 function validName(name) {
-  if (name.length < 1) {
-    return false;
-  }
-  if (name.length > 50) {
+  var nameLength = name.length;
+  if ((nameLength < 1) || (nameLength > 50)) {
     return false;
   }
 
@@ -171,17 +193,4 @@ function validName(name) {
     name = name.replace(regexpName, '');
   }
   return name.length == 0;
-};
-
-// File exists and it is valid
-function validFile(name) {
-  // Valid name
-  if (!validName(name)) {
-    return false;
-  }
-  // File already exists
-  if (!fs.existsSync(config.CAPTURES_DIR + name)) {
-    return false;
-  }
-  return true;
 };

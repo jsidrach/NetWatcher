@@ -44,7 +44,7 @@ exports.hugePagesOn = hugePagesOn;
 // FPGA initialized checker
 function initializedFPGA(res, callbackList) {
   var status_json = 'status_2_init_off';
-  // 0 if fpga initialized, 1 otherwise
+  // 0 if FPGA initialized, 1 otherwise
   scripts.exec(checkInitFPGAOn).on('exit', function(code) {
     if (code != 0) {
       common.sendJSON(status_json, res, 200);
@@ -74,7 +74,9 @@ function statusFPGA(res, callbackList) {
   modeFPGA(5, function(ans) {
     // Set the type (player/recorder)
     if (ans == 'recorder') {
+      // Recorder
       runningFPGA(true, function(isRunning) {
+        // Running
         if (isRunning) {
           getDataRecording(function(ans) {
             if (ans == 'error') {
@@ -83,12 +85,17 @@ function statusFPGA(res, callbackList) {
               res.status(200).json(ans);
             }
           });
-        } else {
+        }
+        // Not running
+        else {
           common.sendJSON('status_4_1_recorder_ready', res, 200);
         }
       });
-    } else if (ans == 'player') {
+    }
+    // Player
+    else if (ans == 'player') {
       runningFPGA(false, function(isRunning) {
+        // Running
         if (isRunning) {
           getDataPlaying(function(ans) {
             if (ans == 'error') {
@@ -97,11 +104,15 @@ function statusFPGA(res, callbackList) {
               res.status(200).json(ans);
             }
           });
-        } else {
+        }
+        // Not running
+        else {
           common.sendJSON('status_4_1_player_ready', res, 200);
         }
       });
-    } else {
+    }
+    // FPGA not mounted
+    else {
       common.sendJSON('status_3_mount_off', res, 200);
     }
   });
@@ -178,11 +189,14 @@ function getDataRecording(callback) {
         }
         ans.port = parseInt(parts[5]);
         var capturePath = parts.slice(7).join(' ');
-        var captureStats = fs.statSync(capturePath);
-        ans.bytes_captured = captureStats['size'];
         ans.capture = path.basename(capturePath);
+        fs.stat(capturePath, function(err, captureStats) {
+          if (!err) {
+            ans.bytes_captured = captureStats['size'];
+          }
+          callback(ans);
+        });
       }
-      callback(ans);
     });
   });
 };
@@ -207,18 +221,21 @@ function getDataPlaying(callback) {
         ans.interframe_gap = parseInt(parts[6]);
         ans.loop = (parts[7] == '1');
         var capturePath = parts.slice(8).join(' ');
-        var captureStats = fs.statSync(capturePath);
-        ans.size = captureStats['size'];
         ans.capture = path.basename(capturePath);
-        ans.date = common.mtime2string(captureStats['mtime']);
+        fs.stat(capturePath, function(err, captureStats) {
+          if (!err) {
+            ans.size = captureStats['size'];
+            ans.date = common.mtime2string(captureStats['mtime']);
+          }
+          ans.packets_sent = 0;
+          scripts.exec('sudo ./bin/readRegisters 2>&1 | grep "total packets" | awk \'{print $5}\'', function(error, stdout, stderr) {
+            if (stdout.length > 0) {
+              ans.packets_sent = parseInt(stdout);
+            }
+            callback(ans);
+          });
+        });
       }
-      ans.packets_sent = 0;
-      scripts.exec('sudo ./bin/readRegisters 2>&1 | grep "total packets" | awk \'{print $5}\'', function(error, stdout, stderr) {
-        if (stdout.length > 0) {
-          ans.packets_sent = parseInt(stdout);
-        }
-        callback(ans);
-      });
     });
   });
 };
@@ -241,9 +258,16 @@ function getRaidStats(res, ans) {
       function(disk, callback) {
         var diskStats = {};
         var diskCommand = 'dd if="' + disk + '" of=/dev/null bs=8MB  count=256  iflag=direct 2>&1 | tail -n1 | awk \'{print int($1/($6+1))}\'';
-        diskStats['write_speed'] = parseInt(scripts.execSync(diskCommand));
         diskStats['name'] = disk;
-        callback(null, diskStats);
+        // Write speed
+        scripts.exec(diskCommand, function(error, stdout, stderr) {
+          if (error) {
+            callback('error', diskStats);
+          } else {
+            diskStats['write_speed'] = parseInt(stdout);
+            callback(null, diskStats);
+          }
+        });
       },
       function(err, results) {
         if (err) {
