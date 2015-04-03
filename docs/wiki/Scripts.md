@@ -49,7 +49,7 @@ $ ./scripts/update_server.sh
 ```
 When the update finishes, login on the remote server and start the fpga-api service
 
-#### Light update (only the routes folder)
+#### Light update (only the routes folder and the configuration file)
 Run from the `./fpga-api/` folder:
 ```sh
 $ ./scripts/update_server.sh --light
