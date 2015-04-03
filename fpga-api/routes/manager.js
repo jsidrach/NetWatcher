@@ -2,6 +2,7 @@
 
 // Package dependencies
 var scripts = require('child_process');
+var async = require('async');
 var config = require('../config.js');
 var common = require('./_common.js');
 var statistics_utils = require('./statistics_utils.js');
@@ -187,16 +188,23 @@ exports.deleteRaid = function(req, res) {
       scripts.execSync('mdadm --remove "' + config.RAID_DEV + '"');
 
       // Format each disk
-      config.RAID_DISKS.forEach(function(disk) {
+      async.each(config.RAID_DISKS, function(disk, callback) {
         scripts.execSync('hdparm --user-master u --security-set-pass Eins "' + disk + '"');
         scripts.execSync('hdparm --user-master u --security-erase Eins "' + disk + '"');
-      });
+        callback();
+      }, function(err) {
+        if (err) {
+          common.logError(error);
+          res.sendJSON('raid_delete_error', res, 400);
+          return;
+        }
 
-      // Re-create raid
-      scripts.execSync('mdadm --create "' + config.RAID_DEV + '" --level=0 --raid-devices=' + config.RAID_DISKS.length + ' "' + config.RAID_DISKS.join('" "') + '"');
-      scripts.execSync('mkfs.xfs "' + config.RAID_DEV + '"');
-      scripts.execSync('mount "' + config.RAID_DEV + '" /mnt/raid');
-      res.sendJSON('raid_delete_success', res, 200);
+        // Re-create raid  
+        scripts.execSync('mdadm --create "' + config.RAID_DEV + '" --level=0 --raid-devices=' + config.RAID_DISKS.length + ' "' + config.RAID_DISKS.join('" "') + '"');
+        scripts.execSync('mkfs.xfs "' + config.RAID_DEV + '"');
+        scripts.execSync('mount "' + config.RAID_DEV + '" /mnt/raid');
+        res.sendJSON('raid_delete_success', res, 200);
+      });
     } catch (error) {
       common.logError(error);
       res.sendJSON('raid_delete_error', res, 400);

@@ -2,6 +2,7 @@
 
 // Package dependencies
 var scripts = require('child_process');
+var async = require('async');
 var path = require('path');
 var fs = require('fs');
 var config = require('../config.js');
@@ -23,48 +24,39 @@ function dataCaptures(simple, pcap, res) {
   }
 
   // Gets all the files in the CAPTURES_DIR 
-  fs.readdir(config.CAPTURES_DIR, function (err, files) {
+  fs.readdir(config.CAPTURES_DIR, function(err, files) {
     if (err) {
       common.logError(err);
       res.sendStatus(500);
       return;
     }
-    var dataCaptures = [];
-    // For each file
-    files.forEach(function (entry) {
-      fs.stat(config.CAPTURES_DIR + entry, function (err, stats) {
-        if (err) {
-          common.logError(err);
-          return;
-        }
 
-        // Valid capture
-        if (stats.isFile() && validator(entry)) {
-          // Name
-          var dataCapture = {};
-          dataCapture['name'] = entry;
-
-          // Type
-          if (simple != pcap) {
-            dataCapture['type'] = simple ? 'simple' : 'pcap';
-          } else if (validSimpleCapture(entry)) {
-            dataCapture['type'] = 'simple';
+    // Only valid captures
+    async.filter(files,
+      function(entry, callback) {
+        fs.stat(config.CAPTURES_DIR + entry, function(err, stats) {
+          if (err) {
+            common.logError(err);
+            callback(false);
+          } else if (validator(entry)) {
+            callback(true);
           } else {
-            dataCapture['type'] = 'pcap';
+            callback(false);
           }
-
-          // Size
-          dataCapture['size'] = stats['size'];
-
-          // Date
-          dataCapture['date'] = common.mtime2string(stats['mtime']);
-
-          // Push the object into the array
-          dataCaptures.push(dataCapture);
-        }
+        })
+      },
+      function(results) {
+        // Get the info for each capture
+        async.map(results,
+          function(name, callback) {
+            getInfoCapture(name, simple, pcap, callback);
+          }, function(error, captures) {
+          common.readJSON('captures_data', function(ans) {
+            ans.captures = captures;
+            res.status(200).json(ans);
+          });
+        });
       });
-    });
-    sendDataCaptures(res, dataCaptures);
   });
 };
 exports.dataCaptures = dataCaptures;
@@ -130,7 +122,7 @@ exports.validCapture = validCapture;
 function inUse(name, callback) {
   var capturePath = path.normalize(config.CAPTURES_DIR + name);
   var command = 'sudo lsof "' + capturePath + '"';
-  scripts.exec(command).on('exit', function (code) {
+  scripts.exec(command).on('exit', function(code) {
     callback(code == 0);
   });
 };
@@ -139,26 +131,43 @@ exports.inUse = inUse;
 
 // Internal functions
 
-// Sends the capture data into a json object
-function sendDataCaptures(res, dataCaptures) {
-  common.readJSON('captures_data', function (ans) {
-    ans.captures = dataCaptures;
-    res.status(200).json(ans);
+// Gets the info for a capture
+function getInfoCapture(name, simple, pcap, callback) {
+  fs.stat(config.CAPTURES_DIR + name, function(err, stats) {
+    // Name
+    var dataCapture = {};
+    dataCapture['name'] = name;
+
+    // Type
+    if (simple != pcap) {
+      dataCapture['type'] = simple ? 'simple' : 'pcap';
+    } else if (validSimpleCapture(name)) {
+      dataCapture['type'] = 'simple';
+    } else {
+      dataCapture['type'] = 'pcap';
+    }
+
+    // Size
+    dataCapture['size'] = stats['size'];
+
+    // Date
+    dataCapture['date'] = common.mtime2string(stats['mtime']);
+    callback(null, dataCapture);
   });
 };
 
 // Checks if a name is valid (syntactically)
 function validName(name) {
-  if(name.length < 1) {
+  if (name.length < 1) {
     return false;
   }
-  if(name.length > 50) {
+  if (name.length > 50) {
     return false;
   }
 
   // Name regexp
   var regexpName = /[-a-zA-Z0-9_ \(\)]+\.{0,1}/g;
-  while(name.match(regexpName)) {
+  while (name.match(regexpName)) {
     name = name.replace(regexpName, '');
   }
   return name.length == 0;

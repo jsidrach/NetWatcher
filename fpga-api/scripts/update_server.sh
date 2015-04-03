@@ -14,6 +14,7 @@ USER=root
 if [ "$#" -eq 1 ]; then
     echo "Light update"
     scp -r routes/ ${USER}@${SERVER_IP}:${SERVER_PATH}
+    scp config.js ${USER}@${SERVER_IP}:${SERVER_PATH}
     exit 0;
 fi
 
