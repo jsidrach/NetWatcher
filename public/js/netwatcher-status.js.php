@@ -7,7 +7,7 @@ require_once ('../../vendor/autoload.php');
 ?>
 
 // Base URL for the ajax calls
-var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?>;
+var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
 
 // Sets the events
 $(document).ready(function () {
@@ -41,7 +41,7 @@ $(document).ready(function () {
   function sendStatusRequest() {
     $.ajax({
       type: 'GET',
-      url: baseURL + '/info/delay',
+      url: baseURL + 'info/delay',
       dataType: 'json',
       timeout: '10000',
       headers: {

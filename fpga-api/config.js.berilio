@@ -1,3 +1,4 @@
+// berilio
 // Configuration file
 var config = {}
 
@@ -23,19 +24,10 @@ config.CAPTURES_DIR = '/home/hpcn/Desktop/Trazas/';
 config.RAID = false;
 
 // Raid mount point
-config.RAID_DEV = '/dev/md0';
+config.RAID_DEV = '';
 
 // Raid disks
-config.RAID_DISKS = [
-  '/dev/sdc',
-  '/dev/sdd',
-  '/dev/sde',
-  '/dev/sdf',
-  '/dev/sdg',
-  '/dev/sdh',
-  '/dev/sdi',
-  '/dev/sdj'
-];
+config.RAID_DISKS = [];
 
 // End configuration
 

@@ -43,15 +43,16 @@ class storageView extends Common\appView
         $this->pLine('<div id="loadingDiskStats" class="row">');
         $this->pLine('<div class="col-md-4 col-md-offset-4 text-center">', 1);
         $this->pLine('<h3>', 1);
-        $this->pLine(_('Gathering storage statistics') . '<span id="gatheringDots">...</span>', 1);
-        $this->pLine('</h3><hr>', - 1);
+        $this->pLine(_('Gathering storage statistics'), 1);
+        $this->pLine('</h3>', - 1);
+        $this->pLine('<span id="gatheringDots">.</span>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         
         /* Connection error placeholder */
-        $this->pLine('<div id="storageConnectionError" class="row hidden">');
+        $this->pLine('<div id="storageConnectionError" class="row collapse">');
         $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
-        $this->pLine('<div class="alert alert-danger text-center" role="alert" id="connectionError">', 1);
+        $this->pLine('<div class="alert alert-danger text-center" role="alert">', 1);
         $this->pLine('<strong>' . _('Connection Error') . '</strong>. ' . sprintf(_('Consider visiting the %ssettings%s and %sstatus%s pages'), '<a href="settings" class="alert-link">', '</a>', '<a href="status" class="alert-link">', '</a>') . '.', 1);
         $this->pLine('<a href="storage" class="alert-link">' . _('Refresh the page') . '</a>');
         $this->pLine('</div>', - 1);
@@ -59,7 +60,7 @@ class storageView extends Common\appView
         $this->pLine('</div>', - 1);
         
         /* RAID statistics placeholder */
-        $this->pLine('<div id="raidStats" class="hidden">');
+        $this->pLine('<div id="raidStats" class="collapse">');
         /* Title */
         $this->pLine('<div class="row">', 1);
         $this->pLine('<div class="col-md-4 col-md-offset-4 text-center">', 1);
@@ -70,12 +71,14 @@ class storageView extends Common\appView
         $this->pLine('</div>', - 1);
         /* Chart */
         $this->pLine('<div class="row">');
-        $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
+        $this->pLine('<div class="col-md-4 col-md-offset-4 text-center">', 1);
+        $this->pLine('<h4>' . _('Individual write speeds') . ' (MB/s)' . '</h4>');
         $this->pLine('<canvas id="raidStatsChart" width="400" height="400">', 1);
         $this->pLine('</canvas>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         /* Stats with label */
+        $this->pLine('<div class="row">&nbsp;</div>');
         $this->printInfoElement('raidSpeed', _('Global write speed of the RAID'), '');
         $this->pLine('</div>', - 1);
         
@@ -86,7 +89,7 @@ class storageView extends Common\appView
         /* Formatting RAID modal placeholder */
         
         /* Space usage placeholder */
-        $this->pLine('<div id="spaceStats" class="hidden">');
+        $this->pLine('<div id="spaceStats" class="collapse">');
         $this->pLine('<div class="row">&nbsp;</div>', 1);
         /* Title */
         $this->pLine('<div class="row">');
@@ -98,8 +101,8 @@ class storageView extends Common\appView
         $this->pLine('</div>', - 1);
         /* Chart */
         $this->pLine('<div class="row">');
-        $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
-        $this->pLine('<canvas id="spaceStatsChart" width="400" height="400">', 1);
+        $this->pLine('<div class="col-md-4 col-md-offset-4 text-center">', 1);
+        $this->pLine('<canvas id="spaceStatsChart" width="300" height="300">', 1);
         $this->pLine('</canvas>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
@@ -107,7 +110,6 @@ class storageView extends Common\appView
         $this->printInfoElement('spaceTotal', _('Total space'), '');
         $this->printInfoElement('spaceUsed', _('Used space'), '');
         $this->printInfoElement('spaceFree', _('Free space'), '');
-        $this->printInfoElement('spaceTotalP', _('Total space (%)'), '');
         $this->printInfoElement('spaceUsedP', _('Used space (%)'), '');
         $this->printInfoElement('spaceFreeP', _('Free space (%)'), '');
         $this->pLine('</div>', - 1);
@@ -115,7 +117,7 @@ class storageView extends Common\appView
         /* RAID not configured placeholder */
         /* Lower panel with info about adding external captures */
         $this->pLine('<div class="row">&nbsp;</div>');
-        $this->pLine('<div id="raidNotConfigured" class="row hidden">');
+        $this->pLine('<div id="raidNotConfigured" class="row collapse">');
         $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
         $this->pLine('<div class="panel panel-info">', 1);
         $this->pLine('<div class="panel-body">', 1);

@@ -110,7 +110,7 @@ function validPcapCapture(name, callback) {
       callback(false);
     } else {
       // Check if it is a valid pcap capture
-      var validPcapCommand = 'sudo LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "' + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"';
+      var validPcapCommand = 'LD_LIBRARY_PATH=bin/caputils/ ./bin/caputils/capinfos -t "' + config.CAPTURES_DIR + name + '" 2> /dev/null | grep "File type"';
       scripts.exec(validPcapCommand).on('exit', function(code) {
         callback(code == 0);
       });
