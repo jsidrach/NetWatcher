@@ -1,6 +1,7 @@
 // Real Time Statistics module
 
 // Package dependencies
+var scripts = require('child_process');
 var config = require('../config.js');
 var common = require('./_common.js');
 var statistics_utils = require('./statistics_utils.js');
@@ -74,7 +75,7 @@ exports.storageStats = function (req, res) {
       }
       // Raid not active
       ans.raid_stats.raid_active = false;
-      common.sendJSON(ans, res, 200);
+      res.status(200).json(ans);
     });
   });
 };

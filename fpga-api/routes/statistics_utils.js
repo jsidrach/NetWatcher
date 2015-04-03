@@ -243,7 +243,7 @@ function getRaidStats(res, ans) {
       diskStats['name'] = disk;
       ans.raid_stats.disks.push(diskStats);
     });
-    common.sendJSON(ans, res, 200);
+    res.status(200).json(ans);
   });
 };
 exports.getRaidStats = getRaidStats;
