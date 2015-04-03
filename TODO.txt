@@ -1,16 +1,22 @@
 TODO Week
 -------
-  - Modals para resetear
-  - todo el jquery
-  - Mejorar estilo del codigo
+  - Storage
+    - Colores segun velocidad
+    - Modals para resetear
+    - jQuery resetear
+  - Repasar codigo de cada archivo
+  - Traducciones
+  - Generar documentacion
 
 TODO Future:
 -------
-  - testSimple para detectar trazas simple validas
+  - optimizaciones capinfo -t?
+  - testSimple para detectar trazas simple validas?
   - actualizar testSimple.c para que añada al final el nº de paquetes
     - en launchRecorder.sh, que se llame despues a testSimple y añada esto
   - Terminar de probar todo con los binarios nuevos
-    - Sobre todo captura/reproduccion, y conversion finalmente
+    - Sobre todo captura/reproduccion/conversion
+    - Ver como va a 10G
   - Probar delete_raid, storage gui
   - Captures/all va lento por el capinfos -t, como mejorar?
       - Ver si va mejor en dagda
