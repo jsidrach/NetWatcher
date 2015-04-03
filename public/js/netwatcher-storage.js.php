@@ -15,6 +15,9 @@ var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?>;
 $(document).ready(function () {
   // Storage module
   Storage.init();
+
+  // Chart.js configuration
+  Chart.defaults.global.responsive = true;
 });
 
 //
