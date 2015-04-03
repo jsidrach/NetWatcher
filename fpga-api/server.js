@@ -1,3 +1,26 @@
+// Cluster module
+var cluster = require('cluster');
+
+// Master
+if (cluster.isMaster) {
+  // Count the server's CPUs
+  var cpuCount = require('os').cpus().length;
+
+  // Create a worker for each CPU
+  for (var i = 0; i < cpuCount; i += 1) {
+    cluster.fork();
+  }
+
+  // Listen for dying workers
+  cluster.on('exit', function(worker) {
+    // Replace the dead worker
+    console.log('Replacing worker (id: ' + worker.id + ')');
+    cluster.fork();
+  });
+  return;
+}
+
+// Worker
 // Package dependencies
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -81,7 +104,7 @@ router.delete('/captures/delete/:name', captures.delete);
 
 
 // Default router
-defError.get('*', function (req, res) {
+defError.get('*', function(req, res) {
   res.sendStatus(404);
 });
 

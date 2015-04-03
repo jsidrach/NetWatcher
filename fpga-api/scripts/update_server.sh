@@ -13,8 +13,7 @@ USER=root
 # Light update if parameters == 1
 if [ "$#" -eq 1 ]; then
     echo "Light update"
-    scp -r routes/ ${USER}@${SERVER_IP}:${SERVER_PATH}
-    scp config.js ${USER}@${SERVER_IP}:${SERVER_PATH}
+    scp -r routes/ config.js ${USER}@${SERVER_IP}:${SERVER_PATH}
     exit 0;
 fi
 

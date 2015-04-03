@@ -1,6 +1,6 @@
 // Manager module
 
-// Package dependencies
+// Package dependencies) 
 var scripts = require('child_process');
 var async = require('async');
 var config = require('../config.js');
@@ -93,15 +93,6 @@ exports.startRecorder = function(req, res) {
         return;
       }
 
-      // Valid output file
-      if (!captures_utils.validNewName(req.params.capturename)) {
-        common.readJSON('recorder_start_error', function(ans) {
-          ans.description = 'Invalid capture name (must not exist).';
-          res.status(400).json(ans);
-        });
-        return;
-      }
-
       // Valid port (0,1,2,3)
       if (!/^[0123]$/.test(req.params.port)) {
         common.readJSON('recorder_start_error', function(ans) {
@@ -120,10 +111,20 @@ exports.startRecorder = function(req, res) {
         return;
       }
 
-      // sudo -b nohup ./bin/launchRecorder.sh PORT BYTES_TO_CAPTURE SIMPLE_FILE
-      var command = 'sudo -b nohup ./bin/launchRecorder.sh ' + req.params.port + ' ' + req.params.bytes + ' "' + config.CAPTURES_DIR + req.params.capturename + '"';
-      scripts.exec(command);
-      common.sendJSON('recorder_start_success', res, 200);
+      // Valid output file
+      captures_utils.validNewName(req.params.capturename, function(valid) {
+        if (!valid) {
+          common.readJSON('recorder_start_error', function(ans) {
+            ans.description = 'Invalid capture name (must not exist).';
+            res.status(400).json(ans);
+          });
+        } else {
+          // sudo -b nohup ./bin/launchRecorder.sh PORT BYTES_TO_CAPTURE SIMPLE_FILE
+          var command = 'sudo -b nohup ./bin/launchRecorder.sh ' + req.params.port + ' ' + req.params.bytes + ' "' + config.CAPTURES_DIR + req.params.capturename + '"';
+          scripts.exec(command);
+          common.sendJSON('recorder_start_success', res, 200);
+        }
+      });
     });
   });
 };
@@ -176,38 +177,60 @@ exports.deleteRaid = function(req, res) {
     common.sendJSON('raid_delete_error', res, 412);
     return;
   }
-  statistics_utils.runningAny(function(isRunning) {
-    if (isRunning) {
-      common.sendJSON('raid_delete_error', res, 412);
-      return;
-    }
-    try {
+  async.series([
+      function(callback) {
+        statistics_utils.runningAny(function(isRunning) {
+          if (isRunning) {
+            callback('error');
+          } else {
+            callback(null);
+          }
+        });
+      },
       // Format the RAID
-      scripts.execSync('umount /mnt/raid');
-      scripts.execSync('mdadm --stop "' + config.RAID_DEV + '"');
-      scripts.execSync('mdadm --remove "' + config.RAID_DEV + '"');
-
+      async.apply(exec, 'umount /mnt/raid'),
+      async.apply(exec, 'mdadm --stop "' + config.RAID_DEV + '"'),
+      async.apply(exec, 'mdadm --remove "' + config.RAID_DEV + '"'),
       // Format each disk
-      async.each(config.RAID_DISKS, function(disk, callback) {
-        scripts.execSync('hdparm --user-master u --security-set-pass Eins "' + disk + '"');
-        scripts.execSync('hdparm --user-master u --security-erase Eins "' + disk + '"');
-        callback();
-      }, function(err) {
-        if (err) {
-          common.logError(error);
-          res.sendJSON('raid_delete_error', res, 400);
-          return;
-        }
-
-        // Re-create raid  
-        scripts.execSync('mdadm --create "' + config.RAID_DEV + '" --level=0 --raid-devices=' + config.RAID_DISKS.length + ' "' + config.RAID_DISKS.join('" "') + '"');
-        scripts.execSync('mkfs.xfs "' + config.RAID_DEV + '"');
-        scripts.execSync('mount "' + config.RAID_DEV + '" /mnt/raid');
+      function(callback) {
+        // Format each disk
+        async.each(config.RAID_DISKS, function(disk, innerCallback) {
+            async.series([
+                async.apply(exec, 'hdparm --user-master u --security-set-pass Eins "' + disk + '"'),
+                async.apply(exec, 'hdparm --user-master u --security-erase Eins "' + disk + '"')
+              ],
+              // Inner loop error
+              function(loopErr, loopResults) {
+                if (loopErr) {
+                  innerCallback('error');
+                } else {
+                  innerCallback(null);
+                }
+              }
+            );
+          },
+          // Any error in disk formatting
+          function(err) {
+            if (err) {
+              callback('error');
+            } else {
+              callback(null);
+            }
+          }
+        );
+      },
+      // Re-create the RAID
+      async.apply(exec, 'mdadm --create "' + config.RAID_DEV + '" --level=0 --raid-devices=' + config.RAID_DISKS.length + ' "' + config.RAID_DISKS.join('" "') + '"'),
+      async.apply(exec, 'mkfs.xfs "' + config.RAID_DEV + '"'),
+      async.apply(exec, 'mount "' + config.RAID_DEV + '" /mnt/raid')
+    ],
+    function(error, results) {
+      if (error) {
+        common.logError('Error while formatting the RAID');
+        res.sendJSON('raid_delete_error', res, 400);
+      } else {
         res.sendJSON('raid_delete_success', res, 200);
-      });
-    } catch (error) {
-      common.logError(error);
-      res.sendJSON('raid_delete_error', res, 400);
+      }
     }
-  });
+  );
 };

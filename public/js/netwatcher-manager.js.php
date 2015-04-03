@@ -403,6 +403,7 @@ $(document).ready(function () {
     captureBytes.prop('disabled', true);
     capturePort.prop('disabled', true);
     captureBytesType.prop('disabled', true);
+    startRecordingButton.prop('disabled', true);
 
     // Do the petition
     var startURL = baseURL + 'recorder/start/'
@@ -1002,7 +1003,7 @@ $(document).ready(function () {
           return;
         }
         // Error on the request. Refresh
-        Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Capture already stopped. Reloading...') . '\'' ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
