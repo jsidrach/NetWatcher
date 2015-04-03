@@ -1,6 +1,8 @@
 TODO Week
 -------
-  - Storage UI: ver esquemas libreta
+  - Storage UI
+    - Modals para resetear
+    - todo el jquery
   - Mejorar estilo del codigo
 
 TODO Future:
