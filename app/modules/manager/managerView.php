@@ -48,7 +48,7 @@ class managerView extends Common\appView
     {
         $this->pLine('<div class="row">');
         $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
-        $this->pLine('<div class="alert alert-danger" role="alert" id="connectionError">', 1);
+        $this->pLine('<div class="alert alert-danger text-center" role="alert" id="connectionError">', 1);
         $this->pLine('<strong>' . _('Connection Error') . '</strong>. ' . sprintf(_('Consider visiting the %ssettings%s and %sstatus%s pages'), '<a href="settings" class="alert-link">', '</a>', '<a href="status" class="alert-link">', '</a>') . '.', 1);
         $this->pLine(_('Trying to refresh in') . ' <label id="connectionErrorCountdown"></label>...', 0);
         $this->pLine('</div>', - 1);
