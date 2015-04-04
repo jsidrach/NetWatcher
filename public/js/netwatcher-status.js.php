@@ -7,7 +7,7 @@ require_once ('../../vendor/autoload.php');
 ?>
 
 // Base URL for the ajax calls
-var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
+var baseURL = <?php echo '\'' . PROXY_PATH . '\''; ?> + '/';
 
 // Sets the events
 $(document).ready(function () {

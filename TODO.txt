@@ -1,10 +1,5 @@
 TODO Week
 -------
-  - Storage
-    - Colores segun velocidad
-    - Modals para resetear
-    - jQuery resetear
-  - Repasar codigo de cada archivo
   - Traducciones
   - Generar documentacion
 

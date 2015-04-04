@@ -9,7 +9,7 @@ require_once ('../../vendor/autoload.php');
 // Required: Common, AjaxQueueHandler
 
 // Base URL for the ajax calls
-var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
+var baseURL = <?php echo '\'' . PROXY_PATH . '\''; ?> + '/';
 
 // Sets the events
 $(document).ready(function () {
@@ -51,7 +51,12 @@ $(document).ready(function () {
   var spaceFreeP;
   // RAID not configured
   var raidOff;
-  // TODO: format raid
+  // RAID slow panel
+  var raidSlow;
+  // RAID format progress bar
+  var formatProgress;
+  // RAID format progress label
+  var formatLabel;
 
   // Initializes the module
   Storage.init = function() {
@@ -70,6 +75,17 @@ $(document).ready(function () {
     spaceUsedP = $('#spaceUsedP');
     spaceFreeP = $('#spaceFreeP');
     raidOff = $('#raidNotConfigured');
+    raidSlow = $('#raidSlow');
+    formatProgress = $('#formatProgress');
+    formatProgress.css('width', '100%');
+    formatLabel = $('#formatLabel');
+
+    // Dismiss format RAID
+    $('#dismissFormat').on('click', function() {
+      raidSlow.fadeOut();
+    });
+    // Format RAID event
+    $('#formatRaidModal').on('shown.bs.modal', formatRAID);
 
     // Stats
     getStorageStats();
@@ -129,15 +145,16 @@ $(document).ready(function () {
   function fillSpaceStats(resp) {
     // Chart
     var ctx = spaceStatsChart.get(0).getContext('2d');
+    var GB = 1024*1024*1024;
     var chartData = [
       {
-        value: (resp.used_space/(1024*1024*1024)).toFixed(2),
-        color:'#F7464A',
+        value: (resp.used_space/GB).toFixed(2),
+        color: '#F7464A',
         highlight: '#FF5A5E',
         label: <?php echo '\'' . _('Used Space') . '\''; ?> + ' (GB)'
       },
       {
-        value: ((resp.total_space - resp.used_space)/(1024*1024*1024)).toFixed(2),
+        value: ((resp.total_space - resp.used_space)/GB).toFixed(2),
         color: '#46BFBD',
         highlight: '#5AD3D1',
         label: <?php echo '\'' . _('Free Space') . '\''; ?> + ' (GB)'
@@ -157,15 +174,31 @@ $(document).ready(function () {
   function fillRaidStats(resp) {
     // Chart
     var ctx = raidStatsChart.get(0).getContext('2d');
+    var GB = 1024*1024*1024;
     var chartData = {};
     chartData.labels = [];
+    var color = 'rgba(';
+    // Slow speed (speed < 10Gbits/sec) (10/8 * 1024 * 1024 * 1024)
+    if(resp.raid_stats.write_speed < (1.25 * GB)) {
+      // RAID slow panel
+      raidSlow.fadeIn();
+      color = color + '247,70,74';
+    }
+    // Acceptable speed (10Gb/s < speed < 12Gb/s) (12/8 * 1024 * 1024 * 1024)
+    else if (resp.raid_stats.write_speed < (1.5 * GB)) {
+      color = color + '204,0,0';
+    }
+    // Good speed (speed > 12Gb/s)
+    else {
+      color = color + '93,169,237';
+    }
     chartData.datasets = [
       {
         label: <?php echo '\'' . _('Write Speed') . '\''; ?> + ' (MB/s)',
-        fillColor: 'rgba(247,70,74,0.5)',
-        strokeColor: 'rgba(247,70,74,0.8)',
-        highlightFill: 'rgba(247,70,74,0.75)',
-        highlightStroke: 'rgba(247,70,74,1)',
+        fillColor: color + ',0.5)',
+        strokeColor: color + ',0.8)',
+        highlightFill: color + ',0.75)',
+        highlightStroke: color + ',1)',
         data: []
       }
     ];
@@ -176,9 +209,41 @@ $(document).ready(function () {
     new Chart(ctx).Bar(chartData);
 
     // Detailed stats
-    // TODO: Color depending on the speed
-    // TODO: format raid
+    raidSpeed.css('color', color + ',1)');
+    raidSpeed.css('font-weight', 'Bold');
     raidSpeed.text(Common.parseBytes(resp.raid_stats.write_speed) + '/s');
+  };
+
+  // Formats the RAID
+  function formatRAID() {
+    // Set the text
+    formatLabel.text(<?php echo '\'' . _('Request in progress...') . '\''; ?>);
+
+    // Petition
+    $.ajax({
+      type: 'DELETE',
+      url: baseURL + 'storage/raid',
+      dataType: 'json',
+      headers: {
+        'timestamp': Date.now()
+      },
+      timeout: 3000000,
+      success: function (resp) {
+        // Success
+        formatProgress.removeClass('progress-bar-info active').addClass('progress-bar-success');
+        formatLabel.text(<?php echo '\'' . _('RAID successfully re-created') . '\''; ?>);
+        formatProgress.parent().after(' <a href="storage" class="label label-success">' + <?php echo '\'' . _('Reload') . '\''; ?> + '</a>');
+      },
+      error: function (e) {
+        if(AjaxQueueHandler.userLeft()) {
+          return;
+        }
+        // Error
+        formatProgress.removeClass('progress-bar-info active').addClass('progress-bar-danger');
+        formatLabel.text(<?php echo '\'' . _('Error formatting the RAID. The FPGA may be in use') . '\''; ?>);
+        formatProgress.parent().after(' <a href="storage" class="label label-danger">' + <?php echo '\'' . _('Reload') . '\''; ?> + '</a>');
+      }
+    });
   };
 
 }( window.Storage = window.Storage || {}, jQuery ));

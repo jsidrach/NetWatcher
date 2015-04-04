@@ -9,7 +9,7 @@ require_once ('../../vendor/autoload.php');
 // Required: Common, AjaxQueueHandler
 
 // Base URL of the ajax calls
-var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
+var baseURL = <?php echo '\'' . PROXY_PATH . '\''; ?> + '/';
 
 // URL of the base page
 var pageURL = 'manager';
@@ -115,7 +115,7 @@ $(document).ready(function () {
         setTimeout(function () {
           // Request OK. Waiting for the server to reboot
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
-          progressLabel.text(<?php echo '\'' . _('Waiting for the server to reboot...') . '\'' ?>);
+          progressLabel.text(<?php echo '\'' . _('Waiting for the server to reboot...') . '\''; ?>);
           setTimeout(Common.waitUntilUp(function () {
             window.location = pageURL;
           }), 10000);
@@ -128,7 +128,7 @@ $(document).ready(function () {
         setTimeout(function () {
           // Error on the request. Error and refresh
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
-          progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
+          progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\''; ?>);
           setTimeout(function () {
             window.location = pageURL;
           }, 2000);
@@ -194,14 +194,14 @@ $(document).ready(function () {
   function initFPGA(player) {
     var initURL = baseURL + (player ? 'player' : 'recorder') + '/init';
     if (player) {
-      initModalTitle.text(initModalTitle.text() + ' ' + <?php echo '\'' . _('as a player') . '\'' ?>);
+      initModalTitle.text(initModalTitle.text() + ' ' + <?php echo '\'' . _('as a player') . '\''; ?>);
     } else {
-      initModalTitle.text(initModalTitle.text() + ' ' + <?php echo '\'' . _('as a recorder') . '\'' ?>);
+      initModalTitle.text(initModalTitle.text() + ' ' + <?php echo '\'' . _('as a recorder') . '\''; ?>);
     }
 
     // Sending request
     progressBar.css('width', '50%');
-    progressLabel.text(<?php echo '\'' . _('Programming the FPGA...') . '\'' ?>);
+    progressLabel.text(<?php echo '\'' . _('Programming the FPGA...') . '\''; ?>);
     // Make the init request
     $.ajax({
       type: 'POST',
@@ -214,7 +214,7 @@ $(document).ready(function () {
       success: function (resp) {
         // FPGA programmed. Waiting for the server to reboot
         progressBar.css('width', '70%');
-        progressLabel.text(<?php echo '\'' . _('FPGA programmed. Rebooting the system...') . '\'' ?>);
+        progressLabel.text(<?php echo '\'' . _('FPGA programmed. Rebooting the system...') . '\''; ?>);
         setTimeout(function () {
           Common.waitUntilUp(function() { installDriver(player); });
         }, 10000);
@@ -226,7 +226,7 @@ $(document).ready(function () {
         setTimeout(function () {
           progressBar.css('width', '100%');
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
-          progressLabel.text(<?php echo '\'' . _('The FPGA cannot be programmed if it is active (stop the player/recorder)') . '\'' ?>);
+          progressLabel.text(<?php echo '\'' . _('The FPGA cannot be programmed if it is active (stop the player/recorder)') . '\''; ?>);
           setTimeout(function () {
             window.location = pageURL;
           }, 2000);
@@ -241,7 +241,7 @@ $(document).ready(function () {
 
     // Sending the install request
     progressBar.css('width', '85%');
-    progressLabel.text(<?php echo '\'' . _('Installing the driver...') . '\'' ?>);
+    progressLabel.text(<?php echo '\'' . _('Installing the driver...') . '\''; ?>);
 
     $.ajax({
       type: 'POST',
@@ -256,7 +256,7 @@ $(document).ready(function () {
           // FPGA driver installed      
           progressBar.css('width', '100%');
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
-          progressLabel.text(<?php echo '\'' . _('Driver successfully installed. Refreshing...') . '\'' ?>);
+          progressLabel.text(<?php echo '\'' . _('Driver successfully installed. Refreshing...') . '\''; ?>);
 
           // Reload the page
           setTimeout(function () {
@@ -271,7 +271,7 @@ $(document).ready(function () {
         setTimeout(function () {
           progressBar.css('width', '100%');
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-danger');
-          progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\'' ?>);
+          progressLabel.text(<?php echo '\'' . _('Error sending the request') . '\''; ?>);
           // Reload the page
           setTimeout(function () {
             window.location = pageURL;
@@ -390,11 +390,11 @@ $(document).ready(function () {
   function startRecording() {
     // Checks the parameters
     if(!checkRecordName()) {
-      Common.notificationError(<?php echo '\'' . _('Invalid capture name') . '\'' ?>);
+      Common.notificationError(<?php echo '\'' . _('Invalid capture name') . '\''; ?>);
       return;
     }
     if(!checkRecordBytes()) {
-      Common.notificationError(<?php echo '\'' . _('Invalid number of bytes to record') . '\'' ?>);
+      Common.notificationError(<?php echo '\'' . _('Invalid number of bytes to record') . '\''; ?>);
       return;
     }
 
@@ -419,7 +419,7 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (resp) {
         // Recording
-        $.notify(<?php echo '\'' . _('Recording now! Reloading...') . '\'' ?>);
+        $.notify(<?php echo '\'' . _('Recording now! Reloading...') . '\''; ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -428,7 +428,7 @@ $(document).ready(function () {
         if(AjaxQueueHandler.userLeft()) {
           return;
         }
-        Common.notificationError(<?php echo '\'' . _('Invalid state or capture name already taken. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Invalid state or capture name already taken. Reloading...') . '\''; ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -531,7 +531,7 @@ $(document).ready(function () {
           }
           // Recording has ended
           else {
-            recordingTitle.text(<?php echo '\'' . _('Capture recording has ended') . '\'' ?>)
+            recordingTitle.text(<?php echo '\'' . _('Capture recording has ended') . '\''; ?>)
             stopRecordingButton.prop('disabled', true);
             currentRate.text('--');
             clearInterval(refreshInterval);
@@ -547,7 +547,7 @@ $(document).ready(function () {
           currentRate.text('--');
           clearInterval(refreshInterval);
           clearInterval(elapsedInterval);
-          Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+          Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\''; ?>);
           setTimeout(function () {
             window.location = pageURL;
           }, 3000);
@@ -583,7 +583,7 @@ $(document).ready(function () {
 
   // Stops recording
   function stopRecordingCapture() {
-    recordingTitle.text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
+    recordingTitle.text(<?php echo '\'' . _('Stopping...') . '\''; ?>)
     stopRecordingButton.prop('disabled', true);
     currentRate.text('--');
     clearInterval(refreshInterval);
@@ -597,7 +597,7 @@ $(document).ready(function () {
       'timestamp': Date.now()
       },
       success: function (resp) {
-        recordingTitle.text(<?php echo '\'' . _('Capture recording has been stopped. Reloading....') . '\'' ?>)
+        recordingTitle.text(<?php echo '\'' . _('Capture recording has been stopped. Reloading....') . '\''; ?>)
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -607,7 +607,7 @@ $(document).ready(function () {
           return;
         }
         // Error on the request. Refresh
-        Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\''; ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -827,7 +827,7 @@ $(document).ready(function () {
       dataType: 'json',
       success: function (resp) {
         // Playing
-        $.notify(<?php echo '\'' . _('Playing now! Reloading...') . '\'' ?>);
+        $.notify(<?php echo '\'' . _('Playing now! Reloading...') . '\''; ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -836,7 +836,7 @@ $(document).ready(function () {
         if(AjaxQueueHandler.userLeft()) {
           return;
         }
-        Common.notificationError(<?php echo '\'' . _('Invalid state or capture. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Invalid state or capture. Reloading...') . '\''; ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -933,7 +933,7 @@ $(document).ready(function () {
           }
           // Recording has ended
           else {
-            playingTitle.text(<?php echo '\'' . _('Capture reproduction has ended') . '\'' ?>)
+            playingTitle.text(<?php echo '\'' . _('Capture reproduction has ended') . '\''; ?>)
             stopPlayingButton.prop('disabled', true);
             clearInterval(refreshInterval);
             clearInterval(elapsedInterval);
@@ -947,7 +947,7 @@ $(document).ready(function () {
           stopPlayingButton.prop('disabled', true);
           clearInterval(refreshInterval);
           clearInterval(elapsedInterval);
-          Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\'' ?>);
+          Common.notificationError(<?php echo '\'' . _('Connection Error. Reloading...') . '\''; ?>);
           setTimeout(function () {
             window.location = pageURL;
           }, 3000);
@@ -969,8 +969,8 @@ $(document).ready(function () {
     playingSize.text(Common.parseBytes(data.size));
     playingPacketsSent.text(data.packets_sent);
     elapsedTimeLabel.text(Common.parseSeconds(data.elapsed_time));
-    playingIFG.text((data.interframe_gap == 0) ? <?php echo '\'' . _('Original captured rate') . '\'' ?> : data.interframe_gap);
-    playingLoop.text(data.loop ? <?php echo '\'' . _('Yes') . '\'' ?> : <?php echo '\'' . _('No') . '\'' ?> );
+    playingIFG.text((data.interframe_gap == 0) ? <?php echo '\'' . _('Original captured rate') . '\''; ?> : data.interframe_gap);
+    playingLoop.text(data.loop ? <?php echo '\'' . _('Yes') . '\''; ?> : <?php echo '\'' . _('No') . '\''; ?> );
     var mask = '';
     for (var i = 0; i <= data.mask; i++) {
       mask = mask + i + '-';
@@ -980,7 +980,7 @@ $(document).ready(function () {
 
   // Stops playing
   function stopPlaying() {
-    playingTitle.text(<?php echo '\'' . _('Stopping...') . '\'' ?>)
+    playingTitle.text(<?php echo '\'' . _('Stopping...') . '\''; ?>)
     stopPlayingButton.prop('disabled', true);
     clearInterval(refreshInterval);
     clearInterval(elapsedInterval);
@@ -993,7 +993,7 @@ $(document).ready(function () {
       'timestamp': Date.now()
       },
       success: function (resp) {
-        playingTitle.text(<?php echo '\'' . _('Capture reproduction has been stopped. Reloading....') . '\'' ?>)
+        playingTitle.text(<?php echo '\'' . _('Capture reproduction has been stopped. Reloading....') . '\''; ?>)
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);
@@ -1003,7 +1003,7 @@ $(document).ready(function () {
           return;
         }
         // Error on the request. Refresh
-        Common.notificationError(<?php echo '\'' . _('Capture already stopped. Reloading...') . '\'' ?>);
+        Common.notificationError(<?php echo '\'' . _('Capture already stopped. Reloading...') . '\''; ?>);
         setTimeout(function () {
           window.location = pageURL;
         }, 3000);

@@ -9,7 +9,7 @@ require_once ('../../vendor/autoload.php');
 // Required: Common, AjaxQueueHandler
 
 // Base url for all the calls
-var baseURL = <?php echo '\'' . PROXY_PATH . '\'' ?> + '/';
+var baseURL = <?php echo '\'' . PROXY_PATH . '\''; ?> + '/';
 
 // Sets the events
 $(document).ready(function () {

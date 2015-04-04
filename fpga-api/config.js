@@ -21,7 +21,7 @@ config.IMPACT_BIN = '/opt/Xilinx/14.6/ISE_DS/ISE/bin/lin64/impact';
 config.CAPTURES_DIR = '/home/hpcn/Desktop/Trazas/';
 
 // Raid active
-config.RAID = true;
+config.RAID = false;
 
 // Raid mount point
 config.RAID_DEV = '/dev/sda';
