@@ -101,7 +101,6 @@ $(document).ready(function () {
                 fillSpaceStats(resp);
               });
             });
-            // TODO: format raid
           }
           // RAID off
           else {
@@ -178,6 +177,7 @@ $(document).ready(function () {
 
     // Detailed stats
     // TODO: Color depending on the speed
+    // TODO: format raid
     raidSpeed.text(Common.parseBytes(resp.raid_stats.write_speed) + '/s');
   };
 

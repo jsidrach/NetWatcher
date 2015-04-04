@@ -71,9 +71,9 @@ class storageView extends Common\appView
         $this->pLine('</div>', - 1);
         /* Chart */
         $this->pLine('<div class="row">');
-        $this->pLine('<div class="col-md-4 col-md-offset-4 text-center">', 1);
+        $this->pLine('<div class="col-md-8 col-md-offset-2 text-center">', 1);
         $this->pLine('<h4>' . _('Individual write speeds') . ' (MB/s)' . '</h4>');
-        $this->pLine('<canvas id="raidStatsChart" width="400" height="400">', 1);
+        $this->pLine('<canvas id="raidStatsChart" width="600" height="375">', 1);
         $this->pLine('</canvas>');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);

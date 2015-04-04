@@ -66,7 +66,10 @@ exports.dataCaptures = dataCaptures;
 function validNewName(name, callback) {
   // Valid name
   if (!validName(name)) {
-    callback(false);
+    process.nextTick(function() {
+      callback(false);
+    });
+    return;
   }
   // File already exists
   fs.exists(config.CAPTURES_DIR + name, function(exists) {
@@ -79,7 +82,9 @@ exports.validNewName = validNewName;
 function validSimpleCapture(name, callback) {
   // TODO: Use something different (testSimple?) to determine if its a valid simple capture with the #packets at the end
   if (!validName(name)) {
-    callback(false);
+    process.nextTick(function() {
+      callback(false);
+    });
   }
   // 3rd and 4th byte are 0x69
   var magicNumber = new Buffer([0x69, 0x69]);
@@ -103,7 +108,10 @@ exports.validSimpleCapture = validSimpleCapture;
 // Checks if a capture has a valid pcap format
 function validPcapCapture(name, callback) {
   if (!validName(name)) {
-    callback(false);
+    process.nextTick(function() {
+      callback(false);
+    });
+    return;
   }
   validSimpleCapture(name, function(valid) {
     if (valid) {
@@ -149,7 +157,7 @@ exports.inUse = inUse;
 // Gets the info for a capture
 function getInfoCapture(name, simple, pcap, callback) {
   fs.stat(config.CAPTURES_DIR + name, function(err, stats) {
-    if(err) {
+    if (err) {
       callback('error', null);
     }
 
@@ -166,7 +174,9 @@ function getInfoCapture(name, simple, pcap, callback) {
     // Type
     if (simple != pcap) {
       dataCapture['type'] = simple ? 'simple' : 'pcap';
-      callback(null, dataCapture);
+      process.nextTick(function() {
+        callback(null, dataCapture);
+      });
     } else {
       validSimpleCapture(name, function(valid) {
         if (valid) {
@@ -174,7 +184,9 @@ function getInfoCapture(name, simple, pcap, callback) {
         } else {
           dataCapture['type'] = 'pcap';
         }
-        callback(null, dataCapture);
+        process.nextTick(function() {
+          callback(null, dataCapture);
+        });
       });
     }
   });
