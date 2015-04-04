@@ -50,11 +50,11 @@ class Router
         /* If the requested controller is the documentation, charge it */
         if ($classname == 'docs-back-end') {
             header('Location: ' . BACK_END_DOCS);
-            die();
+            return;
         }
         if ($classname == 'docs-front-end') {
             header('Location: ' . FRONT_END_DOCS);
-            die();
+            return;
         }
         
         /* Checks if the controller exist */

@@ -1,7 +1,6 @@
 TODO Week
 -------
-  - Traducciones
-  - Generar documentacion
+  - Mejorar comentarios
 
 TODO Future:
 -------

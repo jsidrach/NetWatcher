@@ -25,7 +25,7 @@ class storageModel extends Common\appModel
     {
         parent::__construct();
         /* Additional libraries */
-        array_push($this->jsLibraries, 'Chart.min.js', 'netwatcher-storage.js.php');
+        array_push($this->jsLibraries, 'Chart.min.js', 'netwatcher-utils.js', 'netwatcher-storage.js.php');
     }
 }
 ?>
