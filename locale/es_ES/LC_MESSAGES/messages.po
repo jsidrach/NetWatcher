@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
-"POT-Creation-Date: 2015-03-26 12:08+0100\n"
-"PO-Revision-Date: 2015-03-26 12:08+0100\n"
+"POT-Creation-Date: 2015-04-04 12:23+0100\n"
+"PO-Revision-Date: 2015-04-04 12:31+0100\n"
 "Last-Translator: JSid <juan.sidrach@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -19,111 +19,49 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: lib/vendor\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:62
-#: app/modules/status/statusModel.php:71
-msgid "Rewrite Module"
-msgstr "Módulo Rewrite"
+#: app/common/appView.php:180 app/common/appView.php:222
+msgid "License"
+msgstr "Licencia"
 
-#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:63
-#: app/modules/status/statusModel.php:72
-msgid "Gettext Module"
-msgstr "Módulo Gettext"
-
-#: app/modules/status/statusModel.php:55 app/modules/status/statusModel.php:64
-#: app/modules/status/statusModel.php:73
-msgid "Session Variables"
-msgstr "Variables de Sesión"
-
-#: app/modules/status/statusModel.php:56 app/modules/status/statusModel.php:65
-#: app/modules/status/statusModel.php:74
-msgid "Write Permissions"
-msgstr "Permisos de escritura"
-
-#: app/modules/status/statusModel.php:57 app/modules/status/statusModel.php:66
-#: app/modules/status/statusModel.php:75
-msgid "Proxy Server"
-msgstr "Servidor Proxy"
-
-#: app/modules/status/statusModel.php:58 app/modules/status/statusModel.php:67
-#: app/modules/status/statusModel.php:76
-msgid "FPGA API"
-msgstr "FPGA API"
-
-#: app/modules/status/statusModel.php:59 app/modules/status/statusModel.php:68
-#: app/modules/status/statusModel.php:77
-msgid "Synchronized Time Stamp"
-msgstr "Relojes Sincronizadas"
-
-#: app/modules/status/statusModel.php:71
-msgid "URL rewrite support"
-msgstr "Soporte para reescritura de URL"
-
-#: app/modules/status/statusModel.php:72
-msgid "Locale language support"
-msgstr "Soporte para lenguaje local"
-
-#: app/modules/status/statusModel.php:73
-msgid "Support for the usage of sessions"
-msgstr "Soporte para el uso de sesiones"
-
-#: app/modules/status/statusModel.php:74
-msgid "Folder and file properties"
-msgstr "Propiedades de carpetas y archivos"
-
-#: app/modules/status/statusModel.php:75
-msgid "Proxy server enabled for FPGA API calls"
-msgstr "Servidor proxy habilitado para las llamadas a la API FPGA"
-
-#: app/modules/status/statusModel.php:76
-msgid "Remote FPGA Server"
-msgstr "Servidor FPGA Remoto"
-
-#: app/modules/status/statusModel.php:77
-msgid "Timestamp delay between the client and the FPGA host: "
-msgstr "Diferencia de relojes entre el cliente y el servidor FPGA:"
-
-#: app/modules/status/statusModel.php:80 public/js/netwatcher-status.js.php:77
-msgid "Passed"
-msgstr "OK"
-
-#: app/modules/status/statusModel.php:81
-msgid "Not Implemented"
-msgstr "No Implementado"
-
-#: app/modules/status/statusModel.php:82
-msgid "In Progress..."
-msgstr "En Progreso..."
-
-#: app/modules/status/statusModel.php:83 public/js/netwatcher-status.js.php:81
-#: public/js/netwatcher-status.js.php:91
-msgid "Failed"
-msgstr "Error"
-
-#: app/modules/status/statusView.php:32 app/common/appView.php:216
+#: app/common/appView.php:216 app/modules/status/statusView.php:32
 msgid "Status"
 msgstr "Estado"
 
-#: app/modules/status/statusView.php:73
-msgid "Total"
-msgstr "Total"
+#: app/common/appView.php:218
+msgid "Wiki"
+msgstr "Wiki"
 
-#: app/modules/storage/storageView.php:32 app/common/appModel.php:49
-msgid "Storage"
-msgstr "Almacenamiento"
+#: app/common/appView.php:220
+msgid "Source"
+msgstr "Código"
 
-#: app/modules/storage/storageView.php:45
-msgid "Gathering disk statistics..."
-msgstr ""
+#: app/common/appView.php:263
+msgid "Sending request..."
+msgstr "Enviando petición..."
 
-#: app/modules/manager/managerView.php:33 app/common/appModel.php:48
+#: app/common/appModel.php:48 app/modules/manager/managerView.php:33
 msgid "Manager"
 msgstr "Gestor"
 
+#: app/common/appModel.php:49 app/modules/storage/storageView.php:32
+msgid "Storage"
+msgstr "Almacenamiento"
+
+#: app/common/appModel.php:50 app/modules/captures/capturesView.php:32
+msgid "Captures"
+msgstr "Capturas"
+
+#: app/common/appModel.php:53 app/modules/settings/settingsView.php:32
+msgid "Settings"
+msgstr "Configuración"
+
 #: app/modules/manager/managerView.php:52
+#: app/modules/storage/storageView.php:80
 msgid "Connection Error"
 msgstr "Error en la conexión"
 
 #: app/modules/manager/managerView.php:52
+#: app/modules/storage/storageView.php:80
 #, php-format
 msgid "Consider visiting the %ssettings%s and %sstatus%s pages"
 msgstr "Considera visitar las páginas de %sconfiguración%s y %sestado%s"
@@ -167,6 +105,7 @@ msgstr "Reiniciar"
 #: app/modules/manager/managerView.php:89
 #: app/modules/manager/managerView.php:280
 #: app/modules/manager/managerView.php:464
+#: app/modules/storage/storageView.php:52
 #: app/modules/captures/capturesView.php:52
 msgid "Cancel"
 msgstr "Cancelar"
@@ -317,17 +256,17 @@ msgid "Interframe Gap (uncheck to original rate)"
 msgstr "Interframe Gap (deselecciona para tasa original)"
 
 #: app/modules/manager/managerView.php:423
-#: public/js/netwatcher-manager.js.php:924
+#: public/js/netwatcher-manager.js.php:972
 msgid "Original captured rate"
 msgstr "Tasa original capturada"
 
 #: app/modules/manager/managerView.php:424
-#: public/js/netwatcher-manager.js.php:925
+#: public/js/netwatcher-manager.js.php:973
 msgid "Yes"
 msgstr "Sí"
 
 #: app/modules/manager/managerView.php:424
-#: public/js/netwatcher-manager.js.php:925
+#: public/js/netwatcher-manager.js.php:973
 msgid "No"
 msgstr "No"
 
@@ -359,9 +298,184 @@ msgstr "Parar la reproducción"
 msgid "Are you sure you want to stop reproducing the capture?"
 msgstr "¿Estás seguro de que quieres parar la reproducción de la traza?"
 
-#: app/modules/manager/managerView.php:495
-msgid "Sending request..."
-msgstr "Enviando petición..."
+#: app/modules/storage/storageView.php:48
+msgid "All data will be lost, are you sure you want to format the RAID?"
+msgstr "Se perderán todos los datos, ¿seguro que deseas formatear el RAID?"
+
+#: app/modules/storage/storageView.php:51
+msgid "Format"
+msgstr "Formatear"
+
+#: app/modules/storage/storageView.php:70
+msgid "Gathering storage statistics"
+msgstr "Obteniendo las estadísticas de almacenamiento"
+
+#: app/modules/storage/storageView.php:81
+msgid "Refresh the page"
+msgstr "Actualizar la página"
+
+#: app/modules/storage/storageView.php:92
+msgid "RAID statistics"
+msgstr "Estadísticas del RAID"
+
+#: app/modules/storage/storageView.php:99
+msgid "Individual write speeds"
+msgstr "Velocidades de escritura individuales"
+
+#: app/modules/storage/storageView.php:106
+msgid "Global write speed of the RAID"
+msgstr "Velocidad global de escritura del RAID"
+
+#: app/modules/storage/storageView.php:116
+msgid "RAID write speed is below the minimum acceptable threshold"
+msgstr ""
+"La velocidad de escritura del RAID está por debajo del mínimo aceptable"
+
+#: app/modules/storage/storageView.php:117
+msgid ""
+"This can cause the capture/reproduction to be actually slower than 10Gb/s"
+msgstr "Esto puede causar que una captura/reproducción más lenta que 10Gb/s"
+
+#: app/modules/storage/storageView.php:118
+msgid "One possible solution is to format the RAID disks and re-create it"
+msgstr "Una posible solución es formatear los discos del RAID y recrearlo"
+
+#: app/modules/storage/storageView.php:121
+msgid "Warning: all data will be lost"
+msgstr "Advertencia: se perderán todos los datos"
+
+#: app/modules/storage/storageView.php:125
+msgid "Dismiss"
+msgstr "Descartar"
+
+#: app/modules/storage/storageView.php:128
+msgid "Format the RAID"
+msgstr "Formatear el RAID"
+
+#: app/modules/storage/storageView.php:137
+msgid "Formatting the RAID..."
+msgstr "Formateando el RAID..."
+
+#: app/modules/storage/storageView.php:146
+msgid "Space statistics"
+msgstr "Estadísticas de espacio"
+
+#: app/modules/storage/storageView.php:158
+msgid "Total space"
+msgstr "Espacio total"
+
+#: app/modules/storage/storageView.php:159
+msgid "Used space"
+msgstr "Espacio ocupado"
+
+#: app/modules/storage/storageView.php:160
+msgid "Free space"
+msgstr "Espacio disponible"
+
+#: app/modules/storage/storageView.php:161
+msgid "Used space (%)"
+msgstr "Espacio Ocupado"
+
+#: app/modules/storage/storageView.php:162
+msgid "Free space (%)"
+msgstr "Espacio Disponible (%)"
+
+#: app/modules/storage/storageView.php:172
+msgid ""
+"The FPGA Web Service has the RAID option not set. To configure the storage "
+"as a RAID, edit the configuration of the remote server"
+msgstr ""
+"El Servicio Web de la FPGA no tiene activa la opción del RAID. Para "
+"configurar el almacenamiento como un RAID, edita la configuración del "
+"servidor remoto"
+
+#: app/modules/storage/storageView.php:173
+msgid "see the wiki documentation"
+msgstr "ver la documentación de la wiki"
+
+#: app/modules/status/statusView.php:73
+msgid "Total"
+msgstr "Total"
+
+#: app/modules/status/statusModel.php:53 app/modules/status/statusModel.php:62
+#: app/modules/status/statusModel.php:71
+msgid "Rewrite Module"
+msgstr "Módulo Rewrite"
+
+#: app/modules/status/statusModel.php:54 app/modules/status/statusModel.php:63
+#: app/modules/status/statusModel.php:72
+msgid "Gettext Module"
+msgstr "Módulo Gettext"
+
+#: app/modules/status/statusModel.php:55 app/modules/status/statusModel.php:64
+#: app/modules/status/statusModel.php:73
+msgid "Session Variables"
+msgstr "Variables de Sesión"
+
+#: app/modules/status/statusModel.php:56 app/modules/status/statusModel.php:65
+#: app/modules/status/statusModel.php:74
+msgid "Write Permissions"
+msgstr "Permisos de escritura"
+
+#: app/modules/status/statusModel.php:57 app/modules/status/statusModel.php:66
+#: app/modules/status/statusModel.php:75
+msgid "Proxy Server"
+msgstr "Servidor Proxy"
+
+#: app/modules/status/statusModel.php:58 app/modules/status/statusModel.php:67
+#: app/modules/status/statusModel.php:76
+msgid "FPGA API"
+msgstr "FPGA API"
+
+#: app/modules/status/statusModel.php:59 app/modules/status/statusModel.php:68
+#: app/modules/status/statusModel.php:77
+msgid "Synchronized Time Stamp"
+msgstr "Relojes Sincronizadas"
+
+#: app/modules/status/statusModel.php:71
+msgid "URL rewrite support"
+msgstr "Soporte para reescritura de URL"
+
+#: app/modules/status/statusModel.php:72
+msgid "Locale language support"
+msgstr "Soporte para lenguaje local"
+
+#: app/modules/status/statusModel.php:73
+msgid "Support for the usage of sessions"
+msgstr "Soporte para el uso de sesiones"
+
+#: app/modules/status/statusModel.php:74
+msgid "Folder and file properties"
+msgstr "Propiedades de carpetas y archivos"
+
+#: app/modules/status/statusModel.php:75
+msgid "Proxy server enabled for FPGA API calls"
+msgstr "Servidor proxy habilitado para las llamadas a la API FPGA"
+
+#: app/modules/status/statusModel.php:76
+msgid "Remote FPGA Server"
+msgstr "Servidor FPGA Remoto"
+
+#: app/modules/status/statusModel.php:77
+msgid "Timestamp delay between the client and the FPGA host: "
+msgstr "Diferencia de relojes entre el cliente y el servidor FPGA:"
+
+#: app/modules/status/statusModel.php:80 public/js/netwatcher-status.js.php:77
+msgid "Passed"
+msgstr "OK"
+
+#: app/modules/status/statusModel.php:81
+msgid "Not Implemented"
+msgstr "No Implementado"
+
+#: app/modules/status/statusModel.php:82
+msgid "In Progress..."
+msgstr "En Progreso..."
+
+#: app/modules/status/statusModel.php:83 public/js/netwatcher-status.js.php:81
+#: public/js/netwatcher-status.js.php:91
+msgid "Failed"
+msgstr "Error"
 
 #: app/modules/settings/settingsController.php:78
 msgid "Settings saved successfully"
@@ -370,10 +484,6 @@ msgstr "Configuración actualizada"
 #: app/modules/settings/settingsController.php:80
 msgid "Error saving settings"
 msgstr "Error al guardar la configuración"
-
-#: app/modules/settings/settingsView.php:32 app/common/appModel.php:53
-msgid "Settings"
-msgstr "Configuración"
 
 #: app/modules/settings/settingsView.php:48
 msgid "Server Settings"
@@ -398,10 +508,6 @@ msgstr "Tema"
 #: app/modules/settings/settingsView.php:111
 msgid "Save"
 msgstr "Guardar"
-
-#: app/modules/captures/capturesView.php:32 app/common/appModel.php:50
-msgid "Captures"
-msgstr "Capturas"
 
 #: app/modules/captures/capturesView.php:48
 msgid ""
@@ -467,180 +573,158 @@ msgstr ""
 "de traza (o añadiendo un enlace simbólico a él) al directorio de las trazas "
 "en el servidor FPGA remoto"
 
-#: app/common/appView.php:180 app/common/appView.php:222
-msgid "License"
-msgstr "Licencia"
-
-#: app/common/appView.php:218
-msgid "Wiki"
-msgstr "Wiki"
-
-#: app/common/appView.php:220
-msgid "Source"
-msgstr "Código"
-
-#: public/404.php:20
+#: public/404.php:19
 msgid "404 - Not Found"
 msgstr "404 - Página No Encontrada"
 
-#: public/404.php:41
+#: public/404.php:40
 msgid "Page Not Found"
 msgstr "Página No Encontrada"
 
-#: public/404.php:42
+#: public/404.php:41
 msgid "Error 404"
 msgstr "Error 404"
 
-#: public/404.php:45
+#: public/404.php:44
 msgid "Sorry, an error has occured. Requested page not found!"
 msgstr "Lo sentimos, ha ocurrido un error. ¡La página solicitada no existe!"
 
-#: public/404.php:47
+#: public/404.php:46
 msgid "Take me Home"
 msgstr "Volver"
 
-#: public/js/netwatcher-manager.js.php:116
+#: public/js/netwatcher-manager.js.php:118
 msgid "Waiting for the server to reboot..."
 msgstr "Esperando a que el servidor se reinicie..."
 
-#: public/js/netwatcher-manager.js.php:126
-#: public/js/netwatcher-manager.js.php:263
+#: public/js/netwatcher-manager.js.php:131
+#: public/js/netwatcher-manager.js.php:274
 msgid "Error sending the request"
 msgstr "Error al enviar la petición"
 
-#: public/js/netwatcher-manager.js.php:192
+#: public/js/netwatcher-manager.js.php:197
 msgid "as a player"
 msgstr "como reproductor"
 
-#: public/js/netwatcher-manager.js.php:194
+#: public/js/netwatcher-manager.js.php:199
 msgid "as a recorder"
 msgstr "como capturador"
 
-#: public/js/netwatcher-manager.js.php:199
+#: public/js/netwatcher-manager.js.php:204
 msgid "Programming the FPGA..."
 msgstr "Programando la FPGA..."
 
-#: public/js/netwatcher-manager.js.php:212
+#: public/js/netwatcher-manager.js.php:217
 msgid "FPGA programmed. Rebooting the system..."
 msgstr "FPGA programada. Reiniciando el sistema..."
 
-#: public/js/netwatcher-manager.js.php:221
+#: public/js/netwatcher-manager.js.php:229
 msgid ""
 "The FPGA cannot be programmed if it is active (stop the player/recorder)"
 msgstr ""
 "La FPGA no puede ser programada si está en uso (para el reproductor/"
 "capturador)"
 
-#: public/js/netwatcher-manager.js.php:236
+#: public/js/netwatcher-manager.js.php:244
 msgid "Installing the driver..."
 msgstr "Instalando el driver..."
 
-#: public/js/netwatcher-manager.js.php:251
+#: public/js/netwatcher-manager.js.php:259
 msgid "Driver successfully installed. Refreshing..."
 msgstr "Driver instalado con éxito. Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:382
+#: public/js/netwatcher-manager.js.php:393
 msgid "Invalid capture name"
 msgstr "Nombre de traza inválido"
 
-#: public/js/netwatcher-manager.js.php:386
+#: public/js/netwatcher-manager.js.php:397
 msgid "Invalid number of bytes to record"
 msgstr "Número inválido de bytes a capturar"
 
-#: public/js/netwatcher-manager.js.php:410
+#: public/js/netwatcher-manager.js.php:422
 msgid "Recording now! Reloading..."
 msgstr "¡Captura en curso! Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:416
+#: public/js/netwatcher-manager.js.php:431
 msgid "Invalid state or capture name already taken. Reloading..."
 msgstr "Estado inválido o nombre de traza ya existente. Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:510
+#: public/js/netwatcher-manager.js.php:534
 msgid "Capture recording has ended"
 msgstr "Se ha finalizado con éxito la captura de la traza"
 
-#: public/js/netwatcher-manager.js.php:523
-#: public/js/netwatcher-manager.js.php:580
-#: public/js/netwatcher-manager.js.php:902
-#: public/js/netwatcher-manager.js.php:955
+#: public/js/netwatcher-manager.js.php:550
+#: public/js/netwatcher-manager.js.php:610
+#: public/js/netwatcher-manager.js.php:950
 msgid "Connection Error. Reloading..."
 msgstr "Error en la conexión. Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:559
-#: public/js/netwatcher-manager.js.php:935
+#: public/js/netwatcher-manager.js.php:586
+#: public/js/netwatcher-manager.js.php:983
 msgid "Stopping..."
 msgstr "Parando..."
 
-#: public/js/netwatcher-manager.js.php:573
+#: public/js/netwatcher-manager.js.php:600
 msgid "Capture recording has been stopped. Reloading...."
 msgstr "Se ha detenido la captura de la traza. Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:703
-#: public/js/netwatcher-captures.js.php:176
+#: public/js/netwatcher-manager.js.php:736
+#: public/js/netwatcher-captures.js.php:191
 msgid "Connection error"
 msgstr "Error de conexión"
 
-#: public/js/netwatcher-manager.js.php:797
+#: public/js/netwatcher-manager.js.php:830
 msgid "Playing now! Reloading..."
 msgstr "¡Reproducción en curso! Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:803
+#: public/js/netwatcher-manager.js.php:839
 msgid "Invalid state or capture. Reloading..."
 msgstr "Traza o estado inválido. Actualizando..."
 
-#: public/js/netwatcher-manager.js.php:891
+#: public/js/netwatcher-manager.js.php:936
 msgid "Capture reproduction has ended"
 msgstr "Se ha finalizado con éxito la reproducción de la traza"
 
-#: public/js/netwatcher-manager.js.php:948
+#: public/js/netwatcher-manager.js.php:996
 msgid "Capture reproduction has been stopped. Reloading...."
 msgstr "Se ha detenido la reproducción de la traza. Actualizando..."
+
+#: public/js/netwatcher-manager.js.php:1006
+msgid "Capture already stopped. Reloading..."
+msgstr "Captura ya terminada. Actualizando..."
 
 #: public/js/netwatcher-status.js.php:92
 msgid "No Response"
 msgstr "Sin Respuesta"
 
-#: public/js/netwatcher-captures.js.php:218
-#: public/js/netwatcher-captures.js.php:260
-#: public/js/netwatcher-captures.js.php:293
-msgid "No capture is selected"
-msgstr "No hay ninguna traza seleccionada"
+#: public/js/netwatcher-storage.js.php:154
+msgid "Used Space"
+msgstr "Espacio Ocupado"
 
-#: public/js/netwatcher-captures.js.php:223
-msgid "Converted capture\\'s name is not valid"
-msgstr "Nombre de traza convertida inválido"
+#: public/js/netwatcher-storage.js.php:160
+msgid "Free Space"
+msgstr "Espacio Disponible"
 
-#: public/js/netwatcher-captures.js.php:235
-msgid "Capture converted successfully"
-msgstr "Traza convertida correctamente"
+#: public/js/netwatcher-storage.js.php:197
+msgid "Write Speed"
+msgstr "Velocidad de Escritura"
 
-#: public/js/netwatcher-captures.js.php:236
-msgid "Capture could not be converted"
-msgstr "No se pudo convertir la traza (nombre en uso)"
+#: public/js/netwatcher-storage.js.php:220
+msgid "Request in progress..."
+msgstr "Petición en progreso..."
 
-#: public/js/netwatcher-captures.js.php:254
-msgid "Capture queued for conversion"
-msgstr "Traza en conversión"
+#: public/js/netwatcher-storage.js.php:234
+msgid "RAID successfully re-created"
+msgstr "RAID recreado con éxito"
 
-#: public/js/netwatcher-captures.js.php:265
-msgid "New name is not valid"
-msgstr "Nuevo nombre inválido o en uso"
+#: public/js/netwatcher-storage.js.php:235
+#: public/js/netwatcher-storage.js.php:244
+msgid "Reload"
+msgstr "Actualizar"
 
-#: public/js/netwatcher-captures.js.php:269
-msgid "Capture renamed successfully"
-msgstr "Traza renombrada correctamente"
-
-#: public/js/netwatcher-captures.js.php:270
-msgid "Capture could not be renamed (it may be in use)"
-msgstr "No se pudo renombrar la traza (puede que esté en uso)"
-
-#: public/js/netwatcher-captures.js.php:298
-msgid "Capture deleted successfully"
-msgstr "Traza borrada correctamente"
-
-#: public/js/netwatcher-captures.js.php:299
-msgid "Capture could not be deleted (it may be in use)"
-msgstr "No se pudo borrar la traza (puede que esté en uso)"
+#: public/js/netwatcher-storage.js.php:243
+msgid "Error formatting the RAID. The FPGA may be in use"
+msgstr "Error formateando el RAID. Puede que la FPGA esté en uso"
 
 #: public/js/bootstrap-table-localization.js.php:12
 msgid "Loading, please wait..."
@@ -679,11 +763,47 @@ msgstr "Interruptor"
 msgid "Columns"
 msgstr "Columnas"
 
-#~ msgid "Statistics"
-#~ msgstr "Estadísticas"
+#: public/js/netwatcher-captures.js.php:233
+#: public/js/netwatcher-captures.js.php:278
+#: public/js/netwatcher-captures.js.php:314
+msgid "No capture is selected"
+msgstr "No hay ninguna traza seleccionada"
 
-#~ msgid "Reloading..."
-#~ msgstr "Actualizando..."
+#: public/js/netwatcher-captures.js.php:238
+msgid "Converted capture\\'s name is not valid"
+msgstr "Nombre de traza convertida inválido"
+
+#: public/js/netwatcher-captures.js.php:250
+msgid "Capture converted successfully"
+msgstr "Traza convertida correctamente"
+
+#: public/js/netwatcher-captures.js.php:251
+msgid "Capture could not be converted"
+msgstr "No se pudo convertir la traza (nombre en uso)"
+
+#: public/js/netwatcher-captures.js.php:272
+msgid "Capture queued for conversion"
+msgstr "Traza en conversión"
+
+#: public/js/netwatcher-captures.js.php:283
+msgid "New name is not valid"
+msgstr "Nuevo nombre inválido o en uso"
+
+#: public/js/netwatcher-captures.js.php:287
+msgid "Capture renamed successfully"
+msgstr "Traza renombrada correctamente"
+
+#: public/js/netwatcher-captures.js.php:288
+msgid "Capture could not be renamed (it may be in use)"
+msgstr "No se pudo renombrar la traza (puede que esté en uso)"
+
+#: public/js/netwatcher-captures.js.php:319
+msgid "Capture deleted successfully"
+msgstr "Traza borrada correctamente"
+
+#: public/js/netwatcher-captures.js.php:320
+msgid "Capture could not be deleted (it may be in use)"
+msgstr "No se pudo borrar la traza (puede que esté en uso)"
 
 #~ msgid ""
 #~ "Add additional captures generated outside NetWatcher by copying the "
@@ -706,9 +826,6 @@ msgstr "Columnas"
 
 #~ msgid "FPGAs online and active"
 #~ msgstr "FPGAs activas"
-
-#~ msgid "Documentation"
-#~ msgstr "Documentación"
 
 #~ msgid "Example text"
 #~ msgstr "Texto de Ejemplo"

@@ -45,7 +45,7 @@ class capturesModel extends Common\appModel
         }
         /* Additional libraries */
         array_push($this->cssLibraries, 'bootstrap-table.min.css');
-        array_push($this->jsLibraries, 'bootstrap-table.min.js', 'bootstrap-table-localization.js.php', 'netwatcher-captures.js.php');
+        array_push($this->jsLibraries, 'bootstrap-table.min.js', 'bootstrap-table-localization.js.php', 'netwatcher-utils.js', 'netwatcher-captures.js.php');
     }
 }
 ?>

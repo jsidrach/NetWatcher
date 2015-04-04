@@ -160,7 +160,7 @@ class statusModel extends Common\appModel
     {
         return $this->testsFunctions;
     }
-    
+
     /*
      * Test Checkers
      */
@@ -268,7 +268,7 @@ class statusModel extends Common\appModel
     {
         return 'info';
     }
-    
+
     /*
      * Auxiliary functions
      */
