@@ -11,9 +11,13 @@ var config = require('../config.js');
 // Checks the timestamp and discard not valid requests
 function handleRequest(req, res, next) {
   if (!validTimestamp(req)) {
-    res.sendStatus(408);
+    process.nextTick(function() {
+      res.sendStatus(408);
+    });
   } else {
-    next();
+    process.nextTick(function() {
+      next();
+    });
   }
 };
 exports.handleRequest = handleRequest;
@@ -28,7 +32,7 @@ exports.logError = logError;
 // Reads a json in the messages folder
 function readJSON(file, callback) {
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
-  fs.readFile(filePath, 'utf8', function (err, data) {
+  fs.readFile(filePath, 'utf8', function(err, data) {
     var obj;
     if (err) {
       logError('Unable to read ' + filePath);
@@ -46,7 +50,7 @@ exports.readJSON = readJSON;
 // Sends a json as a response
 function sendJSON(file, res, code) {
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
-  fs.readFile(filePath, 'utf8', function (err, data) {
+  fs.readFile(filePath, 'utf8', function(err, data) {
     var obj;
     if (err) {
       logError('Unable to read ' + filePath);
@@ -64,7 +68,7 @@ exports.sendJSON = sendJSON;
 // Sends a jsonp as a response
 function sendJSONP(file, res, code) {
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
-  fs.readFile(filePath, 'utf8', function (err, data) {
+  fs.readFile(filePath, 'utf8', function(err, data) {
     var obj;
     if (err) {
       logError('Unable to read ' + filePath);
@@ -130,7 +134,7 @@ exports.getDelay = getDelay;
 // Checks if a timestamp is valid
 function validTimestamp(req) {
   // Set it off if MAX_DELAY is <= 0
-  if(config.MAX_DELAY <= 0) {
+  if (config.MAX_DELAY <= 0) {
     return true;
   }
   // Get the delay and compare

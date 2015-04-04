@@ -70,7 +70,9 @@ exports.storageStats = function (req, res) {
       if (config.RAID) {
         // Get individual disk statistics
         ans.raid_stats.raid_active = true;
-        statistics_utils.getRaidStats(res, ans);
+        process.nextTick(function() {
+          statistics_utils.getRaidStats(res, ans);
+        });
         return;
       }
       // Raid not active
