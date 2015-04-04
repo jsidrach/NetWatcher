@@ -33,6 +33,30 @@ class storageView extends Common\appView
     }
 
     /**
+     * Renders the format RAID confirmation dialog
+     */
+    protected function renderModals()
+    {
+        parent::renderModals();
+        
+        /* Format RAID confirmation modal */
+        $this->pLine('<!-- Format RAID confirmation -->');
+        $this->pLine('<div id="confirmFormatRaid" class="modal fade" tabindex="-2" role="dialog" aria-hidden="true">');
+        $this->pLine('<div class="modal-dialog">', 1);
+        $this->pLine('<div class="modal-content">', 1);
+        $this->pLine('<div class="modal-body text-justify">', 1);
+        $this->pLine('<strong class="text-danger">' . _('All data will be lost, are you sure you want to format the RAID?') . '</strong>', 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('<div class="modal-footer">');
+        $this->pLine('<button type="button" data-dismiss="modal" data-toggle="modal" data-target="#formatRaidModal" class="btn btn-danger">' . _('Format') . '</button>', 1);
+        $this->pLine('<button type="button" data-dismiss="modal" class="btn btn-default">' . _('Cancel') . '</button>');
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+    }
+
+    /**
      * Renders the main content of the page inside the rest of the page
      *
      * @see \App\Common\Views\appView::renderContent()
@@ -82,11 +106,35 @@ class storageView extends Common\appView
         $this->printInfoElement('raidSpeed', _('Global write speed of the RAID'), '');
         $this->pLine('</div>', - 1);
         
-        /* Fomat RAID placeholder */
+        /* Format RAID panel */
+        $this->pLine('<div class="row">&nbsp;</div>');
+        $this->pLine('<div id="raidSlow" class="row collapse">');
+        $this->pLine('<div class="col-md-8 col-md-offset-2">', 1);
+        $this->pLine('<div class="panel panel-danger">', 1);
+        $this->pLine('<div class="panel-body">', 1);
+        $this->pLine('<p>', 1);
+        $this->pLine(_('RAID write speed is below the minimum acceptable threshold') . '. ', 1);
+        $this->pLine(_('This can cause the capture/reproduction to be actually slower than 10Gb/s') . '. ');
+        $this->pLine(_('One possible solution is to format the RAID disks and re-create it') . '. ');
+        $this->pLine('</p>', - 1);
+        $this->pLine('<p>');
+        $this->pLine('<strong class="text-danger">' . _('Warning: all data will be lost') . '</strong>. ', 1);
+        $this->pLine('</p>', - 1);
+        $this->pLine('<p class="pull-right">');
+        $this->pLine('<button type="button" id="dismissFormat" class="btn btn-default">', 1);
+        $this->pLine(_('Dismiss'), 1);
+        $this->pLine('</button>', - 1);
+        $this->pLine('<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmFormatRaid">');
+        $this->pLine(_('Format the RAID'), 1);
+        $this->pLine('</button>', - 1);
+        $this->pLine('</p>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
+        $this->pLine('</div>', - 1);
         
-        /* Confirmation of format placeholder */
-        
-        /* Formatting RAID modal placeholder */
+        /* Format in progress modal */
+        $this->renderModalRequest('formatRaidModal', _('Formatting the RAID...'), 'formatProgress', 'formatLabel');
         
         /* Space usage placeholder */
         $this->pLine('<div id="spaceStats" class="collapse">');
@@ -125,28 +173,6 @@ class storageView extends Common\appView
         $this->pLine(' (' . '<a target="_blank" href="https://github.com/JSidrach/NetWatcher/blob/master/docs/wiki/FPGA_Configuration.md">' . _('see the wiki documentation') . '</a>' . ')');
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
-        $this->pLine('</div>', - 1);
-        $this->pLine('</div>', - 1);
-    }
-
-    /**
-     * Prints an info element
-     *
-     * @param Id $id
-     *            Id of the info value element
-     * @param Label $label
-     *            Label of the info
-     * @param Value $value
-     *            Value of the info
-     */
-    private function printInfoElement($id, $label, $value)
-    {
-        $this->pLine('<div class="row">');
-        $this->pLine('<div class="col-xs-6 control-label">', 1);
-        $this->pLine('<label class="pull-right">' . $label . '</label>', 1);
-        $this->pLine('</div>', - 1);
-        $this->pLine('<div class="col-xs-6">');
-        $this->pLine('<span id="' . $id . '">' . $value . '</span>', 1);
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
     }
