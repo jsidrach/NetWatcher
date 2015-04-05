@@ -59,3 +59,109 @@ Cosas a mencionar en la memoria:
     - Más idiomas
     - Más estadísticas
     - Módulo de seguridad
+
+_________________________________________________________________________________________
+
+Esquema de la memoria (* = generación semiautomática, - = contenido propio):
+
+* Portada
+- Agradecimientos
+- Abstract/Resumen
+* Glosario
+* Acrónimos
+* Índice General
+* Índice de tablas
+* Índice de figuras
+
+- Introducción
+  - Ámbito
+  - Motivación
+  - Objetivos
+  - Estructura del documento
+
+- Estado del arte
+  [Introducción]
+  - Sistemas de captura/reproducción de tráfico web
+  - Sistemas de gestión y monitorización
+  - Conclusiones
+
+- Definición del proyecto
+  [Introducción]
+  - Objetivos
+  - Alcance
+  - Metodología
+    {Sprints}
+  - Herramientas
+    {Dividir en Back-End y Front-End}
+    {Lista de herramientas, una subsección por cada una}
+
+- Requisitos
+  [Introducción]
+  - Requisitos Funcionales
+  - Requisitos No Funcionales
+
+- Diseño
+  [Introducción]
+  - Arquitectura
+    {Front-End/Back-End}
+  - Módulos
+    [Introducción]
+    - Gestor
+      {Capturador/Reproductor}
+    - Capturas
+      {Detección,Conversión,Renombrado,Borrado}
+    - Estado/Estadísticas
+      {Velocidad,Estado,RAID}
+  - Servicio Web FPGA
+    {REST-like,asíncrono}
+  - Interfaz Gráfica
+    {Diseño adaptativo,localización}
+    {Maquetas}
+
+- Implementación
+  [Introducción]
+  - Back-End
+    [Introducción]
+    {io.js,express,supervisor,apiDoc,npm}
+    {API ~REST,mensajes json}
+    {Servicio}
+  - Front-End
+    [Introducción]
+    - {MVC propio,Bootstrap,jQuery,gettext,phpDocumentor,composer,bower}
+    - Traducciones
+    - Temas
+
+- Pruebas
+  [Introducción]
+  - Pruebas de verificación
+  - Pruebas de validación
+
+- Mantenimiento
+  [Introducción]
+  {Open Source/GitHub Issues/Pull Requests}
+
+- Uso de la aplicación
+  [Introducción]
+  - Instalación
+  - Configuración
+  - Casos de uso
+    {Apéndice Manual de Usuario}
+
+- Conclusiones
+
+- Líneas de trabajo futuras
+
+* Bibliografía
+
+- Apéndices
+  - Manual de Usuario
+    [Introducción]
+    {Descripción detallada}
+  - Framework MVC propio
+    [Introducción]
+    - MVC
+    - Router
+    - Logger
+    - Conclusiones
+  - Programación asíncrona
+  - FPGA Web Service API
