@@ -14,8 +14,8 @@ Welcome to the NetWatcher documentation! Below is the list of topics covered.
 * [References](wiki/References.md)
 
 #### Project Essay (in Spanish)
-* [PDF](essay/NetWatcher.pdf)
-* [LaTeX source](essay/latex)
+* [PDF](essay/Trabajo de Fin de Grado.pdf)
+* [LaTeX source](essay/)
      
 All documentation is available under the terms of a [Creative Commons License](http://creativecommons.org/licenses/by/4.0/legalcode).
 
