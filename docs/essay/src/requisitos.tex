@@ -8,35 +8,38 @@ Se han agrupado los requistos en dos clases: funcionales y no funcionales. Los p
 \section{Requisitos Funcionales\label{sec:req:rf}}
 
 \begin{enumerate}[before=\itshape,font=\normalfont,label=\bfseries RF. \arabic*]
-  \item El sistema permitirá conocer el estado actual de la \gls{FPGA} entre los posibles estados descritos en \ref{fpga:estados}.
+  \setlength{\itemsep}{10pt}
+  \setlength{\parskip}{10pt}
+  \setlength{\parsep}{10pt}
+  \item Se podrá conocer el estado actual de la \gls{FPGA} entre los posibles estados descritos en \ref{fpga:estados}.
   \item Se podrá configurar la \gls{FPGA} para captura de tráfico web.
   \item Una vez configurada la \gls{FPGA} para ello, se podrá ordenar a la \gls{FPGA} que capture tráfico web desde un puerto específico de la \gls{FPGA}. Este tráfico se irá guardando en una \gls{traza} en formato \gls{simple}, hasta llegar a un tamaño decidido por el usuario.
-  \item Si hay una captura en curso, el sistema permitirá parar dicha captura, borrándose la \gls{traza} asociada a la captura.
-  \item Si hay una captura en curso, el sistema permitirá conocer los parámetros con los que se inició dicha captura, así como el tiempo que ha pasado desde el inicio y cuánto se ha capturado hasta el momento.
+  \item Si existe una captura en curso, el se podrá parar dicha captura, borrándose la \gls{traza} asociada a la captura.
+  \item Si existe una captura en curso, el se podrán conocer los parámetros con los que se inició dicha captura, así como el tiempo que ha transcurrido desde el inicio y cuánto se ha capturado hasta el momento.
   \item Se podrá configurar la \gls{FPGA} para la reproducción de una \gls{traza}.
   \item Una vez configurada la \gls{FPGA} para ello, se podrá ordenar a la \gls{FPGA} que reproduzca una \gls{traza} concreta en formato \gls{simple}. La reproducción se realizará con una una serie de parámetros dados por el usuario: máscara de puertos a los que dirigir la reproducción, \gls{IFG} asociado y reproducir en bucle o solo una vez.
-  \item Si hay reproducción de \gls{traza} en curso, el sistema permitirá parar dicha reproducción.
-  % TODO: Estadísticas de reproducción
-  \item Se podrá configurar y consultar en qué directorio se almacenarán las \glspl{traza} para su posterior uso.
+  \item Si existe una reproducción de \gls{traza} en curso, se podrá parar dicha reproducción.
+  \item Si existe una reproducción de \gls{traza} en curso, se podrán conocer los parámetros con los que se inició dicha reproducción, así como el tiempo que ha transcurrido desde el inicio y cuántos paquetes se han enviado hasta el momento.
+  \item Se podrá configurar y consultar en qué directorio se almacenan las \glspl{traza}.
   \item Se podrá conocer la lista de \glspl{traza} existentes, así como su tamaño, fecha y tipo (\gls{simple} o \gls{pcap}).
-  \item Una traza en formato \gls{simple} se podrá convertir a formato \gls{pcap}.
-  \item Una traza en formato \gls{pcap} se podrá convertir a formato \gls{simple}.
+  \item Una traza en formato \gls{simple} podrá ser convertida formato \gls{pcap}.
+  \item Una traza en formato \gls{pcap} podrá ser convertida a formato \gls{simple}.
   \item Una \gls{traza} podrá ser renombrada.
   \item Una \gls{traza} podrá ser borrada.
-  % Estadísticas de espacio
-  % Estadísticas de raid
-  % Estado componentes adicionales
+  \item Se podrá conocer el espacio total y el espacio ocupado del sistema de archivos que contiene las \glspl{traza}.
+  \item Si el sistema de archivos que contiene las \glspl{traza} es un \gls{RAID}, se podrá conocer la velocidad de escritura global del \gls{RAID}, así como la de cada disco que lo compone.
 \end{enumerate}
-
-TODO: Lista de Requisitos No Funcionales
 
 
 \section{Requisitos No Funcionales\label{sec:req:rnf}}
 
 \begin{enumerate}[label=\bfseries RNF. \arabic*]
-  \item ASD
-  \item ASDA
-  \item ASD
+  \setlength{\itemsep}{10pt}
+  \setlength{\parskip}{10pt}
+  \setlength{\parsep}{10pt}
+  \item La funcionalidad descrita en \ref{sec:req:rf} será accesible al usuario mediante una interfaz gráfica.
+  \item Se podrán seleccionar dos idiomas para la interfaz gráfica: inglés y español.
+  \item Se podrán seleccionar distintos temas (aspectos visuales) para la interfaz gráfica.
+  \item La interfaz gráfica será una web adaptativa, de forma que se pueda visualizar en distintas resoluciones de pantalla, como las de ordenadores y móviles.
+  \item La interfaz gráfica estará disponible aun cuando haya algún fallo en el servidor que aloja la \gls{FPGA}, e informará del fallo.
 \end{enumerate}
-
-TODO: Lista de Requisitos Funcionales. interfaz, multilenguaje, mecanismos, uptime, velocidad, descarte ordenes desfasadas
