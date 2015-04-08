@@ -1,13 +1,42 @@
 \chapter{Requisitos\label{cap:requisitos}}
 
-TODO: [Introducción]
+A continuación se enumeran los requisitos que la aplicación deberá cumplir. Para la elaboración de esta lista de requisitos se ha realizado un análisis sobre el problema planteado: diseñar un servicio que permita gestionar y monitorizar una \gls{FPGA} que captura y reproduce tráfico de red. Este análisis se ha realizado principalmente mediante la consulta directa con los potenciales usuarios de la aplicación y la evaluación del estado del arte.
+
+Se han agrupado los requistos en dos clases: funcionales y no funcionales. Los primeros describen el comportamiento que tendrá la aplicación, y los segundos los atributos de calidad y restricciones de la misma.
 
 
 \section{Requisitos Funcionales\label{sec:req:rf}}
 
-TODO: Lista de Requisitos Funcionales
+\begin{enumerate}[before=\itshape,font=\normalfont,label=\bfseries RF. \arabic*]
+  \item El sistema permitirá conocer el estado actual de la \gls{FPGA} entre los posibles estados descritos en \ref{fpga:estados}.
+  \item Se podrá configurar la \gls{FPGA} para captura de tráfico web.
+  \item Una vez configurada la \gls{FPGA} para ello, se podrá ordenar a la \gls{FPGA} que capture tráfico web desde un puerto específico de la \gls{FPGA}. Este tráfico se irá guardando en una \gls{traza} en formato \gls{simple}, hasta llegar a un tamaño decidido por el usuario.
+  \item Si hay una captura en curso, el sistema permitirá parar dicha captura, borrándose la \gls{traza} asociada a la captura.
+  \item Si hay una captura en curso, el sistema permitirá conocer los parámetros con los que se inició dicha captura, así como el tiempo que ha pasado desde el inicio y cuánto se ha capturado hasta el momento.
+  \item Se podrá configurar la \gls{FPGA} para la reproducción de una \gls{traza}.
+  \item Una vez configurada la \gls{FPGA} para ello, se podrá ordenar a la \gls{FPGA} que reproduzca una \gls{traza} concreta en formato \gls{simple}. La reproducción se realizará con una una serie de parámetros dados por el usuario: máscara de puertos a los que dirigir la reproducción, \gls{IFG} asociado y reproducir en bucle o solo una vez.
+  \item Si hay reproducción de \gls{traza} en curso, el sistema permitirá parar dicha reproducción.
+  % TODO: Estadísticas de reproducción
+  \item Se podrá configurar y consultar en qué directorio se almacenarán las \glspl{traza} para su posterior uso.
+  \item Se podrá conocer la lista de \glspl{traza} existentes, así como su tamaño, fecha y tipo (\gls{simple} o \gls{pcap}).
+  \item Una traza en formato \gls{simple} se podrá convertir a formato \gls{pcap}.
+  \item Una traza en formato \gls{pcap} se podrá convertir a formato \gls{simple}.
+  \item Una \gls{traza} podrá ser renombrada.
+  \item Una \gls{traza} podrá ser borrada.
+  % Estadísticas de espacio
+  % Estadísticas de raid
+  % Estado componentes adicionales
+\end{enumerate}
+
+TODO: Lista de Requisitos No Funcionales
 
 
 \section{Requisitos No Funcionales\label{sec:req:rnf}}
 
-TODO: Lista de Requisitos No Funcionales
+\begin{enumerate}[label=\bfseries RNF. \arabic*]
+  \item ASD
+  \item ASDA
+  \item ASD
+\end{enumerate}
+
+TODO: Lista de Requisitos Funcionales. interfaz, multilenguaje, mecanismos, uptime, velocidad, descarte ordenes desfasadas
