@@ -1,7 +1,25 @@
 \chapter{Líneas de trabajo futuras\label{cap:lineas_de_trabajo_futuras}}
 
-TODO: Líneas de trabajo futuras
-  - Estandarización, futuras fpgas con características parecidas
-  - Más idiomas
-  - Más estadísticas
-  - Módulo de seguridad
+Se ha desarrollado, en el contexto de este Trabajo de Fin de Grado, una interfaz web para el manejo de sondas red de altas prestaciones. Además del trabajo realizado, se han identificado áreas de interés que se podrían considerar con el objetivo de mejorar la aplicación en el futuro.
+
+
+\section*{Estandarización del Servicio Web}
+
+Esta aplicación gestiona un dispositivo concreto de captura y reproducción de tráfico de red. Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento. Es por ello que una posible área de mejora es estandarizar el Servicio Web, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica. Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
+
+
+\section*{Registro de estadísticas adicionales}
+
+El sistema actual consta de un módulo que proporciona estadísticas en tiempo real sobre el estado de la \gls{FPGA} y de los distintos componentes que intervienen en el proceso de captura y reproducción. Sin embargo, estos datos no se almacenan de forma persistente una vez obtenidos. Una opción sería guardar en una base de datos estas estadísticas y parámetros de utilización de la \gls{FPGA}. Esto permitiría un análisis posterior de estas estadísticas almacenadas para sacar conclusiones sobre distintos parámetros como el rendimiento o las operaciones más frecuentes.
+
+
+\section*{Localización en otros idiomas}
+
+El trabajo base para dar soporte a diferentes idiomas en la interfaz gráfica ya ha sido realizado, y actualmente la aplicación está disponible en español e inglés. Por tanto, añadir idiomas adicionales a la interfaz se puede realizar traduciendo las distintas cadenas de texto a otros idiomas, sin ser necesario esfuerzo adicional a nivel de diseño e implementación.
+
+
+\section*{Módulo de autenticación}
+
+Dado que la interfaz web está pensada para ser utilizada en redes internas, sin acceso desde exterior, no ha sido una prioridad implementar un módulo de autenticación que impida a usuarios no autorizados el acceso a la aplicación. Desarrollar este módulo de autenticación haría posible instalar el servidor en una dirección pública, sin ceder por ello el control del sistema a cualquier persona ajena. Esto permitiría que un usuario autorizado pudiera utilizar la interfaz desde cualquier punto con conexión a internet.
+
+% TODO: Distinguir entre los formatos de pcap
