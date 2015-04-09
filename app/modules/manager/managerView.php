@@ -198,7 +198,7 @@ class managerView extends Common\appView
         $this->pLine('</div>', - 1);
         $this->pLine('</div>', - 1);
         
-        /* Save button */
+        /* Submit button */
         $this->pLine('<div class="form-group">');
         $this->pLine('<div class="col-sm-offset-7 col-sm-2">', 1);
         $this->pLine('<button id="recordCaptureStart" type="submit" class="btn btn-primary pull-right">' . _('Start') . '</button>', 1);
