@@ -584,8 +584,8 @@
  * @apiSuccess {String} type Return type ('data')
  * @apiSuccess {Object} captures Array of information for each capture
  * @apiSuccess {String} captures.name Name of the capture
- * @apiSuccess {Number} captures.type Type of the capture (simple/pcap)
- * @apiSuccess {String} captures.size Size of the capture (in bytes)
+ * @apiSuccess {String} captures.type Type of the capture (simple/pcap)
+ * @apiSuccess {Number} captures.size Size of the capture (in bytes)
  * @apiSuccess {String} captures.date Date of the capture (yyyy-mm-dd hh:mm:ss)
  *
  * @apiSuccessExample {json} Example data on success
@@ -626,8 +626,8 @@
  * @apiSuccess {String} type Return type ('data')
  * @apiSuccess {Object} captures Array of information for each capture
  * @apiSuccess {String} captures.name Name of the capture
- * @apiSuccess {Number} captures.type Type of the capture (simple)
- * @apiSuccess {String} captures.size Size of the capture (in bytes)
+ * @apiSuccess {String} captures.type Type of the capture (simple)
+ * @apiSuccess {Number} captures.size Size of the capture (in bytes)
  * @apiSuccess {String} captures.date Date of the capture (yyyy-mm-dd hh:mm:ss)
  *
  * @apiSuccessExample {json} Example data on success
@@ -656,8 +656,8 @@
  * @apiSuccess {String} type Return type ('data')
  * @apiSuccess {Object} captures Array of information for each capture
  * @apiSuccess {String} captures.name Name of the capture
- * @apiSuccess {Number} captures.type Type of the capture (pcap)
- * @apiSuccess {String} captures.size Size of the capture (in bytes)
+ * @apiSuccess {String} captures.type Type of the capture (pcap)
+ * @apiSuccess {Number} captures.size Size of the capture (in bytes)
  * @apiSuccess {String} captures.date Date of the capture (yyyy-mm-dd hh:mm:ss)
  *
  * @apiSuccessExample {json} Example data on success
@@ -827,6 +827,6 @@
  * {
  *  "code": "success",
  *  "type": "notification",
- *  "description": "The capture has been successfully converted."
+ *  "description": "The capture has been successfully deleted."
  * }
  */

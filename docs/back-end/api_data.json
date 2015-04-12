@@ -39,14 +39,14 @@
           },
           {
             "group": "Success 200",
-            "type": "Number",
+            "type": "String",
             "field": "captures.type",
             "optional": false,
             "description": "<p>Type of the capture (simple/pcap)</p>"
           },
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "Number",
             "field": "captures.size",
             "optional": false,
             "description": "<p>Size of the capture (in bytes)</p>"
@@ -154,7 +154,7 @@
       "examples": [
         {
           "title": "Example data on success",
-          "content": "{\n\"code\": \"success\",\n\"type\": \"notification\",\n\"description\": \"The capture has been successfully converted.\"\n}\n",
+          "content": "{\n\"code\": \"success\",\n\"type\": \"notification\",\n\"description\": \"The capture has been successfully deleted.\"\n}\n",
           "type": "json"
         }
       ]
@@ -246,14 +246,14 @@
           },
           {
             "group": "Success 200",
-            "type": "Number",
+            "type": "String",
             "field": "captures.type",
             "optional": false,
             "description": "<p>Type of the capture (pcap)</p>"
           },
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "Number",
             "field": "captures.size",
             "optional": false,
             "description": "<p>Size of the capture (in bytes)</p>"
@@ -514,14 +514,14 @@
           },
           {
             "group": "Success 200",
-            "type": "Number",
+            "type": "String",
             "field": "captures.type",
             "optional": false,
             "description": "<p>Type of the capture (simple)</p>"
           },
           {
             "group": "Success 200",
-            "type": "String",
+            "type": "Number",
             "field": "captures.size",
             "optional": false,
             "description": "<p>Size of the capture (in bytes)</p>"
