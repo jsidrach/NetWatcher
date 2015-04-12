@@ -6,24 +6,28 @@ Instalación completa (dependencias)
 ##### Ubuntu/Debian based
 Instalar con *aptitude*
 ```sh
-$ sudo apt-get install texlive-full
+$ sudo apt-get install texlive-full python-pygments
 ```
 ##### Fedora
 Instalar con *yum*
 ```sh
-$ sudo yum install texlive-scheme-full
+$ sudo yum install texlive-scheme-full python-pygments
 ```
 ##### Arch Linux/Manjaro
 Instalar con *pacman*
 ```sh
-$ sudo pacman -S texlive-most
+$ sudo pacman -S texlive-most python-pygments
 ```
 
 ### Windows
 [Instalar proTeXt](https://tug.org/protext/)
 
+[Instalar Pygments](ttp://pygments.org/download/)
+
 ### Mac/OS X
 [Instalar MacTeX](https://tug.org/mactex/)
+
+[Instalar Pygments](ttp://pygments.org/download/)
 
 Comandos
 ----

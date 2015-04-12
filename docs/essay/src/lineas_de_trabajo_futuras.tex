@@ -5,12 +5,12 @@ En el contexto de este Trabajo de Fin de Grado, se ha desarrollado una interfaz 
 
 \subsection*{Estandarización del Servicio Web}
 
-La aplicación implementada gestiona un dispositivo concreto de captura y reproducción de tráfico de red. Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento. Es por ello que una posible área de mejora es estandarizar el Servicio Web, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica. Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
+La aplicación implementada gestiona un dispositivo concreto de captura y reproducción de tráfico de red. Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento. Es por ello que una posible área de mejora es estandarizar el \gls{servicioweb}, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica. Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
 
 
-\subsection*{Soporte de subtipos de \glspl{traza} \gls{pcap} adicionales}
+\subsection*{Soporte de subtipos de trazas pcap adicionales}
 
-El sistema de gestión de \glspl{traza} actual soporta los formatos \gls{simple} y \gls{pcap}. Las \glspl{traza} en formato \gls{pcap} tienen sin embargo subtipos, cada uno con características distintas que en el sistema actual se descartan. En línea con la estandarización del Servicio Web, poder distinguir entre los distintos subtipos de \glspl{traza} \gls{pcap} facilitaría obtener información adicional propia de cada subformato, permitiendo además clasificar y convertir entre cada uno de los subtipos.
+El sistema de gestión de \glspl{traza} actual soporta los formatos \gls{simple} y \gls{pcap}. Las \glspl{traza} en formato \gls{pcap} tienen sin embargo subtipos, cada uno con características distintas que en el sistema actual se descartan. En línea con la estandarización del \gls{servicioweb}, poder distinguir entre los distintos subtipos de \glspl{traza} \gls{pcap} facilitaría obtener información adicional propia de cada subformato, permitiendo además clasificar y convertir entre cada uno de los subtipos.
 
 
 \subsection*{Registro de estadísticas adicionales}
