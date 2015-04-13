@@ -1,21 +1,15 @@
-\chapter{API Servicio Web FPGA\label{extra:api_servicio_web_fpga}}
+\chapter{API del Servicio Web FPGA\label{extra:api_servicio_web_fpga}}
 
-TODO: Intro
+En este apéndice se detallan los métodos de la \gls{API} del \gls{servicioweb} \gls{FPGA}. Esta documentación puede también consultarse de manera interactiva (Figura \ref{fig:docsbackend}) en la propia página de la aplicación (en inglés), accediendo desde el navegador a la ruta relativa \textit{NetWatcher/docs-back-end/}. Al ser un \gls{servicioweb}, cada método se invoca mediante una llamada \gls{HTTP} \cite{httpmethods}.
 
-[Intro] En este apéndice se detallan los métodos accesibles 
+Se han agrupado todos los métodos disponibles en tres categorías, coincidiendo con los módulos implementados: gestión, trazas y estadísticas. Para cada método, se especifica su ruta (relativa a la ruta del \gls{servicioweb}), los parámetros necesarios para su invocación y las posibles salidas, con un ejemplo cada una. Los parámetros se pasan por la propia \gls{URL} o en la cabecera en el caso del \textit{timestamp}. Cada método devuelve siempre un código de estado \gls{HTTP} \cite{httpcodes} y una salida en formato \gls{JSON} \cite{json}.
 
-json
-
-:parametros
-
-timestamp cabecera
-
-POST/GET/DELETE/PUT
-
-
-Agrupados métodos en módulos {captures,manager,statistics}
-
-Captura web inglés
+\begin{figure}[htp!]
+  \centering
+  \includegraphics[width=0.95\textwidth,clip=true]{graphics/capturas/docs_back_end}
+  \caption{Documentación web de la \gls{API} del \gls{servicioweb} \gls{FPGA}.}
+  \label{fig:docsbackend}
+\end{figure} 
 
 \section{Métodos de Gestión \label{extra:api:gestion}}
 
