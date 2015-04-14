@@ -1,11 +1,10 @@
 \chapter{Líneas de trabajo futuras\label{cap:lineas_de_trabajo_futuras}}
 
-En el contexto de este Trabajo de Fin de Grado, se ha desarrollado una interfaz web para el manejo de sondas red de altas prestaciones. Sin embargo, el tiempo disponible para ello ha sido limitado, surgiendo diversos ámbitos susceptibles a mejora y ampliación. Por ello, se han identificado áreas de interés que podrían ser consideradas con el objetivo de mejorar la aplicación en el futuro.
-
+En el contexto de este Trabajo de Fin de Grado, se ha desarrollado una interfaz web para el manejo de sondas red de altas prestaciones. Gracias al trabajo realizado, se han identificado áreas de interés que podrían ser consideradas con el objetivo de mejorar y ampliar la aplicación en el futuro, y que no han podido ser abordadas en el mismo por la limitación del tiempo disponible. Se describen a continuación algunas de estas posibles mejoras.
 
 \subsection*{Estandarización del Servicio Web}
 
-La aplicación implementada gestiona un dispositivo concreto de captura y reproducción de tráfico de red. Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento. Es por ello que una posible área de mejora es estandarizar el \gls{servicioweb}, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica. Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
+La aplicación implementada gestiona un dispositivo concreto de captura y reproducción de tráfico de red. Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento. Es por ello que una posible área de mejora sería estandarizar el \gls{servicioweb}, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica. Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
 
 
 \subsection*{Soporte de subtipos de trazas pcap adicionales}
@@ -26,4 +25,4 @@ El trabajo base para dar soporte a diferentes idiomas en la interfaz gráfica ya
 \subsection*{Módulo de autenticación}
 
 
-Dado que la interfaz web está pensada para ser utilizada en redes internas, sin acceso desde exterior, no se ha planteado implementar un módulo de autenticación que impida a usuarios no autorizados el acceso a la aplicación. Desarrollar este módulo de autenticación haría posible instalar el servidor en una dirección pública, sin ceder por ello el control del sistema a una persona ajena. Esto permitiría que un usuario autorizado pudiera utilizar la interfaz desde cualquier punto con conexión a internet.
+Dado que la interfaz web está pensada para ser utilizada en redes internas, sin acceso desde el exterior, no se ha planteado implementar un módulo de autenticación que impida a usuarios no autorizados el acceso a la aplicación. Desarrollar este módulo de autenticación haría posible instalar el servidor en una dirección pública, sin ceder por ello el control del sistema a una persona ajena. Esto permitiría que un usuario autorizado pudiera utilizar la interfaz desde cualquier punto con conexión a internet.
