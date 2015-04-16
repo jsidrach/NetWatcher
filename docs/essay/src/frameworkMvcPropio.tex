@@ -1,34 +1,39 @@
 \chapter{Framework MVC propio\label{extra:framework_mvc_propio}}
 
-TODO: [Introducción]
+En este apéndice se explican los distintos componentes del \gls{framework} propio desarrollado, del que hace uso la interfaz web. 
+Lenguajes (php)
+
+TODO: [Introducción], Imagen, 
   {Visión global}
 
 
-\section{Modelo Vista Controlador\label{extra:sec:mvc}}
+\section{Modelo Vista Controlador\label{extra:mvc:mvc}}
 
-TODO: Modelo Vista Controlador
+TODO: Modelo Vista Controlador, interacción entre componentes, división en módulos,
+clases abstractas
 
+\section{Manejo de rutas\label{extra:mvc:router}}
 
-\section{Manejo de dependencias\label{extra:sec:dependencias}}
+TODO: Router, redireccionamiento, urls rest, parámetros, proxy, htaccess
 
-TODO: Manejo de dependencias
+\section{Redireccionamiento de peticiones a servicio web\label{extra:mvc:proxy}}
 
+Proxy
 
-\section{Config\label{extra:sec:config}}
+\section{Manejo de dependencias\label{extra:mvc:dependencias}}
 
-TODO: Config
+TODO: Manejo de dependencias. Composer, bower
 
+\section{Configuración\label{extra:mvc:config}}
 
-\section{Router\label{extra:sec:router}}
+TODO: Config: Carpetas, defines
 
-TODO: Router
+\section{Registro de eventos\label{extra:mvc:logger}}
 
+TODO: Logger: Eventos, errores/warnings capturados, proxy
 
-\section{Logger\label{extra:sec:logger}}
+\section{Conclusiones\label{extra:mvc:conclusiones}}
 
-TODO: Logger
+Se ha desarrollado un \gls{framework} que sirve de base para la interfaz web, proporcionando un conjunto mínimo de funcionalidad necesaria para el problema planteado. Aunque desarrollarlo ha supuesto un coste temporal adicional para el proyecto, ha repercutido positivamente en fases posteriores de la implementación.
 
-
-\section{Conclusiones\label{extra:sec:conclusiones}}
-
-TODO: Conclusiones
+Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño Modelo-Vista-Controlador, manejo automático de dependencias y librerías externas, localización de interfaces web y codificación de un servidor \gls{proxy}.
