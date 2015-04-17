@@ -22,7 +22,7 @@ Para instalar el \gls{servicioweb} \gls{FPGA}, compruebe que se cumplan todos lo
   \item Sitúese en la carpeta \texttt{./fpga-api/}.
   \item Despliegue el servidor ejecutando el siguiente comando:
   
-  \texttt{./scripts/update\_server.sh}.
+  \texttt{./scripts/update\_server.sh}
   \item Inicie sesión en el servidor remoto.
   \item Ponga en marcha el \gls{servicioweb} ejecutando el siguiente comando:
 
@@ -64,6 +64,7 @@ RAID\_DISKS         & Array de cadenas & Discos físicos del \gls{RAID} (por eje
 \label{extra:manual:paramsfpga}
 \end{table}
 
+
 \section{Instalación de la interfaz web\label{extra:manual:instalacionweb}}
 
 \subsection*{Requisitos}
@@ -86,12 +87,136 @@ Para instalar la interfaz web, compruebe que se cumplan todos los requisitos y s
 
 
 \section{Configuración de la interfaz web\label{extra:manual:configweb}}
-TODO: Configuración - IP, tema, idioma
+
+Se puede configurar la interfaz web accediendo en el navegador a la página de configuración, \texttt{IP\_SERVIDOR\_APACHE/NetWatcher/settings}. En esta pantalla (Figura \ref{fig:captura:configuracion}) se puede configurar el idioma, el aspecto visual (tema) y la dirección del \gls{servicioweb} \gls{FPGA}. Para que los cambios se reflejen en la interfaz web es necesario guardarlos. En el resto del manual se presupone que el idioma seleccionado es español.
+
+\begin{figure}[htp!]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/configuracion_tema_base}
+  \caption{Página de configuración de la interfaz web.}
+  \label{fig:captura:configuracion}
+\end{figure}
 
 
 \section{Uso de la aplicación\label{extra:manual:uso}}
-Una vez instalado y configurado tanto el \gls{servicioweb} \gls{FPGA} como la interfaz web.
-TODO: [Introducción]. Rutas arriba, rutas abajo, documentaciones
+Una vez instalado y configurado tanto el \gls{servicioweb} \gls{FPGA} como la interfaz web, todo está listo para utilizar la interfaz. Esta interfaz se puede usar desde cualquier navegador, y tanto en ordenador como en móvil. Todas las pantallas tienen las misma barras de navegación.
+
+Desde la barra de navegación superior se pueden acceder a las siguientes pantallas:
+\begin{itemize}
+  \item \textbf{Gestor}: administración de la \gls{FPGA}.
+  \item \textbf{Almacenamiento}: estadísticas de almacenamiento y del \gls{RAID}, si activo.
+  \item \textbf{Capturas}: gestión de las \glspl{traza} almacenadas.
+  \item \textbf{Configuración}: explicada en la sección \ref{extra:manual:configweb}.
+\end{itemize}
+
+La barra de navegación inferior contiene los siguientes elementos:
+\begin{itemize}
+  \item \textbf{Estado}: enlace a la pantalla con estado actual del sistema.
+  \item \textbf{Wiki}: enlace a la documentación del proyecto.
+  \item \textbf{Código}: enlace al repositorio de código del proyecto.
+  \item \textbf{Licencia}: despliega la licencia del proyecto.
+\end{itemize}
+
+Adicionalmente, se puede acceder a la documentación interna autogenerada del proyecto (en inglés) mediante las siguientes rutas relativas a la dirección base de la interfaz web:
+\begin{itemize}
+  \item \textbf{Documentación del \gls{servicioweb} \gls{FPGA}}: \texttt{/docs-back-end/}.
+  \item \textbf{Documentación de la interfaz web}: \texttt{/docs-front-end/}.
+\end{itemize}
+
+En las siguientes subsecciones se explica como utilizar las pantallas de la interfaz web.
+
+
+\subsection{Gestor\label{extra:manual:gestor}}
+
+TODO: Selección de modo, Figura \ref{fig:captura:gestionseleccion}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_seleccion}
+  \caption{Página de gestión - selección de modo.}
+  \label{fig:captura:gestionseleccion}
+\end{figure}
+
+TODO: Selección de modo en progreso, Figura \ref{fig:captura:gestionprogreso}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_seleccion_progreso}
+  \caption{Página de gestión - selección de modo en progreso.}
+  \label{fig:captura:gestionprogreso}
+\end{figure}
+
+TODO: Capturar tráfico form, Figura \ref{fig:captura:gestioncapturar}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_capturar}
+  \caption{Página de gestión - capturar tráfico.}
+  \label{fig:captura:gestioncapturar}
+\end{figure}
+
+TODO: Capturando tráfico, Figura \ref{fig:captura:gestioncapturando}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_capturando}
+  \caption{Página de gestión - capturando tráfico.}
+  \label{fig:captura:gestioncapturando}
+\end{figure}
+
+TODO: Reproducir traza form, Figura \ref{fig:captura:gestionreproducir}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_reproducir}
+  \caption{Página de gestión - reproducir \gls{traza}.}
+  \label{fig:captura:gestionreproducir}
+\end{figure}
+
+TODO: Reproduciendo traza, Figura \ref{fig:captura:gestionreproduciendo}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_reproduccion}
+  \caption{Página de gestión - reproduciendo \gls{traza}.}
+  \label{fig:captura:gestionreproduciendo}
+\end{figure}
+
+
+\subsection{Almacenamiento\label{extra:manual:almacenamiento}}
+TODO: Estadísticas, formatear raid
+
+TODO: Espacio, Figura \ref{fig:captura:espacio}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/almacenamiento_espacio}
+  \caption{Página de almacenamiento, con \gls{RAID} no activo.}
+  \label{fig:captura:espacio}
+\end{figure}
+
+TODO: RAID, Figura \ref{fig:captura:raid}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/almacenamiento_raid}
+  \caption{Página de almacenamiento, con \gls{RAID} activo.}
+  \label{fig:captura:raid}
+\end{figure}
+
+
+\subsection{Capturas\label{extra:manual:capturas}}
+
+TODO: Renombrar, convertir <->, borrar, Figura \ref{fig:captura:capturas}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/capturas}
+  \caption{Página de capturas.}
+  \label{fig:captura:capturas}
+\end{figure}
+
+
+\subsection{Estado\label{extra:manual:estado}}
+
+TODO: Estado, Figura \ref{fig:captura:estado}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/estado}
+  \caption{Página de estado del sistema.}
+  \label{fig:captura:estado}
+\end{figure}
 
 
 \section{Solución de problemas\label{extra:manual:solucion}}
