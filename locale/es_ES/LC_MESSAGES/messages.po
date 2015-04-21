@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
 "POT-Creation-Date: 2015-04-17 10:54+0100\n"
-"PO-Revision-Date: 2015-04-17 10:56+0100\n"
+"PO-Revision-Date: 2015-04-21 15:19+0100\n"
 "Last-Translator: JSid <juan.sidrach@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -206,7 +206,7 @@ msgstr "Espacio disponible"
 
 #: app/modules/storage/storageView.php:161
 msgid "Used space (%)"
-msgstr "Espacio Ocupado"
+msgstr "Espacio Ocupado (%)"
 
 #: app/modules/storage/storageView.php:162
 msgid "Free space (%)"

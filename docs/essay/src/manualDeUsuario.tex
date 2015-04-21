@@ -123,53 +123,103 @@ Adicionalmente, se puede acceder a la documentación interna autogenerada del pr
   \item \textbf{Documentación de la interfaz web}: \texttt{/docs-front-end/}.
 \end{itemize}
 
-En las siguientes subsecciones se explica como utilizar las pantallas de la interfaz web.
+En las siguientes subsecciones se explica como utilizar las principales pantallas interactivas de la interfaz web.
 
 
 \subsection{Gestor\label{extra:manual:gestor}}
 
-TODO: Selección de modo, Figura \ref{fig:captura:gestionseleccion}
-\begin{figure}[H]
+En esta pantalla se controla el estado de la \gls{FPGA}. El contenido de esta pantalla, y por tanto las acciones disponibles, cambian según el estado actual de la \gls{FPGA}.
+
+Si la \gls{FPGA} no ha sido inicializada, la pantalla de gestión permitirá seleccionar un modo en el que inicializarla:
+\begin{itemize}
+  \item \textbf{Reproductor}: permite reproducir \glspl{traza} en formato \gls{simple}.
+  \item \textbf{Capturador}: permite capturar tráfico web, almacenándolo en una \gls{traza} en formato \gls{simple}.
+\end{itemize}
+Para elegir un modo basta con pulsar uno de los dos botones de la interfaz (ver Figura \ref{fig:captura:gestionseleccion}). Esta elección de modo no es definitiva, ya que se puede cambiar de modo posteriormente siempre que la \gls{FPGA} no esté capturando o reproduciendo tráfico.
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_seleccion}
   \caption{Página de gestión - selección de modo.}
   \label{fig:captura:gestionseleccion}
 \end{figure}
 
-TODO: Selección de modo en progreso, Figura \ref{fig:captura:gestionprogreso}
-\begin{figure}[H]
+Una vez seleccionado un modo, un diálogo muestra el progreso de la inicialización: programando la \gls{FPGA}, reiniciando el servidor y montando la \gls{FPGA} (ver Figura \ref{fig:captura:gestionprogreso}).
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_seleccion_progreso}
   \caption{Página de gestión - selección de modo en progreso.}
   \label{fig:captura:gestionprogreso}
 \end{figure}
 
-TODO: Capturar tráfico form, Figura \ref{fig:captura:gestioncapturar}
-\begin{figure}[H]
+Si la \gls{FPGA} ha sido inicializada en modo capturador, la pantalla de gestión mostrará un formulario en el que se configurarán los parámetros de una captura (ver Figura \ref{fig:captura:gestioncapturar}). Este formulario contiene los siguientes campos, todos ellos obligatorios:
+\begin{itemize}
+  \item \textbf{Nombre de la nueva \gls{traza}}: nombre que tendrá la \gls{traza} en la que se almacenará el tráfico capturado, en formato \gls{simple}.
+  \item \textbf{Bytes a capturar}: número total de bytes que se capturarán, y su unidad (Bytes, KB, MB, GB).
+  \item \textbf{Puerto a capturar}: puerto del que se capturará el tráfico entrante (0, 1, 2, 3).
+\end{itemize}
+Los dos primeros campos se iluminarán en verde cuando sean introducidos correctamente y en rojo cuando sean incorrectos. Cuando todos los campos sean válidos se activará el botón de \textit{Empezar}, y si lo pulsamos la \gls{FPGA} comenzará a capturar tráfico con los parámetros indicados.
+
+También es posible, en vez de capturar tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_capturar}
   \caption{Página de gestión - capturar tráfico.}
   \label{fig:captura:gestioncapturar}
 \end{figure}
 
-TODO: Capturando tráfico, Figura \ref{fig:captura:gestioncapturando}
-\begin{figure}[H]
+Si la \gls{FPGA} está capturando tráfico, la pantalla de gestión mostrará el progreso de la captura en curso (ver Figura \ref{fig:captura:gestioncapturando}). Se podrán visualizar las siguientes estadísticas de la captura en curso:
+\begin{itemize}
+  \item \textbf{Nombre de la traza}: nombre de la \gls{traza} en la que se está almacenando el tráfico capturado, en formato \gls{simple}.
+  \item \textbf{Puerto}: puerto del que se está capturando el tráfico entrante.
+  \item \textbf{Tiempo transcurrido}: contador del tiempo que ha transcurrido desde que se inició la captura.
+  \item \textbf{Bytes Capturados}: número de bytes que se han capturado ya.
+  \item \textbf{Bytes Totales}: número total de bytes a capturar.
+  \item \textbf{Ratio Medio}: velocidad media a la que se está capturando (estimación a partir de los bytes capturados y el tiempo transcurrido).
+  \item \textbf{Ratio Actual}: velocidad a la que se ha capturado el tráfico desde la última actualización.
+\end{itemize}
+Se puede detener la captura en curso pulsando el botón de \textit{Parar la captura}, y se borrará lo almacenado hasta el momento en la \gls{traza}.
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_capturando}
   \caption{Página de gestión - capturando tráfico.}
   \label{fig:captura:gestioncapturando}
 \end{figure}
 
-TODO: Reproducir traza form, Figura \ref{fig:captura:gestionreproducir}
-\begin{figure}[H]
+Si la \gls{FPGA} ha sido inicializada en modo reproductor, la pantalla de gestión mostrará una tabla y un formulario (ver Figura \ref{fig:captura:gestionreproducir}). La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo (\gls{simple}), tamaño y fecha. Pulsando sobre una fila se seleccionará la \gls{traza} correspondiente para su reproducción. El formulario contiene los siguientes campos:
+\begin{itemize}
+  \item \textbf{Reproducir la \gls{traza} en bucle}: si se habilita, la \gls{traza} se reproducirá en un bucle infinito.
+  \item \textbf{Máscara de salida}: conjunto de puertos a los que se reproducirá la \gls{traza} (0, 0-1, 0-1-2, 0-1-2-3).
+  \item \textbf{Interframe Gap}: pausa temporal entre paquetes (si se deshabilita, tasa original con la que se capturó la \gls{traza}).
+\end{itemize}
+Cuando se haya seleccionado una traza de la tabla y todos los campos del formulario sean válidos se activará el botón de \textit{Empezar}, y si lo pulsamos la \gls{FPGA} comenzará a reproducir la \gls{traza} seleccionada con los parámetros indicados.
+
+También es posible, en vez de reproducir tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_reproducir}
   \caption{Página de gestión - reproducir \gls{traza}.}
   \label{fig:captura:gestionreproducir}
 \end{figure}
 
-TODO: Reproduciendo traza, Figura \ref{fig:captura:gestionreproduciendo}
-\begin{figure}[H]
+Si la \gls{FPGA} está reproduciendo una \gls{traza}, la pantalla de gestión mostrará el progreso de la reproducción en curso (ver Figura \ref{fig:captura:gestionreproduciendo}). Se podrán visualizar las siguientes estadísticas de la reproducción en curso:
+\begin{itemize}
+  \item \textbf{Nombre de la \gls{traza}}: nombre de la \gls{traza} que se está reproduciendo.
+  \item \textbf{Tamaño}: número de bytes que ocupa la \gls{traza} que se está reproduciendo.
+  \item \textbf{Fecha}: fecha en que se creó la \gls{traza} que se está reproduciendo.
+  \item \textbf{Tiempo Transcurrido}: contador del tiempo que ha transcurrido desde que se inició la captura.
+  \item \textbf{Paquetes Enviados}: número de paquetes que se han enviado en la reproducción actual.
+  \item \textbf{Reproducción en Bucle}: indica si se está reproduciendo la \gls{traza} en un bucle infinito o no.
+  \item \textbf{Interframe Gap}: valor del \gls{IFG} en la reproducción actual.
+  \item \textbf{Máscara}: conjunto de puertos en los que se está reproduciendo la \gls{traza} seleccionada (0, 0-1, 0-1-2, 0-1-2-3).
+\end{itemize}
+Se puede detener la reproducción en curso pulsando el botón \textit{Parar la reproducción}.
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/gestor_reproduccion}
   \caption{Página de gestión - reproduciendo \gls{traza}.}
@@ -178,28 +228,31 @@ TODO: Reproduciendo traza, Figura \ref{fig:captura:gestionreproduciendo}
 
 
 \subsection{Almacenamiento\label{extra:manual:almacenamiento}}
-TODO: Estadísticas, formatear raid
 
-TODO: Espacio, Figura \ref{fig:captura:espacio}
-\begin{figure}[H]
+En esta pantalla se pueden visualizar distintas estadísticas de almacenamiento del sistema. Está compuesta por dos paneles:
+
+\begin{itemize}
+\item \textbf{Estadísticas de espacio (Figura \ref{fig:captura:espacio})}: este panel muestra estadísticas del espacio total, ocupado y disponible, resumido además en un gráfico circular (en rojo la proporción de disco ocupado y en turquesa la proporción de disco disponible).
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/almacenamiento_espacio}
   \caption{Página de almacenamiento, con \gls{RAID} no activo.}
   \label{fig:captura:espacio}
 \end{figure}
 
-TODO: RAID, Figura \ref{fig:captura:raid}
-\begin{figure}[H]
+\item \textbf{Estadísticas del \gls{RAID} (Figura \ref{fig:captura:raid})}: solo se mostrarán estas estadísticas si el sistema de almacenamiento está configurado como un \gls{RAID} (ver Sección \ref{extra:manual:configfpga}). En este panel, un gráfico de barras muestra la velocidad de escritura de cada disco del \gls{RAID}. Debajo de este gráfico se indica la velocidad global de escritura del \gls{RAID}. El color de esta cifra depende de la velocidad de escritura: verde (velocidad superior a la recomendada), amarillo (velocidad suficiente) o rojo (velocidad por debajo del mínimo aceptable). Si la velocidad es insuficiente se mostrará un diálogo adicional para formatear y recrear el \gls{RAID} pulsando el botón \textit{Formatear el \gls{RAID}} (cuidado: formatear el \gls{RAID} borrará todos los datos del mismo). Este diálogo se puede ocultar pulsando el botón \textit{Descartar}.
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/almacenamiento_raid}
   \caption{Página de almacenamiento, con \gls{RAID} activo.}
   \label{fig:captura:raid}
 \end{figure}
+\end{itemize}
 
 
 \subsection{Capturas\label{extra:manual:capturas}}
 
-TODO: Renombrar, convertir <->, borrar, Figura \ref{fig:captura:capturas}
+TODO: Renombrar, convertir <->, borrar, Figura \ref{fig:captura:capturas}, referencia a la sección de configuración
 \begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/capturas}
