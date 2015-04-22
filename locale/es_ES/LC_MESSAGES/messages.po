@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
 "POT-Creation-Date: 2015-04-17 10:54+0100\n"
-"PO-Revision-Date: 2015-04-21 15:19+0100\n"
+"PO-Revision-Date: 2015-04-22 11:00+0100\n"
 "Last-Translator: JSid <juan.sidrach@gmail.com>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -52,7 +52,7 @@ msgstr "FPGA API"
 #: app/modules/status/statusModel.php:59 app/modules/status/statusModel.php:68
 #: app/modules/status/statusModel.php:77
 msgid "Synchronized Time Stamp"
-msgstr "Relojes Sincronizadas"
+msgstr "Relojes Sincronizados"
 
 #: app/modules/status/statusModel.php:71
 msgid "URL rewrite support"

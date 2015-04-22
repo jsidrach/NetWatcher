@@ -135,6 +135,7 @@ Si la \gls{FPGA} no ha sido inicializada, la pantalla de gestión permitirá sel
   \item \textbf{Reproductor}: permite reproducir \glspl{traza} en formato \gls{simple}.
   \item \textbf{Capturador}: permite capturar tráfico web, almacenándolo en una \gls{traza} en formato \gls{simple}.
 \end{itemize}
+
 Para elegir un modo basta con pulsar uno de los dos botones de la interfaz (ver Figura \ref{fig:captura:gestionseleccion}). Esta elección de modo no es definitiva, ya que se puede cambiar de modo posteriormente siempre que la \gls{FPGA} no esté capturando o reproduciendo tráfico.
 
 \begin{figure}[!htp]
@@ -159,6 +160,7 @@ Si la \gls{FPGA} ha sido inicializada en modo capturador, la pantalla de gestió
   \item \textbf{Bytes a capturar}: número total de bytes que se capturarán, y su unidad (Bytes, KB, MB, GB).
   \item \textbf{Puerto a capturar}: puerto del que se capturará el tráfico entrante (0, 1, 2, 3).
 \end{itemize}
+
 Los dos primeros campos se iluminarán en verde cuando sean introducidos correctamente y en rojo cuando sean incorrectos. Cuando todos los campos sean válidos se activará el botón de \textit{Empezar}, y si lo pulsamos la \gls{FPGA} comenzará a capturar tráfico con los parámetros indicados.
 
 También es posible, en vez de capturar tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
@@ -180,6 +182,7 @@ Si la \gls{FPGA} está capturando tráfico, la pantalla de gestión mostrará el
   \item \textbf{Ratio Medio}: velocidad media a la que se está capturando (estimación a partir de los bytes capturados y el tiempo transcurrido).
   \item \textbf{Ratio Actual}: velocidad a la que se ha capturado el tráfico desde la última actualización.
 \end{itemize}
+
 Se puede detener la captura en curso pulsando el botón de \textit{Parar la captura}, y se borrará lo almacenado hasta el momento en la \gls{traza}.
 
 \begin{figure}[!htp]
@@ -189,12 +192,13 @@ Se puede detener la captura en curso pulsando el botón de \textit{Parar la capt
   \label{fig:captura:gestioncapturando}
 \end{figure}
 
-Si la \gls{FPGA} ha sido inicializada en modo reproductor, la pantalla de gestión mostrará una tabla y un formulario (ver Figura \ref{fig:captura:gestionreproducir}). La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo (\gls{simple}), tamaño y fecha. Pulsando sobre una fila se seleccionará la \gls{traza} correspondiente para su reproducción. El formulario contiene los siguientes campos:
+Si la \gls{FPGA} ha sido inicializada en modo reproductor, la pantalla de gestión mostrará una tabla y un formulario (ver Figura \ref{fig:captura:gestionreproducir}). La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo (\gls{simple}), tamaño y fecha. Además, una barra superior asociada a esta tabla permite controlar el contenido de la misma mediante las siguientes acciones (de izquierda a derecha): activar la actualización automática de las \glspl{traza} disponibles, buscar una \gls{traza} por su nombre y actualizar manualmente las \glspl{traza} disponibles. Pulsando sobre una fila de la tabla se seleccionará la \gls{traza} correspondiente para su reproducción. Por otra parte, el formulario contiene los siguientes campos:
 \begin{itemize}
   \item \textbf{Reproducir la \gls{traza} en bucle}: si se habilita, la \gls{traza} se reproducirá en un bucle infinito.
   \item \textbf{Máscara de salida}: conjunto de puertos a los que se reproducirá la \gls{traza} (0, 0-1, 0-1-2, 0-1-2-3).
   \item \textbf{Interframe Gap}: pausa temporal entre paquetes (si se deshabilita, tasa original con la que se capturó la \gls{traza}).
 \end{itemize}
+
 Cuando se haya seleccionado una traza de la tabla y todos los campos del formulario sean válidos se activará el botón de \textit{Empezar}, y si lo pulsamos la \gls{FPGA} comenzará a reproducir la \gls{traza} seleccionada con los parámetros indicados.
 
 También es posible, en vez de reproducir tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
@@ -217,6 +221,7 @@ Si la \gls{FPGA} está reproduciendo una \gls{traza}, la pantalla de gestión mo
   \item \textbf{Interframe Gap}: valor del \gls{IFG} en la reproducción actual.
   \item \textbf{Máscara}: conjunto de puertos en los que se está reproduciendo la \gls{traza} seleccionada (0, 0-1, 0-1-2, 0-1-2-3).
 \end{itemize}
+
 Se puede detener la reproducción en curso pulsando el botón \textit{Parar la reproducción}.
 
 \begin{figure}[!htp]
@@ -252,8 +257,16 @@ En esta pantalla se pueden visualizar distintas estadísticas de almacenamiento 
 
 \subsection{Capturas\label{extra:manual:capturas}}
 
-TODO: Renombrar, convertir <->, borrar, Figura \ref{fig:captura:capturas}, referencia a la sección de configuración
-\begin{figure}[H]
+En esta pantalla se pueden gestionar las \glspl{traza} almacenadas (ver Figura \ref{fig:captura:capturas}), mediante una tabla y un panel de acciones. La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo, tamaño y fecha. Además, una barra superior asociada a esta tabla permite controlar el contenido de la misma mediante las siguientes acciones (de izquierda a derecha): filtrar las \glspl{traza} que se muestran según su tipo, activar la actualización automática de las \glspl{traza} disponibles, buscar una \gls{traza} por su nombre y actualizar manualmente las \glspl{traza} disponibles. Pulsando sobre una fila de la tabla se seleccionará la \gls{traza} correspondiente, activándose el panel de acciones. Este panel permite, mediante cada uno de sus subpaneles, las siguientes operaciones:
+\begin{itemize}
+  \item \textbf{Convertir}: crea una nueva \gls{traza} a partir de la \gls{traza} seleccionada cambiando el tipo (si la original tiene formato \gls{simple} la convertida tendrá formato \gls{pcap}, y viceversa).
+  \item \textbf{Renombrar}: cambia el nombre de la \gls{traza} seleccionada al nuevo nombre introducido.
+  \item \textbf{Borrar}: borra del disco la \gls{traza} seleccionada.
+\end{itemize}
+
+Los dos primeros subpaneles permitirán realizar su acción (se activará el correspondiente botón de \textit{OK}) cuando el campo de texto asociado a cada operación sea introducido correctamente.
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/capturas}
   \caption{Página de capturas.}
@@ -263,8 +276,20 @@ TODO: Renombrar, convertir <->, borrar, Figura \ref{fig:captura:capturas}, refer
 
 \subsection{Estado\label{extra:manual:estado}}
 
-TODO: Estado, Figura \ref{fig:captura:estado}
-\begin{figure}[H]
+En esta pantalla se puede comprobar el estado de los distintos componentes que forman la aplicación (ver Figura \ref{fig:captura:estado}). Cada componente tiene un test asociado cuyo resultado se refleja en un panel. Cada test puede tener tres resultados distintos: \textit{OK} (test pasado, en verde), \textit{No Implementado} (test no implementado, en amarillo) y \textit{Error} (test fallado, en rojo). Los componentes sobre los que se comprueba su estado son los siguientes:
+\begin{itemize}
+  \item \textbf{Módulo Rewrite}: soporte para reescritura de \gls{URL}.
+  \item \textbf{Módulo Gettext}: soporte para localización (traducción a distintos idiomas).
+  \item \textbf{Variables de Sesión}: soporte para el uso de sesiones en \gls{PHP}.
+  \item \textbf{Permisos de escritura}: permisos para escribir \textit{logs} y archivos de configuración.
+  \item \textbf{Servidor Proxy}: servidor proxy habilitado para llamadas a la API \gls{FPGA}.
+  \item \textbf{\gls{FPGA} API}: servidor de la \gls{FPGA} activo.
+  \item \textbf{Relojes Sincronizados}: diferencia de relojes entre el cliente y el servidor \gls{FPGA} dentro del umbral permitido.
+\end{itemize}
+
+Adicionalmente, una barra de progreso encima de todo los paneles resume el estado global del sistema.
+
+\begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/estado}
   \caption{Página de estado del sistema.}
