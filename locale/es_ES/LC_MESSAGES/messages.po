@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NetWatcher\n"
 "POT-Creation-Date: 2015-04-17 10:54+0100\n"
-"PO-Revision-Date: 2015-04-22 11:00+0100\n"
-"Last-Translator: JSid <***REMOVED***>\n"
+"PO-Revision-Date: 2015-04-22 15:57+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgstr "Almacenamiento"
 
 #: app/modules/storage/storageView.php:48
 msgid "All data will be lost, are you sure you want to format the RAID?"
-msgstr "Se perderán todos los datos, ¿seguro que deseas formatear el RAID?"
+msgstr "Se perderán todos los datos, ¿seguro que desea formatear el RAID?"
 
 #: app/modules/storage/storageView.php:51
 msgid "Format"
@@ -140,7 +140,7 @@ msgstr "Error en la conexión"
 #: app/modules/manager/managerView.php:52
 #, php-format
 msgid "Consider visiting the %ssettings%s and %sstatus%s pages"
-msgstr "Considera visitar las páginas de %sconfiguración%s y %sestado%s"
+msgstr "Considere visitar las páginas de %sconfiguración%s y %sestado%s"
 
 #: app/modules/storage/storageView.php:81
 msgid "Refresh the page"
@@ -218,7 +218,7 @@ msgid ""
 "as a RAID, edit the configuration of the remote server"
 msgstr ""
 "El Servicio Web de la FPGA no tiene activa la opción del RAID. Para "
-"configurar el almacenamiento como un RAID, edita la configuración del "
+"configurar el almacenamiento como un RAID, edite la configuración del "
 "servidor remoto"
 
 #: app/modules/storage/storageView.php:173
@@ -243,7 +243,7 @@ msgstr "HugePages no está activo y  es necesario para la FPGA"
 
 #: app/modules/manager/managerView.php:71
 msgid "Click here to reboot the FPGA server"
-msgstr "Haz click aquí para reiniciar el servidor FPGA"
+msgstr "Haga click aquí para reiniciar el servidor FPGA"
 
 #: app/modules/manager/managerView.php:73
 msgid ""
@@ -259,7 +259,7 @@ msgstr "El servidor remoto será reiniciado y todos sus procesos parados"
 
 #: app/modules/manager/managerView.php:85
 msgid "Are you sure you want to reboot?"
-msgstr "¿Estás seguro de que quieres reiniciar?"
+msgstr "¿Está seguro de que quieres reiniciar?"
 
 #: app/modules/manager/managerView.php:88
 msgid "Reboot"
@@ -271,7 +271,7 @@ msgstr "Reiniciar el Servicio Web"
 
 #: app/modules/manager/managerView.php:106
 msgid "Select a mode to initialize the FPGA"
-msgstr "Selecciona un modo en el que inicializar la FPGA"
+msgstr "Seleccione un modo en el que inicializar la FPGA"
 
 #: app/modules/manager/managerView.php:115
 #: app/modules/manager/managerView.php:121
@@ -292,7 +292,7 @@ msgstr "Inicializando la FPGA"
 
 #: app/modules/manager/managerView.php:140
 msgid "Configure the FPGA to start recording"
-msgstr "Configura la FPGA para empezar a capturar"
+msgstr "Configure la FPGA para empezar a capturar"
 
 #: app/modules/manager/managerView.php:146
 msgid "Name of the new capture"
@@ -360,7 +360,7 @@ msgid ""
 "The current capture will be deleted. Are you sure you want to stop the "
 "recording?"
 msgstr ""
-"La traza actual será eliminada. ¿Seguro que deseas parar la captura en curso?"
+"La traza actual será eliminada. ¿Seguro que desea parar la captura en curso?"
 
 #: app/modules/manager/managerView.php:279
 #: app/modules/manager/managerView.php:463
@@ -396,7 +396,7 @@ msgstr "Fecha"
 
 #: app/modules/manager/managerView.php:327
 msgid "Select a capture to reproduce"
-msgstr "Selecciona una traza para reproducir"
+msgstr "Seleccione una traza para reproducir"
 
 #: app/modules/manager/managerView.php:340
 msgid "Play the capture in loop"
@@ -451,7 +451,7 @@ msgstr "Parar la reproducción"
 
 #: app/modules/manager/managerView.php:460
 msgid "Are you sure you want to stop reproducing the capture?"
-msgstr "¿Estás seguro de que quieres parar la reproducción de la traza?"
+msgstr "¿Está seguro de que quieres parar la reproducción de la traza?"
 
 #: app/modules/settings/settingsController.php:78
 msgid "Settings saved successfully"
@@ -498,7 +498,7 @@ msgid ""
 "Selected capture will be permanently deleted, are you sure you want to "
 "delete it?"
 msgstr ""
-"La traza seleccionada será borrada permanentemente, ¿seguro que deseas "
+"La traza seleccionada será borrada permanentemente, ¿seguro que desea "
 "borrarla?"
 
 #: app/modules/captures/capturesView.php:51
@@ -520,7 +520,7 @@ msgstr "Pcap"
 
 #: app/modules/captures/capturesView.php:103
 msgid "Select a capture from the table"
-msgstr "Selecciona una traza de la tabla"
+msgstr "Seleccione una traza de la tabla"
 
 #: app/modules/captures/capturesView.php:110
 msgid "Convert"
@@ -553,7 +553,7 @@ msgid ""
 "file (or adding symbolic link to it) to the captures directory on the FPGA "
 "remote server"
 msgstr ""
-"Añade trazas adicionales generadas fuera de NetWatcher copiando el archivo "
+"Añada trazas adicionales generadas fuera de NetWatcher copiando el archivo "
 "de traza (o añadiendo un enlace simbólico a él) al directorio de las trazas "
 "en el servidor FPGA remoto"
 
