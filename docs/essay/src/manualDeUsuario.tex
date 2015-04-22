@@ -1,6 +1,6 @@
 \chapter{Manual de Usuario\label{extra:manual_de_usuario}}
 
-Este manual pretende ser una guía en la instalación, configuración y uso de la interfaz web para la gestión de sondas de red de altas prestaciones.
+Este manual pretende ser una guía para la instalación, configuración y uso de la interfaz web para la gestión de sondas de red de altas prestaciones.
 
 \section{Instalación del Servicio Web FPGA\label{extra:manual:instalacionfpga}}
 
@@ -14,17 +14,17 @@ El servidor que aloje el \gls{servicioweb} \gls{FPGA} debe cumplir los siguiente
 \end{itemize}
 
 \subsection*{Instalación}
-Para instalar el \gls{servicioweb} \gls{FPGA}, compruebe que se cumplan todos los requisitos y siga los siguientes pasos:
+Para instalar el \gls{servicioweb} \gls{FPGA}, comprobar que se cumplan todos los requisitos y seguir las instrucciones que se describen a continuación:
 \begin{enumerate}
-  \item Descargue el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}). La instalación se realiza de forma remota, así que no es necesario descargárselo en el propio servidor, aunque sí en un entorno con terminal.
-  \item Descomprima el archivo \textit{.zip}.
-  \item Edite el archivo \texttt{./fpga-api/scripts/update\_server.sh}, estableciendo los parámetros \texttt{SERVER\_IP} y \texttt{SERVER\_PATH} como la dirección del servidor remoto que alojará el \gls{servicioweb} \gls{FPGA} y la ruta donde guardar el código, respectivamente.
-  \item Sitúese en la carpeta \texttt{./fpga-api/}.
-  \item Despliegue el servidor ejecutando el siguiente comando:
+  \item Descargar el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}). La instalación se realiza de forma remota, así que no es necesario descargárselo en el propio servidor, aunque sí en un entorno con terminal.
+  \item Descomprimir el archivo \textit{.zip}.
+  \item Editar el archivo \texttt{./fpga-api/scripts/update\_server.sh}, estableciendo los parámetros \texttt{SERVER\_IP} y \texttt{SERVER\_PATH} como la dirección del servidor remoto que alojará el \gls{servicioweb} \gls{FPGA} y la ruta donde guardar el código, respectivamente.
+  \item Situarse en la carpeta \texttt{./fpga-api/}.
+  \item Desplegar el servidor ejecutando el siguiente comando:
   
   \texttt{./scripts/update\_server.sh}
-  \item Inicie sesión en el servidor remoto.
-  \item Ponga en marcha el \gls{servicioweb} ejecutando el siguiente comando:
+  \item Iniciar sesión en el servidor remoto.
+  \item Iniciar el \gls{servicioweb} ejecutando el siguiente comando:
 
   \texttt{sudo service fpga-api start}
   \item Compruebe que el servidor está activo con el siguiente comando:
@@ -75,12 +75,12 @@ El servidor que aloje la interfaz web debe cumplir los siguientes requisitos:
 \end{itemize}
 
 \subsection*{Instalación}
-Para instalar la interfaz web, compruebe que se cumplan todos los requisitos y siga los siguientes pasos:
+Para instalar la interfaz web, comprobar que se cumplan todos los requisitos y seguir las instrucciones que se describen a continuación:
 \begin{enumerate}
-  \item Descargue el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}).
-  \item Descomprima el \textit{.zip} y mueva la carpeta base \textit{NetWatcher} al directorio público de \textit{Apache} (normalmente \texttt{/var/www/html/}).
-  \item Sitúese en la carpeta base \textit{NetWatcher}.
-  \item Instale los paquetes y librerías necesarios ejecutando el siguiente comando:
+  \item Descargar el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}).
+  \item Descomprimir el \textit{.zip} y mueva la carpeta base \textit{NetWatcher} al directorio público de \textit{Apache} (normalmente \texttt{/var/www/html/}).
+  \item Situarse en la carpeta base \textit{NetWatcher}.
+  \item Instalar los paquetes y librerías necesarios ejecutando el siguiente comando:
 
   \texttt{sudo ./scripts/build.sh --install}
 \end{enumerate}
@@ -99,12 +99,12 @@ Se puede configurar la interfaz web accediendo en el navegador a la página de c
 
 
 \section{Uso de la aplicación\label{extra:manual:uso}}
-Una vez instalado y configurado tanto el \gls{servicioweb} \gls{FPGA} como la interfaz web, todo está listo para utilizar la interfaz. Esta interfaz se puede usar desde cualquier navegador, y tanto en ordenador como en móvil. Todas las pantallas tienen las misma barras de navegación.
+Una vez instalados y configurados tanto el \gls{servicioweb} \gls{FPGA} como la interfaz web, ya se puede utilizar la interfaz. Esta interfaz se puede usar desde cualquier navegador, y tanto en ordenador como en móvil. Todas las pantallas tienen las mismas barras de navegación.
 
-Desde la barra de navegación superior se pueden acceder a las siguientes pantallas:
+Desde la barra de navegación superior se puede acceder a las siguientes pantallas:
 \begin{itemize}
   \item \textbf{Gestor}: administración de la \gls{FPGA}.
-  \item \textbf{Almacenamiento}: estadísticas de almacenamiento y del \gls{RAID}, si activo.
+  \item \textbf{Almacenamiento}: estadísticas de almacenamiento y del \gls{RAID}, si está activo.
   \item \textbf{Capturas}: gestión de las \glspl{traza} almacenadas.
   \item \textbf{Configuración}: explicada en la sección \ref{extra:manual:configweb}.
 \end{itemize}
@@ -123,7 +123,7 @@ Adicionalmente, se puede acceder a la documentación interna autogenerada del pr
   \item \textbf{Documentación de la interfaz web}: \texttt{/docs-front-end/}.
 \end{itemize}
 
-En las siguientes subsecciones se explica como utilizar las principales pantallas interactivas de la interfaz web.
+En las siguientes subsecciones se explica cómo utilizar las principales pantallas interactivas de la interfaz web.
 
 
 \subsection{Gestor\label{extra:manual:gestor}}
@@ -136,7 +136,7 @@ Si la \gls{FPGA} no ha sido inicializada, la pantalla de gestión permitirá sel
   \item \textbf{Capturador}: permite capturar tráfico web, almacenándolo en una \gls{traza} en formato \gls{simple}.
 \end{itemize}
 
-Para elegir un modo basta con pulsar uno de los dos botones de la interfaz (ver Figura \ref{fig:captura:gestionseleccion}). Esta elección de modo no es definitiva, ya que se puede cambiar de modo posteriormente siempre que la \gls{FPGA} no esté capturando o reproduciendo tráfico.
+Para elegir un modo basta con pulsar uno de los dos botones de la interfaz (ver Figura \ref{fig:captura:gestionseleccion}). Esta elección de modo no es definitiva, ya que se puede cambiar de modo en cualquier momento siempre que la \gls{FPGA} no esté capturando o reproduciendo tráfico.
 
 \begin{figure}[!htp]
   \centering
@@ -145,7 +145,7 @@ Para elegir un modo basta con pulsar uno de los dos botones de la interfaz (ver 
   \label{fig:captura:gestionseleccion}
 \end{figure}
 
-Una vez seleccionado un modo, un diálogo muestra el progreso de la inicialización: programando la \gls{FPGA}, reiniciando el servidor y montando la \gls{FPGA} (ver Figura \ref{fig:captura:gestionprogreso}).
+Una vez seleccionado un modo, un cuadro de diálogo muestra el progreso de la inicialización: programando la \gls{FPGA}, reiniciando el servidor y montando la \gls{FPGA} (ver Figura \ref{fig:captura:gestionprogreso}).
 
 \begin{figure}[!htp]
   \centering
@@ -161,7 +161,7 @@ Si la \gls{FPGA} ha sido inicializada en modo capturador, la pantalla de gestió
   \item \textbf{Puerto a capturar}: puerto del que se capturará el tráfico entrante (0, 1, 2, 3).
 \end{itemize}
 
-Los dos primeros campos se iluminarán en verde cuando sean introducidos correctamente y en rojo cuando sean incorrectos. Cuando todos los campos sean válidos se activará el botón de \textit{Empezar}, y si lo pulsamos la \gls{FPGA} comenzará a capturar tráfico con los parámetros indicados.
+Los dos primeros campos se iluminarán en verde cuando sean introducidos correctamente y en rojo cuando sean incorrectos. Cuando todos los campos sean válidos se activará el botón de \textit{Empezar}, y si se pulsa la \gls{FPGA} comenzará a capturar tráfico con los parámetros indicados.
 
 También es posible, en vez de capturar tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
 
@@ -199,7 +199,7 @@ Si la \gls{FPGA} ha sido inicializada en modo reproductor, la pantalla de gesti�
   \item \textbf{Interframe Gap}: pausa temporal entre paquetes (si se deshabilita, tasa original con la que se capturó la \gls{traza}).
 \end{itemize}
 
-Cuando se haya seleccionado una traza de la tabla y todos los campos del formulario sean válidos se activará el botón de \textit{Empezar}, y si lo pulsamos la \gls{FPGA} comenzará a reproducir la \gls{traza} seleccionada con los parámetros indicados.
+Cuando se haya seleccionado una traza de la tabla y todos los campos del formulario sean válidos se activará el botón de \textit{Empezar}, y si se pulsa la \gls{FPGA} comenzará a reproducir la \gls{traza} seleccionada con los parámetros indicados.
 
 También es posible, en vez de reproducir tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
 
@@ -245,7 +245,7 @@ En esta pantalla se pueden visualizar distintas estadísticas de almacenamiento 
   \label{fig:captura:espacio}
 \end{figure}
 
-\item \textbf{Estadísticas del \gls{RAID} (Figura \ref{fig:captura:raid})}: solo se mostrarán estas estadísticas si el sistema de almacenamiento está configurado como un \gls{RAID} (ver Sección \ref{extra:manual:configfpga}). En este panel, un gráfico de barras muestra la velocidad de escritura de cada disco del \gls{RAID}. Debajo de este gráfico se indica la velocidad global de escritura del \gls{RAID}. El color de esta cifra depende de la velocidad de escritura: verde (velocidad superior a la recomendada), amarillo (velocidad suficiente) o rojo (velocidad por debajo del mínimo aceptable). Si la velocidad es insuficiente se mostrará un diálogo adicional para formatear y recrear el \gls{RAID} pulsando el botón \textit{Formatear el \gls{RAID}} (cuidado: formatear el \gls{RAID} borrará todos los datos del mismo). Este diálogo se puede ocultar pulsando el botón \textit{Descartar}.
+\item \textbf{Estadísticas del \gls{RAID} (Figura \ref{fig:captura:raid})}: solo se mostrarán estas estadísticas si el sistema de almacenamiento está configurado como un \gls{RAID} (ver Sección \ref{extra:manual:configfpga}). En este panel, un gráfico de barras muestra la velocidad de escritura de cada disco del \gls{RAID}. Debajo de este gráfico se indica la velocidad global de escritura del \gls{RAID}. El color de esta cifra depende de la velocidad de escritura: verde (velocidad superior a la recomendada), amarillo (velocidad suficiente) o rojo (velocidad por debajo del mínimo aceptable). Si la velocidad es insuficiente se mostrará un cuadro de diálogo adicional para formatear y recrear el \gls{RAID} pulsando el botón \textit{Formatear el \gls{RAID}} (cuidado: formatear el \gls{RAID} borrará todos los datos del mismo). Este diálogo se puede ocultar pulsando el botón \textit{Descartar}.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/almacenamiento_raid}
@@ -299,6 +299,6 @@ Adicionalmente, una barra de progreso encima de todo los paneles resume el estad
 
 \section{Solución de problemas\label{extra:manual:solucion}}
 
-Si tras seguir las instrucciones paso a paso algo impide el correcto funcionamiento de la aplicación, puedes consultar la página de solución de problemas (en inglés), disponible dentro del repositorio del proyecto en:
+Si tras seguir las instrucciones paso a paso algo impide el correcto funcionamiento de la aplicación, se puede la página de solución de problemas (en inglés), disponible dentro del repositorio del proyecto en:
 
 \href{https://github.com/JSidrach/NetWatcher/blob/master/docs/wiki/Troubleshooting.md}{github.com/JSidrach/NetWatcher/blob/master/docs/wiki/Troubleshooting.md}
