@@ -12,6 +12,13 @@ TODO: Decidir si se ponen aquí lo de las traducciones
 TODO: Modelo Vista Controlador, interacción entre componentes, división en módulos,
 clases abstractas
 
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/framework}
+  \caption{Arquitectura del \gls{framework} propio.}
+  \label{fig:framework}
+\end{figure}
+
 \section{Manejo de rutas\label{extra:mvc:router}}
 
 /módulo/método/param1/param2
@@ -21,23 +28,61 @@ TODO: Router, redireccionamiento, urls rest, parámetros, proxy, htaccess
 
 Proxy, por qué es necesario, AJAX, paso de parámetros
 
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.6\textwidth,clip=true]{graphics/proxy}
+  \caption{Arquitectura del proxy propio.}
+  \label{fig:proxy}
+\end{figure}
+
+\section{Localización de la interfaz\label{extra:mvc:localizacion}}
+
+gettext, php, necesario, js.php
+
 \section{Gestión de dependencias\label{extra:mvc:dependencias}}
 
 Como en la mayoría de proyectos, es conveniente poder utilizar librerías externas y no tener que invertir tiempo en resolver problemas que ya han sido solucionados por otros anteriormente, siempre que la solución encaje dentro de la propia aplicación. Para manejar la descarga e instalación local de estas librerías externas se han elegido dos gestores de dependencias: \textit{Composer} \cite{composer} para el \gls{back-end} y \textit{BowerPHP} \cite{bowerphp} para el \gls{front-end}. Estos gestores permiten además tener un control sobre la versión exacta necesaria de cada librería, evitando así incompatibilidades.
 
 \subsection*{Composer\label{extra:mvc:composer}}
 
-archivo \texttt{composer.json}
+\textit{Composer} es un gestor de dependencias y requisitos \gls{back-end} para \gls{PHP}. Las librerías externas \gls{back-end} que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Composer} \cite{composerrepositorio}, en el archivo \texttt{composer.json} (ver Código \ref{code:composerjson}). \textit{Composer} posibilita también, siguiendo el estándar PSR-4 \cite{psr4}, incluir en una sola línea de código \gls{PHP} tanto las dependencias de librerías externas como módulos propios:
 
-http://www.php-fig.org/psr/psr-4/
+\texttt{require\_once ('vendor/autoload.php')};
 
-https://getcomposer.org/doc/04-schema.md
+Las dependencias se descargan e instalan de forma local al proyecto ejecutando el \gls{script} \texttt{./scripts/build.sh ----install}.
 
-permite incluir en php con una única instrucción todas las dependencias, una vez instaladas
+\begin{code}[label=code:composerjson,language=json,caption=Ejemplo de fichero \textit{composer.json}]
+{
+  "name": "NetWatcher",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JSidrach",
+      "email": "juan.sidrach@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor/"
+   },
+  "require": {
+    "php": ">=5.5.0",
+    "apidoc/apidoc": "dev-master",
+    "beelab/bowerphp": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Core\\": "lib/",
+      "App\\Common\\": "app/common/"
+    }
+  }
+}
+\end{code}
 
 \subsection*{BowerPHP\label{extra:mvc:bowerphp}}
 
-\textit{BowerPHP} es una implementación en \gls{PHP} del gestor de dependencias \gls{front-end} para aplicaciones web \textit{Bower} \cite{bower}. Las dependencias se declaran en el archivo \texttt{bower.json} (ver Código \ref{code:bowerjson}), y se instalan utilizando el \textit{script} \texttt{./scripts/build.sh --install}.
+\textit{BowerPHP} es una implementación en \gls{PHP} de \textit{Bower} \cite{bower}, el gestor de dependencias \gls{front-end} para aplicaciones web. Las librerías externas que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Bower} \cite{bowerrepositorio}, en el archivo \texttt{bower.json} (ver Código \ref{code:bowerjson}). Las dependencias se descargan e instalan de forma local al proyecto ejecutando el \gls{script} \texttt{./scripts/build.sh ----install}.
 
 \begin{code}[label=code:bowerjson,language=json,caption=Ejemplo de fichero \textit{bower.json}]
 {
@@ -59,11 +104,15 @@ permite incluir en php con una única instrucción todas las dependencias, una v
 
 \section{Configuración\label{extra:mvc:config}}
 
-TODO: Config: Carpetas, defines, archivos JSON
+Para la configuración interna de la aplicación se utiliza la clase \textit{Config}, compuesta por métodos estáticos. En esta clase se definen también las variables globales de la aplicación: nombres de carpetas y archivos, dirección IP del \gls{servicioweb} \gls{FPGA}, idiomas disponibles, idioma por defecto, temas visuales disponibles y tema visual por defecto.
+
+Las variables que puede cambiar el usuario (idioma por defecto, tema visual por defecto y dirección IP del \gls{servicioweb} \gls{FPGA}) no se inicializan por definición en el código sino que se leen del fichero \texttt{./config/settings.json}. Además, los idiomas disponibles se extraen del archivo \texttt{./config/languages.json} y los temas visuales disponibles se deducen de los ficheros de la carpeta \texttt{./public/themes/}.
+
+La configuración global de la aplicación es siempre cargada al principio, mediante una llamada al método \textit{load} de la clase \textit{Config}.
 
 \section{Registro de eventos\label{extra:mvc:logger}}
 
-Tener registrados todos los eventos asociados a la aplicación es muy útil, ya que permite conocer cómo el usuario utiliza la aplicación y solucionar problemas internos. Para ello, se utiliza la clase \textit{Logger}, que contiene métodos estáticos con los que registrar eventos manualmente dentro del código del proyecto. Adicionalmente, utilizando las funciones estándar de \gls{PHP} \textit{set\_exception\_handler} y \textit{set\_error\_handler}, se redirigen los errores y excepciones a funciones que los registran (de la clase \textit{Logger} también).
+Registrar todos los eventos asociados a la aplicación es muy útil, ya que permite conocer cómo el usuario utiliza la aplicación y solucionar problemas internos. Para ello, se utiliza la clase \textit{Logger}, que contiene métodos estáticos con los que registrar eventos manualmente dentro del código del proyecto. Adicionalmente, utilizando las funciones estándar de \gls{PHP} \textit{set\_exception\_handler} y \textit{set\_error\_handler}, se redirigen los errores y excepciones a funciones que los registran (de la clase \textit{Logger} también).
 
 Cada evento se guarda en un registro (línea de texto) precedido de la fecha y hora en que se produjo, así como la dirección IP del usuario. Los registros se almacenan en diferentes ficheros dentro de la carpeta \texttt{./log/}:
 \begin{itemize}
