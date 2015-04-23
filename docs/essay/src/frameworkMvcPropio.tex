@@ -1,11 +1,11 @@
 \chapter{Framework MVC propio\label{extra:framework_mvc_propio}}
 
 En este apéndice se explican los distintos componentes del \gls{framework} propio desarrollado, del que hace uso la interfaz web. 
-Lenguajes (php)
+Lenguajes (php), javascript, html, css
 
-TODO: [Introducción], Imagen, 
+TODO: [Introducción], Imagen, módulo CORE
   {Visión global}
-
+TODO: Decidir si se ponen aquí lo de las traducciones
 
 \section{Modelo Vista Controlador\label{extra:mvc:mvc}}
 
@@ -14,26 +14,82 @@ clases abstractas
 
 \section{Manejo de rutas\label{extra:mvc:router}}
 
+/módulo/método/param1/param2
 TODO: Router, redireccionamiento, urls rest, parámetros, proxy, htaccess
 
 \section{Redireccionamiento de peticiones a servicio web\label{extra:mvc:proxy}}
 
-Proxy
+Proxy, por qué es necesario, AJAX, paso de parámetros
 
-\section{Manejo de dependencias\label{extra:mvc:dependencias}}
+\section{Gestión de dependencias\label{extra:mvc:dependencias}}
 
-TODO: Manejo de dependencias. Composer, bower
+Como en la mayoría de proyectos, es conveniente poder utilizar librerías externas y no tener que invertir tiempo en resolver problemas que ya han sido solucionados por otros anteriormente, siempre que la solución encaje dentro de la propia aplicación. Para manejar la descarga e instalación local de estas librerías externas se han elegido dos gestores de dependencias: \textit{Composer} \cite{composer} para el \gls{back-end} y \textit{BowerPHP} \cite{bowerphp} para el \gls{front-end}. Estos gestores permiten además tener un control sobre la versión exacta necesaria de cada librería, evitando así incompatibilidades.
+
+\subsection*{Composer\label{extra:mvc:composer}}
+
+archivo \texttt{composer.json}
+
+http://www.php-fig.org/psr/psr-4/
+
+https://getcomposer.org/doc/04-schema.md
+
+permite incluir en php con una única instrucción todas las dependencias, una vez instaladas
+
+\subsection*{BowerPHP\label{extra:mvc:bowerphp}}
+
+\textit{BowerPHP} es una implementación en \gls{PHP} del gestor de dependencias \gls{front-end} para aplicaciones web \textit{Bower} \cite{bower}. Las dependencias se declaran en el archivo \texttt{bower.json} (ver Código \ref{code:bowerjson}), y se instalan utilizando el \textit{script} \texttt{./scripts/build.sh --install}.
+
+\begin{code}[label=code:bowerjson,language=json,caption=Ejemplo de fichero \textit{bower.json}]
+{
+  "name": "NetWatcher",
+  "authors": [
+    "JSidrach <juan.sidrach@gmail.com>"
+  ],
+  "private": true,
+  "dependencies": {
+    "jquery": "2.*",
+    "bootstrap": "3.*",
+    "bootstrap-table": "1.*",
+    "remarkable-bootstrap-notify": "3.*",
+    "animate.css": "3.*",
+    "chartjs": "1.*"
+  }
+}
+\end{code}
 
 \section{Configuración\label{extra:mvc:config}}
 
-TODO: Config: Carpetas, defines
+TODO: Config: Carpetas, defines, archivos JSON
 
 \section{Registro de eventos\label{extra:mvc:logger}}
 
-TODO: Logger: Eventos, errores/warnings capturados, proxy
+Tener registrados todos los eventos asociados a la aplicación es muy útil, ya que permite conocer cómo el usuario utiliza la aplicación y solucionar problemas internos. Para ello, se utiliza la clase \textit{Logger}, que contiene métodos estáticos con los que registrar eventos manualmente dentro del código del proyecto. Adicionalmente, utilizando las funciones estándar de \gls{PHP} \textit{set\_exception\_handler} y \textit{set\_error\_handler}, se redirigen los errores y excepciones a funciones que los registran (de la clase \textit{Logger} también).
+
+Cada evento se guarda en un registro (línea de texto) precedido de la fecha y hora en que se produjo, así como la dirección IP del usuario. Los registros se almacenan en diferentes ficheros dentro de la carpeta \texttt{./log/}:
+\begin{itemize}
+  \item \texttt{app.log}: registro general, contiene todos los eventos de la aplicación.
+  \item \texttt{action.log}: contiene registros de los eventos relacionados con acciones del usuario.
+  \item \texttt{proxy.log}: contiene registros de los eventos relacionados con las peticiones al módulo proxy.
+  \item \texttt{warning.log}: contiene registros de los eventos relacionados con avisos y advertencias.
+  \item \texttt{error.log}: contiene registros de los errores de la aplicación.
+\end{itemize}
+
+
+\section{Scripts adicionales\label{extra:mvc:scripts}}
+
+Para automatizar tareas que se realizan con frecuencia en el desarrollo de la aplicación, este \gls{framework} contiene una carpeta (\texttt{./scripts/}) con \glspl{script} con este propósito, que pueden ser invocados desde la carpeta raíz del proyecto ejecutando el archivo \texttt{./scripts/build.sh} con distintos parámetros:
+\begin{itemize}
+  \item \texttt{----doc}: genera la documentación automática a partir del código del \gls{front-end} y del \gls{back-end}, en la carpeta \texttt{./docs/}.
+  \item \texttt{----upgrade}: actualiza las librerías externas necesarias para la aplicación.
+  \item \texttt{----install}: instala las dependencias externas (paquetes y librerías) necesarias para la aplicación.
+  \item \texttt{----check}: realiza un análsis léxico y sintáctico sobre todo el código \gls{PHP} la aplicación. 
+  \item \texttt{----permissions}: otorga los permisos mínimos necesarios de lectura/escritura/ejecución a los archivos y carpetas del proyecto.
+  \item \texttt{----clear}: borra los archivos de \textit{logs}.
+  \item \texttt{----backup}: comprime la carpeta del proyecto en un archivo en formato \textit{.zip}, y lo guarda con la fecha del mismo en la carpeta superior a modo de copia de seguridad.
+\end{itemize}
 
 \section{Conclusiones\label{extra:mvc:conclusiones}}
 
 Se ha desarrollado un \gls{framework} que sirve de base para la interfaz web, proporcionando un conjunto mínimo de funcionalidad necesaria para el problema planteado. Aunque desarrollarlo ha supuesto un coste temporal adicional para el proyecto, ha repercutido positivamente en fases posteriores de la implementación.
 
-Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño Modelo-Vista-Controlador, manejo automático de dependencias y librerías externas, localización de interfaces web y codificación de un servidor \gls{proxy}.
+Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño Modelo-Vista-Controlador, gestión automática de dependencias y librerías externas, localización de interfaces web y codificación de un servidor \gls{proxy} simplificado.
