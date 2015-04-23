@@ -78,7 +78,7 @@ class Config
         define('APP_NAME', 'NetWatcher');
         
         /**
-         * Number of indent ispaces
+         * Number of indent spaces
          */
         define('INDENT_SPACES', 2);
         /**
@@ -221,10 +221,6 @@ class Config
          * Path to the error log file
          */
         define('LOGGER_ERROR', LOGGER_DIR . 'error.log');
-        /**
-         * Path to the exception log file
-         */
-        define('LOGGER_EXCEPTION', LOGGER_DIR . 'exception.log');
         /**
          * Path to the general log file
          */

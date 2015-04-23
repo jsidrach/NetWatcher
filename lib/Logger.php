@@ -155,7 +155,7 @@ class Logger
         $line = $exception->getLine();
         $trace = $exception->getTraceAsString();
         $text = '[Exception][Code: ' . $code . '][File: ' . $file . ':' . $line . '][' . $trace . ']';
-        return self::logText($text, LOGGER_EXCEPTION);
+        return self::logText($text, LOGGER_ERROR);
     }
 
     /**
