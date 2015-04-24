@@ -2,6 +2,7 @@
 
 En este apéndice se explican los distintos componentes del \gls{framework} propio desarrollado, del que hace uso la interfaz web. 
 Lenguajes (php), javascript, html, css
+apache
 
 TODO: [Introducción], Imagen, módulo CORE
   {Visión global}
@@ -27,6 +28,7 @@ TODO: Router, redireccionamiento, urls rest, parámetros, proxy, htaccess
 \section{Redireccionamiento de peticiones a servicio web\label{extra:mvc:proxy}}
 
 Proxy, por qué es necesario, AJAX, paso de parámetros
+facilitar seguridad, red local
 
 \begin{figure}[!htp]
   \centering
@@ -35,9 +37,18 @@ Proxy, por qué es necesario, AJAX, paso de parámetros
   \label{fig:proxy}
 \end{figure}
 
-\section{Localización de la interfaz\label{extra:mvc:localizacion}}
+\section{Internacionalización de la interfaz\label{extra:mvc:i18n}}
 
-gettext, php, necesario, js.php
+Este \gls{framework} facilita la traducción de la aplicación a distintos idiomas mediante la librería \textit{gettext} \cite{gettext} para \gls{PHP}. Esta librería proporciona funciones (\textit{\_} y \textit{gettext}) que reciben cadenas de texto y devuelven su equivalente en el idioma de la aplicación seleccionado, consultando un archivo previamente creado (catálogo) que contiene cadenas de texto originales y su traducción.
+
+Es necesario un catálogo por cada idioma que se quiera añadir a la aplicación. Los catálogos se almacenan en la carpeta del proyecto \texttt{./locale/}. Para crear y gestionar los catálogos es recomendable utilizar la herramienta \textit{Poedit} \cite{poedit}, que permite editarlos con una interfaz gráfica. Para obtener las cadenas de texto que se necesitan traducir, se escanean todos archivos del proyecto en busca de las palabras clave, y se añaden las cadenas de texto al catálogo para su traducción por parte del desarrollador.
+
+A continuación se describe un ejemplo de cómo imprimir una cadena sea traducida a otro idioma mediante una llamada a la función \textit{\_} (ver Código \ref{code:ejemplogettext}). Si el idioma establecido en la aplicación es español, la función \textit{\_} busca la cadena \textit{'Example of string'} en el catálogo español y devuelve \textit{'Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
+
+\begin{code}[label=code:ejemplogettext,language=php,caption=Ejemplo de traducción con la librería \textit{gettext}]
+echo _('Example of string');
+\end{code}
+
 
 \section{Gestión de dependencias\label{extra:mvc:dependencias}}
 
@@ -106,7 +117,7 @@ Las dependencias se descargan e instalan de forma local al proyecto ejecutando e
 
 Para la configuración interna de la aplicación se utiliza la clase \textit{Config}, compuesta por métodos estáticos. En esta clase se definen también las variables globales de la aplicación: nombres de carpetas y archivos, dirección IP del \gls{servicioweb} \gls{FPGA}, idiomas disponibles, idioma por defecto, temas visuales disponibles y tema visual por defecto.
 
-Las variables que puede cambiar el usuario (idioma por defecto, tema visual por defecto y dirección IP del \gls{servicioweb} \gls{FPGA}) no se inicializan por definición en el código sino que se leen del fichero \texttt{./config/settings.json}. Además, los idiomas disponibles se extraen del archivo \texttt{./config/languages.json} y los temas visuales disponibles se deducen de los ficheros de la carpeta \texttt{./public/themes/}.
+Las variables que puede cambiar el usuario (idioma por defecto, tema visual por defecto y dirección IP del \gls{servicioweb} \gls{FPGA}) no se inicializan por definición en el código sino que se leen de distintos ficheros de la carpeta \texttt{./config/} en formato \gls{JSON}.
 
 La configuración global de la aplicación es siempre cargada al principio, mediante una llamada al método \textit{load} de la clase \textit{Config}.
 
@@ -141,4 +152,4 @@ Para automatizar tareas que se realizan con frecuencia en el desarrollo de la ap
 
 Se ha desarrollado un \gls{framework} que sirve de base para la interfaz web, proporcionando un conjunto mínimo de funcionalidad necesaria para el problema planteado. Aunque desarrollarlo ha supuesto un coste temporal adicional para el proyecto, ha repercutido positivamente en fases posteriores de la implementación.
 
-Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño Modelo-Vista-Controlador, gestión automática de dependencias y librerías externas, localización de interfaces web y codificación de un servidor \gls{proxy} simplificado.
+Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño Modelo-Vista-Controlador, gestión automática de dependencias y librerías externas, internacionalización de interfaces web y codificación de un servidor \gls{proxy} simplificado.
