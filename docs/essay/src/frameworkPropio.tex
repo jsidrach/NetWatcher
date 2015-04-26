@@ -1,17 +1,6 @@
-\chapter{Framework MVC propio\label{extra:framework_mvc_propio}}
+\chapter{Framework propio\label{extra:framework_propio}}
 
-En este apéndice se explican los distintos componentes del \gls{framework} propio desarrollado, del que hace uso la interfaz web. 
-Lenguajes (php), javascript, html, css
-apache
-
-TODO: [Introducción], Imagen, módulo CORE
-  {Visión global}
-TODO: Decidir si se ponen aquí lo de las traducciones
-
-\section{Modelo Vista Controlador\label{extra:mvc:mvc}}
-
-TODO: Modelo Vista Controlador, interacción entre componentes, división en módulos,
-clases abstractas
+En este apéndice se explican los distintos componentes del \gls{framework} propio en el que se ha implementado la interfaz web. Este \gls{framework} está implementado en \gls{PHP} sobre \textit{Apache httpd} \cite{httpd}. Sirve de base para la organización y desarrollo de la aplicación, proveyéndola de un gestor de rutas, un patrón de arquitectura para los módulos de la aplicación (modelo-vista-controlador), un \gls{proxy} simplificado para las llamadas al \gls{servicioweb} \gls{FPGA}, soporte para la internacionalización de la interfaz, gestión automática de dependencias, y registro de eventos (ver Figura \ref{fig:framework}).
 
 \begin{figure}[!htp]
   \centering
@@ -20,15 +9,26 @@ clases abstractas
   \label{fig:framework}
 \end{figure}
 
-\section{Manejo de rutas\label{extra:mvc:router}}
+
+\section{Gestión de rutas\label{extra:mvc:router}}
 
 /módulo/método/param1/param2
 TODO: Router, redireccionamiento, urls rest, parámetros, proxy, htaccess
 
-\section{Redireccionamiento de peticiones a servicio web\label{extra:mvc:proxy}}
 
-Proxy, por qué es necesario, AJAX, paso de parámetros
-facilitar seguridad, red local
+\section{Patrón de arquitectura para los módulos\label{extra:mvc:mvc}}
+
+delegar
+TODO: Modelo Vista Controlador, interacción entre componentes, división en módulos,
+clases abstractas
+
+
+
+\section{Redireccionamiento de peticiones \gls{AJAX}\label{extra:mvc:proxy}}
+
+Por motivos de rendimiento (no sobrecargar el servidor del \gls{servicioweb} \gls{FPGA} incluyéndole también la interfaz) y disponibilidad (la interfaz web debe ser accesible aunque el \gls{servicioweb} \gls{FPGA} no esté operativo), el \gls{servicioweb} \gls{FPGA} y la interfaz web no están alojados en el mismo servidor. Esto plantea un problema ya que se necesitan realizar peticiones \gls{AJAX} desde el cliente al \gls{servicioweb} \gls{FPGA}, y los navegadores web no permiten por motivos de seguridad que un cliente se comunique con un dominio distinto a la web original solicitada \cite{sameorigin}.
+
+Para resolver esto, el \gls{framework} contiene un servidor \gls{proxy} simplificado. Este \gls{proxy} no es genérico, ya que siempre redirecciona a la dirección IP del \gls{servicioweb} \gls{FPGA}. Así, cuando la interfaz web quiera realizar una petición \gls{AJAX} al \gls{servicioweb} \gls{FPGA}, hará la petición al servidor \gls{proxy}, éste redirigirá la petición al \gls{servicioweb} \gls{FPGA}, obtendrá la respuesta y la reenviará de vuelta al cliente (ver Figura \ref{fig:proxy}).
 
 \begin{figure}[!htp]
   \centering

@@ -51,7 +51,7 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
   - Servicio Web FPGA
     {REST-like,asíncrono}
   - Interfaz Gráfica
-    {Diseño adaptativo,localización}
+    {Diseño adaptativo}
     {Maquetas}
 
 - Implementación
@@ -63,7 +63,7 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
     {Servicio}
   - Front-End
     [Introducción]
-    - {MVC propio,Bootstrap,jQuery,gettext,phpDocumentor,composer,bower}
+    - {MVC propio,Bootstrap,jQuery}
     - Traducciones
     - Temas
 
@@ -76,13 +76,6 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
   [Introducción]
   {Open Source/GitHub Issues/Pull Requests}
 
-- Uso de la aplicación
-  [Introducción]
-  - Instalación
-  - Configuración
-  - Casos de uso
-    {Apéndice Manual de Usuario}
-
 - Conclusiones
 
 - Líneas de trabajo futuras
@@ -91,41 +84,16 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
 
 - Apéndices
   - Manual de Usuario
-    [Introducción]
-    {Descripción detallada}
-  - Framework MVC propio
-    [Introducción]
-    - MVC
-    - Manejo dependencias
-    - Config
-    - Router
-    - Logger
-    - Conclusiones
-  - Programación asíncrona
+  - Framework propio
   - FPGA Web Service API
   
 _________________________________________________________________________________________
 
-Cosas a mencionar en la memoria:
+Cosas que faltan por mencionar en la memoria:
   - Esquema de la arquitectura
     - Por qué PHP
-      - Composer
-    - Bower
     - Por qué io.js
-    - Restricciones (red local entre php e io.js)
-      - Redes distintas para control/tráfico
-  - Esquema de comunicaciones/protocolos entre las 3 partes
   - Diseño de la aplicación, responsive, temas, atractiva visualmente, mejora de manejo respecto a consola
-  - Framework MVC+Router+Logger desarrollado en PHP. Traducción de rutas, configuración, componentes:
-    - rewrite (htaccess)
-    - gettext
-    - composer
-    - bower
-  - Localización
-    - Importancia, gettext()
-    - PHP+JavaScript, reto
-    - Solución .js.php
-    - Solución caché ficheros, time()+guardar última modificación
   - REST(-based) stack (express, io.js) service, filosofía
     - Distintas partes. Máquina de estados finito
     - Diferencias y restricciones respecto a restful
@@ -134,15 +102,28 @@ Cosas a mencionar en la memoria:
     - JSONP, cross-domain <-> Proxy
     - Supervisor, cambios en javascript sin reiniciar
     - Timestamps (extra, no necesario, vlan distintas)
-  - Documentación
-    - Wiki
-    - phpDocumentor
-    - apiDoc
-    - Web Service
-  - Posibles mejoras
-    - Estandarización, futuras fpgas con características parecidas
-    - Más idiomas
-    - Más estadísticas
-    - Módulo de seguridad
 
 _________________________________________________________________________________________
+
+Progreso
+--------
+
+Completados: 4/16
+Restantes: 12/16
+
+[ ]Agradecimientos
+[ ]Abstract
+[ ]Resumen
+[ ]Introducción
+[ ]Estado del arte
+[ ]Definición del proyecto
+[X]Requisitos
+[ ]Diseño
+[ ]Implementación
+[ ]Pruebas
+[ ]Mantenimiento
+[ ]Conclusiones
+[X]Líneas de trabajo futuras
+[X]Manual de Usuario
+[ ]Framework propio
+[X]FPGA Web Service API
