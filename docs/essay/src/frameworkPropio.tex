@@ -12,17 +12,36 @@ En este apéndice se explican los distintos componentes del \gls{framework} prop
 
 \section{Gestión de rutas\label{extra:mvc:router}}
 
+El componente de gestión de rutas del \gls{framework} se encarga de interpretar las peticiones realizadas por el usuario y delegarlas al módulo apropiado. Con este fin, todas las peticiones \gls{HTTP}, a excepción de las que van dirigidas al \textit{proxy} (ver Sección \ref{extra:mvc:proxy}), se redirigen utilizando \textit{mod\_rewrite} \cite{modrewrite} al archivo \textit{index.php}. Este archivo a su vez invoca el método estático \textit{Router->dispatch()}.
 
-/módulo/método/param1/param2
-TODO: Router, redireccionamiento, urls rest, parámetros, proxy, htaccess
+El método \textit{Router->dispatch()} divide la \gls{URL} solicitada siguiendo el siguiente formato:
+
+\textit{URL\_BASE\_APLICACIÓN/módulo/método/parámetro1/parámetro2/...}
+
+Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura \ref{fig:router}). Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver Sección \ref{extra:mvc:config}). En caso de que la \gls{URL} contenga un módulo o método no existente, se redirecciona la petición a la página de \textit{Error 404 - Página no encontrada}.
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=\textwidth,clip=true]{graphics/router}
+  \caption{Esquema de flujo del método \textit{Router->dispatch()}.}
+  \label{fig:router}
+\end{figure}
 
 
 \section{Patrón de arquitectura para los módulos\label{extra:mvc:mvc}}
 
-delegar
-TODO: Modelo Vista Controlador, interacción entre componentes, división en módulos,
-clases abstractas
+Las aplicaciones desarrolladas sobre el \gls{framework} se estructuran en módulos que siguen el patrón de arquitectura modelo-vista-controlador \cite{mvcpattern}. Este patrón separa la lógica de negocio de la interfaz de usuario, facilitando la evolución por separado de ambos aspectos e incrementando la reutilización y flexibilidad de los módulos de la aplicación.
 
+Los componentes o capas de este patrón de arquitectura son:
+\begin{itemize}
+  \item \textbf{Modelo}: contiene el estado, los datos y la lógica interna de negocio.
+  \item \textbf{Vista}: construye la representación del modelo.
+  \item \textbf{Controlador}: gestiona las peticiones del usuario.
+\end{itemize}
+
+Cuando un usuario realiza una acción en la interfaz web, el controlador gestiona la solicitud notificando al modelo de la acción, que se actualiza en consecuencia. Posteriormente, el controlador ordena a la vista mostrar al usuario nuevo estado de la aplicación. La vista consulta entonces el nuevo modelo y lo representa, en el caso de este \gls{framework} en forma de página web.
+
+Las clases abstractas \textit{Model}, \textit{View} y \textit{Controller} incluidas en el \gls{framework} proporcionan una implementación base de este patrón. Cada módulo de la aplicación debe heredar cada una de las tres clases e implementar en ellas su funcionalidad propia.
 
 
 \section{Redireccionamiento de peticiones \gls{AJAX}\label{extra:mvc:proxy}}
@@ -44,7 +63,7 @@ Este \gls{framework} facilita la traducción de la aplicación a distintos idiom
 
 Es necesario un catálogo por cada idioma que se quiera añadir a la aplicación. Los catálogos se almacenan en la carpeta del proyecto \texttt{./locale/}. Para crear y gestionar los catálogos es recomendable utilizar la herramienta \textit{Poedit} \cite{poedit}, que permite editarlos con una interfaz gráfica. Para obtener las cadenas de texto que se necesitan traducir, se escanean todos archivos del proyecto en busca de las palabras clave, y se añaden las cadenas de texto al catálogo para su traducción por parte del desarrollador.
 
-A continuación se describe un ejemplo de cómo imprimir una cadena sea traducida a otro idioma mediante una llamada a la función \textit{\_} (ver Código \ref{code:ejemplogettext}). Si el idioma establecido en la aplicación es español, la función \textit{\_} busca la cadena \textit{'Example of string'} en el catálogo español y devuelve \textit{'Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
+En el Código \ref{code:ejemplogettext} se describe un ejemplo de cómo imprimir una cadena sea traducida a otro idioma mediante una llamada a la función \textit{\_}. Si el idioma establecido en la aplicación es español, la función \textit{\_} busca la cadena \textit{'Example of string'} en el catálogo español y devuelve \textit{'Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
 
 \begin{code}[label=code:ejemplogettext,language=php,caption=Ejemplo de traducción con la librería \textit{gettext}]
 echo _('Example of string');
@@ -116,11 +135,11 @@ Las dependencias se descargan e instalan de forma local al proyecto ejecutando e
 
 \section{Configuración\label{extra:mvc:config}}
 
-Para la configuración interna de la aplicación se utiliza la clase \textit{Config}, compuesta por métodos estáticos. En esta clase se definen también las variables globales de la aplicación: nombres de carpetas y archivos, dirección IP del \gls{servicioweb} \gls{FPGA}, idiomas disponibles, idioma por defecto, temas visuales disponibles y tema visual por defecto.
+Para la configuración interna de la aplicación se utiliza la clase \textit{Config}, compuesta por métodos estáticos. En esta clase se definen también las variables globales de la aplicación: nombres de carpetas y archivos, módulo a cargar por defecto, método a invocar por defecto, dirección IP del \gls{servicioweb} \gls{FPGA}, idiomas disponibles, idioma por defecto, temas visuales disponibles y tema visual por defecto.
 
 Las variables que puede cambiar el usuario (idioma por defecto, tema visual por defecto y dirección IP del \gls{servicioweb} \gls{FPGA}) no se inicializan por definición en el código sino que se leen de distintos ficheros de la carpeta \texttt{./config/} en formato \gls{JSON}.
 
-La configuración global de la aplicación es siempre cargada al principio, mediante una llamada al método \textit{load} de la clase \textit{Config}.
+La configuración global de la aplicación es siempre cargada al principio, mediante una llamada al método estático \textit{load} de la clase \textit{Config}.
 
 \section{Registro de eventos\label{extra:mvc:logger}}
 
@@ -153,4 +172,4 @@ Para automatizar tareas que se realizan con frecuencia en el desarrollo de la ap
 
 Se ha desarrollado un \gls{framework} que sirve de base para la interfaz web, proporcionando un conjunto mínimo de funcionalidad necesaria para el problema planteado. Aunque desarrollarlo ha supuesto un coste temporal adicional para el proyecto, ha repercutido positivamente en fases posteriores de la implementación.
 
-Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño Modelo-Vista-Controlador, gestión automática de dependencias y librerías externas, internacionalización de interfaces web y codificación de un servidor \gls{proxy} simplificado.
+Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño modelo-vista-controlador, gestión automática de dependencias y librerías externas, internacionalización de interfaces web y codificación de un servidor \gls{proxy} simplificado.
