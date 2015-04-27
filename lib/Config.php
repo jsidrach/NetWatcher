@@ -21,10 +21,7 @@ class Config
     /**
      * Languages
      */
-    public static $LANGUAGES = array(
-        'English' => 'en_GB.utf8',
-        'Español' => 'es_ES.utf8'
-    );
+    public static $LANGUAGES;
 
     /**
      * User Themes
