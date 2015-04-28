@@ -1,20 +1,5 @@
-TODO Week
+TODO Future (may or may not happen):
 -------
-  - Bugfixes
-
-TODO Future:
--------
-  - optimizaciones capinfo -t?
-  - testSimple para detectar trazas simple validas?
-  - actualizar testSimple.c para que añada al final el nº de paquetes
-    - en launchRecorder.sh, que se llame despues a testSimple y añada esto
-  - Terminar de probar todo con los binarios nuevos
-    - Sobre todo captura/reproduccion/conversion
-    - Ver como va a 10G
-  - Probar delete_raid, storage gui
-  - Captures/all va lento por el capinfos -t, como mejorar?
-      - Ver si va mejor en dagda
-
-Jose:
--------
-  - Nuevos binarios finales de todo cuando este listo testSimple.c (solo queda eso!!! :D)
+  - Upgrade binaries when they are ready to ship
+  - Use 'testSimple' binary to validate simple captures
+  - Add testSimple call in launchRecorder.sh to add at the end of the capture the number of packets

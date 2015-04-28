@@ -12,13 +12,13 @@ En este apéndice se explican los distintos componentes del \gls{framework} desa
 
 \section{Gestión de rutas\label{extra:mvc:router}}
 
-El componente de gestión de rutas del \gls{framework} se encarga de interpretar las peticiones realizadas por el usuario y delegarlas al módulo apropiado. Con este fin, todas las peticiones \gls{HTTP}, a excepción de las que van dirigidas al \textit{proxy} (ver Sección \ref{extra:mvc:proxy}), se redirigen utilizando \textit{mod\_rewrite} \cite{modrewrite} al archivo \textit{index.php}. Este archivo a su vez invoca el método estático \textit{Router->dispatch()}.
+El componente de gestión de rutas del \gls{framework} se encarga de interpretar las peticiones realizadas por el usuario y delegarlas al módulo apropiado. Con este fin, todas las peticiones \gls{HTTP}, a excepción de las que van dirigidas al \textit{proxy} (ver sección \ref{extra:mvc:proxy}), se redirigen utilizando \textit{mod\_rewrite} \cite{modrewrite} al archivo \textit{index.php}. Este archivo a su vez invoca el método estático \textit{Router->dispatch()}.
 
 El método \textit{Router->dispatch()} divide la \gls{URL} solicitada siguiendo el siguiente formato:
 
 \textit{URL\_BASE\_APLICACIÓN/módulo/método/parámetro1/parámetro2/...}
 
-Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura \ref{fig:router}). Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver Sección \ref{extra:mvc:config}). En caso de que la \gls{URL} contenga un módulo o método no existente, se redirecciona la petición a la página de \textit{Error 404 - Página no encontrada}.
+Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura \ref{fig:router}). Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver sección \ref{extra:mvc:config}). En caso de que la \gls{URL} contenga un módulo o método no existente, se redirecciona la petición a la página de \textit{Error 404 - Página no encontrada}.
 
 \begin{figure}[!htp]
   \centering
