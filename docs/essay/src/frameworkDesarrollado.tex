@@ -1,11 +1,11 @@
-\chapter{Framework propio\label{extra:framework_propio}}
+\chapter{Framework desarrollado\label{extra:frameworkDesarrollado}}
 
-En este apéndice se explican los distintos componentes del \gls{framework} propio en el que se ha implementado la interfaz web. Este \gls{framework} está implementado en \gls{PHP} sobre \textit{Apache httpd} \cite{httpd}. Sirve de base para la organización y desarrollo de la aplicación, proveyéndola de un gestor de rutas, un patrón de arquitectura para los módulos de la aplicación (modelo-vista-controlador), un \gls{proxy} simplificado para las llamadas al \gls{servicioweb} \gls{FPGA}, soporte para la internacionalización de la interfaz, gestión automática de dependencias, y registro de eventos (ver Figura \ref{fig:framework}).
+En este apéndice se explican los distintos componentes del \gls{framework} desarrollado en el que se ha implementado la interfaz web. Este \gls{framework} está implementado en \gls{PHP} sobre \textit{Apache httpd} \cite{httpd}. Sirve de base para la organización y desarrollo de la aplicación, proveyéndola de un gestor de rutas, un patrón de arquitectura para los módulos de la aplicación (modelo-vista-controlador), un \gls{proxy} simplificado para las llamadas al \gls{servicioweb} \gls{FPGA}, soporte para la internacionalización de la interfaz, gestión automática de dependencias, y registro de eventos (ver Figura \ref{fig:framework}).
 
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/framework}
-  \caption{Arquitectura del \gls{framework} propio.}
+  \caption{Arquitectura del \gls{framework} desarrollado.}
   \label{fig:framework}
 \end{figure}
 
@@ -39,7 +39,7 @@ Los componentes o capas de este patrón de arquitectura son:
   \item \textbf{Controlador}: gestiona las peticiones del usuario.
 \end{itemize}
 
-Cuando un usuario realiza una acción en la interfaz web, el controlador gestiona la solicitud notificando al modelo de la acción, que se actualiza en consecuencia. Posteriormente, el controlador ordena a la vista mostrar al usuario nuevo estado de la aplicación. La vista consulta entonces el nuevo modelo y lo representa, en el caso de este \gls{framework} en forma de página web.
+Cuando un usuario realiza una acción en la interfaz web, el controlador gestiona la solicitud notificando la acción al modelo, que se actualiza en consecuencia. Posteriormente, el controlador ordena a la vista mostrar al usuario el nuevo estado de la aplicación. La vista consulta entonces el nuevo modelo y lo representa, en el caso de este \gls{framework} en forma de página web.
 
 Las clases abstractas \textit{Model}, \textit{View} y \textit{Controller} incluidas en el \gls{framework} proporcionan una implementación base de este patrón. Cada módulo de la aplicación debe heredar cada una de las tres clases e implementar en ellas su funcionalidad propia.
 
@@ -53,19 +53,26 @@ Para resolver esto, el \gls{framework} contiene un servidor \gls{proxy} simplifi
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.6\textwidth,clip=true]{graphics/proxy}
-  \caption{Arquitectura del proxy propio.}
+  \caption{Arquitectura del proxy desarrollado.}
   \label{fig:proxy}
 \end{figure}
 
 \section{Internacionalización de la interfaz\label{extra:mvc:i18n}}
 
-Este \gls{framework} facilita la traducción de la aplicación a distintos idiomas mediante la librería \textit{gettext} \cite{gettext} para \gls{PHP}. Esta librería proporciona funciones (\textit{\_} y \textit{gettext}) que reciben cadenas de texto y devuelven su equivalente en el idioma de la aplicación seleccionado, consultando un archivo previamente creado (catálogo) que contiene cadenas de texto originales y su traducción.
+El \gls{framework} desarrollado facilita la traducción de la aplicación a distintos idiomas mediante la librería \textit{gettext} \cite{gettext} para \gls{PHP}. Esta librería proporciona funciones (``\textit{\_}'' y ``\textit{gettext}'') que reciben cadenas de texto y devuelven su equivalente en el idioma de la aplicación seleccionado, consultando un archivo previamente creado (catálogo) que contiene cadenas de texto originales y su traducción.
 
 Es necesario un catálogo por cada idioma que se quiera añadir a la aplicación. Los catálogos se almacenan en la carpeta del proyecto \texttt{./locale/}. Para crear y gestionar los catálogos es recomendable utilizar la herramienta \textit{Poedit} \cite{poedit}, que permite editarlos con una interfaz gráfica. Para obtener las cadenas de texto que se necesitan traducir, se escanean todos archivos del proyecto en busca de las palabras clave, y se añaden las cadenas de texto al catálogo para su traducción por parte del desarrollador.
 
-En el Código \ref{code:ejemplogettext} se describe un ejemplo de cómo imprimir una cadena sea traducida a otro idioma mediante una llamada a la función \textit{\_}. Si el idioma establecido en la aplicación es español, la función \textit{\_} busca la cadena \textit{'Example of string'} en el catálogo español y devuelve \textit{'Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
+En el Código \ref{code:ejemplogettext} se describe un ejemplo de cómo imprimir una cadena traducida a otro idioma mediante una llamada a la función ``\textit{\_}''. Si el idioma base de los catálogos es el inglés y el idioma establecido en la aplicación es español, la función ``\textit{\_}'' busca la cadena en inglés (idioma base) \textit{`Example of string'} en el catálogo español y devuelve la cadena de texto \textit{`Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
 
-\begin{code}[label=code:ejemplogettext,language=php,caption=Ejemplo de traducción con la librería \textit{gettext}]
+\begin{code}[label=code:ejemplogettext,language=php,caption=Ejemplo de traducción en \gls{PHP} con la librería \textit{gettext}]
+/* Set the app language */
+putenv('LANG=' . 'es_ES.utf8');
+putenv('LANGUAGE=' . 'es_ES.utf8');
+setlocale(LC_ALL, 'es_ES.utf8');
+bindtextdomain('messages', 'locale');
+bind_textdomain_codeset('messages', 'utf-8');
+/* Print the example string */
 echo _('Example of string');
 \end{code}
 
@@ -99,13 +106,11 @@ Las dependencias se descargan e instalan de forma local al proyecto ejecutando e
    },
   "require": {
     "php": ">=5.5.0",
-    "apidoc/apidoc": "dev-master",
     "beelab/bowerphp": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "Core\\": "lib/",
-      "App\\Common\\": "app/common/"
+      "Core\\": "lib/"
     }
   }
 }
@@ -139,7 +144,7 @@ Para la configuración interna de la aplicación se utiliza la clase \textit{Con
 
 Las variables que puede cambiar el usuario (idioma por defecto, tema visual por defecto y dirección IP del \gls{servicioweb} \gls{FPGA}) no se inicializan por definición en el código sino que se leen de distintos ficheros de la carpeta \texttt{./config/} en formato \gls{JSON}.
 
-La configuración global de la aplicación es siempre cargada al principio, mediante una llamada al método estático \textit{load} de la clase \textit{Config}.
+La configuración global de la aplicación se carga siempre al principio, mediante una llamada al método estático \textit{load} de la clase \textit{Config}.
 
 \section{Registro de eventos\label{extra:mvc:logger}}
 
@@ -162,10 +167,10 @@ Para automatizar tareas que se realizan con frecuencia en el desarrollo de la ap
   \item \texttt{----doc}: genera la documentación automática a partir del código del \gls{front-end} y del \gls{back-end}, en la carpeta \texttt{./docs/}.
   \item \texttt{----upgrade}: actualiza las librerías externas necesarias para la aplicación.
   \item \texttt{----install}: instala las dependencias externas (paquetes y librerías) necesarias para la aplicación.
-  \item \texttt{----check}: realiza un análsis léxico y sintáctico sobre todo el código \gls{PHP} la aplicación. 
+  \item \texttt{----check}: realiza un análsis léxico y sintáctico sobre todo el código \gls{PHP} de la aplicación. 
   \item \texttt{----permissions}: otorga los permisos mínimos necesarios de lectura/escritura/ejecución a los archivos y carpetas del proyecto.
   \item \texttt{----clear}: borra los archivos de \textit{logs}.
-  \item \texttt{----backup}: comprime la carpeta del proyecto en un archivo en formato \textit{.zip}, y lo guarda con la fecha del mismo en la carpeta superior a modo de copia de seguridad.
+  \item \texttt{----backup}: comprime la carpeta del proyecto en un archivo en formato \textit{.zip}, y lo guarda con la fecha actual en la carpeta superior a modo de copia de seguridad.
 \end{itemize}
 
 \section{Conclusiones\label{extra:mvc:conclusiones}}
