@@ -18,7 +18,7 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
 - Estado del arte
   [Introducción]
   - Sistemas de captura/reproducción de tráfico web
-  - Sistemas de gestión y monitorización
+  - Interfaces de gestión y monitorización
   - Conclusiones
 
 - Definición del proyecto
@@ -78,7 +78,7 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
 
 - Conclusiones
 
-- Líneas de trabajo futuras
+- Líneas de trabajo futuro
 
 * Bibliografía
 
@@ -99,7 +99,6 @@ Cosas que faltan por mencionar en la memoria:
     - Diferencias y restricciones respecto a restful
     - Llamadas asíncronas
     - Algoritmo utilizado
-    - JSONP, cross-domain <-> Proxy
     - Supervisor, cambios en javascript sin reiniciar
     - Timestamps (extra, no necesario, vlan distintas)
 
@@ -123,7 +122,7 @@ Restantes: 11/16
 [ ]Pruebas
 [ ]Mantenimiento
 [ ]Conclusiones
-[X]Líneas de trabajo futuras
+[X]Líneas de trabajo futuro
 [X]Manual de Usuario
 [X]Framework desarrollado
 [X]FPGA Web Service API
