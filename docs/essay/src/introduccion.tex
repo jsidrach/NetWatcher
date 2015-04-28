@@ -1,6 +1,25 @@
 \chapter{Introducción}
 
 TODO: Introducción del trabajo
+interfaz web para la gestión de sondas de red de altas prestaciones. HPCN. Ámbito, motivación y objetivos de este Trabajo de Fin de Grado, seguidos de una explicación sobre la estructura del documento.
+
+Una sonda de red es simplemente un dispositivo capaz de capturar tráfico de red (sonda
+pasiva) o de inyectarlo (sonda activa). Este dispositivo puede ser algo tan sencillo
+como un ordenador convencional, en el que se ha instalado una tarjeta Ethernet
+estándar o una tarjeta a medida basada en FPGA (ver la propuesta de proyecto
+“Sistema basado en FPGA para la captura de tráfico en redes multigigabit Ethernet”).
+Este ordenador típicamente correrá un sistema operativo Linux/GNU, y se habrán
+instalado unos drivers especiales para poder acceder lo más eficientemente a la tarjeta
+de red. Lo habitual es manejar la sonda desde línea de comandos. En este proyecto se
+propone hacer una interfaz de usuario mucho más amigable, basada en web. En la
+sonda correrá un servidor web, que mostrará una página con la que se podrá configurar
+y manejar todos los aspectos de la sonda (capturar tráfico, reproducirlo, estado de la
+sonda). Todas estas operaciones se corresponden con ejecutar programas de línea de
+comandos, por lo que en resumidas cuentas este proyecto consiste en hacer un frontend
+web para una interfaz de línea de comandos.
+La interfaz web no solo tendrá una sección de controles para manejar la sonda, sino que
+también mostrará su estado de una manera gráfica (medidores de nivel, etc.) y dibujará
+alguna gráfica sencilla (bytes recibidos vs. tiempo, etc.)
 
 
 \section{\'Ambito}
@@ -24,19 +43,21 @@ TODO: Motivación del trabajo
 
 \section{Objetivos}
 
-el objetivo de este Trabajo de Fin de Grado es diseñar, implementar y validar una interfaz web para la gestión de sondas de red de altas prestaciones 
+Este Trabajo de Fin de Grado tiene los siguientes objetivos principales:
 
-gestionar \glspl{traza} 
+\begin{itemize}
+  \item Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+  Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+  Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
 
-monitorizar
+  \item Monitorizar el estado del servidor al que está conectada una sonda de red de altas prestaciones.
+Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
 
-estadísticas del sistema
-
-registrar eventos
-
-
-TODO: Objetivos del trabajo
-
+  \item Registrar estadísticas sobre la utilización de las sondas de red de altas prestaciones.
+Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+\end{itemize}
 
 \section{Estructura del documento}
 
