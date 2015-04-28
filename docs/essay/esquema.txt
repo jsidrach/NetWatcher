@@ -84,7 +84,7 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
 
 - Apéndices
   - Manual de Usuario
-  - Framework propio
+  - Framework desarrollado
   - FPGA Web Service API
   
 _________________________________________________________________________________________
@@ -108,8 +108,8 @@ ________________________________________________________________________________
 Progreso
 --------
 
-Completados: 4/16
-Restantes: 12/16
+Completados: 5/16
+Restantes: 11/16
 
 [ ]Agradecimientos
 [ ]Abstract
@@ -125,5 +125,5 @@ Restantes: 12/16
 [ ]Conclusiones
 [X]Líneas de trabajo futuras
 [X]Manual de Usuario
-[ ]Framework propio
+[X]Framework desarrollado
 [X]FPGA Web Service API
