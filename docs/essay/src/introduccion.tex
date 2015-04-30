@@ -1,28 +1,30 @@
 \chapter{Introducción}
 
+Este Trabajo de Fin de Grado, realizado en colaboración con el grupo de investigación \textit{High Performance Computing and Networking (HPCN)}, consiste en diseñar e implementar una interfaz web para la gestión de sondas de red de altas prestaciones.
+.
+
+
+
+basado en FPGA
+
+\section{Motivación}
+
 TODO: Introducción del trabajo
-interfaz web para la gestión de sondas de red de altas prestaciones. HPCN. Ámbito, motivación y objetivos de este Trabajo de Fin de Grado, seguidos de una explicación sobre la estructura del documento.
+interfaz web para la gestión de sondas de red de altas prestaciones. HPCN. Ámbito, motivación y objetivos de este Trabajo de Fin de Grado, seguidos de una explicación sobre la estructura rel desto del documento.
 
-Una sonda de red es simplemente un dispositivo capaz de capturar tráfico de red (sonda
-pasiva) o de inyectarlo (sonda activa). Este dispositivo puede ser algo tan sencillo
-como un ordenador convencional, en el que se ha instalado una tarjeta Ethernet
-estándar o una tarjeta a medida basada en FPGA (ver la propuesta de proyecto
-“Sistema basado en FPGA para la captura de tráfico en redes multigigabit Ethernet”).
-Este ordenador típicamente correrá un sistema operativo Linux/GNU, y se habrán
-instalado unos drivers especiales para poder acceder lo más eficientemente a la tarjeta
-de red. Lo habitual es manejar la sonda desde línea de comandos. En este proyecto se
-propone hacer una interfaz de usuario mucho más amigable, basada en web. En la
-sonda correrá un servidor web, que mostrará una página con la que se podrá configurar
-y manejar todos los aspectos de la sonda (capturar tráfico, reproducirlo, estado de la
-sonda). Todas estas operaciones se corresponden con ejecutar programas de línea de
-comandos, por lo que en resumidas cuentas este proyecto consiste en hacer un frontend
-web para una interfaz de línea de comandos.
-La interfaz web no solo tendrá una sección de controles para manejar la sonda, sino que
-también mostrará su estado de una manera gráfica (medidores de nivel, etc.) y dibujará
-alguna gráfica sencilla (bytes recibidos vs. tiempo, etc.)
+Una sonda de red es simplemente un dispositivo capaz de capturar tráfico de red (sonda pasiva) o de inyectarlo (sonda activa). Este dispositivo puede ser algo tan sencillo como un ordenador convencional, en el que se ha instalado una tarjeta \textit{Ethernet} estándar o una tarjeta a medida basada en \gls{FPGA}. 
+
+. Lo habitual es manejar la sonda desde línea de comandos, lo que dificulta su gestión en personas sin conocimientos previos de la propia sonda. En este proyecto se realizará una interfaz de usuario mucho más amigable, basada en tecnologías web. 
 
 
-\section{\'Ambito}
+ (ver la propuesta de proyecto “Sistema basado en FPGA para la captura de tráfico en redes multigigabit Ethernet”). Este ordenador típicamente correrá un sistema operativo Linux/GNU, y se habrán instalado unos drivers especiales para poder acceder lo más eficientemente a la tarjeta de red. Lo habitual es manejar la sonda desde línea de comandos. En este proyecto se propone hacer una interfaz de usuario mucho más amigable, basada en web. En la sonda correrá un servidor web, que mostrará una página con la que se podrá configurar y manejar todos los aspectos de la sonda (capturar tráfico, reproducirlo, estado de la sonda). Todas estas operaciones se corresponden con ejecutar programas de línea de comandos, por lo que en resumidas cuentas este proyecto consiste en hacer un frontend web para una interfaz de línea de comandos. La interfaz web no solo tendrá una sección de controles para manejar la sonda, sino que también mostrará su estado de una manera gráfica (medidores de nivel, etc.) y dibujará alguna gráfica sencilla (bytes recibidos vs. tiempo, etc.)
+
+Necesaria simplificación gestión de sondas de red de altas prestaciones por medio de una interfaz gráfica
+ 
+línea de comandos, costoso, necesaria formación previa
+
+ampliar la funcionalidad ofreciendo monitorización 
+TODO: Motivación del trabajo
 
 Trabajo de Fin de Grado
 
@@ -32,31 +34,16 @@ grupo de investigación \textit{High Performance Computing and Networking}.
 
 TODO: Ámbito del trabajo
 
-
-\section{Motivación}
-
-Necesaria simplificación gestión de sondas de red de altas prestaciones por medio de una interfaz gráfica
-
-ampliar la funcionalidad ofreciendo monitorización 
-TODO: Motivación del trabajo
-
-
 \section{Objetivos}
 
 Este Trabajo de Fin de Grado tiene los siguientes objetivos principales:
 
 \begin{itemize}
-  \item Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
-  Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
-  Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+  \item Desarrollar una interfaz web que permita la gestión de una sonda de red de altas prestaciones. Esta interfaz permitirá de manera visual tanto conocer el estado actual de la sonda de red como configurarla para reproducir o capturar tráfico de red. Además, la interfaz web permitirá gestionar las \glspl{traza} capturadas con la sonda mecionada. Se pretende así facilitar el control de todos los componentes que intervienen en la captura y reproducción de tráfico de red, y que no sea necesario conocer previamente el funcionamiento interno de la sonda para poder manejarla y experimentar con ella.
 
-  \item Monitorizar el estado del servidor al que está conectada una sonda de red de altas prestaciones.
-Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
-Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+  \item Monitorizar el estado del servidor al que está conectada la sonda de red de altas prestaciones. Para ello, la aplicación mostrará al usuario estadísticas sobre el servidor relevantes en este contexto. Por una parte, se podrá conocer el espacio de almacenamiento disponible para guardar \glspl{traza}, para que el usuario pueda liberar espacio es caso de ser necesario, y prevenir así que la sonda deje de poder capturar tráfico de red. Por otro lado, si el sistema de archivos en que se almacenan las \glspl{traza} capturadas con la sonda está sobre un \gls{RAID}, se podrá conocer la velocidad de escritura global del sistema y de cada uno de los discos que integran el \gls{RAID}, ya que es un factor que puede limitar el rendimiento de la sonda.
 
-  \item Registrar estadísticas sobre la utilización de las sondas de red de altas prestaciones.
-Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
-Desarrollar una interfaz web que permita la gestión de sondas de red de altas prestaciones de manera intuitiva y sencilla.
+  \item Registrar estadísticas sobre el uso de la aplicación, lo que ayudará a localizar y solucionar errores internos. Adicionalmente, se podrán analizar los registros para conocer el grado de utilización de la sonda por diferentes usuarios, y optimizar el tiempo necesario para realizar las tareas más frecuentes.
 \end{itemize}
 
 \section{Estructura del documento}
