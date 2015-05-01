@@ -10,6 +10,7 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
 * Índice de figuras
 
 - Introducción
+  [Introducción]
   - Motivación
   - Objetivos
   - Estructura del documento
