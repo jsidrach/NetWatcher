@@ -8,6 +8,7 @@ sudo chmod 777 -R "log/" "config/"
 # Executable directories
 sudo chmod +x "scripts/"*
 sudo chmod +x -R "vendor/"*
+sudo chmod +x -R "docs/essay/"*
 # FPGA Web Service permissions
 cd fpga-api
 sudo chmod +x "./scripts/do_chmod.sh"
