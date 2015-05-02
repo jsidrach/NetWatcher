@@ -23,13 +23,12 @@ Esquema de la memoria (* = generación semiautomática, - = contenido propio):
 
 - Definición del proyecto
   [Introducción]
-  - Objetivos
   - Alcance
   - Metodología
     {Sprints}
   - Herramientas
-    {Dividir en Back-End y Front-End}
     {Lista de herramientas, una subsección por cada una}
+    {Dividir en Back-End y Front-End}
 
 - Requisitos
   [Introducción]
@@ -99,7 +98,7 @@ Cosas que faltan por mencionar en la memoria:
     - Diferencias y restricciones respecto a restful
     - Llamadas asíncronas
     - Algoritmo utilizado
-    - Supervisor, cambios en javascript sin reiniciar
+    - nodemon, cambios en javascript sin reiniciar
     - Timestamps (extra, no necesario, vlan distintas)
 
 _________________________________________________________________________________________
