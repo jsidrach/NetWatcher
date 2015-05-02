@@ -18,7 +18,7 @@ Para el desarrollo de este proyecto han sido necesarias herramientas que cubran 
 
 \begin{itemize}
   \item Control de versiones.
-  \item Creación de maquetas.
+  \item Creación de diagramas y maquetas.
   \item Documentación de la aplicación.
   \item Plataforma base para el \gls{back-end}.
   \item Plataforma base para el \gls{front-end}.
@@ -29,23 +29,26 @@ Se detallan también las librerías externas de las que hace uso la aplicación.
 
 \subsection*{Control de versiones: git\label{ssec:dp:git}}
 
-GitHub, Distribuido, codigo abierto, más utilizado
+En todo proyecto software es fundamental, especialmente si se alarga en el tiempo, hacer uso de una herramienta de control de versiones para el código y la documentación. Se ha elegido con este propósito utilizar la plataforma \textit{GitHub} \cite{github}, basada en \textit{git} \cite{git}, un sistema distribuido de control de versiones.
+Esta plataforma es la más popular dentro de las herramientas de control de versiones, y tiene algunas ventajas importantes respecto a otros sistemas similares.
 
-\cite{git}
-\cite{github}
+En primer lugar, ofrece alojamiento gratuito para proyectos de código abierto, y también para proyectos privados si se es estudiante. Gracias a esto se ha podido desarrollar todo el código de la aplicación en un proyecto privado, liberándolo al público al finalizar el desarrollo principal, de forma que cualquiera pueda utilizar y mejorar el código existente. 
+Por otra parte, \textit{GitHub} añade a la funcionalidad de \textit{git} la posibilidad de crear una \textit{wiki} del proyecto de forma sencilla, característica que ha sido utilizada en el proyecto.
+Finalmente, facilita la colaboración entre desarrolladores con una interfaz intuitiva y cuya curva de aprendizaje no es demasiado inclinada. 
 
-\subsection*{Creación de maquetas: Cacoo\label{ssec:dp:cacoo}}
+\subsection*{Creación de diagramas y maquetas: Cacoo\label{ssec:dp:cacoo}}
 
-Gratis, licencia estudiante, posibilidad de exportar png/svg
-
-\cite{cacoo}
-
+Para el diseño de la aplicación se han realizado diagramas de flujo y de arquitectura del proyecto, así como maquetas de las diferentes pantallas de la interfaz web. Para ello, se ha utilizado la herramienta \textit{Cacoo} \cite{cacoo}, ya que ofrece una licencia gratuita para estudiantes que permite exportar estos gráficos en formato vectorial \textit{svg}, que se pueden redimensionar sin pérdida de resolución. Otra característica interesante es que está basada en tecnologías web, con lo que es accesible desde cualquier navegador, sin ser necesario instalar ningún programa adicional.
 
 \subsection*{Documentación: phpDocumentor y apiDoc\label{ssec:dp:docs}}
 
-Autogenerada, consultable en la web. apiDoc ideal para plataformas REST
-\cite{apidoc}
-\cite{phpdocumentor}
+Con el objetivo de documentar la aplicación, se buscó una librería que contase con características particulares.
+Por un lado, que permitiese crear la documentación mediante anotaciones en el propio código, sin ralentizar demasiado la implementación del proyecto.
+Por otro, que generase la documentación en formato \gls{HTML}, para que se pudiese acceder a ella del mismo modo que a la aplicación, desde un navegador.
+Finalmente, se ha decidido utilizar una herramienta de documentación distinta para cada parte, debido a diferencias significativas (en arquitectura y lenguaje) entre el \gls{back-end} y el \gls{front-end}.
+
+Para el \gls{back-end} se ha elegido \textit{apiDoc} \cite{apidoc}, ya que es multilenguaje y encaja perfectamente dentro de la arquitectura interna (ver sección \ref{sec:dis:servicio_web_fpga}).
+Respecto al \gls{front-end}, se ha seleccionado \textit{phpDocumentor} \cite{phpdocumentor}, al tener una sintaxis similar a \textit{javadoc}, herramienta utilizada en asignaturas del grado.
 
 \subsection*{Plataforma base para el \gls{back-end}: io.js\label{ssec:dp:back-end}}
 
@@ -56,10 +59,16 @@ Plataforma Back-End: JavaScript/io.js (fork de node.js)
 
 \subsection*{Librerías utilizadas para el \gls{back-end}\label{ssec:dp:back-end-libs}}
 
-Librerías Back-End: express, async, nodemon
-\cite{express}
-\cite{async}
-\cite{nodemon}
+Se han utilizado las siguientes librerías \gls{back-end} para \textit{io.js}:
+
+\begin{itemize}
+  \item \textbf{Express} \cite{express}:
+
+  \item \textbf{Async} \cite{async}:
+
+  \item \textbf{nodemon} \cite{nodemon}:
+
+\end{itemize}
 
 \subsection*{Plataforma base para el \gls{front-end}: \gls{framework} propio\label{ssec:dp:front-end}}
 
@@ -70,15 +79,21 @@ Plataforma Front-End: Framework propio: PHP, HTML5, CSS, JavaScript
 
 \subsection*{Librerías utilizadas para el \gls{front-end}\label{ssec:dp:front-end-libs}}
 
-Librerías Front-End: Bootstrap, jQuery, Bootswatch, notify, chart.js, animate.css, composer, bower
+Además del \gls{framework} desarrollado, se han utilizado las siguientes librerías \gls{front-end}:
 
-\cite{bootstrap}
-\cite{bootstraptable}
-\cite{jquery}
-\cite{bootswatch}
-\cite{bootstrapnotify}
-\cite{chartjs}
-\cite{animatecss}
+\begin{itemize}
+  \item \textbf{Bootstrap} \cite{bootstrap}:
 
-\cite{composer}
-\cite{bowerphp}
+  \item \textbf{Bootstrap table} \cite{bootstraptable}:
+
+  \item \textbf{Bootswatch} \cite{bootswatch}:
+
+  \item \textbf{Bootstrap Notify} \cite{bootstrapnotify}:
+
+  \item \textbf{jQuery} \cite{jquery}:
+
+  \item \textbf{Chart.js} \cite{chartjs}:
+
+  \item \textbf{Animate.css} \cite{animatecss}:
+
+\end{itemize}
