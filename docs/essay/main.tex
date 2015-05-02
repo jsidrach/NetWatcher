@@ -7,7 +7,7 @@
 \newcommand{\nombretrabajo}{Interfaz web para la gestión de sondas de red de altas prestaciones}
 \newcommand{\fecha}{Junio 2014}
 \newcommand{\grado}{Doble Grado en Ingeniería Informática y Matemáticas}
-\newcommand{\grupoInvestigacion}{High Performance Computing and Networking Research Group}
+\newcommand{\grupoInvestigacion}{High-Performance Computing and Networking Research Group}
 \newcommand{\departamento}{Dpto. de Tecnología Electrónica y de las Comunicaciones}
 \newcommand{\facultad}{Escuela Politécnica Superior}
 \newcommand{\universidad}{Universidad Autónoma de Madrid}
@@ -20,6 +20,9 @@
 % Glosario y acrónimos
 \makeglossaries
 \input{src/glosario}
+
+% Rerefencias
+\bibliography{src/referencias}
 
 % Inicio del documento
 \begin{document}
@@ -89,9 +92,12 @@
 \cleardoublepage
 
 %
-% Referencias
+% Bibliografía y Referencias
 %
-\bibliography{src/referencias}
+\printbibliography[keyword=bibliografia]
+\addcontentsline{toc}{chapter}{Bibliografía}
+\defbibnote{prerreferencias}{Las siguientes direcciones web enlazan a información extendida sobre las herramientas, lenguajes de programación y librerías mencionadas en la memoria.}
+\printbibliography[prenote=prerreferencias,title={Referencias},notkeyword=bibliografia]
 \addcontentsline{toc}{chapter}{Referencias}
 
 %
