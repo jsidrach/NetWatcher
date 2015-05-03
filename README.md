@@ -30,7 +30,7 @@ NetWatcher uses a number of open source projects to work properly:
 * [io.js](https://iojs.org/) - evented I/O for the backend server
     * [Express](http://expressjs.com/) - web framework for io.js
     * [Async](https://github.com/caolan/async) - functions for working with asynchronous JavaScript
-    * [Supervisor](https://github.com/isaacs/node-supervisor) - supervisor and hot-code reloader
+    * [nodemon](http://nodemon.io/) - monitor for any changes in the app automatically restart the server
 * [jQuery](https://jquery.com) - JavaScript library
 * [Composer](https://getcomposer.org) - PHP library for back-end external dependencies
     * [BowerPHP](http://bowerphp.org/) - a PHP implementation of Bower (for front-end dependencies) 
