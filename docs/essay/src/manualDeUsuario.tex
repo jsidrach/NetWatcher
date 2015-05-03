@@ -16,7 +16,8 @@ El servidor que aloje el \gls{servicioweb} \gls{FPGA} debe cumplir los siguiente
 \subsection*{Instalación}
 Para instalar el \gls{servicioweb} \gls{FPGA}, comprobar que se cumplan todos los requisitos y seguir las instrucciones que se describen a continuación:
 \begin{enumerate}
-  \item Descargar el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}). La instalación se realiza de forma remota, así que no es necesario descargárselo en el propio servidor, aunque sí en un entorno con terminal.
+  \item Descargar el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}).
+  La instalación se realiza de forma remota, así que no es necesario descargárselo en el propio servidor, aunque sí en un entorno con terminal.
   \item Descomprimir el archivo \textit{.zip}.
   \item Editar el archivo \texttt{./fpga-api/scripts/update\_server.sh}, estableciendo los parámetros \texttt{SERVER\_IP} y \texttt{SERVER\_PATH} como la dirección del servidor remoto que alojará el \gls{servicioweb} \gls{FPGA} y la ruta donde guardar el código, respectivamente.
   \item Situarse en la carpeta \texttt{./fpga-api/}.
@@ -34,7 +35,10 @@ Para instalar el \gls{servicioweb} \gls{FPGA}, comprobar que se cumplan todos lo
 
 
 \section{Configuración del Servicio Web FPGA\label{extra:manual:configfpga}}
-Para configurar el \gls{servicioweb} \gls{FPGA}, inicie sesión en el servidor en el que se instaló este servicio. Los distintos parámetros de configuración vienen recogidos en el archivo \texttt{config.js}, dentro de la carpeta raíz del servicio (el contenido de la variable \texttt{SERVER\_PATH}, establecida en la instalación). Edite las distintas variables de este archivo (explicadas en la Tabla \ref{extra:manual:paramsfpga}) para configurar el servicio. No es necesario reiniciar el servicio para que los cambios en el archivo \texttt{config.js} se reflejen en el servidor.
+Para configurar el \gls{servicioweb} \gls{FPGA}, inicie sesión en el servidor en el que se instaló este servicio.
+Los distintos parámetros de configuración vienen recogidos en el archivo \texttt{config.js}, dentro de la carpeta raíz del servicio (el contenido de la variable \texttt{SERVER\_PATH}, establecida en la instalación).
+Edite las distintas variables de este archivo (explicadas en la Tabla \ref{extra:manual:paramsfpga}) para configurar el servicio.
+No es necesario reiniciar el servicio para que los cambios en el archivo \texttt{config.js} se reflejen en el servidor.
 
 \begin{table}
 \centering
@@ -88,7 +92,9 @@ Para instalar la interfaz web, comprobar que se cumplan todos los requisitos y s
 
 \section{Configuración de la interfaz web\label{extra:manual:configweb}}
 
-Se puede configurar la interfaz web accediendo en el navegador a la página de configuración, \texttt{IP\_SERVIDOR\_APACHE/NetWatcher/settings}. En esta pantalla (Figura \ref{fig:captura:configuracion}) se puede configurar el idioma, el aspecto visual (tema) y la dirección del \gls{servicioweb} \gls{FPGA}. Para que los cambios se reflejen en la interfaz web es necesario guardarlos. En el resto del manual se presupone que el idioma seleccionado es español.
+Se puede configurar la interfaz web accediendo en el navegador a la página de configuración, \texttt{IP\_SERVIDOR\_APACHE/NetWatcher/settings}.
+En esta pantalla (Figura \ref{fig:captura:configuracion}) se puede configurar el idioma, el aspecto visual (tema) y la dirección del \gls{servicioweb} \gls{FPGA}.
+Para que los cambios se reflejen en la interfaz web es necesario guardarlos. En el resto del manual se presupone que el idioma seleccionado es español.
 
 \begin{figure}[!htp]
   \centering
@@ -99,7 +105,8 @@ Se puede configurar la interfaz web accediendo en el navegador a la página de c
 
 
 \section{Uso de la aplicación\label{extra:manual:uso}}
-Una vez instalados y configurados tanto el \gls{servicioweb} \gls{FPGA} como la interfaz web, ya se puede utilizar la interfaz. Esta interfaz se puede usar desde cualquier navegador, y tanto en ordenador como en móvil. Todas las pantallas tienen las mismas barras de navegación.
+Una vez instalados y configurados tanto el \gls{servicioweb} \gls{FPGA} como la interfaz web, ya se puede utilizar la interfaz.
+Esta interfaz se puede usar desde cualquier navegador, y tanto en ordenador como en móvil. Todas las pantallas tienen las mismas barras de navegación.
 
 Desde la barra de navegación superior se puede acceder a las siguientes pantallas:
 \begin{itemize}
@@ -128,7 +135,8 @@ En las siguientes subsecciones se explica cómo utilizar las principales pantall
 
 \subsection{Gestor\label{extra:manual:gestor}}
 
-En esta pantalla se controla el estado de la \gls{FPGA}. El contenido de esta pantalla, y por tanto las acciones disponibles, cambian según el estado actual de la \gls{FPGA}.
+En esta pantalla se controla el estado de la \gls{FPGA}.
+El contenido de esta pantalla, y por tanto las acciones disponibles, cambian según el estado actual de la \gls{FPGA}.
 
 Si la \gls{FPGA} no ha sido inicializada, la pantalla de gestión permitirá seleccionar un modo en el que inicializarla:
 \begin{itemize}
@@ -136,7 +144,8 @@ Si la \gls{FPGA} no ha sido inicializada, la pantalla de gestión permitirá sel
   \item \textbf{Capturador}: permite capturar tráfico web, almacenándolo en una \gls{traza} en formato \gls{simple}.
 \end{itemize}
 
-Para elegir un modo basta con pulsar uno de los dos botones de la interfaz (ver Figura \ref{fig:captura:gestionseleccion}). Esta elección de modo no es definitiva, ya que se puede cambiar de modo en cualquier momento siempre que la \gls{FPGA} no esté capturando o reproduciendo tráfico.
+Para elegir un modo basta con pulsar uno de los dos botones de la interfaz (ver Figura \ref{fig:captura:gestionseleccion}).
+Esta elección de modo no es definitiva, ya que se puede cambiar de modo en cualquier momento siempre que la \gls{FPGA} no esté capturando o reproduciendo tráfico.
 
 \begin{figure}[!htp]
   \centering
@@ -154,14 +163,16 @@ Una vez seleccionado un modo, un cuadro de diálogo muestra el progreso de la in
   \label{fig:captura:gestionprogreso}
 \end{figure}
 
-Si la \gls{FPGA} ha sido inicializada en modo capturador, la pantalla de gestión mostrará un formulario en el que se configurarán los parámetros de una captura (ver Figura \ref{fig:captura:gestioncapturar}). Este formulario contiene los siguientes campos, todos ellos obligatorios:
+Si la \gls{FPGA} ha sido inicializada en modo capturador, la pantalla de gestión mostrará un formulario en el que se configurarán los parámetros de una captura (ver Figura \ref{fig:captura:gestioncapturar}).
+Este formulario contiene los siguientes campos, todos ellos obligatorios:
 \begin{itemize}
   \item \textbf{Nombre de la nueva \gls{traza}}: nombre que tendrá la \gls{traza} en la que se almacenará el tráfico capturado, en formato \gls{simple}.
   \item \textbf{Bytes a capturar}: número total de bytes que se capturarán, y su unidad (Bytes, KB, MB, GB).
   \item \textbf{Puerto a capturar}: puerto del que se capturará el tráfico entrante (0, 1, 2, 3).
 \end{itemize}
 
-Los dos primeros campos se iluminarán en verde cuando sean introducidos correctamente y en rojo cuando sean incorrectos. Cuando todos los campos sean válidos se activará el botón de \textit{Empezar}, y si se pulsa la \gls{FPGA} comenzará a capturar tráfico con los parámetros indicados.
+Los dos primeros campos se iluminarán en verde cuando sean introducidos correctamente y en rojo cuando sean incorrectos.
+Cuando todos los campos sean válidos se activará el botón de \textit{Empezar}, y si se pulsa la \gls{FPGA} comenzará a capturar tráfico con los parámetros indicados.
 
 También es posible, en vez de capturar tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
 
@@ -172,7 +183,8 @@ También es posible, en vez de capturar tráfico, volver a seleccionar modo puls
   \label{fig:captura:gestioncapturar}
 \end{figure}
 
-Si la \gls{FPGA} está capturando tráfico, la pantalla de gestión mostrará el progreso de la captura en curso (ver Figura \ref{fig:captura:gestioncapturando}). Se podrán visualizar las siguientes estadísticas de la captura en curso:
+Si la \gls{FPGA} está capturando tráfico, la pantalla de gestión mostrará el progreso de la captura en curso (ver Figura \ref{fig:captura:gestioncapturando}).
+Se podrán visualizar las siguientes estadísticas de la captura en curso:
 \begin{itemize}
   \item \textbf{Nombre de la traza}: nombre de la \gls{traza} en la que se está almacenando el tráfico capturado, en formato \gls{simple}.
   \item \textbf{Puerto}: puerto del que se está capturando el tráfico entrante.
@@ -192,7 +204,11 @@ Se puede detener la captura en curso pulsando el botón de \textit{Parar la capt
   \label{fig:captura:gestioncapturando}
 \end{figure}
 
-Si la \gls{FPGA} ha sido inicializada en modo reproductor, la pantalla de gestión mostrará una tabla y un formulario (ver Figura \ref{fig:captura:gestionreproducir}). La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo (\gls{simple}), tamaño y fecha. Además, una barra superior asociada a esta tabla permite controlar el contenido de la misma mediante las siguientes acciones (de izquierda a derecha): activar la actualización automática de las \glspl{traza} disponibles, buscar una \gls{traza} por su nombre y actualizar manualmente las \glspl{traza} disponibles. Pulsando sobre una fila de la tabla se seleccionará la \gls{traza} correspondiente para su reproducción. Por otra parte, el formulario contiene los siguientes campos:
+Si la \gls{FPGA} ha sido inicializada en modo reproductor, la pantalla de gestión mostrará una tabla y un formulario (ver Figura \ref{fig:captura:gestionreproducir}).
+La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo (\gls{simple}), tamaño y fecha.
+Además, una barra superior asociada a esta tabla permite controlar el contenido de la misma mediante las siguientes acciones (de izquierda a derecha): activar la actualización automática de las \glspl{traza} disponibles, buscar una \gls{traza} por su nombre y actualizar manualmente las \glspl{traza} disponibles.
+Pulsando sobre una fila de la tabla se seleccionará la \gls{traza} correspondiente para su reproducción.
+Por otra parte, el formulario contiene los siguientes campos:
 \begin{itemize}
   \item \textbf{Reproducir la \gls{traza} en bucle}: si se habilita, la \gls{traza} se reproducirá en un bucle infinito.
   \item \textbf{Máscara de salida}: conjunto de puertos a los que se reproducirá la \gls{traza} (0, 0-1, 0-1-2, 0-1-2-3).
@@ -210,7 +226,8 @@ También es posible, en vez de reproducir tráfico, volver a seleccionar modo pu
   \label{fig:captura:gestionreproducir}
 \end{figure}
 
-Si la \gls{FPGA} está reproduciendo una \gls{traza}, la pantalla de gestión mostrará el progreso de la reproducción en curso (ver Figura \ref{fig:captura:gestionreproduciendo}). Se podrán visualizar las siguientes estadísticas de la reproducción en curso:
+Si la \gls{FPGA} está reproduciendo una \gls{traza}, la pantalla de gestión mostrará el progreso de la reproducción en curso (ver Figura \ref{fig:captura:gestionreproduciendo}).
+Se podrán visualizar las siguientes estadísticas de la reproducción en curso:
 \begin{itemize}
   \item \textbf{Nombre de la \gls{traza}}: nombre de la \gls{traza} que se está reproduciendo.
   \item \textbf{Tamaño}: número de bytes que ocupa la \gls{traza} que se está reproduciendo.
@@ -234,7 +251,8 @@ Se puede detener la reproducción en curso pulsando el botón \textit{Parar la r
 
 \subsection{Almacenamiento\label{extra:manual:almacenamiento}}
 
-En esta pantalla se pueden visualizar distintas estadísticas de almacenamiento del sistema. Está compuesta por dos paneles:
+En esta pantalla se pueden visualizar distintas estadísticas de almacenamiento del sistema.
+Está compuesta por dos paneles:
 
 \begin{itemize}
 \item \textbf{Estadísticas de espacio (Figura \ref{fig:captura:espacio})}: este panel muestra estadísticas del espacio total, ocupado y disponible, resumido además en un gráfico circular (en rojo la proporción de disco ocupado y en turquesa la proporción de disco disponible).
@@ -245,7 +263,12 @@ En esta pantalla se pueden visualizar distintas estadísticas de almacenamiento 
   \label{fig:captura:espacio}
 \end{figure}
 
-\item \textbf{Estadísticas del \gls{RAID} (Figura \ref{fig:captura:raid})}: solo se mostrarán estas estadísticas si el sistema de almacenamiento está configurado como un \gls{RAID} (ver sección \ref{extra:manual:configfpga}). En este panel, un gráfico de barras muestra la velocidad de escritura de cada disco del \gls{RAID}. Debajo de este gráfico se indica la velocidad global de escritura del \gls{RAID}. El color de esta cifra depende de la velocidad de escritura: verde (velocidad superior a la recomendada), amarillo (velocidad suficiente) o rojo (velocidad por debajo del mínimo aceptable). Si la velocidad es insuficiente se mostrará un cuadro de diálogo adicional para formatear y recrear el \gls{RAID} pulsando el botón \textit{Formatear el \gls{RAID}} (cuidado: formatear el \gls{RAID} borrará todos los datos del mismo). Este diálogo se puede ocultar pulsando el botón \textit{Descartar}.
+\item \textbf{Estadísticas del \gls{RAID} (Figura \ref{fig:captura:raid})}: solo se mostrarán estas estadísticas si el sistema de almacenamiento está configurado como un \gls{RAID} (ver sección \ref{extra:manual:configfpga}).
+En este panel, un gráfico de barras muestra la velocidad de escritura de cada disco del \gls{RAID}.
+Debajo de este gráfico se indica la velocidad global de escritura del \gls{RAID}.
+El color de esta cifra depende de la velocidad de escritura: verde (velocidad superior a la recomendada), amarillo (velocidad suficiente) o rojo (velocidad por debajo del mínimo aceptable).
+Si la velocidad es insuficiente se mostrará un cuadro de diálogo adicional para formatear y recrear el \gls{RAID} pulsando el botón \textit{Formatear el \gls{RAID}} (cuidado: formatear el \gls{RAID} borrará todos los datos del mismo).
+Este diálogo se puede ocultar pulsando el botón \textit{Descartar}.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/capturas/almacenamiento_raid}
@@ -257,7 +280,10 @@ En esta pantalla se pueden visualizar distintas estadísticas de almacenamiento 
 
 \subsection{Capturas\label{extra:manual:capturas}}
 
-En esta pantalla se pueden gestionar las \glspl{traza} almacenadas (ver Figura \ref{fig:captura:capturas}), mediante una tabla y un panel de acciones. La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo, tamaño y fecha. Además, una barra superior asociada a esta tabla permite controlar el contenido de la misma mediante las siguientes acciones (de izquierda a derecha): filtrar las \glspl{traza} que se muestran según su tipo, activar la actualización automática de las \glspl{traza} disponibles, buscar una \gls{traza} por su nombre y actualizar manualmente las \glspl{traza} disponibles. Pulsando sobre una fila de la tabla se seleccionará la \gls{traza} correspondiente, activándose el panel de acciones. Este panel permite, mediante cada uno de sus subpaneles, las siguientes operaciones:
+En esta pantalla se pueden gestionar las \glspl{traza} almacenadas (ver Figura \ref{fig:captura:capturas}), mediante una tabla y un panel de acciones.
+La tabla contiene una fila por cada \gls{traza} disponible, con su nombre, tipo, tamaño y fecha. Además, una barra superior asociada a esta tabla permite controlar el contenido de la misma mediante las siguientes acciones (de izquierda a derecha): filtrar las \glspl{traza} que se muestran según su tipo, activar la actualización automática de las \glspl{traza} disponibles, buscar una \gls{traza} por su nombre y actualizar manualmente las \glspl{traza} disponibles.
+Pulsando sobre una fila de la tabla se seleccionará la \gls{traza} correspondiente, activándose el panel de acciones.
+Este panel permite, mediante cada uno de sus subpaneles, las siguientes operaciones:
 \begin{itemize}
   \item \textbf{Convertir}: crea una nueva \gls{traza} a partir de la \gls{traza} seleccionada cambiando el tipo (si la original tiene formato \gls{simple} la convertida tendrá formato \gls{pcap}, y viceversa).
   \item \textbf{Renombrar}: cambia el nombre de la \gls{traza} seleccionada al nuevo nombre introducido.
@@ -276,7 +302,10 @@ Los dos primeros subpaneles permitirán realizar su acción (se activará el cor
 
 \subsection{Estado\label{extra:manual:estado}}
 
-En esta pantalla se puede comprobar el estado de los distintos componentes que forman la aplicación (ver Figura \ref{fig:captura:estado}). Cada componente tiene un test asociado cuyo resultado se refleja en un panel. Cada test puede tener tres resultados distintos: \textit{OK} (test pasado, en verde), \textit{No Implementado} (test no implementado, en amarillo) y \textit{Error} (test fallado, en rojo). Los componentes sobre los que se comprueba su estado son los siguientes:
+En esta pantalla se puede comprobar el estado de los distintos componentes que forman la aplicación (ver Figura \ref{fig:captura:estado}).
+Cada componente tiene un test asociado cuyo resultado se refleja en un panel.
+Cada test puede tener tres resultados distintos: \textit{OK} (test pasado, en verde), \textit{No Implementado} (test no implementado, en amarillo) y \textit{Error} (test fallado, en rojo).
+Los componentes sobre los que se comprueba su estado son los siguientes:
 \begin{itemize}
   \item \textbf{Módulo Rewrite}: soporte para reescritura de \gls{URL}.
   \item \textbf{Módulo Gettext}: soporte para localización (traducción a distintos idiomas).

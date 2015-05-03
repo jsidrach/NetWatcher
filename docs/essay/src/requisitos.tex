@@ -1,8 +1,10 @@
 \chapter{Requisitos\label{cap:requisitos}}
 
-En este capítulo se enumeran los requisitos de la aplicación a desarrollar. Para la elaboración de esta lista de requisitos se ha realizado un análisis sobre el problema planteado: diseñar un servicio que permita gestionar y monitorizar una \gls{FPGA} que captura y reproduce tráfico de red. Este análisis se ha realizado principalmente mediante la consulta directa con los potenciales usuarios de la aplicación y la evaluación del estado del arte.
+En este capítulo se enumeran los requisitos de la aplicación a desarrollar. Para la elaboración de esta lista de requisitos se ha realizado un análisis sobre el problema planteado: diseñar un servicio que permita gestionar y monitorizar una \gls{FPGA} que captura y reproduce tráfico de red.
+Este análisis se ha realizado principalmente mediante la consulta directa con los potenciales usuarios de la aplicación y la evaluación del estado del arte.
 
-Se han agrupado los requistos en dos clases: funcionales y no funcionales. Los primeros describen el comportamiento que tendrá la aplicación, y los segundos los atributos de calidad y restricciones de la misma.
+Se han agrupado los requistos en dos clases: funcionales y no funcionales.
+Los primeros describen el comportamiento que tendrá la aplicación, y los segundos los atributos de calidad y restricciones de la misma.
 
 
 \section{Requisitos Funcionales\label{sec:req:rf}}
@@ -12,11 +14,13 @@ Los requisitos funcionales que deberá cumplir la aplicación desarrollada son l
 \begin{enumerate}[align=left,before=\itshape,font=\normalfont,label=\bfseries RF. \arabic*]
   \item Se podrá conocer el estado actual de la \gls{FPGA} entre los posibles estados descritos en \ref{fpga:estados}.
   \item Se podrá configurar la \gls{FPGA} para captura de tráfico de red.
-  \item Una vez configurada la \gls{FPGA} para captura de tráfico de red, se le podrá ordenar que capture tráfico de red desde un puerto específico de la \gls{FPGA}. Este tráfico se irá guardando en una \gls{traza} en formato \gls{simple}, hasta llegar a un tamaño decidido por el usuario.
+  \item Una vez configurada la \gls{FPGA} para captura de tráfico de red, se le podrá ordenar que capture tráfico de red desde un puerto específico de la \gls{FPGA}.
+  Este tráfico se irá guardando en una \gls{traza} en formato \gls{simple}, hasta llegar a un tamaño decidido por el usuario.
   \item Si existe una captura en curso, el se podrá parar dicha captura, borrándose la \gls{traza} asociada a la captura.
   \item Si existe una captura en curso, se podrán conocer los parámetros con los que se inició dicha captura, así como el tiempo que ha transcurrido desde el inicio y cuántos bytes se ha capturado hasta el momento.
   \item Se podrá configurar la \gls{FPGA} para la reproducción de una \gls{traza}.
-  \item Una vez configurada la \gls{FPGA} para la reproducción de una \gls{traza}, se le podrá ordenar que reproduzca una \gls{traza} concreta en formato \gls{simple}. La reproducción se realizará con una una serie de parámetros dados por el usuario: máscara de puertos a los que dirigir la reproducción, \gls{IFG} asociado y reproducir en bucle o solo una vez.
+  \item Una vez configurada la \gls{FPGA} para la reproducción de una \gls{traza}, se le podrá ordenar que reproduzca una \gls{traza} concreta en formato \gls{simple}.
+  La reproducción se realizará con una una serie de parámetros dados por el usuario: máscara de puertos a los que dirigir la reproducción, \gls{IFG} asociado y reproducir en bucle o solo una vez.
   \item Si existe una reproducción de \gls{traza} en curso, se podrá parar dicha reproducción.
   \item Si existe una reproducción de \gls{traza} en curso, se podrán conocer los parámetros con los que se inició dicha reproducción, así como el tiempo que ha transcurrido desde el inicio y cuántos paquetes se han reproducido hasta el momento.
   \item Se podrá configurar y consultar en qué directorio se almacenan las \glspl{traza}.

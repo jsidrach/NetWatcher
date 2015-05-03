@@ -1,6 +1,8 @@
 \chapter{Framework desarrollado\label{extra:frameworkDesarrollado}}
 
-En este apéndice se explican los distintos componentes del \gls{framework} desarrollado en el que se ha implementado la interfaz web. Este \gls{framework} está implementado en \gls{PHP} sobre \textit{Apache httpd} \cite{httpd}. Sirve de base para la organización y desarrollo de la aplicación, proveyéndola de un gestor de rutas, un patrón de arquitectura para los módulos de la aplicación (modelo-vista-controlador), un \gls{proxy} simplificado para las llamadas al \gls{servicioweb} \gls{FPGA}, soporte para la internacionalización de la interfaz, gestión automática de dependencias, y registro de eventos (ver Figura \ref{fig:framework}).
+En este apéndice se explican los distintos componentes del \gls{framework} desarrollado en el que se ha implementado la interfaz web.
+Este \gls{framework} está implementado en \gls{PHP} sobre \textit{Apache httpd} \cite{httpd}.
+Sirve de base para la organización y desarrollo de la aplicación, proveyéndola de un gestor de rutas, un patrón de arquitectura para los módulos de la aplicación (modelo-vista-controlador), un \gls{proxy} simplificado para las llamadas al \gls{servicioweb} \gls{FPGA}, soporte para la internacionalización de la interfaz, gestión automática de dependencias, y registro de eventos (ver Figura \ref{fig:framework}).
 
 \begin{figure}[!htp]
   \centering
@@ -12,13 +14,17 @@ En este apéndice se explican los distintos componentes del \gls{framework} desa
 
 \section{Gestión de rutas\label{extra:mvc:router}}
 
-El componente de gestión de rutas del \gls{framework} se encarga de interpretar las peticiones realizadas por el usuario y delegarlas al módulo apropiado. Con este fin, todas las peticiones \gls{HTTP}, a excepción de las que van dirigidas al \textit{proxy} (ver sección \ref{extra:mvc:proxy}), se redirigen utilizando \textit{mod\_rewrite} \cite{modrewrite} al archivo \textit{index.php}. Este archivo a su vez invoca el método estático \textit{Router->dispatch()}.
+El componente de gestión de rutas del \gls{framework} se encarga de interpretar las peticiones realizadas por el usuario y delegarlas al módulo apropiado.
+Con este fin, todas las peticiones \gls{HTTP}, a excepción de las que van dirigidas al \textit{proxy} (ver sección \ref{extra:mvc:proxy}), se redirigen utilizando \textit{mod\_rewrite} \cite{modrewrite} al archivo \textit{index.php}.
+Este archivo a su vez invoca el método estático \textit{Router->dispatch()}.
 
 El método \textit{Router->dispatch()} divide la \gls{URL} solicitada siguiendo el siguiente formato:
 
 \textit{URL\_BASE\_APLICACIÓN/módulo/método/parámetro1/parámetro2/...}
 
-Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura \ref{fig:router}). Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver sección \ref{extra:mvc:config}). En caso de que la \gls{URL} contenga un módulo o método no existente, se redirecciona la petición a la página de \textit{Error 404 - Página no encontrada}.
+Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura \ref{fig:router}).
+Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver sección \ref{extra:mvc:config}).
+En caso de que la \gls{URL} contenga un módulo o método no existente, se redirecciona la petición a la página de \textit{Error 404 - Página no encontrada}.
 
 \begin{figure}[!htp]
   \centering
@@ -30,7 +36,8 @@ Una vez identificadas las partes de la \gls{URL}, se crea una instancia del mód
 
 \section{Patrón de arquitectura para los módulos\label{extra:mvc:mvc}}
 
-Las aplicaciones desarrolladas sobre el \gls{framework} se estructuran en módulos que siguen el patrón de arquitectura modelo-vista-controlador \cite{mvcpattern}. Este patrón separa la lógica de negocio de la interfaz de usuario, facilitando la evolución por separado de ambos aspectos e incrementando la reutilización y flexibilidad de los módulos de la aplicación.
+Las aplicaciones desarrolladas sobre el \gls{framework} se estructuran en módulos que siguen el patrón de arquitectura modelo-vista-controlador \cite{mvcpattern}.
+Este patrón separa la lógica de negocio de la interfaz de usuario, facilitando la evolución por separado de ambos aspectos e incrementando la reutilización y flexibilidad de los módulos de la aplicación.
 
 Los componentes o capas de este patrón de arquitectura son:
 \begin{itemize}
@@ -39,16 +46,22 @@ Los componentes o capas de este patrón de arquitectura son:
   \item \textbf{Controlador}: gestiona las peticiones del usuario.
 \end{itemize}
 
-Cuando un usuario realiza una acción en la interfaz web, el controlador gestiona la solicitud notificando la acción al modelo, que se actualiza en consecuencia. Posteriormente, el controlador ordena a la vista mostrar al usuario el nuevo estado de la aplicación. La vista consulta entonces el nuevo modelo y lo representa, en el caso de este \gls{framework} en forma de página web.
+Cuando un usuario realiza una acción en la interfaz web, el controlador gestiona la solicitud notificando la acción al modelo, que se actualiza en consecuencia.
+Posteriormente, el controlador ordena a la vista mostrar al usuario el nuevo estado de la aplicación.
+La vista consulta entonces el nuevo modelo y lo representa, en el caso de este \gls{framework} en forma de página web.
 
-Las clases abstractas \textit{Model}, \textit{View} y \textit{Controller} incluidas en el \gls{framework} proporcionan una implementación base de este patrón. Cada módulo de la aplicación debe heredar cada una de las tres clases e implementar en ellas su funcionalidad propia.
+Las clases abstractas \textit{Model}, \textit{View} y \textit{Controller} incluidas en el \gls{framework} proporcionan una implementación base de este patrón.
+Cada módulo de la aplicación debe heredar cada una de las tres clases e implementar en ellas su funcionalidad propia.
 
 
 \section{Redireccionamiento de peticiones \gls{AJAX}\label{extra:mvc:proxy}}
 
-Por motivos de rendimiento (no sobrecargar el servidor del \gls{servicioweb} \gls{FPGA} incluyéndole también la interfaz) y disponibilidad (la interfaz web debe ser accesible aunque el \gls{servicioweb} \gls{FPGA} no esté operativo), el \gls{servicioweb} \gls{FPGA} y la interfaz web no están alojados en el mismo servidor. Esto plantea un problema ya que se necesitan realizar peticiones \gls{AJAX} desde el cliente al \gls{servicioweb} \gls{FPGA}, y los navegadores web no permiten por motivos de seguridad que un cliente se comunique con un dominio distinto a la web original solicitada \cite{sameorigin}.
+Por motivos de rendimiento (no sobrecargar el servidor del \gls{servicioweb} \gls{FPGA} incluyéndole también la interfaz) y disponibilidad (la interfaz web debe ser accesible aunque el \gls{servicioweb} \gls{FPGA} no esté operativo), el \gls{servicioweb} \gls{FPGA} y la interfaz web no están alojados en el mismo servidor.
+Esto plantea un problema ya que se necesitan realizar peticiones \gls{AJAX} desde el cliente al \gls{servicioweb} \gls{FPGA}, y los navegadores web no permiten por motivos de seguridad que un cliente se comunique con un dominio distinto a la web original solicitada \cite{sameorigin}.
 
-Para resolver esto, el \gls{framework} contiene un servidor \gls{proxy} simplificado. Este \gls{proxy} no es genérico, ya que siempre redirecciona a la dirección IP del \gls{servicioweb} \gls{FPGA}. Así, cuando la interfaz web quiera realizar una petición \gls{AJAX} al \gls{servicioweb} \gls{FPGA}, hará la petición al servidor \gls{proxy}, éste redirigirá la petición al \gls{servicioweb} \gls{FPGA}, obtendrá la respuesta y la reenviará de vuelta al cliente (ver Figura \ref{fig:proxy}).
+Para resolver esto, el \gls{framework} contiene un servidor \gls{proxy} simplificado.
+Este \gls{proxy} no es genérico, ya que siempre redirecciona a la dirección IP del \gls{servicioweb} \gls{FPGA}.
+Así, cuando la interfaz web quiera realizar una petición \gls{AJAX} al \gls{servicioweb} \gls{FPGA}, hará la petición al servidor \gls{proxy}, éste redirigirá la petición al \gls{servicioweb} \gls{FPGA}, obtendrá la respuesta y la reenviará de vuelta al cliente (ver Figura \ref{fig:proxy}).
 
 \begin{figure}[!htp]
   \centering
@@ -59,11 +72,16 @@ Para resolver esto, el \gls{framework} contiene un servidor \gls{proxy} simplifi
 
 \section{Internacionalización de la interfaz\label{extra:mvc:i18n}}
 
-El \gls{framework} desarrollado facilita la traducción de la aplicación a distintos idiomas mediante la librería \textit{gettext} \cite{gettext} para \gls{PHP}. Esta librería proporciona funciones (``\textit{\_}'' y ``\textit{gettext}'') que reciben cadenas de texto y devuelven su equivalente en el idioma de la aplicación seleccionado, consultando un archivo previamente creado (catálogo) que contiene cadenas de texto originales y su traducción.
+El \gls{framework} desarrollado facilita la traducción de la aplicación a distintos idiomas mediante la librería \textit{gettext} \cite{gettext} para \gls{PHP}.
+Esta librería proporciona funciones (``\textit{\_}'' y ``\textit{gettext}'') que reciben cadenas de texto y devuelven su equivalente en el idioma de la aplicación seleccionado, consultando un archivo previamente creado (catálogo) que contiene cadenas de texto originales y su traducción.
 
-Es necesario un catálogo por cada idioma que se quiera añadir a la aplicación. Los catálogos se almacenan en la carpeta del proyecto \texttt{./locale/}. Para crear y gestionar los catálogos es recomendable utilizar la herramienta \textit{Poedit} \cite{poedit}, que permite editarlos con una interfaz gráfica. Para obtener las cadenas de texto que se necesitan traducir, se escanean todos archivos del proyecto en busca de las palabras clave, y se añaden las cadenas de texto al catálogo para su traducción por parte del desarrollador.
+Es necesario un catálogo por cada idioma que se quiera añadir a la aplicación.
+Los catálogos se almacenan en la carpeta del proyecto \texttt{./locale/}.
+Para crear y gestionar los catálogos es recomendable utilizar la herramienta \textit{Poedit} \cite{poedit}, que permite editarlos con una interfaz gráfica.
+Para obtener las cadenas de texto que se necesitan traducir, se escanean todos archivos del proyecto en busca de las palabras clave, y se añaden las cadenas de texto al catálogo para su traducción por parte del desarrollador.
 
-En el Código \ref{code:ejemplogettext} se describe un ejemplo de cómo imprimir una cadena traducida a otro idioma mediante una llamada a la función ``\textit{\_}''. Si el idioma base de los catálogos es el inglés y el idioma establecido en la aplicación es español, la función ``\textit{\_}'' busca la cadena en inglés (idioma base) \textit{`Example of string'} en el catálogo español y devuelve la cadena de texto \textit{`Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
+En el Código \ref{code:ejemplogettext} se describe un ejemplo de cómo imprimir una cadena traducida a otro idioma mediante una llamada a la función ``\textit{\_}''.
+Si el idioma base de los catálogos es el inglés y el idioma establecido en la aplicación es español, la función ``\textit{\_}'' busca la cadena en inglés (idioma base) \textit{`Example of string'} en el catálogo español y devuelve la cadena de texto \textit{`Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
 
 \begin{code}[label=code:ejemplogettext,language=php,caption=Ejemplo de traducción en \gls{PHP} con la librería \textit{gettext}]
 /* Set the app language */
@@ -79,11 +97,15 @@ echo _('Example of string');
 
 \section{Gestión de dependencias\label{extra:mvc:dependencias}}
 
-Como en la mayoría de proyectos, es conveniente poder utilizar librerías externas y no tener que invertir tiempo en resolver problemas que ya han sido solucionados por otros anteriormente, siempre que la solución encaje dentro de la propia aplicación. Para manejar la descarga e instalación local de estas librerías externas se han elegido dos gestores de dependencias: \textit{Composer} \cite{composer} para el \gls{back-end} y \textit{BowerPHP} \cite{bowerphp} para el \gls{front-end}. Estos gestores permiten además tener un control sobre la versión exacta necesaria de cada librería, evitando así incompatibilidades.
+Como en la mayoría de proyectos, es conveniente poder utilizar librerías externas y no tener que invertir tiempo en resolver problemas que ya han sido solucionados por otros anteriormente, siempre que la solución encaje dentro de la propia aplicación.
+Para manejar la descarga e instalación local de estas librerías externas se han elegido dos gestores de dependencias: \textit{Composer} \cite{composer} para el \gls{back-end} y \textit{BowerPHP} \cite{bowerphp} para el \gls{front-end}.
+Estos gestores permiten además tener un control sobre la versión exacta necesaria de cada librería, evitando así incompatibilidades.
 
 \subsection*{Composer\label{extra:mvc:composer}}
 
-\textit{Composer} es un gestor de dependencias y requisitos \gls{back-end} para \gls{PHP}. Las librerías externas \gls{back-end} que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Composer} \cite{composerrepositorio}, en el archivo \texttt{composer.json} (ver Código \ref{code:composerjson}). \textit{Composer} posibilita también, siguiendo el estándar PSR-4 \cite{psr4}, incluir en una sola línea de código \gls{PHP} tanto las dependencias de librerías externas como módulos propios:
+\textit{Composer} es un gestor de dependencias y requisitos \gls{back-end} para \gls{PHP}.
+Las librerías externas \gls{back-end} que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Composer} \cite{composerrepositorio}, en el archivo \texttt{composer.json} (ver Código \ref{code:composerjson}).
+\textit{Composer} posibilita también, siguiendo el estándar PSR-4 \cite{psr4}, incluir en una sola línea de código \gls{PHP} tanto las dependencias de librerías externas como módulos propios:
 
 \texttt{require\_once ('vendor/autoload.php')};
 
@@ -118,7 +140,9 @@ Las dependencias se descargan e instalan de forma local al proyecto ejecutando e
 
 \subsection*{BowerPHP\label{extra:mvc:bowerphp}}
 
-\textit{BowerPHP} es una implementación en \gls{PHP} de \textit{Bower} \cite{bower}, el gestor de dependencias \gls{front-end} para aplicaciones web. Las librerías externas que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Bower} \cite{bowerrepositorio}, en el archivo \texttt{bower.json} (ver Código \ref{code:bowerjson}). Las dependencias se descargan e instalan de forma local al proyecto ejecutando el \gls{script} \texttt{./scripts/build.sh ----install}.
+\textit{BowerPHP} es una implementación en \gls{PHP} de \textit{Bower} \cite{bower}, el gestor de dependencias \gls{front-end} para aplicaciones web.
+Las librerías externas que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Bower} \cite{bowerrepositorio}, en el archivo \texttt{bower.json} (ver Código \ref{code:bowerjson}).
+Las dependencias se descargan e instalan de forma local al proyecto ejecutando el \gls{script} \texttt{./scripts/build.sh ----install}.
 
 \begin{code}[label=code:bowerjson,language=json,caption=Ejemplo de fichero \textit{bower.json}]
 {
@@ -140,7 +164,8 @@ Las dependencias se descargan e instalan de forma local al proyecto ejecutando e
 
 \section{Configuración\label{extra:mvc:config}}
 
-Para la configuración interna de la aplicación se utiliza la clase \textit{Config}, compuesta por métodos estáticos. En esta clase se definen también las variables globales de la aplicación: nombres de carpetas y archivos, módulo a cargar por defecto, método a invocar por defecto, dirección IP del \gls{servicioweb} \gls{FPGA}, idiomas disponibles, idioma por defecto, temas visuales disponibles y tema visual por defecto.
+Para la configuración interna de la aplicación se utiliza la clase \textit{Config}, compuesta por métodos estáticos.
+En esta clase se definen también las variables globales de la aplicación: nombres de carpetas y archivos, módulo a cargar por defecto, método a invocar por defecto, dirección IP del \gls{servicioweb} \gls{FPGA}, idiomas disponibles, idioma por defecto, temas visuales disponibles y tema visual por defecto.
 
 Las variables que puede cambiar el usuario (idioma por defecto, tema visual por defecto y dirección IP del \gls{servicioweb} \gls{FPGA}) no se inicializan por definición en el código sino que se leen de distintos ficheros de la carpeta \texttt{./config/} en formato \gls{JSON}.
 
@@ -148,9 +173,12 @@ La configuración global de la aplicación se carga siempre al principio, median
 
 \section{Registro de eventos\label{extra:mvc:logger}}
 
-Registrar todos los eventos asociados a la aplicación es muy útil, ya que permite conocer cómo el usuario utiliza la aplicación y solucionar problemas internos. Para ello, se utiliza la clase \textit{Logger}, que contiene métodos estáticos con los que registrar eventos manualmente dentro del código del proyecto. Adicionalmente, utilizando las funciones estándar de \gls{PHP} \textit{set\_exception\_handler} y \textit{set\_error\_handler}, se redirigen los errores y excepciones a funciones que los registran (de la clase \textit{Logger} también).
+Registrar todos los eventos asociados a la aplicación es muy útil, ya que permite conocer cómo el usuario utiliza la aplicación y solucionar problemas internos.
+Para ello, se utiliza la clase \textit{Logger}, que contiene métodos estáticos con los que registrar eventos manualmente dentro del código del proyecto.
+Adicionalmente, utilizando las funciones estándar de \gls{PHP} \textit{set\_exception\_handler} y \textit{set\_error\_handler}, se redirigen los errores y excepciones a funciones que los registran (de la clase \textit{Logger} también).
 
-Cada evento se guarda en un registro (línea de texto) precedido de la fecha y hora en que se produjo, así como la dirección IP del usuario. Los registros se almacenan en diferentes ficheros dentro de la carpeta \texttt{./log/}:
+Cada evento se guarda en un registro (línea de texto) precedido de la fecha y hora en que se produjo, así como la dirección IP del usuario.
+Los registros se almacenan en diferentes ficheros dentro de la carpeta \texttt{./log/}:
 \begin{itemize}
   \item \texttt{app.log}: registro general, contiene todos los eventos de la aplicación.
   \item \texttt{action.log}: contiene registros de los eventos relacionados con acciones del usuario.
@@ -175,6 +203,8 @@ Para automatizar tareas que se realizan con frecuencia en el desarrollo de la ap
 
 \section{Conclusiones\label{extra:mvc:conclusiones}}
 
-Se ha desarrollado un \gls{framework} que sirve de base para la interfaz web, proporcionando un conjunto mínimo de funcionalidad necesaria para el problema planteado. Aunque desarrollarlo ha supuesto un coste temporal adicional para el proyecto, ha repercutido positivamente en fases posteriores de la implementación.
+Se ha desarrollado un \gls{framework} que sirve de base para la interfaz web, proporcionando un conjunto mínimo de funcionalidad necesaria para el problema planteado.
+Aunque desarrollarlo ha supuesto un coste temporal adicional para el proyecto, ha repercutido positivamente en fases posteriores de la implementación.
 
-Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo. Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño modelo-vista-controlador, gestión automática de dependencias y librerías externas, internacionalización de interfaces web y codificación de un servidor \gls{proxy} simplificado.
+Conocer al detalle el \gls{framework} sobre el que se basa la aplicación y tener un control total sobre el mismo ha permitido agilizar el proceso de desarrollo.
+Además, se ha adquirido experiencia en distintos conceptos útiles: orientación a objetos en \gls{PHP}, patrón de diseño modelo-vista-controlador, gestión automática de dependencias y librerías externas, internacionalización de interfaces web y codificación de un servidor \gls{proxy} simplificado.

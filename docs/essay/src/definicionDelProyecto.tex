@@ -38,7 +38,9 @@ Finalmente, facilita la colaboración entre desarrolladores con una interfaz int
 
 \subsection*{Creación de diagramas y maquetas: Cacoo\label{ssec:dp:cacoo}}
 
-Para el diseño de la aplicación se han realizado diagramas de flujo y de arquitectura del proyecto, así como maquetas de las diferentes pantallas de la interfaz web. Para ello, se ha utilizado la herramienta \textit{Cacoo} \cite{cacoo}, ya que ofrece una licencia gratuita para estudiantes que permite exportar estos gráficos en formato vectorial \textit{svg}, que se pueden redimensionar sin pérdida de resolución. Otra característica interesante es que está basada en tecnologías web, con lo que es accesible desde cualquier navegador, sin ser necesario instalar ningún programa adicional.
+Para el diseño de la aplicación se han realizado diagramas de flujo y de arquitectura del proyecto, así como maquetas de las diferentes pantallas de la interfaz web.
+Para ello, se ha utilizado la herramienta \textit{Cacoo} \cite{cacoo}, ya que ofrece una licencia gratuita para estudiantes que permite exportar estos gráficos en formato vectorial \textit{svg}, que se pueden redimensionar sin pérdida de resolución.
+Otra característica interesante es que está basada en tecnologías web, con lo que es accesible desde cualquier navegador, sin ser necesario instalar ningún programa adicional.
 
 \subsection*{Documentación: phpDocumentor y apiDoc\label{ssec:dp:docs}}
 
@@ -52,48 +54,51 @@ Respecto al \gls{front-end}, se ha seleccionado \textit{phpDocumentor} \cite{php
 
 \subsection*{Plataforma base para el \gls{back-end}: io.js\label{ssec:dp:back-end}}
 
-Plataforma Back-End: JavaScript/io.js (fork de node.js)
-\cite{iojs}
-\cite{nodejs}
-\cite{javascript}
+Se ha seleccionado \textit{io.js} \cite{iojs} como \gls{framework} \gls{back-end}.
+Esta plataforma de código abierto, derivada de \textit{node.js} \cite{nodejs}, se ha considerado idónea para el proyecto por diversos motivos.
+Para empezar, utiliza \textit{JavaScript} \cite{javascript}, lenguaje conocido por el estudiante.
+El hecho de que esté en este lenguaje permite además que se reutilice código entre el \gls{back-end} y el \gls{front-end}, ya que es el utilizado por los navegadores web.
+Otra ventaja es que detrás de \textit{io.js} existe una comunidad enorme, por lo que existen multitud de librerías también de código abierto disponibles y bien documentadas.
+Por último, es un \gls{framework} de programación asíncrona (en la que no se tenía experiencia), por lo que su aprendizaje ha sido muy enriquecedor.
 
 \subsection*{Librerías utilizadas para el \gls{back-end}\label{ssec:dp:back-end-libs}}
 
-Se han utilizado las siguientes librerías \gls{back-end} para \textit{io.js}:
+Se han utilizado las siguientes librerías \gls{back-end} de código abierto para \textit{io.js}:
 
 \begin{itemize}
-  \item \textbf{Express} \cite{express}:
+  \item \textbf{Express} \cite{express}: \gls{framework} minimalista para aplicaciones web con arquitectura \gls{REST}.
 
-  \item \textbf{Async} \cite{async}:
+  \item \textbf{Async} \cite{async}: módulo que proporciona funciones para trabajar asíncronamente en \textit{JavaScript}.
 
-  \item \textbf{nodemon} \cite{nodemon}:
+  \item \textbf{nodemon} \cite{nodemon}: supervisor que monitoriza cambios en el código de la aplicación y reinicia el servidor automáticamente.
 
 \end{itemize}
 
 \subsection*{Plataforma base para el \gls{front-end}: \gls{framework} propio\label{ssec:dp:front-end}}
 
-Plataforma Front-End: Framework propio: PHP, HTML5, CSS, JavaScript
-\cite{php}
-\cite{html5}
-\cite{css}
+Se ha optado por desarrollar un \gls{framework} propio en \gls{PHP} como plataforma base para el \gls{front-end} (ver apéndice \ref{extra:frameworkDesarrollado}).
+Esta decisión está fundamentada en varios motivos.
+Por un lado, no se quería utilizar un \gls{framework} que tuviese funcionalidad no necesaria en esta aplicación concreta, y cuya curva de aprendizaje ralentizase el proyecto.
+Otra razón es que conocer al detalle el \gls{framework} utilizado ha proporcionado una mayor flexibilidad en el proceso desarrollo, pudiendo además modificar la estructura y arquitectura del mismo para que se adecuase perfectamente a las necesidades propias.
+Finalmente, se contaba ya con cierta experiencia programando en \gls{PHP}, por lo que ha sido el lenguaje elegido.
 
 \subsection*{Librerías utilizadas para el \gls{front-end}\label{ssec:dp:front-end-libs}}
 
-Además del \gls{framework} desarrollado, se han utilizado las siguientes librerías \gls{front-end}:
+Además del \gls{framework} desarrollado, se han utilizado diversas librerías \gls{front-end}, todas ellas de código abierto. A continuación se enumeran, describiendo brevemente su propósito:
 
 \begin{itemize}
-  \item \textbf{Bootstrap} \cite{bootstrap}:
+  \item \textbf{Bootstrap} \cite{bootstrap}: facilita el desarrollo de aplicaciones web \textit{responsive} \cite{responsive} mediante plantillas de diseño con tipografía, formularios, botones, cuadros y menús.
 
-  \item \textbf{Bootstrap table} \cite{bootstraptable}:
+  \item \textbf{Bootstrap table} \cite{bootstraptable}: mejora las tablas de \textit{Bootstrap} permitiendo de manera sencilla insertar un campo de búsqueda, filtrar filas por \textit{checkbox} o \textit{radio button}, ordenar por columnas, paginar automáticamente los resultados, etc.
 
-  \item \textbf{Bootswatch} \cite{bootswatch}:
+  \item \textbf{Bootswatch} \cite{bootswatch}: colección de temas visuales para \textit{Bootstrap}.
 
-  \item \textbf{Bootstrap Notify} \cite{bootstrapnotify}:
+  \item \textbf{Bootstrap Notify} \cite{bootstrapnotify}: convierte los avisos de \textit{Bootstrap} en notificaciones emergentes.
 
-  \item \textbf{jQuery} \cite{jquery}:
+  \item \textbf{jQuery} \cite{jquery}: simplifica la manipulación de documentos \gls{HTML}, el manejo de eventos y las llamadas \gls{AJAX}.
 
-  \item \textbf{Chart.js} \cite{chartjs}:
+  \item \textbf{Chart.js} \cite{chartjs}: permite realizar gráficos símples y atractivos sobre conjuntos de datos.
 
-  \item \textbf{Animate.css} \cite{animatecss}:
+  \item \textbf{Animate.css} \cite{animatecss}: sencillas animaciones para elementos de la interfaz web.
 
 \end{itemize}
