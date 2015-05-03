@@ -1,6 +1,6 @@
 # NetWatcher
 
-NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High Performance Computing and Networking](http://www.hpcn.es/) research group. NetWatcher is divided in two parts: a FPGA Web Service to execute commands and monitor them in the FPGA, and a Web Interface to visually make those calls.
+NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High-Performance Computing and Networking](http://www.hpcn.es/) research group. NetWatcher is divided in two parts: a FPGA Web Service to execute commands and monitor them in the FPGA, and a Web Interface to visually make those calls.
 
 ## Table of contents
 
@@ -15,7 +15,7 @@ NetWatcher is a web-based interface to manage network traffic capturer FPGAs, de
 
 License
 ----
-Code released under the [MIT license](LICENSE.md). Docs released under Creative Commons. FPGA binary drivers are property of [High Performance Computing and Networking](http://www.hpcn.es/).
+Code released under the [MIT license](LICENSE.md). Docs released under Creative Commons. FPGA binary drivers are property of [High-Performance Computing and Networking](http://www.hpcn.es/).
 
 Tech
 ----
