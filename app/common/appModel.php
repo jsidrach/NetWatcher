@@ -63,7 +63,8 @@ abstract class appModel extends \Core\Model
             'jquery.min.js',
             'bootstrap.min.js',
             'bootstrap-notify.min.js',
-            'bootstrap-notify-settings.js'
+            'bootstrap-notify-settings.js',
+            'netwatcher-footer.js'
         );
     }
 }
