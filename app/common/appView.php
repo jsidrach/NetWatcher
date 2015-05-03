@@ -211,7 +211,9 @@ abstract class appView extends \Core\View
         $this->pLine('<div class="container text-center">', 1);
         
         $this->pLine('<p class="muted credit">', 1);
-        $this->pLine('High Performance Computing and Networking', 1);
+        $this->pLine('<span id="researchGroup">', 1);
+        $this->pLine('High-Performance Computing and Networking', 1);
+        $this->pLine('</span>', - 1);
         $this->pLine('&middot;');
         $this->pLine('<a href="status">' . _('Status') . '</a>');
         $this->pLine('&middot;');
