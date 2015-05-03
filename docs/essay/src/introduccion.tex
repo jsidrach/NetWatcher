@@ -21,11 +21,18 @@ Para solucionar esto, la interfaz web permitirá además administrar estos otros
 Este Trabajo de Fin de Grado tiene los siguientes objetivos principales:
 
 \begin{itemize}
-  \item Desarrollar una interfaz web que permita la gestión de una sonda de red de altas prestaciones. Esta interfaz permitirá de manera visual tanto conocer el estado actual de la sonda de red como configurarla para reproducir o capturar tráfico de red. Además, la interfaz web permitirá gestionar las \glspl{traza} capturadas con la sonda mecionada. Se pretende así facilitar el control de todos los componentes que intervienen en la captura y reproducción de tráfico de red, y que no sea necesario conocer previamente el funcionamiento interno de la sonda para poder manejarla y experimentar con ella.
+  \item Desarrollar una interfaz web que permita la gestión de una sonda de red de altas prestaciones.
+  Esta interfaz permitirá de manera visual tanto conocer el estado actual de la sonda de red como configurarla para reproducir o capturar tráfico de red.
+  Además, la interfaz web permitirá gestionar las \glspl{traza} capturadas con la sonda mecionada.
+  Se pretende así facilitar el control de todos los componentes que intervienen en la captura y reproducción de tráfico de red, y que no sea necesario conocer previamente el funcionamiento interno de la sonda para poder manejarla y experimentar con ella.
 
-  \item Monitorizar el estado del servidor al que está conectada la sonda de red de altas prestaciones. Para ello, la aplicación mostrará al usuario estadísticas sobre el servidor relevantes en este contexto. Por una parte, se podrá conocer el espacio de almacenamiento disponible para guardar \glspl{traza}, para que el usuario pueda liberar espacio es caso de ser necesario, y prevenir así que la sonda deje de poder capturar tráfico de red. Por otro lado, si el sistema de archivos en que se almacenan las \glspl{traza} capturadas con la sonda está sobre un \gls{RAID}, se podrá conocer la velocidad de escritura global del sistema y de cada uno de los discos que integran el \gls{RAID}, ya que es un factor que puede limitar el rendimiento de la sonda.
+  \item Monitorizar el estado del servidor al que está conectada la sonda de red de altas prestaciones.
+  Para ello, la aplicación mostrará al usuario estadísticas sobre el servidor relevantes en este contexto.
+  Por una parte, se podrá conocer el espacio de almacenamiento disponible para guardar \glspl{traza}, para que el usuario pueda liberar espacio es caso de ser necesario, y prevenir así que la sonda deje de poder capturar tráfico de red.
+  Por otro lado, si el sistema de archivos en que se almacenan las \glspl{traza} capturadas con la sonda está sobre un \gls{RAID}, se podrá conocer la velocidad de escritura global del sistema y de cada uno de los discos que integran el \gls{RAID}, ya que es un factor que puede limitar el rendimiento de la sonda.
 
-  \item Registrar estadísticas sobre el uso de la aplicación, lo que ayudará a localizar y solucionar errores internos. Adicionalmente, se podrán analizar estos registros para conocer el grado de utilización de la sonda por diferentes usuarios, y plantearse entonces cómo optimizar el tiempo necesario para realizar las tareas más frecuentes.
+  \item Registrar estadísticas sobre el uso de la aplicación, lo que ayudará a localizar y solucionar errores internos.
+  Adicionalmente, se podrán analizar estos registros para conocer el grado de utilización de la sonda por diferentes usuarios, y plantearse entonces cómo optimizar el tiempo necesario para realizar las tareas más frecuentes.
 \end{itemize}
 
 \section{Estructura del documento}

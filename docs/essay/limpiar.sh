@@ -1,6 +1,6 @@
 #!/bin/bash
 # Borrar archivos auxiliares
-rm -f *.alg *.acr *.acn *.lof *.log *.lot *.out *.bak *.toc *.xdy *.ist *.gls *.glo *.blg *.aux *.bbl *.glg *.glsdefs *.pyg
+rm -f *.alg *.acr *.acn *.lof *.log *.lot *.out *.bak *.toc *.xdy *.ist *.gls *.glo *.blg *.aux *.bbl *.glg *.glsdefs *.pyg *.bcf main.run.xml main-blx.bib
 cd src/ &&
 rm -f *.alg *.acr *.acn *.lof *.log *.lot *.out *.bak *.toc *.xdy *.ist *.gls *.glo *.blg *.aux *.bbl *.glg *.glsdefs *.pyg &&
 cd ..

@@ -1,8 +1,13 @@
 \chapter{API del Servicio Web FPGA\label{extra:api_servicio_web_fpga}}
 
-En este apéndice se detallan los métodos de la \gls{API} del \gls{servicioweb} \gls{FPGA}. Esta documentación puede también consultarse de manera interactiva (Figura \ref{fig:docsbackend}) en la propia página de la aplicación (en inglés), accediendo desde el navegador a la ruta relativa \textit{NetWatcher/docs-back-end/}. Al ser un \gls{servicioweb}, cada método se invoca mediante una llamada \gls{HTTP} \cite{httpmethods}.
+En este apéndice se detallan los métodos de la \gls{API} del \gls{servicioweb} \gls{FPGA}.
+Esta documentación puede también consultarse de manera interactiva (Figura \ref{fig:docsbackend}) en la propia página de la aplicación (en inglés), accediendo desde el navegador a la ruta relativa \textit{NetWatcher/docs-back-end/}.
+Al ser un \gls{servicioweb}, cada método se invoca mediante una llamada \gls{HTTP} \cite{httpmethods}.
 
-Se han agrupado todos los métodos disponibles en tres categorías, coincidiendo con los módulos implementados: gestión, trazas y estadísticas. Para cada método, se especifica su ruta (relativa a la ruta del \gls{servicioweb}), los parámetros necesarios para su invocación y las posibles salidas, con un ejemplo cada una. Los parámetros se pasan por la propia \gls{URL} o en la cabecera en el caso del \textit{timestamp}. Cada método devuelve siempre un código de estado \gls{HTTP} \cite{httpcodes} y una salida en formato \gls{JSON} \cite{json}.
+Se han agrupado todos los métodos disponibles en tres categorías, coincidiendo con los módulos implementados: gestión, trazas y estadísticas.
+Para cada método, se especifica su ruta (relativa a la ruta del \gls{servicioweb}), los parámetros necesarios para su invocación y las posibles salidas, con un ejemplo cada una.
+Los parámetros se pasan por la propia \gls{URL} o en la cabecera en el caso del \textit{timestamp}.
+Cada método devuelve siempre un código de estado \gls{HTTP} \cite{httpcodes} y una salida en formato \gls{JSON} \cite{json}.
 
 \begin{figure}[htp!]
   \centering
@@ -18,7 +23,8 @@ Se han agrupado todos los métodos disponibles en tres categorías, coincidiendo
 %
 \subsection{POST /system/reboot}
 
-Reinicia el servidor remoto. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:reboot:invocacion}.
+Reinicia el servidor remoto.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:reboot:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -37,7 +43,8 @@ timestamp           & Cabecera       & Número        & de Enero de 1970 00:00:0
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} se ha ordenado con éxito el reinicio del servidor remoto. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:reboot:ok}.
+\item{\textbf{200 OK:} se ha ordenado con éxito el reinicio del servidor remoto.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:reboot:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -64,7 +71,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} el servidor remoto no puede ser reiniciado ya que la \gls{FPGA} está siendo usada. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:reboot:error}.
+\item{\textbf{412 Error:} el servidor remoto no puede ser reiniciado ya que la \gls{FPGA} está siendo usada.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:reboot:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -97,7 +105,8 @@ Ejemplo de datos asociados al código 412:
 %
 \subsection{POST /player/init}
 
-Programa la \gls{FPGA} para reproducir \glspl{traza} y reinicia el servidor remoto. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerinit:invocacion}.
+Programa la \gls{FPGA} para reproducir \glspl{traza} y reinicia el servidor remoto.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerinit:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -116,7 +125,8 @@ timestamp           & Cabecera       & Número        & de Enero de 1970 00:00:0
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} se ha programado con éxito la \gls{FPGA} para reproducir \glspl{traza} y se va a reiniciar el servidor remoto. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerinit:ok}.
+\item{\textbf{200 OK:} se ha programado con éxito la \gls{FPGA} para reproducir \glspl{traza} y se va a reiniciar el servidor remoto.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerinit:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -143,7 +153,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} la \gls{FPGA} no puede ser programada ya que está siendo usada. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerinit:error}.
+\item{\textbf{412 Error:} la \gls{FPGA} no puede ser programada ya que está siendo usada.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerinit:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -178,7 +189,8 @@ Ejemplo de datos asociados al código 412:
 %
 \subsection{POST /recorder/init}
 
-Programa la \gls{FPGA} para capturar \glspl{traza} y reinicia el servidor remoto. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderinit:invocacion}.
+Programa la \gls{FPGA} para capturar \glspl{traza} y reinicia el servidor remoto.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderinit:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -197,7 +209,8 @@ timestamp           & Cabecera       & Número        & de Enero de 1970 00:00:0
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} se ha programado con éxito la \gls{FPGA} para reproducir \glspl{traza} y se va a reiniciar el servidor remoto. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderinit:ok}.
+\item{\textbf{200 OK:} se ha programado con éxito la \gls{FPGA} para reproducir \glspl{traza} y se va a reiniciar el servidor remoto.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderinit:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -224,7 +237,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} la \gls{FPGA} no puede ser programada ya que está siendo usada. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderinit:error}.
+\item{\textbf{412 Error:} la \gls{FPGA} no puede ser programada ya que está siendo usada.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderinit:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -258,7 +272,8 @@ Ejemplo de datos asociados al código 412:
 % /player/install
 %
 \subsection{POST /player/install}
-Instala y monta la \gls{FPGA} para reproducir \glspl{traza}. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerinstall:invocacion}.
+Instala y monta la \gls{FPGA} para reproducir \glspl{traza}.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerinstall:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -277,7 +292,8 @@ timestamp           & Cabecera       & Número        & de Enero de 1970 00:00:0
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{FPGA} se ha instalado y montado con éxito, y está lista para reproducir \glspl{traza}. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerinstall:ok}.
+\item{\textbf{200 OK:} la \gls{FPGA} se ha instalado y montado con éxito, y está lista para reproducir \glspl{traza}.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerinstall:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -304,7 +320,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} la \gls{FPGA} no puede ser instalada y montada ya que no ha sido programada. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerinstall:error}.
+\item{\textbf{412 Error:} la \gls{FPGA} no puede ser instalada y montada ya que no ha sido programada.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerinstall:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -338,7 +355,8 @@ Ejemplo de datos asociados al código 412:
 % /recorder/install
 %
 \subsection{POST /recorder/install}
-Instala y monta la \gls{FPGA} para capturar \glspl{traza}. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderinstall:invocacion}.
+Instala y monta la \gls{FPGA} para capturar \glspl{traza}.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderinstall:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -357,7 +375,8 @@ timestamp           & Cabecera       & Número        & de Enero de 1970 00:00:0
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{FPGA} se ha instalado y montado con éxito, y está lista para capturar \glspl{traza}. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderinstall:ok}.
+\item{\textbf{200 OK:} la \gls{FPGA} se ha instalado y montado con éxito, y está lista para capturar \glspl{traza}.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderinstall:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -384,7 +403,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} la \gls{FPGA} no puede ser instalada y montada ya que no ha sido programada. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderinstall:error}.
+\item{\textbf{412 Error:} la \gls{FPGA} no puede ser instalada y montada ya que no ha sido programada.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderinstall:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -418,7 +438,8 @@ Ejemplo de datos asociados al código 412:
 % /player/start/:capturename/:mask/:ifg
 %
 \subsection{POST /player/start/:capturename/:mask/:ifg}
-Reproduce una \gls{traza} con los parámetros indicados. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerstart:invocacion}.
+Reproduce una \gls{traza} con los parámetros indicados.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerstart:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -440,7 +461,8 @@ ifg                 & Parámetro URL  & Número          & \gls{IFG} (0 para tas
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{FPGA} ha empezado a reproducir la \gls{traza} seleccionada con los parámetros indicados. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerstart:ok}.
+\item{\textbf{200 OK:} la \gls{FPGA} ha empezado a reproducir la \gls{traza} seleccionada con los parámetros indicados.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerstart:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -467,7 +489,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{400 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que los parámetros pasados son inválidos. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstart:error400}.
+\item{\textbf{400 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que los parámetros pasados son inválidos.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstart:error400}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -495,7 +518,8 @@ Ejemplo de datos asociados al código 400:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que no ha sido instalada y montada para reproducir \glspl{traza}. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstart:error412}.
+\item{\textbf{412 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que no ha sido instalada y montada para reproducir \glspl{traza}.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstart:error412}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -529,7 +553,8 @@ Ejemplo de datos asociados al código 412:
 % /player/start/loop/:capturename/:mask/:ifg
 %
 \subsection{POST /player/start/loop/:capturename/:mask/:ifg}
-Reproduce en bucle una \gls{traza} con los parámetros indicados. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerstartloop:invocacion}.
+Reproduce en bucle una \gls{traza} con los parámetros indicados.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerstartloop:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -551,7 +576,8 @@ ifg                 & Parámetro URL  & Número          & \gls{IFG} (0 para tas
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{FPGA} ha empezado a reproducir en bucle la \gls{traza} seleccionada con los parámetros indicados. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerstartloop:ok}.
+\item{\textbf{200 OK:} la \gls{FPGA} ha empezado a reproducir en bucle la \gls{traza} seleccionada con los parámetros indicados.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerstartloop:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -578,7 +604,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{400 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que los parámetros pasados son inválidos. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstartloop:error400}.
+\item{\textbf{400 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que los parámetros pasados son inválidos.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstartloop:error400}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -606,7 +633,8 @@ Ejemplo de datos asociados al código 400:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que no ha sido instalada y montada para reproducir \glspl{traza}. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstartloop:error412}.
+\item{\textbf{412 Error:} la \gls{FPGA} no puede reproducir la \gls{traza} ya que no ha sido instalada y montada para reproducir \glspl{traza}.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstartloop:error412}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -640,7 +668,8 @@ Ejemplo de datos asociados al código 412:
 % /recorder/start/:capturename/:port/:bytes
 %
 \subsection{POST /recorder/start/:capturename/:port/:bytes}
-Captura una \gls{traza} con los parámetros indicados. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderstart:invocacion}.
+Captura una \gls{traza} con los parámetros indicados.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderstart:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -662,7 +691,8 @@ bytes               & Parámetro URL  & Número          & Bytes a capturar     
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{FPGA} ha empezado a capturar una traza con los parámetros indicados. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderstart:ok}.
+\item{\textbf{200 OK:} la \gls{FPGA} ha empezado a capturar una traza con los parámetros indicados.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderstart:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -689,7 +719,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{400 Error:} la \gls{FPGA} no puede empezar a capturar ya que los parámetros pasados son inválidos. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderstart:error400}.
+\item{\textbf{400 Error:} la \gls{FPGA} no puede empezar a capturar ya que los parámetros pasados son inválidos.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderstart:error400}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -717,7 +748,8 @@ Ejemplo de datos asociados al código 400:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} la \gls{FPGA} no puede empezar a capturar ya que no ha sido instalada y montada para capturar \glspl{traza}. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderstart:error412}.
+\item{\textbf{412 Error:} la \gls{FPGA} no puede empezar a capturar ya que no ha sido instalada y montada para capturar \glspl{traza}.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderstart:error412}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -751,7 +783,8 @@ Ejemplo de datos asociados al código 412:
 % /player/stop
 %
 \subsection{POST /player/stop}
-Detiene la reproducción de \gls{traza} en curso. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerstop:invocacion}.
+Detiene la reproducción de \gls{traza} en curso.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:playerstop:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -770,7 +803,8 @@ timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{FPGA} ha detenido la reproducción en curso. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerstop:ok}.
+\item{\textbf{200 OK:} la \gls{FPGA} ha detenido la reproducción en curso.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:playerstop:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -797,7 +831,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} no se ha podido detener la reproducción ya que no existe ninguna en curso. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstop:error}.
+\item{\textbf{412 Error:} no se ha podido detener la reproducción ya que no existe ninguna en curso.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:playerstop:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -831,7 +866,8 @@ Ejemplo de datos asociados al código 412:
 % /recorder/stop
 %
 \subsection{POST /recorder/stop}
-Detiene la captura de \gls{traza} en curso. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderstop:invocacion}.
+Detiene la captura de \gls{traza} en curso.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:recorderstop:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -850,7 +886,8 @@ timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{FPGA} ha detenido la captura en curso. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderstop:ok}.
+\item{\textbf{200 OK:} la \gls{FPGA} ha detenido la captura en curso.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:recorderstop:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -877,7 +914,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} no se ha podido detener la captura ya que no existe ninguna en curso. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderstop:error}.
+\item{\textbf{412 Error:} no se ha podido detener la captura ya que no existe ninguna en curso.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:recorderstop:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -911,7 +949,8 @@ Ejemplo de datos asociados al código 412:
 % /storage/raid
 %
 \subsection{DELETE /storage/raid}
-Borra (formatea y vuelve a crear) el \gls{RAID} de almacenamiento. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:storageraid:invocacion}.
+Borra (formatea y vuelve a crear) el \gls{RAID} de almacenamiento.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:storageraid:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -930,7 +969,8 @@ timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} se ha formateado y vuelto a montar el \gls{RAID} de almacenamiento. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:storageraid:ok}.
+\item{\textbf{200 OK:} se ha formateado y vuelto a montar el \gls{RAID} de almacenamiento.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:storageraid:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -957,7 +997,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{412 Error:} no se ha formateado el \gls{RAID} ya que o está activado o la \gls{FPGA} está en uso. Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:storageraid:error}.
+\item{\textbf{412 Error:} no se ha formateado el \gls{RAID} ya que o está activado o la \gls{FPGA} está en uso.
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:storageraid:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -995,12 +1036,14 @@ Ejemplo de datos asociados al código 412:
 % /info/ping
 %
 \subsection{GET /info/ping}
-Método para comprobar si el servidor está operativo. Este método no requiere parámetros.
+Método para comprobar si el servidor está operativo.
+Este método no requiere parámetros.
 
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} servidor operativo. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infoping:ok}.
+\item{\textbf{200 OK:} servidor operativo.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infoping:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1029,7 +1072,8 @@ Ejemplo de datos asociados al código 200:
 % /info/delay
 %
 \subsection{GET /info/delay}
-Solicita la diferencia de tiempos existente entre los relojes del cliente y del servidor (en segundos). Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:infodelay:invocacion}.
+Solicita la diferencia de tiempos existente entre los relojes del cliente y del servidor (en segundos).
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:infodelay:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -1048,7 +1092,8 @@ timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} solicitud con éxito. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infodelay:ok}.
+\item{\textbf{200 OK:} solicitud con éxito.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infodelay:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1083,12 +1128,14 @@ Ejemplo de datos asociados al código 200:
 % /info/status
 %
 \subsection{GET /info/status}
-Solicita el estado actual de la \gls{FPGA}. Este método no requiere parámetros.
+Solicita el estado actual de la \gls{FPGA}.
+Este método no requiere parámetros.
 
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK - hugepages\_off:} opción \textit{HugePages} del sistema operativo no activa. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:hugepagesoff}.
+\item{\textbf{200 OK - hugepages\_off:} opción \textit{HugePages} del sistema operativo no activa.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:hugepagesoff}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1113,7 +1160,8 @@ Ejemplo de datos asociados al código 200 - hugepages\_off:
 \end{minipage}
 }
 
-\item{\textbf{200 OK - init\_off:} la \gls{FPGA} aún no ha sido configurada para captura o reproducción. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:initoff}.
+\item{\textbf{200 OK - init\_off:} la \gls{FPGA} aún no ha sido configurada para captura o reproducción.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:initoff}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1138,7 +1186,8 @@ Ejemplo de datos asociados al código 200 - init\_off:
 \end{minipage}
 }
 
-\item{\textbf{200 OK - mount\_off:} la \gls{FPGA} está inicializada pero no ha sido montada aún. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:mountoff}.
+\item{\textbf{200 OK - mount\_off:} la \gls{FPGA} está inicializada pero no ha sido montada aún.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:mountoff}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1163,7 +1212,8 @@ Ejemplo de datos asociados al código 200 - mount\_off:
 \end{minipage}
 }
 
-\item{\textbf{200 OK - player\_ready:} la \gls{FPGA} está lista para reproducir una \gls{traza}. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:playerready}.
+\item{\textbf{200 OK - player\_ready:} la \gls{FPGA} está lista para reproducir una \gls{traza}.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:playerready}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1188,7 +1238,8 @@ Ejemplo de datos asociados al código 200 - player\_ready:
 \end{minipage}
 }
 
-\item{\textbf{200 OK - recorder\_ready:} la \gls{FPGA} está lista para capturar una \gls{traza}. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:recorderready}.
+\item{\textbf{200 OK - recorder\_ready:} la \gls{FPGA} está lista para capturar una \gls{traza}.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:recorderready}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1213,7 +1264,8 @@ Ejemplo de datos asociados al código 200 - recorder\_ready:
 \end{minipage}
 }
 
-\item{\textbf{200 OK - playing:} la \gls{FPGA} está reproduciendo una \gls{traza}. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:playing}.
+\item{\textbf{200 OK - playing:} la \gls{FPGA} está reproduciendo una \gls{traza}.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:playing}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1254,7 +1306,8 @@ Ejemplo de datos asociados al código 200 - playing:
 \end{minipage}
 }
 
-\item{\textbf{200 OK - recording:} la \gls{FPGA} está capturando una \gls{traza}. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:recording}.
+\item{\textbf{200 OK - recording:} la \gls{FPGA} está capturando una \gls{traza}.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:infostatus:recording}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1295,12 +1348,14 @@ Ejemplo de datos asociados al código 200 - recording:
 % /storage/stats
 %
 \subsection{GET /storage/stats}
-Solicita estadísticas del almacenamiento. Este método no requiere parámetros.
+Solicita estadísticas del almacenamiento.
+Este método no requiere parámetros.
 
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} estadísticas obtenidas. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:storagestats:ok}.
+\item{\textbf{200 OK:} estadísticas obtenidas.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:storagestats:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1362,12 +1417,14 @@ Ejemplo de datos asociados al código 200:
 % /captures/all
 %
 \subsection{GET /captures/all}
-Solicita información sobre todas las \glspl{traza} disponibles. Este método no requiere parámetros.
+Solicita información sobre todas las \glspl{traza} disponibles.
+Este método no requiere parámetros.
 
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} información de las \glspl{traza} obtenida. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturesall:ok}.
+\item{\textbf{200 OK:} información de las \glspl{traza} obtenida.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturesall:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1423,12 +1480,14 @@ Ejemplo de datos asociados al código 200:
 % /captures/simple
 %
 \subsection{GET /captures/simple}
-Solicita información sobre todas las \glspl{traza} en formato \gls{simple} disponibles. Este método no requiere parámetros.
+Solicita información sobre todas las \glspl{traza} en formato \gls{simple} disponibles.
+Este método no requiere parámetros.
 
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} información de las \glspl{traza} en formato \gls{simple} obtenida. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturessimple:ok}.
+\item{\textbf{200 OK:} información de las \glspl{traza} en formato \gls{simple} obtenida.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturessimple:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1472,12 +1531,14 @@ Ejemplo de datos asociados al código 200:
 % /captures/pcap
 %
 \subsection{GET /captures/pcap}
-Solicita información sobre todas las \glspl{traza} en formato \gls{pcap} disponibles. Este método no requiere parámetros.
+Solicita información sobre todas las \glspl{traza} en formato \gls{pcap} disponibles.
+Este método no requiere parámetros.
 
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} información de las \glspl{traza} en formato \gls{pcap} obtenida. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturespcap:ok}.
+\item{\textbf{200 OK:} información de las \glspl{traza} en formato \gls{pcap} obtenida.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturespcap:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1527,12 +1588,14 @@ Ejemplo de datos asociados al código 200:
 % /captures/path
 %
 \subsection{GET /captures/path}
-Solicita información sobre dónde se almacenan las \glspl{traza}. Este método no requiere parámetros.
+Solicita información sobre dónde se almacenan las \glspl{traza}.
+Este método no requiere parámetros.
 
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} información de las \glspl{traza} en formato \gls{pcap} obtenida. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturespath:ok}.
+\item{\textbf{200 OK:} información de las \glspl{traza} en formato \gls{pcap} obtenida.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturespath:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1565,7 +1628,8 @@ Ejemplo de datos asociados al código 200:
 % /captures/rename/:oldname/:newname
 %
 \subsection{PUT /captures/rename/:oldname/:newname}
-Renombra una \gls{traza}. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturesrename:invocacion}.
+Renombra una \gls{traza}.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturesrename:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -1586,7 +1650,8 @@ newname             & Parámetro URL  & Cadena de texto & Nuevo nombre de la \gl
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{traza} se ha renombrado con éxito. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturesrename:ok}.
+\item{\textbf{200 OK:} la \gls{traza} se ha renombrado con éxito.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturesrename:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1613,7 +1678,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{400 Error:} no se ha podido renombrar la \gls{traza} (está en uso o el nuevo nombre no es válido). Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturesrename:error}.
+\item{\textbf{400 Error:} no se ha podido renombrar la \gls{traza} (está en uso o el nuevo nombre no es válido).
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturesrename:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1645,7 +1711,8 @@ Ejemplo de datos asociados al código 400:
 % /captures/simple/pcap/:name/:convertedname
 %
 \subsection{PUT /captures/simple/pcap/:name/:convertedname}
-Convierte una \gls{traza} de formato \gls{simple} a formato \gls{pcap}. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturessimplepcap:invocacion}.
+Convierte una \gls{traza} de formato \gls{simple} a formato \gls{pcap}.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturessimplepcap:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -1666,7 +1733,8 @@ convertedname       & Parámetro URL  & Cadena de texto & Nombre de la \gls{traz
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{traza} se ha convertido con éxito. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturessimplepcap:ok}.
+\item{\textbf{200 OK:} la \gls{traza} se ha convertido con éxito.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturessimplepcap:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1693,7 +1761,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{400 Error:} no se ha podido convertir la \gls{traza} (el nuevo nombre no es válido o la \gls{traza} original no está en formato \gls{simple}). Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturessimplepcap:error}.
+\item{\textbf{400 Error:} no se ha podido convertir la \gls{traza} (el nuevo nombre no es válido o la \gls{traza} original no está en formato \gls{simple}).
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturessimplepcap:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1725,7 +1794,8 @@ Ejemplo de datos asociados al código 400:
 % /captures/pcap/simple/:name/:convertedname
 %
 \subsection{PUT /captures/pcap/simple/:name/:convertedname}
-Convierte una \gls{traza} de formato \gls{pcap} a formato \gls{simple}. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturespcapsimple:invocacion}.
+Convierte una \gls{traza} de formato \gls{pcap} a formato \gls{simple}.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturespcapsimple:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -1746,7 +1816,8 @@ convertedname       & Parámetro URL  & Cadena de texto & Nombre de la \gls{traz
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{traza} se ha convertido con éxito. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturespcapsimple:ok}.
+\item{\textbf{200 OK:} la \gls{traza} se ha convertido con éxito.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturespcapsimple:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1773,7 +1844,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{400 Error:} no se ha podido convertir la \gls{traza} (el nuevo nombre no es válido o la \gls{traza} original no está en formato \gls{pcap}). Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturespcapsimple:error}.
+\item{\textbf{400 Error:} no se ha podido convertir la \gls{traza} (el nuevo nombre no es válido o la \gls{traza} original no está en formato \gls{pcap}).
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturespcapsimple:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1805,7 +1877,8 @@ Ejemplo de datos asociados al código 400:
 % /captures/delete/:name
 %
 \subsection{DELETE /captures/delete/:name}
-Borra una \gls{traza}. Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturesdelete:invocacion}.
+Borra una \gls{traza}.
+Los parámetros necesarios para la invocación de este método se detallan en la Tabla \ref{extra:api:capturesdelete:invocacion}.
 
 \begin{table}[H]
 \centering
@@ -1825,7 +1898,8 @@ name                & Parámetro URL  & Cadena de texto & Nombre de la \gls{traz
 A continuación se enumeran los distintos códigos de retorno asociados a este método:
 \begin{itemize}
 
-\item{\textbf{200 OK:} la \gls{traza} se ha borrado con éxito. Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturesdelete:ok}.
+\item{\textbf{200 OK:} la \gls{traza} se ha borrado con éxito.
+Este código de éxito es retornado junto con los parámetros indicados en la Tabla \ref{extra:api:capturesdelete:ok}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
@@ -1852,7 +1926,8 @@ Ejemplo de datos asociados al código 200:
 \end{minipage}
 }
 
-\item{\textbf{400 Error:} no se ha podido borrar la \gls{traza} (está en uso o no existe). Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturesdelete:error}.
+\item{\textbf{400 Error:} no se ha podido borrar la \gls{traza} (está en uso o no existe).
+Este código de error es retornado junto a los parámetros indicados en la Tabla \ref{extra:api:capturesdelete:error}.
 \begin{table}[H]
 \centering
 \begin{tabular}{|l|l|l|}
