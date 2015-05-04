@@ -10,8 +10,6 @@ Qué hace y qué no hace
 
 \section{Metodología\label{sec:dp:metodologia}}
 
-TODO: Metodología del proyecto - iterativo
-
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.7\textwidth,clip=true]{graphics/cascada_retroalimentacion}
@@ -19,9 +17,18 @@ TODO: Metodología del proyecto - iterativo
   \label{fig:cascada}
 \end{figure}
 
+Para el desarrollo de la aplicación se ha optado por seguir un ciclo de vida en cascada con retroalimentación (ver Figura \ref{fig:cascada}).
+Este modelo ordena las etapas del proceso de desarrollo de software, de forma que sólo se pueda iniciar una fase cuando se ha finalizado la anterior.
+Dada la naturaleza de este proyecto, era necesario periodo amplio de estudio del problema a resolver antes de poder codificar nada, siendo por ello este modelo más recomendable que adoptar alguna metodología ágil.
+Por otra parte, se ha descartado utilizar un modelo iterativo o en espiral dado que conllevaría un mayor tiempo de desarrollo al tener que realizarse por módulos y de forma separada cada una de las fases definidas, en vez de simultáneamente y de forma global.
+Además, el hecho de tener retroalimentación ha permitido volver a etapas anteriores en caso de que sea necesario para corregir algún aspecto del sistema.
+
+La distribución temporal de las tareas y sus dependencias se resumen en el diagrama de Gantt de la Figura \ref{fig:gantt}.
+A continuación se detallan la entradas, tareas y salidas de cada una de las fases del desarrollo del proyecto.
+
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.7\textwidth,clip=true]{graphics/cascada_retroalimentacion}
+  \includegraphics[width=0.7\textwidth,clip=true]{graphics/gantt_white}
   \caption{Diagrama de Gantt de la planificación temporal del proyecto.}
   \label{fig:gantt}
 \end{figure} 
@@ -41,72 +48,79 @@ Salida
   \item Relación de requisitos.
 \end{itemize}
 
-\subsection*{Diseño\label{ssec:dp:disenho}}
+\subsection*{Diseño y arquitectura\label{ssec:dp:disenho}}
 
 Entrada
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Relación de requisitos.
 \end{itemize}
 
 Tareas
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Diseñar la arquitectura y módulos a implementar. 
+  \item Diseñar la interfaz web.
 \end{itemize}
 
 Salida
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Arquitectura de la aplicación.
+  \item Diagramas de diseño.
+  \item Maquetas de la interfaz web.
 \end{itemize}
 
 \subsection*{Implementación\label{ssec:dp:implementacion}}
 
 Entrada
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Información sobre la arquitectura y el diseño de la aplicación.
+  \item Maquetas de la interfaz web.
 \end{itemize}
 
 Tareas
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Codificar del \gls{back-end}.
+  \item Codificar del \gls{front-end}.
 \end{itemize}
 
 Salida
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Código de la aplicación.
+  \item Documentación del código de la aplicación.
 \end{itemize}
 
 \subsection*{Pruebas\label{ssec:dp:pruebas}}
 
 Entrada
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Código de la aplicación.
 \end{itemize}
 
 Tareas
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Realizar el plan de pruebas acordado.
+  \item Evaluar el sistema final.
 \end{itemize}
 
 Salida
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Código de la aplicación validado y verificado.
 \end{itemize}
 
 \subsection*{Mantenimiento\label{ssec:dp:mantenimiento}}
 
 Entrada
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Código de la aplicación validado y verificado.
 \end{itemize}
 
 Tareas
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Analizar, implementar y probar las solicitudes de mejoras propuestas por usuarios. 
 \end{itemize}
 
 Salida
 \begin{itemize}[leftmargin=3.5em]
-  \item TODO
+  \item Código de la aplicación validado y verificado, con cambios menores propuestos por usuarios.
 \end{itemize}
 
 
