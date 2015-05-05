@@ -22,10 +22,11 @@
 % Imágenes (logos) izquierdo y derecho
 %
 \begin{figure}[h]
-	\begin{center}
-		\includegraphics[scale=0.55]{\logoizq}	
-		\includegraphics[scale=0.45]{\logoder}	
-	\end{center}	
+  \begin{center}
+    \includegraphics[scale=0.35]{\logoizq}
+    \hspace{1cm}
+    \includegraphics[scale=0.4]{\logoder}
+  \end{center}  
 \end{figure}
 
 \bigskip
@@ -35,7 +36,7 @@
 % Grado
 \begin{center}
 \begin{large}
-\grado\\
+\textbf{\grado}\\
 \end{large}
 \end{center}
 
@@ -43,7 +44,7 @@
 
 \textbf{\begin{center}
 \begin{huge}
-Trabajo de Fin de Grado
+\MakeUppercase{Trabajo de Fin de Grado}
 \end{huge}
 \end{center}}
 
@@ -53,7 +54,7 @@ Trabajo de Fin de Grado
 % Nombre del TFG
 \begin{center}
 \textbf{\begin{large}
-\nombretrabajo\\
+\MakeUppercase{\nombretrabajo}\\
 \end{large}}
 \end{center}
 
@@ -61,13 +62,17 @@ Trabajo de Fin de Grado
 \vspace{\fill}
 \begin{center}
 \textbf{\nombreautor}\\
+% Tutor
+\textbf{Tutor: \nombretutor}\\
+% Ponente, si está definido en main.tex
+\ifcsname nombreponente\endcsname
+\textbf{Ponente: \nombreponente}\\
+\fi
 
-% Correo
-\href{mailto:\correo}{\textit{\correo}}\\
 \bigskip
 
 % Fecha
-\fecha\\
+\textbf{\MakeUppercase{\fecha}}\\
 \end{center}
 \end{titlepage}
 
@@ -84,23 +89,31 @@ Trabajo de Fin de Grado
 
 % Nombre del trabajo
 \textbf{\begin{large}
-\nombretrabajo\\*
+\MakeUppercase{\nombretrabajo}\\*
 \end{large}}
 \vspace*{0.2cm}
 \vspace{5cm}
 
 % Nombre del autor y del tutor
-\large \textbf{Autor:} \nombreautor \\*
-\large \textbf{Tutor:} \nombretutor \\
-\vspace{11cm}
+\large Autor: \nombreautor \\*
+\large Tutor: \nombretutor \\*
+\ifcsname nombreponente\endcsname
+\large Ponente: \nombreponente\\
+\fi
+
+\vfill
 
 % Grupo de investigación, departamento, facultad, universidad y fecha
+\ifcsname nombreponente\endcsname
 \grupoInvestigacion \\
+\fi
 \departamento \\
 \facultad \\
 \universidad \\
-\fecha \\
+\vspace{1cm}
+\MakeUppercase{\fecha} \\
+
+\clearpage
 
 \end{center}
 \normalsize
-\newpage
