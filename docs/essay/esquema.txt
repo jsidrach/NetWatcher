@@ -115,9 +115,9 @@ Leyenda:
 
 Resumen: 
 
-[X]: 5/16
-[O]: 1/16
-[-]: 2/16
+[X]: 7/16
+[O]: 0/16
+[-]: 1/16
 [ ]: 8/16
 
 Capítulos:
@@ -125,9 +125,9 @@ Capítulos:
 [ ] Agradecimientos
 [ ] Abstract
 [ ] Resumen
-[O] Introducción
+[X] Introducción
 [ ] Estado del arte
-[-] Definición del proyecto
+[X] Definición del proyecto
 [X] Requisitos
 [-] Diseño
 [ ] Implementación
