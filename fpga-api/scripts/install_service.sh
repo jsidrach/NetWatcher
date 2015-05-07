@@ -13,6 +13,8 @@ fi
 FOLDER_EXP='s|dir=\".*\"|dir=\"'${1}'\"|g'
 SERVER_EXP='s|user=\".*\"|user=\"'${2}'\"|g'
 sed -i -e ${FOLDER_EXP} -e ${SERVER_EXP} ./scripts/fpga-api
+# Nodemon
+sudo chmod +x ./node_modules/nodemon/bin/nodemon.js
 # Install the service
 sudo cp -f ./scripts/fpga-api /etc/init.d
 sudo chmod +x /etc/init.d/fpga-api

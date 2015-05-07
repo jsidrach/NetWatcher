@@ -11,7 +11,7 @@
 
 dir="/home/sid/Desktop/fpga-api/"
 user="sid"
-cmd="PATH=$PATH:$dir/iojs/bin/ ./iojs/bin/nodemon --watch . --watch routes server.js"
+cmd="PATH=$PATH:$dir/iojs/bin/:$dir/node_modules/nodemon/bin/ ./node_modules/nodemon/bin/nodemon.js --watch . --watch routes server.js"
 
 name="fpga-api"
 pid_file="/var/run/$name.pid"
