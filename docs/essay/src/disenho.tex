@@ -1,6 +1,8 @@
 \chapter{Diseño\label{cap:disenho}}
 
-En este capítulo se repasa el diseño de la aplicación a desarrollar. Tras analizar los requisitos especificados en el capítulo \ref{cap:requisitos}, se ha decidido estructurar la aplicación en dos partes, alojadas cada una en un servidor distinto: una interfaz web (\gls{front-end}) y un servicio web (\gls{back-end}). Estos componentes están conectados por una red interna, y la comunicación entre ellos se realiza mediante llamadas  \gls{HTTP} (ver Figura \ref{fig:arquitectura}).
+En este capítulo se repasa el diseño de la aplicación a desarrollar.
+Tras analizar los requisitos especificados en el capítulo \ref{cap:requisitos}, se ha decidido estructurar la aplicación en dos partes, alojadas cada una en un servidor distinto: una interfaz web (\gls{front-end}) y un servicio web (\gls{back-end}).
+Estos componentes están conectados por una red interna, y la comunicación entre ellos se realiza mediante llamadas  \gls{HTTP} (ver Figura \ref{fig:arquitectura}).
 
 Esta arquitectura tiene una serie de ventajas respecto a tener todos los elementos del sistema en un mismo servidor físico.
 En primer lugar, se sobrecarga menos el servidor de la sonda de red, minimizando así el impacto que la aplicación pueda tener sobre el rendimiento de la captura y reproducción.
@@ -19,19 +21,22 @@ Por último, al estar alojados en servidores distintos, la interfaz web podrá i
 \section{Back-End - Servicio Web FPGA\label{sec:dis:servicio_web_fpga}}
 
 1 párrafo: de qué se encarga, arquitectura general
+recibir peticiones \gls{HTTP} y traducirlas en acciones concretas sobre la sonda de red: p
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{fpga_rest}
+  \includegraphics[width=0.95\textwidth,clip=true]{fpga_rest}
   \caption{Diagrama de flujo de un servicio \gls{REST}.}
   \label{fig:fpga_rest}
 \end{figure}
 
 1 párrafo: Qué es REST \ref{fig:fpga_rest}. peticiones http, respuestas json
+no se siguen todas las directrices \gls{REST}, pero sí se ha diseñado el servicio web para que inspire
+POST, GET, PUT, DELETE
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{fpga}
+  \includegraphics[width=0.95\textwidth,clip=true]{fpga}
   \caption{Arquitectura del \gls{servicioweb} \gls{FPGA}.}
   \label{fig:arquitectura_servicio}
 \end{figure}
@@ -40,21 +45,28 @@ Por último, al estar alojados en servidores distintos, la interfaz web podrá i
 
 1 párrafo módulos en los que se divide
 
-
+Se distinguen, según su funcionalidad, tres módulos dentro del servicio web: gestión, captura y estadísticas.
 \subsection{Gestión\label{ssec:dis:gestion}}
 
+Este módulo tiene dos funciones principales: gestionar el estado de la sonda de red y gese encarga tanto de gestionar el estado de la sonda .
 TODO: Gestión
   {Capturador,Reproductor}
 
 
 \subsection{Capturas\label{ssec:dis:capturas}}
 
+El módulo de capturas se encarga de todos los aspectos relacionados con las \glspl{traza} de tráfico de red.
+
+
+detectar el formato interno de una \gls{traza}.
+
 TODO: Capturas
   {Detección,Conversión,Renombrado,Borrado}
 
 
-\subsection{Estado/Estadísticas\label{ssec:dis:estado_estadisticas}}
+\subsection{Estadísticas\label{ssec:dis:estadisticas}}
 
+estado, get
 TODO: Estado/Estadísticas
   {Velocidad,Estado,RAID}
 
@@ -73,42 +85,42 @@ Introducción maquetas de las páginas principales
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_configuracion}
+  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_configuracion}
   \caption{Maqueta de la pantalla de configuración de la aplicación.}
   \label{fig:maqueta:configuracion}
 \end{figure}
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_almacenamiento}
+  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_almacenamiento}
   \caption{Maqueta de la pantalla de almacenamiento.}
   \label{fig:maqueta:almacenamiento}
 \end{figure}
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_capturas}
+  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_capturas}
   \caption{Maqueta de la pantalla de gestión de \glspl{traza}.}
   \label{fig:maqueta:capturas}
 \end{figure}
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_seleccion}
+  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_gestor_seleccion}
   \caption{Maqueta de la pantalla de gestión - selección de modo.}
   \label{fig:maqueta:gestor_seleccion}
 \end{figure}
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_capturador}
+  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_gestor_capturador}
   \caption{Maqueta de la pantalla de gestión - formulario para capturar.}
   \label{fig:maqueta:gestor_capturador}
 \end{figure}
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_capturando}
+  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_gestor_capturando}
   \caption{Maqueta de la pantalla de gestión - capturando.}
   \label{fig:maqueta:gestor_capturando}
 \end{figure}
