@@ -1,108 +1,3 @@
-Esquema de la memoria (* = generación semiautomática, - = contenido propio):
-
-* Portada
-- Agradecimientos
-- Abstract/Resumen
-* Glosario
-* Acrónimos
-* Índice General
-* Índice de tablas
-* Índice de figuras
-
-- Introducción
-  [Introducción]
-  - Motivación
-  - Objetivos
-  - Estructura del documento
-
-- Estado del arte
-  [Introducción]
-  - Sistemas de captura/reproducción de tráfico web
-  - Interfaces de gestión y monitorización
-  - Conclusiones
-
-- Definición del proyecto
-  [Introducción]
-  - Alcance
-  - Metodología
-    {Sprints}
-  - Herramientas
-    {Lista de herramientas, una subsección por cada una}
-    {Dividir en Back-End y Front-End}
-
-- Requisitos
-  [Introducción]
-  - Requisitos Funcionales
-  - Requisitos No Funcionales
-
-- Diseño
-  [Introducción]
-  - Arquitectura
-    {Front-End/Back-End}
-  - Módulos
-    [Introducción]
-    - Gestor
-      {Capturador/Reproductor}
-    - Capturas
-      {Detección,Conversión,Renombrado,Borrado}
-    - Estado/Estadísticas
-      {Velocidad,Estado,RAID}
-  - Servicio Web FPGA
-    {REST-like,asíncrono}
-  - Interfaz Gráfica
-    {Diseño adaptativo}
-    {Maquetas}
-
-- Implementación
-  [Introducción]
-  - Back-End
-    [Introducción]
-    {io.js,express,supervisor,apiDoc,npm}
-    {API ~REST,mensajes json}
-    {Servicio}
-  - Front-End
-    [Introducción]
-    - {MVC propio,Bootstrap,jQuery}
-    - Traducciones
-    - Temas
-
-- Pruebas
-  [Introducción]
-  - Pruebas de verificación
-  - Pruebas de validación
-
-- Mantenimiento
-  [Introducción]
-  {Open Source/GitHub Issues/Pull Requests}
-
-- Conclusiones
-
-- Líneas de trabajo futuro
-
-* Referencias
-
-- Apéndices
-  - Manual de Usuario
-  - Framework desarrollado
-  - FPGA Web Service API
-  
-_________________________________________________________________________________________
-
-Cosas que faltan por mencionar en la memoria:
-  - Esquema de la arquitectura
-    - Por qué PHP
-    - Por qué io.js
-  - Diseño de la aplicación, responsive, temas, atractiva visualmente, mejora de manejo respecto a consola
-  - REST(-based) stack (express, io.js) service, filosofía
-    - Distintas partes. Máquina de estados finito
-    - Diferencias y restricciones respecto a restful
-    - Llamadas asíncronas
-    - Algoritmo utilizado
-    - nodemon, cambios en javascript sin reiniciar
-    - Timestamps (extra, no necesario, vlan distintas)
-
-_________________________________________________________________________________________
-
 Progreso
 --------
 
@@ -117,8 +12,8 @@ Resumen:
 
 [X]: 7/16
 [O]: 0/16
-[-]: 1/16
-[ ]: 8/16
+[-]: 2/16
+[ ]: 7/16
 
 Capítulos:
 
@@ -130,7 +25,7 @@ Capítulos:
 [X] Definición del proyecto
 [X] Requisitos
 [-] Diseño
-[ ] Implementación
+[-] Implementación
 [ ] Pruebas
 [ ] Mantenimiento
 [ ] Conclusiones
