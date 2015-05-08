@@ -1,7 +1,7 @@
 \chapter{Diseño\label{cap:disenho}}
 
 En este capítulo se repasa el diseño de la aplicación a desarrollar.
-Tras analizar los requisitos especificados en el capítulo \ref{cap:requisitos}, se ha decidido estructurar la aplicación en dos partes, alojadas cada una en un servidor distinto: una interfaz web (\gls{front-end}) y un servicio web (\gls{back-end}).
+Tras analizar los requisitos especificados en el capítulo \ref{cap:requisitos}, se ha decidido dividir la aplicación en dos partes, alojadas cada una en un servidor distinto: una interfaz web (\gls{front-end}) y un servicio web (\gls{back-end}).
 Estos componentes están conectados por una red interna, y la comunicación entre ellos se realiza mediante llamadas  \gls{HTTP} (ver Figura \ref{fig:arquitectura}).
 
 Esta arquitectura tiene una serie de ventajas respecto a tener todos los elementos del sistema en un mismo servidor físico.
@@ -20,9 +20,8 @@ Por último, al estar alojados en servidores distintos, la interfaz web podrá i
 
 \section{Back-End - Servicio Web FPGA\label{sec:dis:servicio_web_fpga}}
 
-1 párrafo: de qué se encarga, arquitectura general
-recibir peticiones \gls{HTTP} y traducirlas en acciones concretas sobre la sonda de red: p
-
+El componente \gls{back-end} se encarga de la interacción con la sonda de red (implementada en una \gls{FPGA}) y con el resto de partes involucradas en la reproducción y captura de tráfico de red.
+Para ello, recibe peticiones \gls{HTTP} del \gls{front-end} (actuando en este caso como cliente), que se traducen en acciones sobre el sistema o en respuestas sobre el estado del mismo.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.95\textwidth,clip=true]{fpga_rest}
@@ -30,9 +29,17 @@ recibir peticiones \gls{HTTP} y traducirlas en acciones concretas sobre la sonda
   \label{fig:fpga_rest}
 \end{figure}
 
-1 párrafo: Qué es REST \ref{fig:fpga_rest}. peticiones http, respuestas json
-no se siguen todas las directrices \gls{REST}, pero sí se ha diseñado el servicio web para que inspire
-POST, GET, PUT, DELETE
+La arquitectura de comunicación externa del \gls{back-end} se basa en el modelo de cliente-servidor \gls{REST} (ver Figura \ref{fig:fpga_rest}). Dentro de las directrices que marca este modelo, sólo se han considerado útiles para el problema dado un subconjunto de ellas:
+\begin{itemize}
+  \item El protocolo entre el cliente y el servidor debe ser sin estado: cada mensaje \gls{HTTP} tiene que contener toda la información necesaria para comprender la petición.
+  \item Las operciones se aplican sobre recursos mediante llamadas a métodos \gls{HTTP}: \textit{GET} para obtener información sobre un recurso, \textit{POST}/\textit{PUT} para actualizarlos o crearlos y \textit{DELETE} para borrarlos.
+  \item Cada recurso debe tener un identificador único (en este caso, una \gls{URL} única).
+\end{itemize}
+
+Se ha decidido no adoptar el resto de directrices \gls{REST} debido a que no encajaban dentro del modelo de funcionamiento de la aplicación.
+Así, no se facilita el descubrimiento automático de recursos y métodos, ya que se ha considerado que no tiene sentido siendo éste un subsistema interno y no un componente público.
+Por otra parte, no se permiten distintas representaciones de un mismo recurso, siendo \gls{JSON} la única representación utilizada.
+No seguir estas directrices simplifica además la implementación del \gls{back-end}.
 
 \begin{figure}[!htp]
   \centering
@@ -41,11 +48,12 @@ POST, GET, PUT, DELETE
   \label{fig:arquitectura_servicio}
 \end{figure}
 
+Internamente, \ref{fig:arquitectura_servicio}, 
+Supervisor
 1 párrafo Cluster de procesos para operaciones auxiliares, alta disponibilidad \ref{fig:arquitectura_servicio}
-
-1 párrafo módulos en los que se divide
-
-Se distinguen, según su funcionalidad, tres módulos dentro del servicio web: gestión, captura y estadísticas.
+Logs
+Módulos
+Se distinguen por tanto, según su funcionalidad, tres módulos dentro del servicio web: gestión, captura y estadísticas.
 \subsection{Gestión\label{ssec:dis:gestion}}
 
 Este módulo tiene dos funciones principales: gestionar el estado de la sonda de red y gese encarga tanto de gestionar el estado de la sonda .
