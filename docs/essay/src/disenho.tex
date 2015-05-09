@@ -48,98 +48,135 @@ No seguir estas directrices simplifica además la implementación del \gls{back-
   \label{fig:arquitectura_servicio}
 \end{figure}
 
-Internamente, \ref{fig:arquitectura_servicio}, 
-Supervisor
-1 párrafo Cluster de procesos para operaciones auxiliares, alta disponibilidad \ref{fig:arquitectura_servicio}
-Logs
-Módulos
-Se distinguen por tanto, según su funcionalidad, tres módulos dentro del servicio web: gestión, captura y estadísticas.
-\subsection{Gestión\label{ssec:dis:gestion}}
+Internamente, el \gls{back-end} se estructura tal y como se describe en la Figura \ref{fig:arquitectura_servicio}.
+Un supervisor se encarga de vigilar al grupo de procesos que atienden las peticiones del \gls{front-end}.
+Este grupo tiene tantos procesos como núcleos el servidor, adaptándose así a su arquitectura interna y consiguiendo por tanto una mayor disponibilidad y un menor tiempo de respuesta.
+Por otro lado, con el objetivo de tener información detallada sobre el uso del servicio web, se registran todos los eventos y errores del \gls{back-end} en los \textit{logs} correspondientes.
+Por último, se ha dividido el servicio web en tres módulos, cada uno con una funcialidad asociada: \textit{manager}, \textit{captures} y \textit{statistics}.
 
-Este módulo tiene dos funciones principales: gestionar el estado de la sonda de red y gese encarga tanto de gestionar el estado de la sonda .
-TODO: Gestión
-  {Capturador,Reproductor}
+\subsection{Manager\label{ssec:dis:manager}}
 
-
-\subsection{Capturas\label{ssec:dis:capturas}}
-
-El módulo de capturas se encarga de todos los aspectos relacionados con las \glspl{traza} de tráfico de red.
+Este módulo se encarga de gestionar el estado de la sonda de red y del servidor que la aloja.
+Permite por tanto instalar, programar y montar la sonda en modo reproducción o en modo captura, ordenarle reproducir o capturar tráfico y pararla. Adicionalmente, maneja también otros aspectos del sistema, posibilitando reiniciar el servidor y formatear el sistema de almacenamiento en caso de ser necesario.
 
 
-detectar el formato interno de una \gls{traza}.
+\subsection{Captures\label{ssec:dis:captures}}
 
-TODO: Capturas
-  {Detección,Conversión,Renombrado,Borrado}
+Este módulo se ocupa de todos los aspectos relacionados con las \glspl{traza} de tráfico de red.
+Permite así listar todas las \gls{traza} disponibles, mostrando su nombre, fecha, tipo y tamaño.
+Por otra parte es capaz de, sobre una \gls{traza} concreta, detectar el formato interno de la misma, convertirla entre los formatos soportados, renombrarla o borrarla para liberar espacio de almacenamiento.
 
 
-\subsection{Estadísticas\label{ssec:dis:estadisticas}}
+\subsection{Statistics\label{ssec:dis:statistics}}
 
-estado, get
-TODO: Estado/Estadísticas
-  {Velocidad,Estado,RAID}
+Este módulo tiene como objetivo informar sobre el estado actual de la sonda de red, y proporcionar estadísticas sobre la reproducción o captura (en caso de existir una en curso).
+Permite conocer además medidas sobre el almacenamiento: espacio ocupado, espacio disponible, velocidad de escritura global y por discos.
 
 
 \section{Front-End - Interfaz web\label{sec:dis:interfaz_web}}
 
-TODO: [Introducción] > sobre el framework, comunicación con el backend
+El \gls{front-end} se encarga de mostrar una interfaz web al usuario, recoger las acciones de éste y transformarlas en peticiones \gls{HTTP} al \gls{back-end}, informando de forma visual del resultado de la solicitud.
+Este componente utiliza como punto de partida el \gls{framework} propio desarrollado (ver apéndice \ref{extra:frameworkDesarrollado}).
+Dicho \gls{framework} provee de una arquitectura y funcionalidad base a la interfaz, estructurando además los módulos de la misma siguiendo el patrón modelo-vista-controlador.
 
-Diseño responsive, visualmente atractiv. ventajas y diferencias vs adaptativo
+En el apartado visual, se ha decidido adoptar un diseño \textit{responsive}.
+Esta filosofía de diseño se basa en la idea de que se debe adaptar la forma de mostrar una página para que la experiencia del usuario sea óptima independientemente del dispositivo que utilice (móvil, ordenador de sobremesa, etc.).
+Para ello se utilizan una cuadrícula que cambia de posición y tamaño según sea el dispositivo desde el que se accede a la interfaz.
+Ésta filosofía de diseño tiene una diferencia fundamental respecto al diseño \textit{adaptative}, que simplifica su implementación: mientras este último se basa en cargar distintos recursos de estilo según las características del dispositivo, el diseño \textit{responsive} utiliza una única cuadrícula que se ajusta en base a dichas características.
 
-Internacionalización
+Respecto al idioma de la interfaz web, ésta estará disponible tanto en inglés como en español, pudiendo el usuario elegir el idioma que prefiera.
+De forma similar, también se podrá seleccionar un tema visual para el \gls{front-end}.
+Estos temas cambian el esquema de colores y aspectos menores de la interfaz gráfica.
 
-Introducción maquetas de las páginas principales
 
 \subsection{Maquetas\label{ssec:dis:maquetas}}
 
+En este apartado se exponen las maquetas de las páginas principales de la interfaz, que sirven como guía para la implementación del \gls{front-end}.
+Todas ellas cuentan con una barra superior de navegación, con enlaces al resto de pantallas principales de la interfaz.
+
+En la Figura \ref{fig:maqueta:configuracion} se muestra la maqueta de la pantalla de configuración de la aplicación.
+En esta página se podrá configurar mediante un formulario la dirección del \gls{servicioweb} \gls{FPGA} (el \gls{back-end}), y el idioma y el tema visual de la interfaz.
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_configuracion}
+  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_configuracion}
   \caption{Maqueta de la pantalla de configuración de la aplicación.}
   \label{fig:maqueta:configuracion}
 \end{figure}
+\clearpage
 
+En la Figura \ref{fig:maqueta:almacenamiento} se muestra la maqueta de la pantalla de almacenamiento.
+Esta página mostrará gráficas sobre el espacio disponible, y sobre estadísticas del \gls{RAID}, en caso de estar configurado.
+También se dará opción a formatear el \gls{RAID} en caso de que no tenga un rendimiento aceptable.
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_almacenamiento}
+  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_almacenamiento}
   \caption{Maqueta de la pantalla de almacenamiento.}
   \label{fig:maqueta:almacenamiento}
 \end{figure}
+\clearpage
 
+En la Figura \ref{fig:maqueta:capturas} se muestra la maqueta de la pantalla de gestión de \glspl{traza}.
+A la izquierda se podrán visualizar, en una tabla, todas las \glspl{traza} disponibles, con su nombre, tipo, tamaño y fecha.
+Sobre esta tabla, una barra de acciones permitirá filtrar las \glspl{traza} según su tipo, o buscar alguna concreta por su nombre.
+A la derecha se mostrará un panel con posibles acciones a realizar sobre la \gls{traza} seleccionada de la tabla: convertirla a otro formato, renombrarla o borrarla. 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_capturas}
+  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_capturas}
   \caption{Maqueta de la pantalla de gestión de \glspl{traza}.}
   \label{fig:maqueta:capturas}
 \end{figure}
+\clearpage
 
+En la Figura \ref{fig:maqueta:gestor_seleccion} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará en caso de que no se haya seleccionado aún ningún modo, o cuando se quiera seleccionar otro.
+Esta pantalla consta de dos botones, y pulsándo alguno se inicializará la sonda en el modo correspondiente.
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_gestor_seleccion}
+  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_seleccion}
   \caption{Maqueta de la pantalla de gestión - selección de modo.}
   \label{fig:maqueta:gestor_seleccion}
 \end{figure}
+\clearpage
 
+En la Figura \ref{fig:maqueta:gestor_capturador} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará cuando la sonda haya sido inicializada en modo captura.
+En esta pantalla se podrá rellenar un formulario con el nombre de la \gls{traza} a capturar, su tamaño y el puerto del que capturar.
+Pulsando el botón \textit{Capturar} se iniciará la captura de dicha \gls{traza}. También se podrá volver a la página de selección de modo, pulsando el enlace inferior \textit{Cambiar de modo}.
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_gestor_capturador}
+  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_capturador}
   \caption{Maqueta de la pantalla de gestión - formulario para capturar.}
   \label{fig:maqueta:gestor_capturador}
 \end{figure}
+\clearpage
 
+En la Figura \ref{fig:maqueta:gestor_capturando} se expone la maqueta de una de las pantallas de gestión, que se mostrará cuando la sonda esté capturando tráfico de red.
+En esta pantalla se podrán visualizar distintas estadísticas de la captura en curso, hasta que termine.
+Adicionalmente, una barra de progreso indicará qué porcentaje de la \gls{traza} ha sido ya capturada.
+También se podrá parar la captura, pulsando el botón \textit{Detener la captura}.
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{maquetas/maqueta_gestor_capturando}
+  \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_capturando}
   \caption{Maqueta de la pantalla de gestión - capturando.}
   \label{fig:maqueta:gestor_capturando}
 \end{figure}
+\clearpage
 
+En la Figura \ref{fig:maqueta:gestor_reproductor} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará cuando la sonda haya sido inicializada en modo reproducción.
+A la izquierda se podrán visualizar, en una tabla, todas las \glspl{traza} disponibles para reproducir, con su nombre, tipo, tamaño y fecha.
+Sobre esta tabla, una barra de acciones permitirá filtrar las \glspl{traza} según su tipo, o buscar alguna concreta por su nombre.
+A la derecha se mostrará un panel con un formulario para configurar las opciones de reproducción: en bucle o no, \gls{IFG} y máscara de reproducción.
+Pulsando el botón \textit{Reproducir} se iniciará la reproducción de la traza seleccionada.
+También se podrá volver a la página de selección de modo, pulsando el enlace inferior \textit{Cambiar de modo}.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_reproductor}
   \caption{Maqueta de la pantalla de gestión - formulario para reproducir.}
   \label{fig:maqueta:gestor_reproductor}
 \end{figure}
+\clearpage
 
+En la Figura \ref{fig:maqueta:gestor_reproduciendo} se expone la maqueta de una de las pantallas de gestión, que se mostrará cuando la sonda esté reproduciendo una \gls{traza}.
+En esta pantalla se podrán visualizar distintas estadísticas de la reproducción en curso, hasta que termine.
+También se podrá parar la reproducción, pulsando el botón \textit{Detener la reproducción}.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_reproduciendo}
