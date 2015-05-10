@@ -29,6 +29,33 @@ Arbol rutas \ref{fig:fpga_estado}
 
 FSM de estados FPGA \ref{fig:fpga_estado}
 
+cuando llega una petición que depende del estado, primero se determina el estado. Para esto se van realizando tests de forma incremental etc. árbol de transiciones, \ref{fig:arbol_decision}
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.75\textwidth,clip=true]{arbol_decision}
+  \caption{Árbol de decisión para determinar el estado de la \gls{FPGA}.}
+  \label{fig:arbol_decision}
+\end{figure}
+es necesario puesto que el servidor es stateless
+
+Internamente, las transiciones
+\begin{enumerate}[label={\bfseries [\arabic*]}]
+  \item Estado por defecto al iniciar el servidor sin seleccionar la opción de arranque con \textit{HugePages}.
+  \item Se reinicia el servidor, seleccionando la opción de arranque con la opción \textit{HugePages} activa.
+  \item Se programa la \gls{FPGA} en modo reproductor con el \gls{bitstream} correspondiente y se reinicia el servidor.
+  \item Se programa la \gls{FPGA} en modo capturador con el \gls{bitstream} correspondiente y se reinicia el servidor.
+  \item Se monta la \gls{FPGA} sobre el servidor.
+  \item Se monta la \gls{FPGA} sobre el servidor.
+  \item Se reinicia el servidor.
+  \item Se reinicia el servidor.
+  \item Se ordena a la sonda reproducir una \gls{traza}.
+  \item Se ordena a la sonda capturar una \gls{traza}.
+  \item Se para la reproducción, o porque se ha acabado el contenido de la \gls{traza} o porque es detenida el usuario.
+  \item Se para la captura, o porque se ha capturado todo lo que se quería o porque es detenida por el usuario.
+\end{enumerate}
+
+
 Captura árbol de archivos \ref{fig:arbol_codigo}
 
 \begin{figure}[!htp]
