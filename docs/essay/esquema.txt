@@ -10,9 +10,9 @@ Leyenda:
 
 Resumen: 
 
-[X]: 7/16
+[X]: 8/16
 [O]: 0/16
-[-]: 2/16
+[-]: 1/16
 [ ]: 7/16
 
 Capítulos:
@@ -24,7 +24,7 @@ Capítulos:
 [ ] Estado del arte
 [X] Definición del proyecto
 [X] Requisitos
-[-] Diseño
+[X] Diseño
 [-] Implementación
 [ ] Pruebas
 [ ] Mantenimiento

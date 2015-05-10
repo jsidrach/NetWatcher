@@ -1,10 +1,10 @@
 \chapter{Diseño\label{cap:disenho}}
 
-En este capítulo se repasa el diseño de la aplicación a desarrollar.
+En este capítulo se describe el diseño de la aplicación a desarrollar.
 Tras analizar los requisitos especificados en el capítulo \ref{cap:requisitos}, se ha decidido dividir la aplicación en dos partes, alojadas cada una en un servidor distinto: una interfaz web (\gls{front-end}) y un servicio web (\gls{back-end}).
 Estos componentes están conectados por una red interna, y la comunicación entre ellos se realiza mediante llamadas  \gls{HTTP} (ver Figura \ref{fig:arquitectura}).
 
-Esta arquitectura tiene una serie de ventajas respecto a tener todos los elementos del sistema en un mismo servidor físico.
+La arquitectura propuesta tiene una serie de ventajas respecto a tener todos los elementos del sistema en un mismo servidor físico.
 En primer lugar, se sobrecarga menos el servidor de la sonda de red, minimizando así el impacto que la aplicación pueda tener sobre el rendimiento de la captura y reproducción.
 En segundo lugar, una división clara entre el \gls{back-end} y el \gls{front-end} facilita la adopción de tecnologías distintas en ambos, utilizando en cada uno las que mejor se adapten al problema dado, y sin miedo a incompatibilidades (pues se comunican entre ellos por \gls{HTTP}, que es estándar).
 En tercer lugar, se posibilita el gestionar desde un mismo \gls{front-end} distintas sondas de red que tengan instalado el mismo \gls{back-end}, sin que el usuario tenga que cambiar de página.
@@ -32,7 +32,7 @@ Para ello, recibe peticiones \gls{HTTP} del \gls{front-end} (actuando en este ca
 La arquitectura de comunicación externa del \gls{back-end} se basa en el modelo de cliente-servidor \gls{REST} (ver Figura \ref{fig:fpga_rest}). Dentro de las directrices que marca este modelo, sólo se han considerado útiles para el problema dado un subconjunto de ellas:
 \begin{itemize}
   \item El protocolo entre el cliente y el servidor debe ser sin estado: cada mensaje \gls{HTTP} tiene que contener toda la información necesaria para comprender la petición.
-  \item Las operciones se aplican sobre recursos mediante llamadas a métodos \gls{HTTP}: \textit{GET} para obtener información sobre un recurso, \textit{POST}/\textit{PUT} para actualizarlos o crearlos y \textit{DELETE} para borrarlos.
+  \item Las operaciones se aplican sobre recursos mediante llamadas a métodos \gls{HTTP}: \textit{GET} para obtener información sobre un recurso, \textit{POST}/\textit{PUT} para actualizarlos o crearlos y \textit{DELETE} para borrarlos.
   \item Cada recurso debe tener un identificador único (en este caso, una \gls{URL} única).
 \end{itemize}
 
@@ -64,7 +64,7 @@ Permite por tanto instalar, programar y montar la sonda en modo reproducción o 
 
 Este módulo se ocupa de todos los aspectos relacionados con las \glspl{traza} de tráfico de red.
 Permite así listar todas las \gls{traza} disponibles, mostrando su nombre, fecha, tipo y tamaño.
-Por otra parte es capaz de, sobre una \gls{traza} concreta, detectar el formato interno de la misma, convertirla entre los formatos soportados, renombrarla o borrarla para liberar espacio de almacenamiento.
+Por otra parte, sobre una \gls{traza} concreta es capaz de detectar el formato interno de la misma, convertirla entre los formatos soportados, renombrarla o borrarla para liberar espacio de almacenamiento.
 
 
 \subsection{Statistics\label{ssec:dis:statistics}}
@@ -95,7 +95,7 @@ En este apartado se exponen las maquetas de las páginas principales de la inter
 Todas ellas cuentan con una barra superior de navegación, con enlaces al resto de pantallas principales de la interfaz.
 
 En la Figura \ref{fig:maqueta:configuracion} se muestra la maqueta de la pantalla de configuración de la aplicación.
-En esta página se podrá configurar mediante un formulario la dirección del \gls{servicioweb} \gls{FPGA} (el \gls{back-end}), y el idioma y el tema visual de la interfaz.
+En esta página se podrán configurar, mediante un formulario, la dirección del \gls{servicioweb} \gls{FPGA} (el \gls{back-end}), el idioma y el tema visual de la interfaz.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_configuracion}
@@ -105,7 +105,7 @@ En esta página se podrá configurar mediante un formulario la dirección del \g
 \clearpage
 
 En la Figura \ref{fig:maqueta:almacenamiento} se muestra la maqueta de la pantalla de almacenamiento.
-Esta página mostrará gráficas sobre el espacio disponible, y sobre estadísticas del \gls{RAID}, en caso de estar configurado.
+Esta página mostrará gráficas sobre el espacio disponible, y sobre estadísticas del \gls{RAID} en caso de estar configurado.
 También se dará opción a formatear el \gls{RAID} en caso de que no tenga un rendimiento aceptable.
 \begin{figure}[!htp]
   \centering
@@ -127,7 +127,7 @@ A la derecha se mostrará un panel con posibles acciones a realizar sobre la \gl
 \end{figure}
 \clearpage
 
-En la Figura \ref{fig:maqueta:gestor_seleccion} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará en caso de que no se haya seleccionado aún ningún modo, o cuando se quiera seleccionar otro.
+En la Figura \ref{fig:maqueta:gestor_seleccion} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará en caso de que no se haya seleccionado aún ningún modo o cuando se quiera seleccionar otro.
 Esta pantalla consta de dos botones, y pulsándo alguno se inicializará la sonda en el modo correspondiente.
 \begin{figure}[!htp]
   \centering
@@ -148,9 +148,9 @@ Pulsando el botón \textit{Capturar} se iniciará la captura de dicha \gls{traza
 \end{figure}
 \clearpage
 
-En la Figura \ref{fig:maqueta:gestor_capturando} se expone la maqueta de una de las pantallas de gestión, que se mostrará cuando la sonda esté capturando tráfico de red.
-En esta pantalla se podrán visualizar distintas estadísticas de la captura en curso, hasta que termine.
-Adicionalmente, una barra de progreso indicará qué porcentaje de la \gls{traza} ha sido ya capturada.
+En la Figura \ref{fig:maqueta:gestor_capturando} se expone la maqueta de otra de las pantallas de gestión, que se mostrará cuando la sonda esté capturando tráfico de red.
+En esta pantalla se podrán visualizar distintas estadísticas de la captura en curso, hasta que ésta finalice.
+Adicionalmente, una barra de progreso indicará qué porcentaje de la \gls{traza} ha sido ya capturado.
 También se podrá parar la captura, pulsando el botón \textit{Detener la captura}.
 \begin{figure}[!htp]
   \centering
@@ -160,7 +160,7 @@ También se podrá parar la captura, pulsando el botón \textit{Detener la captu
 \end{figure}
 \clearpage
 
-En la Figura \ref{fig:maqueta:gestor_reproductor} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará cuando la sonda haya sido inicializada en modo reproducción.
+En la Figura \ref{fig:maqueta:gestor_reproductor} se expone la maqueta de otra de las pantallas de la página de gestión, que se mostrará cuando la sonda haya sido inicializada en modo reproducción.
 A la izquierda se podrán visualizar, en una tabla, todas las \glspl{traza} disponibles para reproducir, con su nombre, tipo, tamaño y fecha.
 Sobre esta tabla, una barra de acciones permitirá filtrar las \glspl{traza} según su tipo, o buscar alguna concreta por su nombre.
 A la derecha se mostrará un panel con un formulario para configurar las opciones de reproducción: en bucle o no, \gls{IFG} y máscara de reproducción.
@@ -174,8 +174,8 @@ También se podrá volver a la página de selección de modo, pulsando el enlace
 \end{figure}
 \clearpage
 
-En la Figura \ref{fig:maqueta:gestor_reproduciendo} se expone la maqueta de una de las pantallas de gestión, que se mostrará cuando la sonda esté reproduciendo una \gls{traza}.
-En esta pantalla se podrán visualizar distintas estadísticas de la reproducción en curso, hasta que termine.
+En la Figura \ref{fig:maqueta:gestor_reproduciendo} se expone la maqueta de otra de las pantallas de gestión, que se mostrará cuando la sonda esté reproduciendo una \gls{traza}.
+En esta pantalla se podrán visualizar distintas estadísticas de la reproducción en curso, hasta que ésta finalice.
 También se podrá parar la reproducción, pulsando el botón \textit{Detener la reproducción}.
 \begin{figure}[!htp]
   \centering
