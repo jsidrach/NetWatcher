@@ -18,13 +18,13 @@ Tampoco entra dentro del alcance de este proyecto modificar el funcionamiento in
   \label{fig:cascada}
 \end{figure}
 
-Para el desarrollo de la aplicación se ha optado por seguir un ciclo de vida en cascada con retroalimentación (ver Figura \ref{fig:cascada}).
+Para el desarrollo de la aplicación se ha optado por seguir un ciclo de vida en cascada con retroalimentación (ver Figura~\ref{fig:cascada}).
 Este modelo ordena las etapas del proceso de desarrollo de software, de forma que sólo se pueda iniciar una fase cuando se ha finalizado la anterior.
 Dada la naturaleza de este proyecto, era necesario un periodo amplio de estudio del problema a resolver antes de poder codificar nada, siendo por ello este modelo más recomendable que adoptar alguna metodología ágil.
 Por otra parte, se ha descartado utilizar un modelo iterativo o en espiral dado que conllevaría un mayor tiempo de desarrollo al tener que realizarse por módulos y de forma separada cada una de las fases definidas, en vez de simultáneamente y de forma global.
 Además, el hecho de tener retroalimentación permite volver a etapas anteriores en caso de que sea necesario corregir algún aspecto del sistema.
 
-La distribución temporal de las tareas y sus dependencias se resumen en el diagrama de Gantt de la Figura \ref{fig:gantt}.
+La distribución temporal de las tareas y sus dependencias se resumen en el diagrama de Gantt de la Figura~\ref{fig:gantt}.
 A continuación se detallan la entradas, tareas y salidas de cada una de las fases del desarrollo del proyecto.
 
 \begin{figure}[!htp]
@@ -142,7 +142,7 @@ Se detallan también las librerías externas de las que hace uso la aplicación.
 
 \subsection*{Control de versiones: git\label{ssec:dp:git}}
 
-En todo proyecto software es fundamental, especialmente si se alarga en el tiempo, hacer uso de una herramienta de control de versiones para el código y la documentación. Se ha elegido con este propósito utilizar la plataforma \textit{GitHub} \cite{github}, basada en \textit{git} \cite{git}, un sistema distribuido de control de versiones.
+En todo proyecto software es fundamental, especialmente si se alarga en el tiempo, hacer uso de una herramienta de control de versiones para el código y la documentación. Se ha elegido con este propósito utilizar la plataforma \textit{GitHub}~\cite{github}, basada en \textit{git}~\cite{git}, un sistema distribuido de control de versiones.
 Esta plataforma es la más popular dentro de las herramientas de control de versiones, y tiene algunas ventajas importantes respecto a otros sistemas similares.
 
 En primer lugar, ofrece alojamiento gratuito para proyectos de código abierto, y también para proyectos privados si se es estudiante. Gracias a esto se ha podido desarrollar todo el código de la aplicación en un proyecto privado, liberándolo al público al finalizar el desarrollo principal, de forma que cualquiera pueda utilizar y mejorar el código existente. 
@@ -152,7 +152,7 @@ Finalmente, facilita la colaboración entre desarrolladores con una interfaz int
 \subsection*{Creación de diagramas y maquetas: Cacoo\label{ssec:dp:cacoo}}
 
 Para el diseño de la aplicación se han realizado diagramas de flujo y de arquitectura del proyecto, así como maquetas de las diferentes pantallas de la interfaz web.
-Para ello, se ha utilizado la herramienta \textit{Cacoo} \cite{cacoo}, ya que ofrece una licencia gratuita para estudiantes que permite exportar estos gráficos en formato vectorial \textit{svg}, que se pueden redimensionar sin pérdida de resolución.
+Para ello, se ha utilizado la herramienta \textit{Cacoo}~\cite{cacoo}, ya que ofrece una licencia gratuita para estudiantes que permite exportar estos gráficos en formato vectorial \textit{svg}, que se pueden redimensionar sin pérdida de resolución.
 Otra característica interesante es que está basada en tecnologías web, con lo que es accesible desde cualquier navegador, sin ser necesario instalar ningún programa adicional.
 
 \subsection*{Documentación: phpDocumentor y apiDoc\label{ssec:dp:docs}}
@@ -162,14 +162,14 @@ Por un lado, que permitiese crear la documentación mediante anotaciones en el p
 Por otro, que generase la documentación en formato \gls{HTML}, para que se pudiese acceder a ella del mismo modo que a la aplicación, desde un navegador.
 Debido a diferencias significativas (en arquitectura y lenguaje) entre el \gls{back-end} y el \gls{front-end}, se ha decidido finalmente utilizar una herramienta de documentación distinta para cada parte.
 
-Para el \gls{back-end} se ha elegido \textit{apiDoc} \cite{apidoc}, ya que es multilenguaje y encaja perfectamente dentro de la arquitectura interna (ver sección \ref{sec:dis:servicio_web_fpga}).
-Respecto al \gls{front-end}, se ha seleccionado \textit{phpDocumentor} \cite{phpdocumentor}, al tener una sintaxis similar a \textit{javadoc}, herramienta utilizada en asignaturas del grado.
+Para el \gls{back-end} se ha elegido \textit{apiDoc}~\cite{apidoc}, ya que es multilenguaje y encaja perfectamente dentro de la arquitectura interna (ver sección~\ref{sec:dis:servicio_web_fpga}).
+Respecto al \gls{front-end}, se ha seleccionado \textit{phpDocumentor}~\cite{phpdocumentor}, al tener una sintaxis similar a \textit{javadoc}, herramienta utilizada en asignaturas del grado.
 
 \subsection*{Plataforma base para el \gls{back-end}: io.js\label{ssec:dp:back-end}}
 
-Se ha seleccionado \textit{io.js} \cite{iojs} como \gls{framework} \gls{back-end}.
-Esta plataforma de código abierto, derivada de \textit{node.js} \cite{nodejs}, se ha considerado idónea para el proyecto por diversos motivos.
-Para empezar, utiliza \textit{JavaScript} \cite{javascript}, lenguaje conocido por el estudiante.
+Se ha seleccionado \textit{io.js}~\cite{iojs} como \gls{framework} \gls{back-end}.
+Esta plataforma de código abierto, derivada de \textit{node.js}~\cite{nodejs}, se ha considerado idónea para el proyecto por diversos motivos.
+Para empezar, utiliza \textit{JavaScript}~\cite{javascript}, lenguaje conocido por el estudiante.
 El hecho de que esté en este lenguaje permite además que se reutilice código entre el \gls{back-end} y el \gls{front-end}, ya que es el utilizado por los navegadores web.
 Otra ventaja es que detrás de \textit{io.js} existe una comunidad enorme, por lo que existen multitud de librerías también de código abierto disponibles y bien documentadas.
 Por último, es un \gls{framework} de programación asíncrona (en la que no se tenía experiencia), por lo que su aprendizaje ha sido muy enriquecedor.
@@ -179,17 +179,17 @@ Por último, es un \gls{framework} de programación asíncrona (en la que no se 
 Se han utilizado las siguientes librerías \gls{back-end} de código abierto para \textit{io.js}:
 
 \begin{itemize}
-  \item \textbf{Express} \cite{express}: \gls{framework} minimalista para aplicaciones web con arquitectura \gls{REST}.
+  \item \textbf{Express}~\cite{express}: \gls{framework} minimalista para aplicaciones web con arquitectura \gls{REST}.
 
-  \item \textbf{Async} \cite{async}: módulo que proporciona funciones para trabajar asíncronamente en \textit{JavaScript}.
+  \item \textbf{Async}~\cite{async}: módulo que proporciona funciones para trabajar asíncronamente en \textit{JavaScript}.
 
-  \item \textbf{nodemon} \cite{nodemon}: supervisor que monitoriza cambios en el código de la aplicación y reinicia el servidor automáticamente.
+  \item \textbf{nodemon}~\cite{nodemon}: supervisor que monitoriza cambios en el código de la aplicación y reinicia el servidor automáticamente.
 
 \end{itemize}
 
 \subsection*{Plataforma base para el \gls{front-end}: \gls{framework} propio\label{ssec:dp:front-end}}
 
-Se ha optado por desarrollar un \gls{framework} propio en \gls{PHP} como plataforma base para el \gls{front-end} (ver apéndice \ref{extra:frameworkDesarrollado}).
+Se ha optado por desarrollar un \gls{framework} propio en \gls{PHP} como plataforma base para el \gls{front-end} (ver apéndice~\ref{extra:frameworkDesarrollado}).
 Esta decisión está fundamentada en varios motivos.
 Por un lado, no se quería utilizar un \gls{framework} que tuviese funcionalidades no necesarias para esta aplicación concreta, y cuya curva de aprendizaje ralentizase el proyecto.
 Otra razón es que conocer al detalle el \gls{framework} utilizado ha proporcionado una mayor flexibilidad en el proceso de desarrollo, pudiendo además modificar la estructura y arquitectura del mismo para que se adecuase perfectamente a las necesidades propias.
@@ -200,18 +200,18 @@ Finalmente, se contaba ya con cierta experiencia programando en \gls{PHP}, por l
 Además del \gls{framework} desarrollado, se han utilizado diversas librerías \gls{front-end}, todas ellas de código abierto. A continuación se enumeran, describiendo brevemente su propósito:
 
 \begin{itemize}
-  \item \textbf{Bootstrap} \cite{bootstrap}: facilita el desarrollo de aplicaciones web \textit{responsive} \cite{responsive} mediante plantillas de diseño con tipografía, formularios, botones, cuadros y menús.
+  \item \textbf{Bootstrap}~\cite{bootstrap}: facilita el desarrollo de aplicaciones web \textit{responsive}~\cite{responsive} mediante plantillas de diseño con tipografía, formularios, botones, cuadros y menús.
 
-  \item \textbf{Bootstrap table} \cite{bootstraptable}: mejora las tablas de \textit{Bootstrap} permitiendo de manera sencilla insertar un campo de búsqueda, filtrar filas por \textit{checkbox} o \textit{radio button}, ordenar por columnas, paginar automáticamente los resultados, etc.
+  \item \textbf{Bootstrap table}~\cite{bootstraptable}: mejora las tablas de \textit{Bootstrap} permitiendo de manera sencilla insertar un campo de búsqueda, filtrar filas por \textit{checkbox} o \textit{radio button}, ordenar por columnas, paginar automáticamente los resultados, etc.
 
-  \item \textbf{Bootswatch} \cite{bootswatch}: colección de temas visuales para \textit{Bootstrap}.
+  \item \textbf{Bootswatch}~\cite{bootswatch}: colección de temas visuales para \textit{Bootstrap}.
 
-  \item \textbf{Bootstrap Notify} \cite{bootstrapnotify}: convierte los avisos de \textit{Bootstrap} en notificaciones emergentes.
+  \item \textbf{Bootstrap Notify}~\cite{bootstrapnotify}: convierte los avisos de \textit{Bootstrap} en notificaciones emergentes.
 
-  \item \textbf{jQuery} \cite{jquery}: simplifica la manipulación de documentos \gls{HTML}, el manejo de eventos y las llamadas \gls{AJAX}.
+  \item \textbf{jQuery}~\cite{jquery}: simplifica la manipulación de documentos \gls{HTML}, el manejo de eventos y las llamadas \gls{AJAX}.
 
-  \item \textbf{Chart.js} \cite{chartjs}: permite realizar gráficos simples y atractivos sobre conjuntos de datos.
+  \item \textbf{Chart.js}~\cite{chartjs}: permite realizar gráficos simples y atractivos sobre conjuntos de datos.
 
-  \item \textbf{Animate.css} \cite{animatecss}: sencillas animaciones para elementos de la interfaz web.
+  \item \textbf{Animate.css}~\cite{animatecss}: sencillas animaciones para elementos de la interfaz web.
 
 \end{itemize}

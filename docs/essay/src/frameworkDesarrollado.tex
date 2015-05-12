@@ -1,8 +1,8 @@
 \chapter{Framework desarrollado\label{extra:frameworkDesarrollado}}
 
 En este apéndice se explican los distintos componentes del \gls{framework} desarrollado en el que se ha implementado la interfaz web.
-Este \gls{framework} está implementado en \gls{PHP} sobre \textit{Apache httpd} \cite{httpd}.
-Sirve de base para la organización y desarrollo de la aplicación, proveyéndola de un gestor de rutas, un patrón de arquitectura para los módulos de la aplicación (modelo-vista-controlador), un \gls{proxy} simplificado para las llamadas al \gls{servicioweb} \gls{FPGA}, soporte para la internacionalización de la interfaz, gestión automática de dependencias, y registro de eventos (ver Figura \ref{fig:framework}).
+Este \gls{framework} está implementado en \gls{PHP} sobre \textit{Apache httpd}~\cite{httpd}.
+Sirve de base para la organización y desarrollo de la aplicación, proveyéndola de un gestor de rutas, un patrón de arquitectura para los módulos de la aplicación (modelo-vista-controlador), un \gls{proxy} simplificado para las llamadas al \gls{servicioweb} \gls{FPGA}, soporte para la internacionalización de la interfaz, gestión automática de dependencias, y registro de eventos (ver Figura~\ref{fig:framework}).
 
 \begin{figure}[!htp]
   \centering
@@ -15,15 +15,15 @@ Sirve de base para la organización y desarrollo de la aplicación, proveyéndol
 \section{Gestión de rutas\label{extra:mvc:router}}
 
 El componente de gestión de rutas del \gls{framework} se encarga de interpretar las peticiones realizadas por el usuario y delegarlas al módulo apropiado.
-Con este fin, todas las peticiones \gls{HTTP}, a excepción de las que van dirigidas al \textit{proxy} (ver sección \ref{extra:mvc:proxy}), se redirigen utilizando \textit{mod\_rewrite} \cite{modrewrite} al archivo \textit{index.php}.
+Con este fin, todas las peticiones \gls{HTTP}, a excepción de las que van dirigidas al \textit{proxy} (ver sección~\ref{extra:mvc:proxy}), se redirigen utilizando \textit{mod\_rewrite}~\cite{modrewrite} al archivo \textit{index.php}.
 Este archivo a su vez invoca el método estático \textit{Router->dispatch()}.
 
 El método \textit{Router->dispatch()} divide la \gls{URL} solicitada siguiendo el siguiente formato:
 
 \textit{URL\_BASE\_APLICACIÓN/módulo/método/parámetro1/parámetro2/...}
 
-Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura \ref{fig:router}).
-Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver sección \ref{extra:mvc:config}).
+Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura~\ref{fig:router}).
+Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver sección~\ref{extra:mvc:config}).
 En caso de que la \gls{URL} contenga un módulo o método no existente, se redirecciona la petición a la página de \textit{Error 404 - Página no encontrada}.
 
 \begin{figure}[!htp]
@@ -36,7 +36,7 @@ En caso de que la \gls{URL} contenga un módulo o método no existente, se redir
 
 \section{Patrón de arquitectura para los módulos\label{extra:mvc:mvc}}
 
-Las aplicaciones desarrolladas sobre el \gls{framework} se estructuran en módulos que siguen el patrón de arquitectura modelo-vista-controlador \cite{mvcpattern}.
+Las aplicaciones desarrolladas sobre el \gls{framework} se estructuran en módulos que siguen el patrón de arquitectura modelo-vista-controlador~\cite{mvcpattern}.
 Este patrón separa la lógica de negocio de la interfaz de usuario, facilitando la evolución por separado de ambos aspectos e incrementando la reutilización y flexibilidad de los módulos de la aplicación.
 
 Los componentes o capas de este patrón de arquitectura son:
@@ -57,11 +57,11 @@ Cada módulo de la aplicación debe heredar cada una de las tres clases e implem
 \section{Redireccionamiento de peticiones \gls{AJAX}\label{extra:mvc:proxy}}
 
 Por motivos de rendimiento (no sobrecargar el servidor del \gls{servicioweb} \gls{FPGA} incluyéndole también la interfaz) y disponibilidad (la interfaz web debe ser accesible aunque el \gls{servicioweb} \gls{FPGA} no esté operativo), el \gls{servicioweb} \gls{FPGA} y la interfaz web no están alojados en el mismo servidor.
-Esto plantea un problema ya que se necesitan realizar peticiones \gls{AJAX} desde el cliente al \gls{servicioweb} \gls{FPGA}, y los navegadores web no permiten por motivos de seguridad que un cliente se comunique con un dominio distinto a la web original solicitada \cite{sameorigin}.
+Esto plantea un problema ya que se necesitan realizar peticiones \gls{AJAX} desde el cliente al \gls{servicioweb} \gls{FPGA}, y los navegadores web no permiten por motivos de seguridad que un cliente se comunique con un dominio distinto a la web original solicitada~\cite{sameorigin}.
 
 Para resolver esto, el \gls{framework} contiene un servidor \gls{proxy} simplificado.
 Este \gls{proxy} no es genérico, ya que siempre redirecciona a la dirección IP del \gls{servicioweb} \gls{FPGA}.
-Así, cuando la interfaz web quiera realizar una petición \gls{AJAX} al \gls{servicioweb} \gls{FPGA}, hará la petición al servidor \gls{proxy}, éste redirigirá la petición al \gls{servicioweb} \gls{FPGA}, obtendrá la respuesta y la reenviará de vuelta al cliente (ver Figura \ref{fig:proxy}).
+Así, cuando la interfaz web quiera realizar una petición \gls{AJAX} al \gls{servicioweb} \gls{FPGA}, hará la petición al servidor \gls{proxy}, éste redirigirá la petición al \gls{servicioweb} \gls{FPGA}, obtendrá la respuesta y la reenviará de vuelta al cliente (ver Figura~\ref{fig:proxy}).
 
 \begin{figure}[!htp]
   \centering
@@ -72,15 +72,15 @@ Así, cuando la interfaz web quiera realizar una petición \gls{AJAX} al \gls{se
 
 \section{Internacionalización de la interfaz\label{extra:mvc:i18n}}
 
-El \gls{framework} desarrollado facilita la traducción de la aplicación a distintos idiomas mediante la librería \textit{gettext} \cite{gettext} para \gls{PHP}.
+El \gls{framework} desarrollado facilita la traducción de la aplicación a distintos idiomas mediante la librería \textit{gettext}~\cite{gettext} para \gls{PHP}.
 Esta librería proporciona funciones (``\textit{\_}'' y ``\textit{gettext}'') que reciben cadenas de texto y devuelven su equivalente en el idioma de la aplicación seleccionado, consultando un archivo previamente creado (catálogo) que contiene cadenas de texto originales y su traducción.
 
 Es necesario un catálogo por cada idioma que se quiera añadir a la aplicación.
 Los catálogos se almacenan en la carpeta del proyecto \texttt{./locale/}.
-Para crear y gestionar los catálogos es recomendable utilizar la herramienta \textit{Poedit} \cite{poedit}, que permite editarlos con una interfaz gráfica.
+Para crear y gestionar los catálogos es recomendable utilizar la herramienta \textit{Poedit}~\cite{poedit}, que permite editarlos con una interfaz gráfica.
 Para obtener las cadenas de texto que se necesitan traducir, se escanean todos archivos del proyecto en busca de las palabras clave, y se añaden las cadenas de texto al catálogo para su traducción por parte del desarrollador.
 
-En el Código \ref{code:ejemplogettext} se describe un ejemplo de cómo imprimir una cadena traducida a otro idioma mediante una llamada a la función ``\textit{\_}''.
+En el Código~\ref{code:ejemplogettext} se describe un ejemplo de cómo imprimir una cadena traducida a otro idioma mediante una llamada a la función ``\textit{\_}''.
 Si el idioma base de los catálogos es el inglés y el idioma establecido en la aplicación es español, la función ``\textit{\_}'' busca la cadena en inglés (idioma base) \textit{`Example of string'} en el catálogo español y devuelve la cadena de texto \textit{`Ejemplo de cadena'}, que finalmente se imprime con \textit{echo}.
 
 \begin{code}[label=code:ejemplogettext,language=php,caption=Ejemplo de traducción en \gls{PHP} con la librería \textit{gettext}]
@@ -98,14 +98,14 @@ echo _('Example of string');
 \section{Gestión de dependencias\label{extra:mvc:dependencias}}
 
 Como en la mayoría de proyectos, es conveniente poder utilizar librerías externas y no tener que invertir tiempo en resolver problemas que ya han sido solucionados por otros anteriormente, siempre que la solución encaje dentro de la propia aplicación.
-Para manejar la descarga e instalación local de estas librerías externas se han elegido dos gestores de dependencias: \textit{Composer} \cite{composer} para el \gls{back-end} y \textit{BowerPHP} \cite{bowerphp} para el \gls{front-end}.
+Para manejar la descarga e instalación local de estas librerías externas se han elegido dos gestores de dependencias: \textit{Composer}~\cite{composer} para el \gls{back-end} y \textit{BowerPHP}~\cite{bowerphp} para el \gls{front-end}.
 Estos gestores permiten además tener un control sobre la versión exacta necesaria de cada librería, evitando así incompatibilidades.
 
 \subsection*{Composer\label{extra:mvc:composer}}
 
 \textit{Composer} es un gestor de dependencias y requisitos \gls{back-end} para \gls{PHP}.
-Las librerías externas \gls{back-end} que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Composer} \cite{composerrepositorio}, en el archivo \texttt{composer.json} (ver Código \ref{code:composerjson}).
-\textit{Composer} posibilita también, siguiendo el estándar PSR-4 \cite{psr4}, incluir en una sola línea de código \gls{PHP} tanto las dependencias de librerías externas como módulos propios:
+Las librerías externas \gls{back-end} que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Composer}~\cite{composerrepositorio}, en el archivo \texttt{composer.json} (ver Código~\ref{code:composerjson}).
+\textit{Composer} posibilita también, siguiendo el estándar PSR-4~\cite{psr4}, incluir en una sola línea de código \gls{PHP} tanto las dependencias de librerías externas como módulos propios:
 
 \texttt{require\_once ('vendor/autoload.php')};
 
@@ -140,8 +140,8 @@ Las dependencias se descargan e instalan de forma local al proyecto ejecutando e
 
 \subsection*{BowerPHP\label{extra:mvc:bowerphp}}
 
-\textit{BowerPHP} es una implementación en \gls{PHP} de \textit{Bower} \cite{bower}, el gestor de dependencias \gls{front-end} para aplicaciones web.
-Las librerías externas que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Bower} \cite{bowerrepositorio}, en el archivo \texttt{bower.json} (ver Código \ref{code:bowerjson}).
+\textit{BowerPHP} es una implementación en \gls{PHP} de \textit{Bower}~\cite{bower}, el gestor de dependencias \gls{front-end} para aplicaciones web.
+Las librerías externas que se necesitan para la aplicación se declaran, una vez localizadas en el repositorio de paquetes de \textit{Bower}~\cite{bowerrepositorio}, en el archivo \texttt{bower.json} (ver Código~\ref{code:bowerjson}).
 Las dependencias se descargan e instalan de forma local al proyecto ejecutando el \gls{script} \texttt{./scripts/build.sh ----install}.
 
 \begin{code}[label=code:bowerjson,language=json,caption=Ejemplo de fichero \textit{bower.json}]
