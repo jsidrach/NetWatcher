@@ -5485,7 +5485,7 @@ false,nolabel,autolabel,nameref}[nolabel]{%
 \fi
 \ifglsentrycounter
   \newcommand*{\glsstepentry}[1]{%
-    \refstepcounter{glossaryentry}%
+   ~\refstepcounter{glossaryentry}%
     \label{glsentry-\glsdetoklabel{#1}}%
   }
 \else
@@ -5494,7 +5494,7 @@ false,nolabel,autolabel,nameref}[nolabel]{%
 \ifglssubentrycounter
   \newcommand*{\glsstepsubentry}[1]{%
     \edef\currentglssubentry{\glsdetoklabel{#1}}%
-    \refstepcounter{glossarysubentry}%
+   ~\refstepcounter{glossarysubentry}%
     \label{glsentry-\currentglssubentry}%
   }
 \else
