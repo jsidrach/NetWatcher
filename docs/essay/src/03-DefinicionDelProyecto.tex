@@ -32,7 +32,7 @@ A continuación se detallan la entradas, tareas y salidas de cada una de las fas
   \includegraphics[width=0.7\textwidth,clip=true]{graphics/gantt_white}
   \caption{Diagrama de Gantt de la planificación temporal del proyecto.}
   \label{fig:gantt}
-\end{figure} 
+\end{figure}
 
 \subsection*{Análisis\label{ssec:dp:analisis}}
 
@@ -58,7 +58,7 @@ Entrada
 
 Tareas
 \begin{itemize}[leftmargin=3.5em]
-  \item Diseñar la arquitectura y módulos a implementar. 
+  \item Diseñar la arquitectura y módulos a implementar.
   \item Diseñar la interfaz web.
 \end{itemize}
 
@@ -116,7 +116,7 @@ Entrada
 
 Tareas
 \begin{itemize}[leftmargin=3.5em]
-  \item Analizar, implementar y probar las solicitudes de mejoras propuestas por usuarios. 
+  \item Analizar, implementar y probar las solicitudes de mejoras propuestas por usuarios.
 \end{itemize}
 
 Salida
@@ -145,9 +145,9 @@ Se detallan también las librerías externas de las que hace uso la aplicación.
 En todo proyecto software es fundamental, especialmente si se alarga en el tiempo, hacer uso de una herramienta de control de versiones para el código y la documentación. Se ha elegido con este propósito utilizar la plataforma \textit{GitHub}~\cite{github}, basada en \textit{git}~\cite{git}, un sistema distribuido de control de versiones.
 Esta plataforma es la más popular dentro de las herramientas de control de versiones, y tiene algunas ventajas importantes respecto a otros sistemas similares.
 
-En primer lugar, ofrece alojamiento gratuito para proyectos de código abierto, y también para proyectos privados si se es estudiante. Gracias a esto se ha podido desarrollar todo el código de la aplicación en un proyecto privado, liberándolo al público al finalizar el desarrollo principal, de forma que cualquiera pueda utilizar y mejorar el código existente. 
+En primer lugar, ofrece alojamiento gratuito para proyectos de código abierto, y también para proyectos privados si se es estudiante. Gracias a esto se ha podido desarrollar todo el código de la aplicación en un proyecto privado, liberándolo al público al finalizar el desarrollo principal, de forma que cualquiera pueda utilizar y mejorar el código existente.
 Por otra parte, \textit{GitHub} añade a la funcionalidad de \textit{git} la posibilidad de crear una \textit{wiki} del proyecto de forma sencilla, característica que ha sido utilizada en el proyecto.
-Finalmente, facilita la colaboración entre desarrolladores con una interfaz intuitiva y cuya curva de aprendizaje no tiene una una pendiente demasiado elevada. 
+Finalmente, facilita la colaboración entre desarrolladores con una interfaz intuitiva y cuya curva de aprendizaje no tiene una una pendiente demasiado elevada.
 
 \subsection*{Creación de diagramas y maquetas: Cacoo\label{ssec:dp:cacoo}}
 
@@ -165,18 +165,18 @@ Debido a diferencias significativas (en arquitectura y lenguaje) entre el \gls{b
 Para el \gls{back-end} se ha elegido \textit{apiDoc}~\cite{apidoc}, ya que es multilenguaje y encaja perfectamente dentro de la arquitectura interna (ver sección~\ref{sec:dis:servicio_web_fpga}).
 Respecto al \gls{front-end}, se ha seleccionado \textit{phpDocumentor}~\cite{phpdocumentor}, al tener una sintaxis similar a \textit{javadoc}, herramienta utilizada en asignaturas del grado.
 
-\subsection*{Plataforma base para el \gls{back-end}: io.js\label{ssec:dp:back-end}}
+\subsection*{Plataforma base para el \gls{back-end}: node.js\label{ssec:dp:back-end}}
 
-Se ha seleccionado \textit{io.js}~\cite{iojs} como \gls{framework} \gls{back-end}.
-Esta plataforma de código abierto, derivada de \textit{node.js}~\cite{nodejs}, se ha considerado idónea para el proyecto por diversos motivos.
+Se ha seleccionado \textit{node.js}~\cite{nodejs} como \gls{framework} \gls{back-end}.
+Esta plataforma de código abierto se ha considerado idónea para el proyecto por diversos motivos.
 Para empezar, utiliza \textit{JavaScript}~\cite{javascript}, lenguaje conocido por el estudiante.
 El hecho de que esté en este lenguaje permite además que se reutilice código entre el \gls{back-end} y el \gls{front-end}, ya que es el utilizado por los navegadores web.
-Otra ventaja es que detrás de \textit{io.js} existe una comunidad enorme, por lo que existen multitud de librerías también de código abierto disponibles y bien documentadas.
+Otra ventaja es que detrás de \textit{node.js} existe una comunidad enorme, por lo que existen multitud de librerías también de código abierto disponibles y bien documentadas.
 Por último, es un \gls{framework} de programación asíncrona (en la que no se tenía experiencia), por lo que su aprendizaje ha sido muy enriquecedor.
 
 \subsection*{Librerías utilizadas para el \gls{back-end}\label{ssec:dp:back-end-libs}}
 
-Se han utilizado las siguientes librerías \gls{back-end} de código abierto para \textit{io.js}:
+Se han utilizado las siguientes librerías \gls{back-end} de código abierto para \textit{node.js}:
 
 \begin{itemize}
   \item \textbf{Express}~\cite{express}: \gls{framework} minimalista para aplicaciones web con arquitectura \gls{REST}.

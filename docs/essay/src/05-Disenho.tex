@@ -29,7 +29,8 @@ Para ello, recibe peticiones \gls{HTTP} del \gls{front-end} (actuando en este ca
   \label{fig:fpga_rest}
 \end{figure}
 
-La arquitectura de comunicación externa del \gls{back-end} se basa en el modelo de cliente-servidor \gls{REST} (ver Figura~\ref{fig:fpga_rest}). Dentro de las directrices que marca este modelo, sólo se han considerado útiles para el problema dado un subconjunto de ellas:
+La arquitectura de comunicación externa del \gls{back-end} se basa en el modelo de cliente-servidor \gls{REST} (ver Figura~\ref{fig:fpga_rest}).
+Dentro de las directrices que marca este modelo, sólo se han considerado útiles para el problema dado un subconjunto de ellas:
 \begin{itemize}
   \item El protocolo entre el cliente y el servidor debe ser sin estado: cada mensaje \gls{HTTP} tiene que contener toda la información necesaria para comprender la petición.
   \item Las operaciones se aplican sobre recursos mediante llamadas a métodos \gls{HTTP}: \textit{GET} para obtener información sobre un recurso, \textit{POST}/\textit{PUT} para actualizarlos o crearlos y \textit{DELETE} para borrarlos.
@@ -57,7 +58,8 @@ Por último, se ha dividido el servicio web en tres módulos, cada uno con una f
 \subsection{Manager\label{ssec:dis:manager}}
 
 Este módulo se encarga de gestionar el estado de la sonda de red y del servidor que la aloja.
-Permite por tanto instalar, programar y montar la sonda en modo reproducción o en modo captura, ordenarle reproducir o capturar tráfico y pararla. Adicionalmente, maneja también otros aspectos del sistema, posibilitando reiniciar el servidor y formatear el sistema de almacenamiento en caso de ser necesario.
+Permite por tanto instalar, programar y montar la sonda en modo reproducción o en modo captura, ordenarle reproducir o capturar tráfico y pararla.
+Adicionalmente, maneja también otros aspectos del sistema, posibilitando reiniciar el servidor y formatear el sistema de almacenamiento en caso de ser necesario.
 
 
 \subsection{Captures\label{ssec:dis:captures}}
@@ -118,7 +120,7 @@ También se dará opción a formatear el \gls{RAID} en caso de que no tenga un r
 En la Figura~\ref{fig:maqueta:capturas} se muestra la maqueta de la pantalla de gestión de \glspl{traza}.
 A la izquierda se podrán visualizar, en una tabla, todas las \glspl{traza} disponibles, con su nombre, tipo, tamaño y fecha.
 Sobre esta tabla, una barra de acciones permitirá filtrar las \glspl{traza} según su tipo, o buscar alguna concreta por su nombre.
-A la derecha se mostrará un panel con posibles acciones a realizar sobre la \gls{traza} seleccionada de la tabla: convertirla a otro formato, renombrarla o borrarla. 
+A la derecha se mostrará un panel con posibles acciones a realizar sobre la \gls{traza} seleccionada de la tabla: convertirla a otro formato, renombrarla o borrarla.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_capturas}
@@ -139,7 +141,8 @@ Esta pantalla consta de dos botones, y pulsándo alguno se inicializará la sond
 
 En la Figura~\ref{fig:maqueta:gestor_capturador} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará cuando la sonda haya sido inicializada en modo captura.
 En esta pantalla se podrá rellenar un formulario con el nombre de la \gls{traza} a capturar, su tamaño y el puerto del que capturar.
-Pulsando el botón \textit{Capturar} se iniciará la captura de dicha \gls{traza}. También se podrá volver a la página de selección de modo, pulsando el enlace inferior \textit{Cambiar de modo}.
+Pulsando el botón \textit{Capturar} se iniciará la captura de dicha \gls{traza}.
+También se podrá volver a la página de selección de modo, pulsando el enlace inferior \textit{Cambiar de modo}.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_capturador}
