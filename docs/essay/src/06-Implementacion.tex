@@ -1,6 +1,6 @@
 \chapter{Implementación\label{cap:implementacion}}
 
-En este capítulo se explica cómo se han implementado los dos componentes principales de la aplicación: el \gls{back-end} y el \gls{front-end}.
+En este capítulo se explica cómo se han implementado los dos componentes principales de la aplicación: el \gls{back-end} y el \gls{front-end}, tal y como se diseñaron y estructuraron en el capítulo \ref{cap:disenho}.
 Se detalla además la documentación generada, tanto interna como para el usuario final.
 
 \section{Back-End\label{sec:imp:back_end}}
@@ -36,7 +36,7 @@ Las transiciones existentes entre los estados son:
 
 Para conocer el estado actual de esta máquina de estados y verificar qué operaciones puede realizar la \gls{FPGA}, se plantearon dos opciones: mantener sincronizadas la sonda de red y el servicio web, de forma que el se detectase cualquier cambio en la \gls{FPGA} y el servicio web almacenase el estado de forma persistente, o que cada vez que se necesitase conocer el estado de la sonda se determinase de nuevo.
 Se ha elegido la segunda opción, ya que evita que pueda haber incoherencias entre el estado real de la \gls{FPGA} y el guardado en el servicio.
-Además, así el servicio web sólo tendrá que consultar a la sonda en caso de que haya una petición dirigida al \gls{back-end}, no utilizando recursos monitorizando la sonda si no ha sido invocado.
+Además, así el servicio web tendrá que consultar a la sonda solo en caso de que haya una petición dirigida al \gls{back-end}, no utilizando recursos monitorizando la \gls{FPGA} si no ha sido invocado.
 Se ha implementado, siguiendo esta segunda opción, un árbol de decisión binario que determina el estado actual de la \gls{FPGA} mediante consultas a la propia sonda y al sistema (ver Figura~\ref{fig:arbol_decision}).
 
 \begin{figure}[!htp]
@@ -46,8 +46,11 @@ Se ha implementado, siguiendo esta segunda opción, un árbol de decisión binar
   \label{fig:arbol_decision}
 \end{figure}
 
-módulos definidos en la sección~\ref{sec:dis:servicio_web_fpga}
-Captura árbol de archivos~\ref{fig:arbol_codigo} implementación de los tres módulos
+Los archivos de código más relevantes de la implementación del \gls{back-end} se muestran en la Figura~\ref{fig:arbol_codigo}, siendo \textit{server.js} el principal. Este se encarga de lanzar el grupo de procesos que responde a las peticiones del \gls{front-end}, delegándolas según corresponda a uno de los tres módulos existentes.
+Cada uno de estos módulos consta de dos archivos en \textit{JavaScript}.
+El primero, con el nombre del propio módulo, contiene las funciones de la \gls{API} del \gls{back-end} (ver Figura~\ref{fig:arbol_metodos}).
+El segundo fichero, con el nombre del módulo seguido de \textit{\_utils}, recoge funciones auxiliares.
+Por último, las funciones comunes a todos los módulos han sido codificadas en un único archivo, \textit{\_common.js}.
 
 \begin{figure}[!htp]
   \begin{center}
@@ -59,7 +62,6 @@ Captura árbol de archivos~\ref{fig:arbol_codigo} implementación de los tres m�
   \end{center}
 \end{figure}
 
-Arbol rutas métodos resultantes~\ref{fig:fpga_estado},
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{arbol_metodos}
@@ -69,15 +71,13 @@ Arbol rutas métodos resultantes~\ref{fig:fpga_estado},
 
 \section{Front-End\label{sec:imp:front_end}}
 
-Introducción
+Introducción, se ha utilizadon utilizado las herramientas descritas en ref
 
-Stack de librerías: MVC propio,Bootstrap,jQuery,gettext, etc.
+Notificaciones como respuesta a acciones menores > cambio de páginas para mayores
 
-Notificaciones, etc
+Internacionalización, inglés y español
 
-Internacionalización
-
-Resultado Capturas diseño responsive (misma página desde dos sitios)~\ref{fig:captura:movil}
+Resultado Capturas diseño responsive,  (misma página desde dos sitios)~\ref{fig:captura:movil}
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.4\textwidth,clip=true]{capturas/estado_movil}
@@ -93,7 +93,7 @@ Temas (captura algún temas)~\ref{fig:captura:oscuro}
   \label{fig:captura:oscuro}
 \end{figure}
 
-Captura árbol de archivos~\ref{fig:arbol_codigo}
+Captura árbol de archivos~\ref{fig:arbol_codigo}, cada módulo hereda y sobreescribe MVC
 
 \section{Documentación \label{sec:imp:docs}}
 
