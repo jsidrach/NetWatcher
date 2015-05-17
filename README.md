@@ -27,13 +27,13 @@ NetWatcher uses a number of open source projects to work properly:
     * [Notify](https://github.com/mouse0270/bootstrap-notify) - notifications
     * [Chart.js](http://www.chartjs.org/) - charts and data visualization
     * [animate.css](http://daneden.github.io/animate.css/) - CSS animations
-* [io.js](https://iojs.org/) - evented I/O for the backend server
+* [node.js](https://nodejs.org/) - evented I/O for the backend server
     * [Express](http://expressjs.com/) - web framework for io.js
     * [Async](https://github.com/caolan/async) - functions for working with asynchronous JavaScript
     * [nodemon](http://nodemon.io/) - monitor for any changes in the app automatically restart the server
 * [jQuery](https://jquery.com) - JavaScript library
 * [Composer](https://getcomposer.org) - PHP library for back-end external dependencies
-    * [BowerPHP](http://bowerphp.org/) - a PHP implementation of Bower (for front-end dependencies) 
+    * [BowerPHP](http://bowerphp.org/) - a PHP implementation of Bower (for front-end dependencies)
 
 The FPGA design and implementation has been developed by [jfzazo](https://github.com/jfzazo). In addition, a full list of references used can be found [here](docs/wiki/References.md).
 
