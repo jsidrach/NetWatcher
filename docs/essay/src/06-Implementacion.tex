@@ -1,13 +1,14 @@
 \chapter{Implementación\label{cap:implementacion}}
 
-En este capítulo se explica cómo se han implementado los dos componentes principales de la aplicación: el \gls{back-end} y el \gls{front-end}, tal y como se diseñaron y estructuraron en el capítulo \ref{cap:disenho}.
-Se detalla además la documentación generada, tanto interna como para el usuario final.
+En este capítulo se explica cómo se han implementado los dos componentes principales de la aplicación, tal y como se diseñaron y estructuraron en el capítulo \ref{cap:disenho}: un servicio web (el \gls{back-end}) y una interfaz web (el \gls{front-end}).
+Se detalla además qué documentación se ha generado en esta fase, tanto interna del proyecto como para el usuario final de la aplicación.
 
 \section{Back-End\label{sec:imp:back_end}}
 
-Para la implementación del \gls{back-end} se han utilizado las librerías mencionadas en la sección \ref{ssec:dp:back-end}.
-Se ha encapsulado este componente en un servicio que se inicia automáticamente al arrancar el ordenador.
-Esto permite que el \gls{back-end} esté activo siempre que el servidor de la sonda de red esté operativo.
+Para la implementación del \gls{back-end} se han utilizado las librerías en \textit{JavaScript} mencionadas en la sección~\ref{ssec:dp:back-end}.
+Así, se ha creado una \gls{API} \gls{REST} con la ayuda de la librería \textit{Express}, sobre el \gls{framework} \textit{node.js}.
+Adicionalmente, se hace uso de la librería \textit{Async} para facilitar el manejo de funciones asíncronas, y de \textit{nodemon} para cubrir la función de supervisor descrita en el diseño.
+Finalmente, se ha encapsulado el componente dentro de un servicio que se inicia automáticamente al arrancar el ordenador, haciendo que el \gls{back-end} esté activo siempre que el servidor de la sonda de red se encuentre operativo.
 
 \begin{figure}[!htp]
   \centering
@@ -17,7 +18,7 @@ Esto permite que el \gls{back-end} esté activo siempre que el servidor de la so
 \end{figure}
 
 El objetivo principal del \gls{back-end} es formalizar el estado de la \gls{FPGA}, permitiendo así su consulta y modificación.
-Para programar este aspecto, se han formalizado los posibles estados internos del sistema en una Máquina de Estados Finitos (ver Figura~\ref{fig:fpga_estado}).
+Para programar este aspecto, se han modelado los posibles estados internos del sistema en una Máquina de Estados Finitos (ver Figura~\ref{fig:fpga_estado}).
 Las transiciones existentes entre los estados son:
 \begin{enumerate}[label={\bfseries [\arabic*]}]
   \item Iniciar el servidor sin seleccionar la opción de arrancar con \textit{HugePages} habilitadas.
@@ -34,17 +35,17 @@ Las transiciones existentes entre los estados son:
   \item Captura finalizada, o porque se ha capturado todo lo que se quería o porque es detenida por el usuario.
 \end{enumerate}
 
-Para conocer el estado actual de esta máquina de estados y verificar qué operaciones puede realizar la \gls{FPGA}, se plantearon dos opciones: mantener sincronizadas la sonda de red y el servicio web, de forma que el se detectase cualquier cambio en la \gls{FPGA} y el servicio web almacenase el estado de forma persistente, o que cada vez que se necesitase conocer el estado de la sonda se determinase de nuevo.
-Se ha elegido la segunda opción, ya que evita que pueda haber incoherencias entre el estado real de la \gls{FPGA} y el guardado en el servicio.
-Además, así el servicio web tendrá que consultar a la sonda solo en caso de que haya una petición dirigida al \gls{back-end}, no utilizando recursos monitorizando la \gls{FPGA} si no ha sido invocado.
-Se ha implementado, siguiendo esta segunda opción, un árbol de decisión binario que determina el estado actual de la \gls{FPGA} mediante consultas a la propia sonda y al sistema (ver Figura~\ref{fig:arbol_decision}).
-
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.75\textwidth,clip=true]{arbol_decision}
   \caption{Árbol de decisión para determinar el estado de la \gls{FPGA}.}
   \label{fig:arbol_decision}
 \end{figure}
+
+Para conocer el estado actual de esta máquina de estados y verificar qué operaciones puede realizar la \gls{FPGA}, se plantearon dos alternativas: mantener sincronizadas la sonda de red y el servicio web, de forma que el se detectase cualquier cambio en la \gls{FPGA} y el servicio web almacenase el estado de forma persistente, o que cada vez que se necesitase conocer el estado de la sonda se determinase de nuevo.
+Se ha elegido la segunda opción, ya que evita que pueda haber incoherencias entre el estado real de la \gls{FPGA} y el guardado en el servicio.
+Además, así el servicio web tendrá que consultar a la sonda solo en caso de que haya una petición dirigida al \gls{back-end}, no utilizando recursos monitorizando la \gls{FPGA} si no ha sido invocado.
+Se ha implementado, siguiendo esta segunda opción, un árbol de decisión binario que determina el estado actual de la \gls{FPGA} mediante consultas a la propia sonda y al sistema (ver Figura~\ref{fig:arbol_decision}).
 
 Los archivos de código más relevantes de la implementación del \gls{back-end} se muestran en la Figura~\ref{fig:arbol_codigo}, siendo \textit{server.js} el principal. Este se encarga de lanzar el grupo de procesos que responde a las peticiones del \gls{front-end}, delegándolas según corresponda a uno de los tres módulos existentes.
 Cada uno de estos módulos consta de dos archivos en \textit{JavaScript}.
@@ -71,13 +72,22 @@ Por último, las funciones comunes a todos los módulos han sido codificadas en 
 
 \section{Front-End\label{sec:imp:front_end}}
 
-Introducción, se ha utilizadon utilizado las herramientas descritas en ref
+Para la implementación del \gls{front-end} se ha partido del \gls{framework} propio desarrollado, utilizándose las herramientas en \textit{JavaScript}, \textit{CSS} y \textit{HTML5} descritas en la sección~\ref{ssec:dp:back-end}.
+Así, se ha hecho uso de la librería \textit{jQuery} para la gestión de los elementos dinámicos de la interfaz web y de \textit{Chart.js} para la realización de gráficas sobre el rendimiento y el almacenamiento disponible.
 
-Notificaciones como respuesta a acciones menores > cambio de páginas para mayores
+Un aspecto que se ha considerado importante, en términos de usabilidad, es que el usuario pueda conocer en todo momento el estado del sistema.
+Con este objetivo en mente, toda acción del usuario tiene como respuesta una confirmación visual del resultado de la misma.
+Las operaciones mayores implican una actualización o cambio de la página actual, mientras que para las acciones menores se han utilizado notificaciones emergentes, para las cuales se han utilizado las librerías \textit{Bootstrap Notify} y \textit{Animate.css}.
+
 
 Internacionalización, inglés y español
+\textit{gettext}
 
-Resultado Capturas diseño responsive,  (misma página desde dos sitios)~\ref{fig:captura:movil}
+diseño \textit{responsive}, comentado en la sección~\label{sec:dis:interfaz_web},
+Resultado Capturas diseño responsive, (misma página desde dos sitios)~\ref{fig:captura:movil}
+\textit{Bootstrap},
+\textit{Bootstrap table}
+
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.4\textwidth,clip=true]{capturas/estado_movil}
@@ -86,6 +96,8 @@ Resultado Capturas diseño responsive,  (misma página desde dos sitios)~\ref{fi
 \end{figure}
 
 Temas (captura algún temas)~\ref{fig:captura:oscuro}
+colección de temas \textit{Bootswatch}
+
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.95\textwidth,clip=true]{capturas/configuracion_tema_oscuro}
@@ -93,7 +105,9 @@ Temas (captura algún temas)~\ref{fig:captura:oscuro}
   \label{fig:captura:oscuro}
 \end{figure}
 
-Captura árbol de archivos~\ref{fig:arbol_codigo}, cada módulo hereda y sobreescribe MVC
+Los submódulos (páginas) de la interfaz web se estructuran internamente siguiendo el modelo de arquitectura modelo-vista-controlador, implementado de forma abstracta en el módulo \textit{common}.
+Los archivos de código más relevantes de esta implementación del \gls{front-end} se muestran en la Figura~\ref{fig:arbol_codigo}.
+Así, cada uno de los submódulos consta tres archivos de código: \textit{Model}, \textit{View} y \textit{Controller}.
 
 \section{Documentación \label{sec:imp:docs}}
 
