@@ -4,21 +4,17 @@ En este capítulo se definirán y explicarán el alcance del proyecto, la metodo
 
 \section{Alcance\label{sec:dp:alcance}}
 
-Esta aplicación tiene como objetivo permitir mediante una interfaz web conocer el estado actual de una sonda de red y gestionarla. Asímismo, se podrán manejar otros aspectos relacionados con la sonda, como el almacenamiento y manejo de las \glspl{traza} capturadas.
+Esta aplicación tiene como objetivo permitir mediante una interfaz web conocer el estado actual de una sonda de red y gestionarla.
+Asímismo, se podrán manejar otros aspectos relacionados con la sonda, como el almacenamiento y manejo de las \glspl{traza} capturadas.
+TODO: Añadir un poco de trabajo base, generalización, modificar párrafo siguiente.
+TODO: Añadir un poco de trabajo base, generalización, modificar párrafo siguiente.
 
 No se pretende, sin embargo, que la interfaz web sea capaz de interactuar con cualquier tipo de sonda de captura y reproducción de tráfico de red, sino sólo con la sonda seleccionada.
 Tampoco entra dentro del alcance de este proyecto modificar el funcionamiento interno de la sonda, ni siquiera para mejorar su rendimiento, ya que el objetivo final es simplemente facilitar la gestión de una sonda de red de altas prestaciones y de otros componentes que intervienen en el sistema.
 
 \section{Metodología\label{sec:dp:metodologia}}
 
-\begin{figure}[!htp]
-  \centering
-  \includegraphics[width=0.7\textwidth,clip=true]{graphics/cascada_retroalimentacion}
-  \caption{Modelo de ciclo de vida en cascada con retroalimentación.}
-  \label{fig:cascada}
-\end{figure}
-
-Para el desarrollo de la aplicación se ha optado por seguir un ciclo de vida en cascada con retroalimentación (ver Figura~\ref{fig:cascada}).
+Para el desarrollo de la aplicación se ha optado por seguir un ciclo de vida en cascada con retroalimentación.
 Este modelo ordena las etapas del proceso de desarrollo de software, de forma que sólo se pueda iniciar una fase cuando se ha finalizado la anterior.
 Dada la naturaleza de este proyecto, era necesario un periodo amplio de estudio del problema a resolver antes de poder codificar nada, siendo por ello este modelo más recomendable que adoptar alguna metodología ágil.
 Por otra parte, se ha descartado utilizar un modelo iterativo o en espiral dado que conllevaría un mayor tiempo de desarrollo al tener que realizarse por módulos y de forma separada cada una de las fases definidas, en vez de simultáneamente y de forma global.
