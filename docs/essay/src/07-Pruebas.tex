@@ -1,14 +1,73 @@
 \chapter{Pruebas\label{cap:pruebas}}
 
 TODO: [Introducción]
-set postman para el back-end
-
+- Por qué han sido importantes
+- Quién las ha realizado
+  - Estudiante
+    - Otros miembros del grupo de investigación (potenciales usuarios)
+- División entre pruebas de verificación y pruebas de validación
 
 \section{Pruebas de verificación\label{sec:pb:verificacion}}
 
 TODO: Pruebas de verificación
+- Qué son
+- Plan de pruebas: todas las pruebas que se han realizado
+- Tipos de pruebas
 
+\subsection*{Inspección del código\label{ssec:pb:inspeccion}}
+
+La inspección del código es una técnica que consiste en revisar el código fuente.
+Se ha aplicado en todos los archivos de código del proyecto, con el objetivo mejorar la estructura interna y el estilo del código fuente.
+Sin embargo, no se ha utilizado para descubrir errores, ya que para eso se ha recurrido a otro tipo de pruebas, como las de caja negra y las de caja blanca.
+
+La estrategia seguida ha sido realizar una inspección en cada fichero, una vez ha pasado al menos una semana desde su codificación.
+Así, al no tenerla tan cercana, se ha facilitado el evaluar de manera más objetiva la implementación.
+Como consecuencia de estas inspecciones, se ha refactorizado parte del código, mejorando su estructura interna, claridad y mantenibilidad.
+
+\subsection*{Pruebas de caja blanca\label{ssec:pb:caja_blanca}}
+
+Las pruebas de caja blanca son las que se realizan teniendo en cuenta la estructura interna del programa.
+Tienen como objetivo verificar el correcto funcionamiento del código y detectar errores.
+Concretamente, se han llevado a cabo aquellas basadas en la comprobación de los posibles flujos de ejecución de una función, mediante su invocación con valores típicos, aleatorios y límites.
+
+Debido al alto coste temporal de plantear y ejecutar este tipo de pruebas para todo el sistema, se ha decidido aplicarlas en un único submódulo, considerado crítico para la aplicación: la máquina de estados finitos que formaliza el estado de la \gls{FPGA}.
+Como resultado de estas pruebas, se han corregido errores menores que se producían en su mayoría con valores extremos.
+
+\subsection*{Pruebas de caja negra\label{ssec:pb:caja_negra}}
+
+Las pruebas de caja negra, en contraposición con las de caja blanca, son aquellas que se realizan sin tener conocimiento de la estructura interna del programa.
+Se ha utilizado este tipo de pruebas
+Estas pruebas la ejecución
+pruebas de caja blanca
+    Estrategia ascendente, separando back-end y front-end
+Back-End
+unitarias
+common > utils > funciones de la API (POSTMAN)
+    - Fácilmente replicables, test de pruebas exportado/importable a la app
+        - Postman, cada uno de los métodos de la API pública del back-end, que hacían uso de los métodos básicos
+Front-End
+    - Proxy
+    - Modelo MVC
+
+    Resultado
+
+
+\subsection*{Pruebas de integración\label{ssec:pb:integracion}}
+  - Prueba de integración
+    Back-end y front-end
+    Resultado
+
+\subsection*{Pruebas sobre la interfaz de usuario\label{ssec:pb:interfaz}}
+
+    - para cualquier estado de la sonda
+    - cambios esperados en la interfaz
+    - valores límite en los formularios disponibles
 
 \section{Pruebas de validación\label{sec:pb:validacion}}
 
 TODO: Pruebas de validación
+- Qué son
+
+- Comprobación de los requisitos
+  - Se cumplen todos los funcionales, cómo se comprueba
+  - Se cumplen todos los no funcionales, cómo se comprueban
