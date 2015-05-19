@@ -4,12 +4,11 @@ En el contexto de este Trabajo de Fin de Grado, se ha desarrollado una interfaz 
 Gracias al trabajo realizado, se han identificado áreas de interés que podrían ser consideradas con el objetivo de mejorar y ampliar la aplicación en el futuro, y que no han podido ser abordadas en el mismo por la limitación del tiempo disponible.
 Se describen a continuación algunas de estas posibles.
 
-\subsection*{Estandarización del Servicio Web}
+\subsection*{Ampliación del Servicio Web a otras sondas de red}
 
 La aplicación implementada gestiona un dispositivo concreto de captura y reproducción de tráfico de red.
-Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento.
-Es por ello que una posible área de mejora sería estandarizar el \gls{servicioweb}, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica.
-Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
+Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas y del almacenamiento, o el propio \gls{front-end}.
+Es por ello que una posible área de ampliación del proyecto sería incluir en el \gls{servicioweb} (\gls{back-end}) soporte para otras sondas de red, distinguiendo y documentando qué métodos son comunes e independientes de la sonda seleccionada y cuáles son específicos para cada tipo de sonda.
 
 
 \subsection*{Soporte de subtipos de trazas pcap adicionales}
