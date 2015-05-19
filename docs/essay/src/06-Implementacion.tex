@@ -1,6 +1,6 @@
 \chapter{Implementación\label{cap:implementacion}}
 
-En este capítulo se explica cómo se han implementado los dos componentes principales de la aplicación, tal y como se diseñaron y estructuraron en el capítulo \ref{cap:disenho}: un servicio web que se comunica con la sonda (\gls{back-end}) y una interfaz web (\gls{front-end}).
+En este capítulo se explica cómo se han implementado los dos componentes principales de la aplicación, tal y como se diseñaron y estructuraron en el capítulo~\ref{cap:disenho}: un servicio web que se comunica con la sonda (\gls{back-end}) y una interfaz web (\gls{front-end}).
 Se detalla además qué documentación se ha generado en esta fase, tanto interna del proyecto como para el usuario final de la aplicación.
 
 \section{Back-End\label{sec:imp:back_end}}
@@ -88,7 +88,7 @@ Se consigue así que se pueda manejar la sonda de red desde un móvil, no solo d
 \end{figure}
 
 Con la intención de facilitar al usuario el manejo de la interfaz, se ha traducido el \gls{front-end} al español, quedando, por tanto, la interfaz disponible en dos idiomas: inglés y español.
-Para ello, se ha utilizado la librería \textit{gettext}, incluída en el \gls{framework} base, y se ha creado un catálogo con todas las cadenas de texto de la interfaz en español (proceso explicado en la sección \ref{extra:mvc:i18n}).
+Para ello, se ha utilizado la librería \textit{gettext}, incluída en el \gls{framework} base, y se ha creado un catálogo con todas las cadenas de texto de la interfaz en español (proceso explicado en la sección~\ref{extra:mvc:i18n}).
 
 Otro aspecto que se ha considerado importante, desde el punto de vista de la usabilidad, es que el usuario pueda conocer en todo momento el estado del sistema.
 Con este objetivo en mente, toda acción del usuario tiene como respuesta una confirmación visual del resultado de la misma.

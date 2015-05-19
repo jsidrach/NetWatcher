@@ -1,27 +1,40 @@
 \chapter{Líneas de trabajo futuro\label{cap:lineasDeTrabajoFuturo}}
 
-En el contexto de este Trabajo de Fin de Grado, se ha desarrollado una interfaz web para el manejo de sondas red de altas prestaciones. Gracias al trabajo realizado, se han identificado áreas de interés que podrían ser consideradas con el objetivo de mejorar y ampliar la aplicación en el futuro, y que no han podido ser abordadas en el mismo por la limitación del tiempo disponible. Se describen a continuación algunas de estas posibles.
+En el contexto de este Trabajo de Fin de Grado, se ha desarrollado una interfaz web para el manejo de sondas red de altas prestaciones.
+Gracias al trabajo realizado, se han identificado áreas de interés que podrían ser consideradas con el objetivo de mejorar y ampliar la aplicación en el futuro, y que no han podido ser abordadas en el mismo por la limitación del tiempo disponible.
+Se describen a continuación algunas de estas posibles.
 
 \subsection*{Estandarización del Servicio Web}
 
-La aplicación implementada gestiona un dispositivo concreto de captura y reproducción de tráfico de red. Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento. Es por ello que una posible área de mejora sería estandarizar el \gls{servicioweb}, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica. Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
+La aplicación implementada gestiona un dispositivo concreto de captura y reproducción de tráfico de red.
+Aunque algunos componentes son específicos para la \gls{FPGA} utilizada, también se han desarrollado componentes más genéricos como los de gestión de capturas o almacenamiento.
+Es por ello que una posible área de mejora sería estandarizar el \gls{servicioweb}, documentando los métodos mínimos necesarios para el funcionamiento del servicio de forma genérica.
+Esto facilitaría la tarea de añadir una interfaz gráfica a otros dispositivos de reproducción y captura de tráfico de red.
 
 
 \subsection*{Soporte de subtipos de trazas pcap adicionales}
 
-El sistema de gestión de \glspl{traza} actual soporta los formatos \gls{simple} y \gls{pcap}. Las \glspl{traza} en formato \gls{pcap} tienen sin embargo subtipos, cada uno con características distintas que en el sistema actual se descartan. En línea con la estandarización del \gls{servicioweb}, poder distinguir entre los distintos subtipos de \glspl{traza} \gls{pcap} facilitaría obtener información adicional propia de cada subformato, permitiendo además clasificar y convertir entre cada uno de los subtipos.
+El sistema de gestión de \glspl{traza} actual soporta los formatos \gls{simple} y \gls{pcap}.
+Las \glspl{traza} en formato \gls{pcap} tienen sin embargo subtipos, cada uno con características distintas que en el sistema actual se descartan.
+En línea con la estandarización del \gls{servicioweb}, poder distinguir entre los distintos subtipos de \glspl{traza} \gls{pcap} facilitaría obtener información adicional propia de cada subformato, permitiendo además clasificar y convertir entre cada uno de los subtipos.
 
 
 \subsection*{Registro de estadísticas adicionales}
 
-El sistema actual consta de un módulo que proporciona estadísticas en tiempo real sobre el estado de la \gls{FPGA} y de los distintos componentes que intervienen en el proceso de captura y reproducción. Estos datos no se almacenan de forma persistente una vez obtenidos. Una opción sería guardar en una base de datos estas estadísticas y parámetros de utilización de la \gls{FPGA}. Esto permitiría un análisis posterior de estas estadísticas almacenadas para sacar conclusiones sobre distintos parámetros como el rendimiento o las operaciones más frecuentes.
+El sistema actual consta de un módulo que proporciona estadísticas en tiempo real sobre el estado de la \gls{FPGA} y de los distintos componentes que intervienen en el proceso de captura y reproducción.
+Estos datos no se almacenan de forma persistente una vez obtenidos.
+Una opción sería guardar en una base de datos estas estadísticas y parámetros de utilización de la \gls{FPGA}.
+Esto permitiría un análisis posterior de estas estadísticas almacenadas para sacar conclusiones sobre distintos parámetros como el rendimiento o las operaciones más frecuentes.
 
 
 \subsection*{Internacionalización en otros idiomas}
 
-El trabajo base para dar soporte a diferentes idiomas en la interfaz gráfica ya ha sido realizado, y actualmente la aplicación está disponible en español e inglés. Por tanto, es posible añadir idiomas adicionales a la interfaz traduciendo las distintas cadenas de texto a otros idiomas, sin ser necesario esfuerzo adicional a nivel de diseño e implementación.
+El trabajo base para dar soporte a diferentes idiomas en la interfaz gráfica ya ha sido realizado, y actualmente la aplicación está disponible en español e inglés.
+Por tanto, es posible añadir idiomas adicionales a la interfaz traduciendo las distintas cadenas de texto a otros idiomas, sin ser necesario esfuerzo adicional a nivel de diseño e implementación.
 
 
 \subsection*{Módulo de autenticación}
 
-Dado que la interfaz web está pensada para ser utilizada en redes internas, sin acceso desde el exterior, no se ha planteado implementar un módulo de autenticación que impida a usuarios no autorizados el acceso a la aplicación. Desarrollar este módulo de autenticación haría posible instalar el servidor en una dirección pública, sin ceder por ello el control del sistema a una persona ajena. Esto permitiría que un usuario autorizado pudiera utilizar la interfaz desde cualquier punto con conexión a internet.
+Dado que la interfaz web está pensada para ser utilizada en redes internas, sin acceso desde el exterior, no se ha planteado implementar un módulo de autenticación que impida a usuarios no autorizados el acceso a la aplicación.
+Desarrollar este módulo de autenticación haría posible instalar el servidor en una dirección pública, sin ceder por ello el control del sistema a una persona ajena.
+Esto permitiría que un usuario autorizado pudiera utilizar la interfaz desde cualquier punto con conexión a internet.
