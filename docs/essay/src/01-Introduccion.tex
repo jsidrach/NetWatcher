@@ -16,14 +16,18 @@ Surge entonces la necesidad de una simplificación en el manejo de la sonda, que
 Para ello, se desarrollará una interfaz gráfica basada en tecnologías web, que facilitará conocer y manejar el estado de la sonda.
 Además, permitirá administrar otros aspectos del sistema, como los mencionados anteriormente.
 
-TODO: Poder aplicar esta solución a otros problemas similares.
+Por último, se considera interesante intentar abstraer la arquitectura de la solución propuesta, de forma que cubra un problema más general: manejar una sonda de red mediante una interfaz web.
+Se considera que es una extensión natural del proyecto, ya que existen aspectos comunes a cualquier sonda de red, como el manejo de las \glspl{traza}, la monitorización del rendimiento o el \gls{front-end}.
+Esto permitirá adaptar, sin demasiado esfuerzo, el proyecto realizado a otras sondas de red distintas de la seleccionada.
 
 \section{Objetivos}
 
 Los objetivos principales planteados en este Trabajo de Fin de Grado son los siguientes:
 
 \begin{itemize}
-  \item TODO: Objetivo crear una arquitectura base para este tipo de problema.
+  \item Crear una arquitectura base que formalice una solución para la gestión de sondas de red desde una interfaz web.
+  Esta propuesta contemplará cómo estructurar los componentes de forma que sea extensible a otras sondas de red, no sólo la seleccionada.
+  Así, mediante la abstracción sobre el problema dado, se pretende que gran parte de la solución propuesta sea reutilizable en proyectos similares, en los que el manejo de la sonda se realiza mediante la línea de comandos.
 
   \item Desarrollar una interfaz web que permita la gestión de una sonda de red de altas prestaciones.
   Esta interfaz permitirá, de manera visual, conocer el estado actual de la sonda de red y configurarla para reproducir o capturar tráfico de red.
