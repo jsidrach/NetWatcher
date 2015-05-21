@@ -1,7 +1,7 @@
 \chapter{Verificación y validación\label{cap:pruebas}}
 
 En este capítulo se explica el proceso seguido para la verificación y validación de la aplicación.
-Este proceso tiene como objetivo asegurar la correctitud del sistema, comprobar que satisface los requisitos y mejorar la implementación evaluada.
+Este proceso tiene como objetivo asegurar la corrección del sistema, comprobar que satisface los requisitos y mejorar la implementación evaluada.
 
 \section{Verificación\label{sec:pb:verificacion}}
 
@@ -36,7 +36,7 @@ Dada la arquitectura de la aplicación, se ha decidido separar las pruebas de ca
 Dentro de los componentes \gls{back-end}, se han realizado primero pruebas en los métodos básicos, comunes a todos los módulos (\textit{common.js}).
 Posteriormente, se han comprobado las funciones auxiliares de cada módulo (\textit{\_utils.js}).
 Por último, se ha creado y ejecutado un conjunto de pruebas sobre la \gls{API} del \gls{servicioweb} \gls{FPGA} con \textit{Postman}~\cite{postman}.
-Esto permite que se puedan replicar fácilmente, ya que pueden ser exportadas a un único fichero de configuración e para después importarlo cuando se deseen volver a ejecutar las pruebas.
+Esto permite que se puedan replicar fácilmente, ya que pueden ser exportadas a un único fichero de configuración para después importarlo cuando se deseen volver a ejecutar las pruebas.
 
 Para el \gls{front-end}, se ha elegido efectuar pruebas de caja negra sobre un único módulo, ya que se han considerado de más utilidad aplicar pruebas de contenido sobre la interfaz de usuario (ver apartado \ref{ssec:pb:interfaz}).
 Así, se ha verificado el funcionamiento del \gls{proxy} haciendo uso de las mismas pruebas de \textit{Postman} creadas para el \gls{front-end}, comprobando que se obtenía un resultado idéntico.
@@ -52,16 +52,16 @@ Otra consecuencia ha sido el descubrimiento y la correción del hecho de que fun
 \subsection*{Pruebas sobre la interfaz de usuario\label{ssec:pb:interfaz}}
 
 Para la interfaz web se han realizado pruebas basadas en el contenido.
-En primer lugar, se ha verificado que la interfaz web se encuentra disponible e informa correctamente al usuario incluso del estado del sistema cuando el \gls{back-end} no está operativo.
+En primer lugar, se ha verificado que la interfaz web se encuentra disponible e informa correctamente al usuario del estado del sistema, incluso cuando el \gls{back-end} no está operativo.
 En segundo lugar, se ha comprobado que se producen los cambios esperados en la interfaz como respuesta a las acciones del usuario.
-Finalmente, se han evaluado todos los formularios en la interfaz rellenando los parámetros disponibles con valores válidos e inválidos, constatando que el usuario recibe información sobre qué parámetros son incorrectos y cuales no.
+Finalmente, se han evaluado todos los formularios en la interfaz rellenando los parámetros disponibles con valores válidos e inválidos, constatando que el usuario recibe información sobre qué parámetros son correctos y cuales no.
 
 \section{Validación\label{sec:pb:validacion}}
 
 La validación de la aplicación consiste en constatar que satisface el propósito para el que fue planteada.
-Se comprueba por tanto que cumpla los requisitos especificados en el capítulo~\ref{cap:requisitos}, tanto funcionales como no funcionales.
+Se comprueba, por tanto, que cumpla los requisitos especificados en el capítulo~\ref{cap:requisitos}, tanto funcionales como no funcionales.
 
 En este contexto, se ha confirmado que existe una forma de satisfacer, mediante la interfaz web, cada uno de los requisitos funcionales.
 Respecto a los requisitos no funcionales, se ha validado uno a uno su cumplimiento, ya que estaban todos relacionados con la interfaz web.
 Por último, se ha evaluado la usabilidad de la aplicación comprobando que el usuario pudiese utilizar toda la funcionalidad de la interfaz, con la ayuda del manual.
-Para ello, han colaborado individuos pertenecientes al grupo de investigación en el que se enmarca este proyecto.
+Para ello, han colaborado personas pertenecientes al grupo de investigación en el que se enmarca este proyecto.
