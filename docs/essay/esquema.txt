@@ -18,10 +18,10 @@ Resumen:
 Capítulos:
 
 [X] Agradecimientos
-[ ] Abstract
-[ ] Resumen
+[ ] Abstract (+ Keywords)
+[ ] Resumen (+ Palabras clave)
 [X] Introducción
-[ ] Estado del arte
+[-] Estado del arte
 [X] Definición del proyecto
 [X] Requisitos
 [X] Diseño
