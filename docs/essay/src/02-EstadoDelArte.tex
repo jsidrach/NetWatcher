@@ -1,9 +1,8 @@
 \chapter{Estado del arte\label{cap:estadoDelArte}}
 
-TODO: [Introducción]
-
-
-Sistemas de captura y/o reproducción de tráfico de red y sistemas similares o cercanos al que se propone
+En este capítulo se presentan algunos de los diferentes sistemas de captura, reproducción y análisis de tráfico de red más conocidos.
+Se intenta por tanto exponer de forma objetiva los beneficios e inconvenientes de cada uno, poniendo así en contexto el proyecto a desarrollar.
+Adicionalmente, se hace especial hincapié en la interfaz de usuario la que disponen, dada la naturaleza de este Trabajo de Fin de Grado.
 
 \section{tcpdump y libpcap\label{sec:eda:tcpdump}}
 
@@ -26,7 +25,6 @@ Cons
 \textit{Wireshark}~\cite{wireshark} es un analizador de protocolos de red.
 Provee una funcionalidad similar a la de \textit{tcpdump}, añadiendo una interfaz gráfica y más opciones de filtrado de la información.
 Así, permite o bien ver todo el tráfico en tiempo real que pasa a través de una red (almacenándolo opcionalmente), o bien analizar un tráfico que fue capturado anteriormente.
-
 
 PROS:
 Wireshark has a rich feature set which includes the following:
@@ -71,6 +69,8 @@ Se ejecuta sobre cuatro \textit{NetFPGA-10G} (el mismo modelo de sonda que el se
 Permite generar o capturar paquetes de todo tipo de tamaño, y establecer la tasa a la que se realizan estas operaciones.
 
 Pros
+- Open source
+- Distintas FPGAs
 
 Cons
 - No da la tasa
@@ -80,3 +80,7 @@ Cons
 \section{Conclusiones\label{sec:eda:conclusiones}}
 
 TODO: Conclusiones
+
+Carencias principales:
+  - Usabilidad (interfaz)
+  - Disponibilidad (mismo servidor, no remoto)
