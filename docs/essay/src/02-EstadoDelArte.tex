@@ -3,34 +3,79 @@
 TODO: [Introducción]
 
 
-\section{Sistemas de captura y/o reproducción de tráfico de red\label{sec:eda:sistemas_captura_reproducccion}}
+Sistemas de captura y/o reproducción de tráfico de red y sistemas similares o cercanos al que se propone
 
-TODO: Sistemas de captura y/o reproducción de tráfico de red
+\section{tcpdump y libpcap\label{sec:eda:tcpdump}}
 
-paper > estado del arte
+La utilidades \textit{tcpdump} y \textit{libpcap}~\cite{tcpdump}, implementadas como librerías, permiten analizar el tráfico que circula por la red.
+Así, el usuario puede capturar y mostrar en tiempo real los paquetes transmitidos y recibidos en una red a la que el ordenador esté conectado.
+Adicionalmente, da la posibilidad de aplicar filtros sobre la salida.
+Se suele utilizar para depurar aplicaciones que envían y reciben tráfico de red, aunque tiene otros usos como leer datos no cifrados enviados por otros ordenadores.
 
-osnt
+Pros
+- Open Source
+- Herramienta establecida
 
-\section{FPGA HPCN\label{ssec:eda:fpga}}
-TODO: Cambiar organización
-Los posibles estados de la \gls{FPGA} son:
-\begin{itemize}\label{fpga:estados}
-  \item No programada
-  \item Programada para reproducir
-  \item Programada para capturar
-  \item Montada para reproducir
-  \item Montada para capturar
-  \item Reproduciendo una \gls{traza}
-  \item Capturando tráfico
-\end{itemize}
+Cons
+- Línea de comandos
+- Se maneja sobre el mismo PC
+- No da la tasa
 
-\section{Sistemas de gestión y monitorización\label{sec:eda:sistemas_gestion_monitorizacion}}
+\section{Wireshark\label{sec:eda:wireshark}}
 
-Arquitecturas web
+\textit{Wireshark}~\cite{wireshark} es un analizador de protocolos de red.
+Provee una funcionalidad similar a la de \textit{tcpdump}, añadiendo una interfaz gráfica y más opciones de filtrado de la información.
+Así, permite o bien ver todo el tráfico en tiempo real que pasa a través de una red (almacenándolo opcionalmente), o bien analizar un tráfico que fue capturado anteriormente.
 
-TODO: Sistemas de gestión y monitorización
-\gls{HTTP}
 
+PROS:
+Wireshark has a rich feature set which includes the following:
+Deep inspection of hundreds of protocols, with more being added all the time
+Live capture and offline analysis
+Standard three-pane packet browser
+Multi-platform: Runs on Windows, Linux, OS X, Solaris, FreeBSD, NetBSD, and many others
+Captured network data can be browsed via a GUI, or via the TTY-mode TShark utility
+The most powerful display filters in the industry
+Rich VoIP analysis
+Read/write many different capture file formats: tcpdump (libpcap), Pcap NG, Catapult DCT2000, Cisco Secure IDS iplog, Microsoft Network Monitor, Network General Sniffer® (compressed and uncompressed), Sniffer® Pro, and NetXray®, Network Instruments Observer, NetScreen snoop, Novell LANalyzer, RADCOM WAN/LAN Analyzer, Shomiti/Finisar Surveyor, Tektronix K12xx, Visual Networks Visual UpTime, WildPackets EtherPeek/TokenPeek/AiroPeek, and many others
+Capture files compressed with gzip can be decompressed on the fly
+Live data can be read from Ethernet, IEEE 802.11, PPP/HDLC, ATM, Bluetooth, USB, Token Ring, Frame Relay, FDDI, and others (depending on your platform)
+Decryption support for many protocols, including IPsec, ISAKMP, Kerberos, SNMPv3, SSL/TLS, WEP, and WPA/WPA2
+Coloring rules can be applied to the packet list for quick, intuitive analysis
+Output can be exported to XML, PostScript®, CSV, or plain text
+
+Cons
+- Interfaz no muy intuitiva
+- No da la tasa
+- Se maneja sobre el mismo PC
+
+\section{Detect-Pro\label{sec:eda:detectpro}}
+
+\textit{Detect-Pro}~\cite{detectpro} es una herramienta modular de análisis pasivo (sin intervenir).
+Analiza todo el tráfico de un enlace de red paquete a paquete, proporcionando series temporales de tráfico, análisis a nivel de flujo, análisis de tendencias y recolección selectiva de \glspl{traza}.
+Identifica así patrones de actividad, detectando anomalías mediante estos mismos patrones.
+
+Pros
+- Mucha funcionalidad
+- Procesar flujos (a tasa de linea, 10GB)
+
+Cons
+- Privativo
+- Complejo
+- 10GB Solo si el numero de flujos no es muy elevado
+
+\section{The Open Source Network Tester\label{sec:eda:osnt}}
+
+\textit{The Open Source Network Tester (OSNT)}~\cite{osnt} es un generador y capturador de tráfico.
+Se ejecuta sobre cuatro \textit{NetFPGA-10G} (el mismo modelo de sonda que el seleccionado en este proyecto).
+Permite generar o capturar paquetes de todo tipo de tamaño, y establecer la tasa a la que se realizan estas operaciones.
+
+Pros
+
+Cons
+- No da la tasa
+- Interfaz mala (no intuitiva, linux)
+- Se maneja sobre el mismo PC
 
 \section{Conclusiones\label{sec:eda:conclusiones}}
 
