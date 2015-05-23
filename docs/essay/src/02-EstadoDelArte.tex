@@ -8,35 +8,30 @@ Dado que la naturaleza de este proyecto es desarrollar una interfaz web, se hace
 \section{The Open Source Network Tester\label{sec:eda:osnt}}
 
 \textit{The Open Source Network Tester (OSNT)}~\cite{osnt} es un generador y capturador de tráfico.
-Se ejecuta sobre cuatro \textit{NetFPGA-10G} (el mismo modelo de sonda que el seleccionado en este proyecto).
-Permite generar o capturar paquetes de todo tipo de tamaño, y establecer la tasa a la que se realizan estas operaciones.
+Esta aplicación se ejecuta sobre cuatro \textit{NetFPGA-10G} (que como ya se ha comentado, es el mismo modelo de sonda que el seleccionado en este proyecto).
+\textit{OSNT} permite generar o capturar paquetes de todo tipo de tamaño, y establecer la tasa a la que se realizan estas operaciones.
 
-Pros
-- Open source
-- Interfaz gráfica
-- Muchas opciones y configurable
-OSNT IS LOW-COST
-OSNT IS BASED ON THE NETFPGA-10G PLATFORM AND A 4X10GB/S SYSTEM CAN BE BUILT FOR LESS THAN 2,000k.
-OSNT IS OPEN-SOURCE
-ALL THE HARDWARE AND SOFTWARE DESIGNS ARE FREELY AVAILABLE FOR YOU TO USE AND EXTEND.
-OSNT WORKS OUT OF THE BOX
-OSNT COMES WITH SOME STANDARD LIBRARIES FOR GENERATING AND CAPTURING USER-SELECTED PACKET LENGTHS AT DIFFERENT RATES.
-OSNT IS EXTENSIBLE
-IT IS EASY TO ADD YOUR OWN PACKET FORMATS, OR EXTEND OSNT TO ADD NEW PROTOCOLS.
-OSNT IS A STARTING POINT
-WE DEVELOPED OSNT AS A COMMUNITY-OWNED PLATFORM TO ENABLE LOW-COST, SOPHISTICATED TESTING.
-MULTIPLE OSNT SYSTEMS CAN BE SYNCHRONIZED
-USE GPS TO SYNCHRONIZE HIGH-PRECISION TIMESTAMPS ACROSS MULTIPLE OSNT SYSTEMS.
+Una de los puntos fuertes de \textit{OSNT} es que tanto el diseño \textit{hardware} como el \textit{software} son de código abierto, y pueden ser modificados.
+Se facilita así extender la aplicación para soportar nuevos protocolos.
+Otra característica relevante es que posee una interfaz gráfica de usuario desde la que manejar la sonda de red (ver Figura~\ref{fig:osnt}).
+Esta interfaz permite configurar la captura o reproducción seleccionando la velocidad de transmisión.
 
-Cons
-- No da la tasa
-- No monitoriza el sistema (trazas, tasa)
-- Arquitectura
-- Interfaz mala (no intuitiva, linux) > no es posible manejar desde fuera
+Sin embargo, se han detectado también algunas carencias y aspectos susceptibles de mejora en \textit{OSNT}.
+En primer lugar, no gestiona algunos elementos que están relacionados con la sonda y que podría ser de utilidad.
+Por ejemplo, no controla que el sistema de archivos tenga una velocidad de escritura suficiente para la captura, lo que puede afectar al rendimiento y hacer que no se aproveche al máximo la sonda de red.
+Tampoco comprueba que el espacio disponible dentro del disco sea suficiente antes de programar una captura.
+Por último, no permite una gestión activa de las \glspl{traza} almacenadas (clasificación, detalles, borrado de las mismas, etc.).
 
-\begin{figure}[!htp]
+Respecto a la interfaz, se han identificado algunas áreas que podrían ser perfeccionadas.
+Una de ellas es que no es posible conocer el estado de la sonda de manera intuitiva, y tampoco existe una clara separación entre captura/reproducción y módulos adicionales.
+Asimismo, gran parte de la información que se muestra en la interfaz podría ser agrupada en forma de gráficos, visualmente más atractivos.
+Se echa de menos además soporte para varios idiomas, algo que facilitaría la utilización de la aplicación a usuarios no angloparlantes.
+En términos de arquitectura, el sistema requiere de acceso físico (o remoto por \textit{ssh}) al servidor para su manejo, cuando podría ser útil exponer la funcionalidad como un servicio accesible desde cualquier dispositivo.
+Para terminar, el hecho de que la interfaz esté sobre el propio servidor de la sonda tiene como consecuencia que si el sistema se saturase, la interfaz podría quedar inutilizable.
+
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth,clip=true]{graphics/capturas/osnt}
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/osnt}
   \caption{Captura de la interfaz gráfica de \textit{OSNT}.}
   \label{fig:osnt}
 \end{figure}
@@ -78,10 +73,15 @@ Por último, es un producto que requiere ser contratado, siendo por tanto su pú
 \section{Conclusiones\label{sec:eda:conclusiones}}
 
 TODO: Conclusiones
-  - Pensadas para analizar, mucha más funcionalidad de la que se necesita en este problema
 
-Carencias principales:
-  - Demasiada funcionalidad no aprovechada por el usuario
-  - Usabilidad (interfaz)
-  - Disponibilidad (mismo servidor, no remoto)
-Arquitectura no está pensada para el manejo por usuarios
+- Otras herramientas: pensadas para analizar, mucha más funcionalidad de la que se necesita en este problema
+- Demasiada funcionalidad no aprovechada por el usuario
+- Mala Usabilidad (interfaz)
+- Disponibilidad (mismo servidor, no remoto)
+  - Arquitectura no está pensada para el manejo por usuarios
+
+- Usar tecnologías web > multiplataforma
+- Plantear una arquitectura mejor
+- Mejorar la experiencia de usuario
+- Simplificar todo
+- Agrupar otros servicios relevantes en la interfaz
