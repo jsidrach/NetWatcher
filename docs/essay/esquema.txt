@@ -10,10 +10,10 @@ Leyenda:
 
 Resumen:
 
-[X]: 12/16
-[O]: 0/16
+[X]: 13/16
+[O]: 1/16
 [-]: 0/16
-[ ]: 4/16
+[ ]: 2/16
 
 Capítulos:
 
@@ -28,7 +28,7 @@ Capítulos:
 [X] Implementación
 [X] Verificación y validación
 [X] Mantenimiento
-[ ] Conclusiones
+[X] Conclusiones
 [X] Líneas de trabajo futuro
 [X] Manual de Usuario
 [X] Framework desarrollado
