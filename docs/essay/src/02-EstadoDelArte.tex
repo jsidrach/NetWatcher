@@ -2,16 +2,16 @@
 
 En este capítulo se presenta la única plataforma de captura y reproducción de tráfico de red que se basa en la misma \gls{FPGA} que este Trabajo de Fin de Grado, \textit{The Open Source Network Tester}.
 Adicionalmente, se exponen también (brevemente) otras herramientas similares de captura, reproducción y análisis.
-Se intenta por tanto detallar de forma objetiva los aspectos positivos y las carencias de las distintas alternativas, poniendo así en contexto el proyecto a desarrollar.
-Dado que la naturaleza de este proyecto es desarrollar una interfaz web, se hace especial hincapié en la interfaz de usuario de la que dispone cada uno de los sistemas analizados.
+Se intenta, por tanto, detallar de forma objetiva los aspectos positivos y las carencias de las distintas alternativas, poniendo así en contexto el proyecto a desarrollar.
+Dado que la finalidad de este proyecto es desarrollar una interfaz web, se hace especial hincapié en la interfaz de usuario de la que dispone cada uno de los sistemas analizados.
 
 \section{The Open Source Network Tester\label{sec:eda:osnt}}
 
-\textit{The Open Source Network Tester (OSNT)}~\cite{osnt} es un generador y capturador de tráfico.
-Esta aplicación se ejecuta sobre cuatro \textit{NetFPGA-10G} (que como ya se ha comentado, es el mismo modelo de sonda que el seleccionado en este proyecto).
-\textit{OSNT} permite generar o capturar paquetes de todo tipo de tamaño, y establecer la tasa a la que se realizan estas operaciones.
+\textit{The Open Source Network Tester (OSNT)}~\cite{osnt} es un generador y capturador de tráfico de red.
+Esta aplicación se ejecuta sobre cuatro \textit{NetFPGA-10G} (que, como ya se ha comentado, es el mismo modelo de sonda que el tratado en este proyecto).
+\textit{OSNT} permite generar o capturar paquetes de cualquier tamaño y establecer la tasa a la que se realizan estas operaciones.
 
-Una de los puntos fuertes de \textit{OSNT} es que tanto el diseño \textit{hardware} como el \textit{software} son de código abierto, y pueden ser modificados.
+Una de los puntos fuertes de \textit{OSNT} es que tanto el diseño \textit{hardware} como el \textit{software} son de código abierto y pueden ser modificados.
 Se facilita así extender la aplicación para soportar nuevos protocolos.
 Otra característica relevante es que posee una interfaz gráfica de usuario desde la que manejar la sonda de red (ver Figura~\ref{fig:osnt}).
 Esta interfaz permite configurar la captura o reproducción seleccionando la velocidad de transmisión.
@@ -22,12 +22,12 @@ Por ejemplo, no controla que el sistema de archivos tenga una velocidad de escri
 Tampoco comprueba que el espacio disponible dentro del disco sea suficiente antes de programar una captura.
 Por último, no permite una gestión activa de las \glspl{traza} almacenadas (clasificación, detalles, borrado de las mismas, etc.).
 
-Respecto a la interfaz, se han identificado algunas áreas que podrían ser perfeccionadas.
-Una de ellas es que no es posible conocer el estado de la sonda de manera intuitiva, y tampoco existe una clara separación entre captura/reproducción y módulos adicionales.
+Respecto a la interfaz, se han identificado algunos aspectos que podrían ser perfeccionadas.
+Uno de ellos es que no es posible conocer el estado de la sonda de manera intuitiva, y otro es que tampoco existe una clara separación entre captura/reproducción y módulos adicionales.
 Asimismo, gran parte de la información que se muestra en la interfaz podría ser agrupada en forma de gráficos, visualmente más atractivos.
 Se echa de menos además soporte para varios idiomas, algo que facilitaría la utilización de la aplicación a usuarios no angloparlantes.
 En términos de arquitectura, el sistema requiere de acceso físico (o remoto por \textit{ssh}) al servidor para su manejo, cuando podría ser útil exponer la funcionalidad como un servicio accesible desde cualquier dispositivo.
-Para terminar, el hecho de que la interfaz esté sobre el propio servidor de la sonda tiene como consecuencia que si el sistema se saturase, la interfaz podría quedar inutilizable.
+Finalmente, el hecho de que la interfaz esté sobre el propio servidor de la sonda tiene como consecuencia que si el sistema se saturase, la interfaz podría quedar inutilizable.
 
 \begin{figure}[H]
   \centering
@@ -68,20 +68,16 @@ Identifica así patrones de actividad, detectando anomalías mediante estos mism
 
 Esta herramienta cuenta con una interfaz web intuitiva, por lo que puede ser manejada sin demasiadas complicaciones.
 No obstante, no está enfocado tanto a la captura y reproducción de tráfico de red sino a su análisis, por lo que se desvía un poco del propósito planteado.
-Por último, es un producto que requiere ser contratado, siendo por tanto su público no tan amplio como el resto de herramientas analizadas.
+Por último, es un producto que requiere ser contratado, siendo por tanto su público no tan amplio como el del resto de herramientas analizadas.
 
 \section{Conclusiones\label{sec:eda:conclusiones}}
 
-TODO: Conclusiones
+Las alternativas estudiadas son herramientas técnicas, en las que la experiencia del usuario no es una prioridad.
+Así, excepto en \textit{Detect-Pro}, se han detectado deficiencias en las interfaces del resto (de hecho, dos se manejan por líneas de comandos).
+La mayoría de soluciones monitorizan el proceso de captura y reproducción desde el mismo servidor que lo realiza, lo que presenta algunas desventajas respecto a hacerlo de forma externa.
+Por ejemplo, dificulta conocer el estado del servidor en caso de saturación del mismo.
 
-- Otras herramientas: pensadas para analizar, mucha más funcionalidad de la que se necesita en este problema
-- Demasiada funcionalidad no aprovechada por el usuario
-- Mala Usabilidad (interfaz)
-- Disponibilidad (mismo servidor, no remoto)
-  - Arquitectura no está pensada para el manejo por usuarios
-
-- Usar tecnologías web > multiplataforma
-- Plantear una arquitectura mejor
-- Mejorar la experiencia de usuario
-- Simplificar todo
-- Agrupar otros servicios relevantes en la interfaz
+A raíz del análisis realizado, se considera necesario plantear una arquitectura distinta a las ya expuestas, en la que se separe los componentes de captura y reproducción de la propia interfaz.
+Con ello se posibilitaría que cada una de estas dos partes estuviese alojada en un servidor distinto, lo que facilitaría la monitorización de caídas y bloqueos del proceso interno de captura y reproducción.
+Respecto a la experiencia del usuario final, se cree conveniente diseñar una interfaz de usuario que simplifique las tareas más comunes dentro de este sistema y que resuelva las carencias presentes en las existentes.
+Adicionalmente, esta interfaz debería agrupar también otros aspectos relevantes para el sistema, como la gestión de \glspl{traza} o el rendimiento de los discos utilizados para almacenarlas.
