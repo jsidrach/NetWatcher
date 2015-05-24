@@ -1,3 +1,38 @@
 \chapter{Conclusiones\label{cap:conclusiones}}
 
-TODO: Conclusiones sobre el trabajo realizado
+Este Trabajo de Fin de Grado ha consistido en el desarollo de una interfaz para la gestión de sondas de red de altas prestaciones.
+Para ello, se ha analizado del problema, estudiado el estado del arte, definido de forma rigurosa y completa el proyecto a realizar, diseñado la solución, implementada la misma, llevado a cabo una verificación y validación del sistema y por último ejecutado un mantenimiento correctivo.
+
+La aplicación propuesta facilita la utilización de la sonda de red mediante una interfaz gráfica basada en tecnologías web.
+Esta interfaz puede ser utilizada por cualquier usuario con conocimientos informáticos, sin necesitar un conocimiento específico de la sonda en sí.
+Se cumple así el objetivo de simplificar el empleo de la sonda seleccionada, que se manejaba anteriormente por línea de comandos.
+También agrupa otros aspectos relevantes de la captura y reproducción de tráfico web, como la gestión del almacenamiento de las \glspl{traza}, la velocidad de escritura en disco o la conversión entre formatos de \gls{traza}.
+La implementación de la interfaz sigue un diseño \textit{responsive}, lo que hace que se pueda utilizar desde dispositivos móviles.
+Se ha conseguido, como producto final, una interfaz elegante que permite gestionar todos los aspectos de la sonda considerados relevantes, presentando el estado e información adicional del sistema de forma visual, mediante gráficos y estadísticas.
+
+Sin embargo, este proyecto no ha consistido únicamente en el desarrollo de una interfaz.
+Se ha dividido el sistema en dos componentes, \gls{back-end} y \gls{front-end}, que se comunican entre sí y que pueden estar alojados en un servidor distinto cada uno.
+Así, se ha diseñado e implementado un \gls{servicioweb} \gls{REST} en el \gls{back-end}, que formaliza el estado y funcionalidad de la \gls{FPGA}, añadiendo también control sobre otros aspectos relevantes mencionados anteriormente.
+Para el \gls{front-end}, se ha creado un \gls{framework} propio, sobre el que se ha implementado la interfaz web.
+Esta arquitectura la aplicación cuenta con ciertas ventajas respecto a no separar físicamente el \gls{front-end} y el \gls{back-end}.
+Al monitorizar el estado de la \gls{FPGA}, la interfaz estará disponible aunque el servidor que aloja la sonda no se encuentre operativo.
+Por otra parte, al trasladar la interfaz a un servidor distinto, se libera parte de los recursos del servidor conectado a la sonda de red, afectando menos a su rendimiento.
+Esta proyecto, por tanto, proporciona una base sólida sobre la que se pueden incluir otras sondas de red sin partir desde cero, y siendo sólo necesario modificar una parte bien diferenciada del \gls{back-end}
+
+Para la implementación de la aplicación, se han utilizado diversos lenguajes de programación y herramientas, lo que constituye, sin duda, una valiosa experiencia para el futuro profesional del estudiante.
+En el \gls{back-end} se ha empleado \textit{node.js}, una librería para construir aplicaciones de red en \textit{JavaScript} (tradicionalmente utilizado en el cliente, no en el servidor).
+La codificación sobre esta librería se basa en la programación asíncrona, paradigma que ha sido enriquecedor aprender.
+El \gls{front-end} se implementado con varios lenguajes de programación: \textit{PHP}, \textit{JavaScript}, \textit{HTML} y \textit{CSS}.
+Se han empleado en este componente las librerías \textit{Bootstrap} y \textit{jQuery}, comunes en el desarrollo de páginas web.
+
+Durante el desarrollo de este proyecto, se han podido poner en práctica conocimientos adquiridos en diversas asignaturas del Grado en Ingeniería Informática.
+Por ejemplo, se ha seguido un proceso completo de desarrollo \textit{software}, aprendido en Ingeniería del Software.
+Asignaturas como Arquitectura de Computadores y Redes de Comunicación han sido claves, al ser el trabajo base del que parte este proyecto una sonda de red (que a pesar de no haberse modificado, sí ha sido necesario entender su funcionamiento).
+Conceptos como \gls{servicioweb}, \gls{API} \gls{REST} y algunos lenguajes de programación web fueron estudiados en Sistemas Informáticos I y II, lo que ha agilizado su adopción.
+
+Por último, destacar que se ha liberado el código fuente del proyecto en la plataforma \textit{GitHub} (\url{https://github.com/JSidrach/NetWatcher}).
+Esto no ha sido un simple gesto, ya que se ha invertido tiempo adicional en documentar todo el código de la aplicación en inglés.
+Además, se han creado páginas \textit{wiki} dentro de la propia plataforma explicando el funcionamiento interno de la aplicación, junto con manuales de instalación, configuración, etc.
+Se espera, con este esfuerzo, fomentar la participación de otros desarrolladores de la comunidad en la ampliación y mejora del sistema implementado (se dan algunas ideas en el capítulo~\ref{cap:lineasDeTrabajoFuturo}).
+Liberar el proyecto ha consistido también en mejorar y poner a disposición de otros alumnos la plantilla en \textit{LaTeX} creada para esta memoria, que se encuentra disponible en otro repositorio público de \textit{GitHub} (\url{https://github.com/JSidrach/tfg-plantilla}).
+A fecha de hoy, esta plantilla está siendo utilizada en varios trabajos más.

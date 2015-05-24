@@ -21,7 +21,7 @@ Capítulos:
 [ ] Abstract (+ Keywords)
 [ ] Resumen (+ Palabras clave)
 [X] Introducción
-[-] Estado del arte
+[X] Estado del arte
 [X] Definición del proyecto
 [X] Requisitos
 [X] Diseño
