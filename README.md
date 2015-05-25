@@ -15,7 +15,7 @@ NetWatcher is a web-based interface to manage network traffic capturer FPGAs, de
 
 License
 ----
-Code released under the [MIT license](LICENSE.md). Docs released under Creative Commons. FPGA binary drivers are property of [High-Performance Computing and Networking](http://www.hpcn.es/).
+Code released under the [MIT license](LICENSE.md). Docs are released under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). FPGA binary drivers are property of [High-Performance Computing and Networking](http://www.hpcn.es/).
 
 Tech
 ----
