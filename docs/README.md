@@ -17,7 +17,7 @@ Welcome to the NetWatcher documentation! Below is the list of topics covered.
 * [PDF](essay/Trabajo de Fin de Grado.pdf)
 * [LaTeX source](essay/)
 
-#### Project Essay (in Spanish)
+#### Project Presentation (in Spanish)
 * [PDF](presentation/Presentación TFG.pdf)
 * [LaTeX source](presentation/)
 
