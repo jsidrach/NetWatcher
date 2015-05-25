@@ -22,14 +22,24 @@ web interface, responsive design, web service, \gls{API} \gls{REST}, capture and
 
 \begin{abstractEs}
 
-Contexto - Motivación/Problema - Solución - Conclusiones
-TODO: Resumen en español, 250-500 palabras.
+Una sonda de red es un dispositivo capaz de capturar tráfico de red o de inyectarlo.
+Este trabajo está basado en una sonda a medida sobre una \gls{FPGA}.
+Hasta ahora, la única posibilidad era interaccionar con esta sonda desde la línea de comandos, lo que dificultaba su gestión para personas sin conocimientos previos de la misma.
+Otro problema presente en el control de la sonda era la existencia de numerosos aspectos relacionados con su funcionamiento que se manejaban de forma externa, tales como el almacenamiento, clasificación y gestión de las \glspl{traza}, o la monitorización del rendimiento del sistema.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam malesuada libero auctor sapien volutpat, sed fringilla enim tristique. Aliquam varius lorem in risus tempus egestas. Aenean accumsan elementum diam vel commodo. Nulla lectus sapien, finibus ac mauris non, efficitur venenatis felis. Donec at rutrum dolor, a lobortis arcu. In fermentum hendrerit bibendum. Phasellus eget arcu quam. Maecenas vulputate sapien eu dictum pulvinar. Suspendisse sit amet neque a turpis efficitur dapibus ut et turpis.
+La aplicación propuesta facilita la utilización de la sonda de red mediante una interfaz gráfica basada en tecnologías web.
+Esta interfaz permite gestionar la sonda sin tener un conocimiento específico de su funcionamiento interno.
+También agrupa otros aspectos relevantes de la captura y reproducción de tráfico web, como el almacenamiento de las \glspl{traza}, la velocidad de escritura en disco o la conversión entre formatos de \gls{traza}.
+La implementación de la interfaz sigue un diseño \textit{responsive}, pudiendo utilizarse desde dispositivos móviles con una experiencia de usuario similar.
+Se ha conseguido, como producto final, una interfaz elegante que permite gestionar todos los aspectos de la sonda considerados relevantes, presentando el estado e información adicional del sistema de forma visual, mediante gráficos y estadísticas.
 
-Vestibulum commodo faucibus tellus vitae consequat. Donec purus enim, hendrerit vitae feugiat sed, sagittis in tortor. Duis sed ex non ligula cursus dapibus. Etiam pellentesque suscipit dolor, vel facilisis est ornare sed. Nullam eleifend tellus non elementum efficitur. Donec semper felis ac porttitor ultricies. Vestibulum sodales justo nisl, in egestas lacus egestas nec. Fusce faucibus felis lacus, sit amet placerat justo porta vitae. Nullam volutpat viverra lorem quis euismod. Duis felis erat, dictum et sem vitae, fringilla ultrices dui. Morbi mattis arcu at orci accumsan facilisis. Aenean tortor velit, hendrerit id vulputate ac, sagittis nec libero. Donec elementum dolor orci, a mattis augue lobortis nec. Suspendisse vulputate, diam vel accumsan pellentesque, ex purus volutpat ipsum, vel luctus urna sem non turpis. Donec vitae molestie odio.
-
-Donec lobortis, eros non sodales dapibus, ex eros sollicitudin tortor, ut vulputate massa nibh sit amet ipsum. Sed a lectus eu diam pretium vestibulum. Pellentesque finibus, felis ac finibus vulputate, libero mauris placerat nulla, ut vestibulum ante metus ut neque. Aliquam tempus tortor ac mauris pulvinar iaculis. Vivamus pretium id libero sed tempus. Donec tincidunt turpis tempor vehicula egestas. Vestibulum elementum, urna non tincidunt tempus, risus ipsum posuere felis, ac suscipit diam nunc et neque. Vestibulum faucibus leo vel nibh tempor tincidunt. Nullam nunc augue, aliquet in congue nec, gravida at risus. Proin semper iaculis nisi vitae imperdiet. Suspendisse sed risus feugiat, dapibus sapien quis, pulvinar turpis.
+Este proyecto no ha consistido únicamente en el desarrollo de una interfaz gráfica.
+Se ha diseñado también una arquitectura base que formaliza la gestión de sondas de red desde una interfaz web.
+Esta propuesta contempla cómo estructurar los componentes de forma que sea extensible a otras sondas de red, no sólo la seleccionada.
+Con este objetivo, se ha dividido el sistema en dos componentes, \gls{back-end} y \gls{front-end}, que se comunican entre sí y que pueden estar alojados en un servidor distinto cada uno.
+Así, se ha diseñado e implementado un \gls{servicioweb} \gls{REST} en el \gls{back-end}, que formaliza el estado y funcionalidad de la \gls{FPGA}, añadiendo también control sobre otros aspectos relevantes mencionados anteriormente.
+Para el \gls{front-end} se ha creado un \gls{framework} propio, que ha servido de punto de partida para la interfaz web.
+Se pretende que gran parte de la solución propuesta sea reutilizable en proyectos similares, en los que el manejo de las sondas se realiza por línea de comandos.
 
 \end{abstractEs}
 
