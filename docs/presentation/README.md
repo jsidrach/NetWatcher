@@ -1,6 +1,6 @@
 # Presentación del Trabajo de Fin de Grado
 
-## Basado en el tema de beamer *mtheme*
+## Basada en el tema de beamer *mtheme*
 
 Se utiliza *[mtheme](https://github.com/matze/mtheme)*, un tema de Beamer con con un diseño visual minimalista.
 
