@@ -14,7 +14,7 @@ Cada método devuelve siempre un código de estado \gls{HTTP}~\cite{httpcodes} y
   \includegraphics[width=0.95\textwidth,clip=true]{graphics/capturas/docs_backend}
   \caption{Documentación web de la \gls{API} del \gls{servicioweb} \gls{FPGA}.}
   \label{fig:docsbackend}
-\end{figure} 
+\end{figure}
 
 \section{Métodos de Gestión \label{extra:api:gestion}}
 
@@ -450,9 +450,9 @@ Los parámetros necesarios para la invocación de este método se detallan en la
                     &                &                 & Tiempo transcurrido (ms) desde el           \\
 timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:00:00 UTC             \\
                     &                &                 & hasta ahora (salida de \textit{Date.now()}) \\ \hline
-capturename         & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} a reproducir       \\ \hline
-mask                & Parámetro URL  & Número          & Máscara de reproducción (0-1-2-3)           \\ \hline
-ifg                 & Parámetro URL  & Número          & \gls{IFG} (0 para tasa original)            \\ \hline
+capturename         & Parámetro      & Cadena de texto & Nombre de la \gls{traza} a reproducir       \\ \hline
+mask                & Parámetro      & Número          & Máscara de reproducción (0-1-2-3)           \\ \hline
+ifg                 & Parámetro      & Número          & \gls{IFG} (0 para tasa original)            \\ \hline
 \end{tabular}
 \caption{Parámetros de \textit{/player/start}}
 \label{extra:api:playerstart:invocacion}
@@ -565,9 +565,9 @@ Los parámetros necesarios para la invocación de este método se detallan en la
                     &                &                 & Tiempo transcurrido (ms) desde el           \\
 timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:00:00 UTC             \\
                     &                &                 & hasta ahora (salida de \textit{Date.now()}) \\ \hline
-capturename         & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} a reproducir       \\ \hline
-mask                & Parámetro URL  & Número          & Máscara de reproducción (0-1-2-3)           \\ \hline
-ifg                 & Parámetro URL  & Número          & \gls{IFG} (0 para tasa original)            \\ \hline
+capturename         & Parámetro      & Cadena de texto & Nombre de la \gls{traza} a reproducir       \\ \hline
+mask                & Parámetro      & Número          & Máscara de reproducción (0-1-2-3)           \\ \hline
+ifg                 & Parámetro      & Número          & \gls{IFG} (0 para tasa original)            \\ \hline
 \end{tabular}
 \caption{Parámetros de \textit{/player/start/loop}}
 \label{extra:api:playerstartloop:invocacion}
@@ -680,9 +680,9 @@ Los parámetros necesarios para la invocación de este método se detallan en la
                     &                &                 & Tiempo transcurrido (ms) desde el            \\
 timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:00:00 UTC              \\
                     &                &                 & hasta ahora (salida de \textit{Date.now()})  \\ \hline
-capturename         & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} a capturar          \\ \hline
-port                & Parámetro URL  & Número          & Puerto a capturar (0-1-2-3)                  \\ \hline
-bytes               & Parámetro URL  & Número          & Bytes a capturar                             \\ \hline
+capturename         & Parámetro      & Cadena de texto & Nombre de la \gls{traza} a capturar          \\ \hline
+port                & Parámetro      & Número          & Puerto a capturar (0-1-2-3)                  \\ \hline
+bytes               & Parámetro      & Número          & Bytes a capturar                             \\ \hline
 \end{tabular}
 \caption{Parámetros de \textit{/recorder/start}}
 \label{extra:api:recorderstart:invocacion}
@@ -1640,8 +1640,8 @@ Los parámetros necesarios para la invocación de este método se detallan en la
                     &                &                 & Tiempo transcurrido (ms) desde el           \\
 timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:00:00 UTC             \\
                     &                &                 & hasta ahora (salida de \textit{Date.now()}) \\ \hline
-oldname             & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} a renombrar        \\ \hline
-newname             & Parámetro URL  & Cadena de texto & Nuevo nombre de la \gls{traza}              \\ \hline
+oldname             & Parámetro      & Cadena de texto & Nombre de la \gls{traza} a renombrar        \\ \hline
+newname             & Parámetro      & Cadena de texto & Nuevo nombre de la \gls{traza}              \\ \hline
 \end{tabular}
 \caption{Parámetros de \textit{/captures/rename}}
 \label{extra:api:capturesrename:invocacion}
@@ -1723,8 +1723,8 @@ Los parámetros necesarios para la invocación de este método se detallan en la
                     &                &                 & Tiempo transcurrido (ms) desde el           \\
 timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:00:00 UTC             \\
                     &                &                 & hasta ahora (salida de \textit{Date.now()}) \\ \hline
-name                & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} a convertir        \\ \hline
-convertedname       & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} convertida         \\ \hline
+name                & Parámetro      & Cadena de texto & Nombre de la \gls{traza} a convertir        \\ \hline
+convertedname       & Parámetro      & Cadena de texto & Nombre de la \gls{traza} convertida         \\ \hline
 \end{tabular}
 \caption{Parámetros de \textit{/captures/simple/pcap}}
 \label{extra:api:capturessimplepcap:invocacion}
@@ -1806,8 +1806,8 @@ Los parámetros necesarios para la invocación de este método se detallan en la
                     &                &                 & Tiempo transcurrido (ms) desde el           \\
 timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:00:00 UTC             \\
                     &                &                 & hasta ahora (salida de \textit{Date.now()}) \\ \hline
-name                & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} a convertir        \\ \hline
-convertedname       & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} convertida         \\ \hline
+name                & Parámetro      & Cadena de texto & Nombre de la \gls{traza} a convertir        \\ \hline
+convertedname       & Parámetro      & Cadena de texto & Nombre de la \gls{traza} convertida         \\ \hline
 \end{tabular}
 \caption{Parámetros de \textit{/captures/pcap/simple}}
 \label{extra:api:capturespcapsimple:invocacion}
@@ -1889,7 +1889,7 @@ Los parámetros necesarios para la invocación de este método se detallan en la
                     &                &                 & Tiempo transcurrido (ms) desde el           \\
 timestamp           & Cabecera       & Número          & 1 de Enero de 1970 00:00:00 UTC             \\
                     &                &                 & hasta ahora (salida de \textit{Date.now()}) \\ \hline
-name                & Parámetro URL  & Cadena de texto & Nombre de la \gls{traza} a borrar           \\ \hline
+name                & Parámetro      & Cadena de texto & Nombre de la \gls{traza} a borrar           \\ \hline
 \end{tabular}
 \caption{Parámetros de \textit{/captures/delete}}
 \label{extra:api:capturesdelete:invocacion}
