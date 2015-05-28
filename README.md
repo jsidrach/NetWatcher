@@ -22,7 +22,7 @@ Tech
 
 NetWatcher uses a number of open source projects to work properly:
 
-* [Twitter Bootstrap](https://twitter.github.com/bootstrap/index.html) - great UI boilerplate for modern web apps
+* [Bootstrap](http://getbootstrap.com/) - great UI boilerplate for modern web apps
     * [Bootswatch](http://bootswatch.com/) - themes for Bootstrap
     * [Notify](https://github.com/mouse0270/bootstrap-notify) - notifications
     * [Chart.js](http://www.chartjs.org/) - charts and data visualization
