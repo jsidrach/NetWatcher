@@ -54,7 +54,7 @@ Las clases abstractas \textit{Model}, \textit{View} y \textit{Controller} inclui
 Cada módulo de la aplicación debe heredar cada una de las tres clases e implementar en ellas su funcionalidad propia.
 
 
-\section{Redireccionamiento de peticiones \gls{AJAX}\label{extra:mvc:proxy}}
+\section{Redireccionamiento de peticiones AJAX\label{extra:mvc:proxy}}
 
 Por motivos de rendimiento (no sobrecargar el servidor del \gls{servicioweb} \gls{FPGA} incluyéndole también la interfaz) y disponibilidad (la interfaz web debe ser accesible aunque el \gls{servicioweb} \gls{FPGA} no esté operativo), el \gls{servicioweb} \gls{FPGA} y la interfaz web no están alojados en el mismo servidor.
 Esto plantea un problema ya que se necesitan realizar peticiones \gls{AJAX} desde el cliente al \gls{servicioweb} \gls{FPGA}, y los navegadores web no permiten por motivos de seguridad que un cliente se comunique con un dominio distinto a la web original solicitada~\cite{sameorigin}.
