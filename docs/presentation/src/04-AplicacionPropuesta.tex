@@ -2,24 +2,109 @@
 
 % Arquitectura
 \begin{frame}{Arquitectura}
-  TODO: Arquitectura
+  \begin{figure}
+    \includegraphics[width=0.9\linewidth]{arquitectura}
+  \end{figure}
 \end{frame}
 
- % Back-End
+% Stack de tecnologías
+\begin{frame}{Stack tecnológico}
+ \begin{itemize}[<+->]
+    \item \alert{Front-End}
+    \begin{itemize}
+      \item<.-> PHP (HTML, JavaScript, CSS)
+      \item<.-> Framework propio
+      \item<.-> Bootstrap, jQuery
+    \end{itemize}
+    \item \alert{Back-End}
+    \begin{itemize}
+      \item<.-> JavaScript
+      \item<.-> node.js
+      \item<.-> express, async, nodemon
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+% Back-End
 \begin{frame}{Back-End}
-  % Servicio Web REST FPGA
-  TODO: Servicio Web REST FPGA
+ \begin{itemize}[<alert@+>]
+    \item Servicio Web FPGA
+    \item Comunicación con la sonda
+    \item Monitorización del sistema
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Back-End - Servicio Web FPGA}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{fpga_rest}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Back-End - Arquitectura interna}
+  \begin{figure}
+    \includegraphics[width=0.85\linewidth]{fpga}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Back-End - FSM Estado FPGA}
+  \begin{figure}
+    \includegraphics[width=0.8\linewidth]{fpga_estado}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Back-End - Determinar estado actual}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{arbol_decision}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Back-End - API REST}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{arbol_metodos}
+  \end{figure}
 \end{frame}
 
 % Front-End
-\begin{frame}[fragile]
-  \frametitle{Front-End - Framework}
-  % Framework propio
-  TODO: Framework propio
+\begin{frame}{Front-End}
+ \begin{itemize}[<alert@+>]
+    \item Comunicación con el back-end (proxy)
+    \item Framework propio
+    \item Diseño \textit{responsive}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Front-End - Diseño}
-  % Diseño responsive
-  TODO: Diseño
+\begin{frame}{Front-End - Framework - Arquitectura interna}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{framework}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Front-End - Framework - Router}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{router}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Front-End - Framework - Proxy}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{proxy}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Front-End - Diseño - Capturas}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{capturas}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Front-End - Diseño - Gestor capturar}
+  \begin{figure}
+    \includegraphics[width=\linewidth]{gestor_capturar}
+  \end{figure}
+\end{frame}
+
+\begin{frame}{Front-End - Diseño - Estado}
+  \begin{figure}
+    \includegraphics[width=0.3\linewidth]{estado_movil}
+  \end{figure}
 \end{frame}
