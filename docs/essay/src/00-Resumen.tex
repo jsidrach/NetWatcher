@@ -14,7 +14,7 @@ Donec lobortis, eros non sodales dapibus, ex eros sollicitudin tortor, ut vulput
 
 % Palabras clave en inglés
 \begin{keywordsEn}
-web interface, responsive design, web service, \gls{API} \gls{REST}, capture and reproduction of network's traffic, \gls{FPGA}.
+web interface, responsive design, web service, API REST, capture and reproduction of network's traffic, FPGA.
 \end{keywordsEn}
 
 % Resumen en español
@@ -23,27 +23,27 @@ web interface, responsive design, web service, \gls{API} \gls{REST}, capture and
 \begin{abstractEs}
 
 Una sonda de red es un dispositivo capaz de capturar tráfico de red o de inyectarlo.
-Este trabajo está basado en una sonda a medida sobre una \gls{FPGA}.
+Este trabajo está basado en una sonda a medida sobre una FPGA.
 Hasta ahora, la única posibilidad era interaccionar con esta sonda desde la línea de comandos, lo que dificultaba su gestión para personas sin conocimientos previos de la misma.
-Otro problema presente en el control de la sonda era la existencia de numerosos aspectos relacionados con su funcionamiento que se manejaban de forma externa, tales como el almacenamiento, clasificación y gestión de las \glspl{traza}, o la monitorización del rendimiento del sistema.
+Otro problema presente en el control de la sonda era la existencia de numerosos aspectos relacionados con su funcionamiento que se manejaban de forma externa, tales como el almacenamiento, clasificación y gestión de las traza, o la monitorización del rendimiento del sistema.
 
 La aplicación propuesta facilita la utilización de la sonda de red mediante una interfaz gráfica basada en tecnologías web.
 Esta interfaz permite gestionar la sonda sin tener un conocimiento específico de su funcionamiento interno.
-También agrupa otros aspectos relevantes de la captura y reproducción de tráfico web, como el almacenamiento de las \glspl{traza}, la velocidad de escritura en disco o la conversión entre formatos de \gls{traza}.
-La implementación de la interfaz sigue un diseño \textit{responsive}, pudiendo utilizarse desde dispositivos móviles con una experiencia de usuario similar.
+También agrupa otros aspectos relevantes de la captura y reproducción de tráfico web, como el almacenamiento de las traza, la velocidad de escritura en disco o la conversión entre formatos de traza.
+La implementación de la interfaz sigue un diseño responsive, pudiendo utilizarse desde dispositivos móviles con una experiencia de usuario similar.
 Se ha conseguido, como producto final, una interfaz elegante que permite gestionar todos los aspectos de la sonda considerados relevantes, presentando el estado e información adicional del sistema de forma visual, mediante gráficos y estadísticas.
 
 Este proyecto no ha consistido únicamente en el desarrollo de una interfaz gráfica.
 Se ha diseñado también una arquitectura base que formaliza la gestión de sondas de red desde una interfaz web.
 Esta propuesta contempla cómo estructurar los componentes de forma que sea extensible a otras sondas de red, no sólo la seleccionada.
-Con este objetivo, se ha dividido el sistema en dos componentes, \gls{back-end} y \gls{front-end}, que se comunican entre sí y que pueden estar alojados en un servidor distinto cada uno.
-Así, se ha diseñado e implementado un \gls{servicioweb} \gls{REST} en el \gls{back-end}, que formaliza el estado y funcionalidad de la \gls{FPGA}, añadiendo también control sobre otros aspectos relevantes mencionados anteriormente.
-Para el \gls{front-end} se ha creado un \gls{framework} propio, que ha servido de punto de partida para la interfaz web.
+Con este objetivo, se ha dividido el sistema en dos componentes, back-end y front-end, que se comunican entre sí y que pueden estar alojados en un servidor distinto cada uno.
+Así, se ha diseñado e implementado un Servicio Web REST en el back-end, que formaliza el estado y funcionalidad de la FPGA, añadiendo también control sobre otros aspectos relevantes mencionados anteriormente.
+Para el front-end se ha creado un framework propio, que ha servido de punto de partida para la interfaz web.
 Se pretende que gran parte de la solución propuesta sea reutilizable en proyectos similares, en los que el manejo de las sondas se realiza por línea de comandos.
 
 \end{abstractEs}
 
 % Palabras clave en español
 \begin{keywordsEs}
-interfaz web, diseño \textit{responsive}, servicio web, \gls{API} \gls{REST}, captura y reproducción de tráfico de red, \gls{FPGA}.
+interfaz web, diseño responsive, servicio web, API REST, captura y reproducción de tráfico de red, FPGA.
 \end{keywordsEs}
