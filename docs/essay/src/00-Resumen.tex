@@ -2,13 +2,25 @@
 \chapter*{Abstract}
 
 \begin{abstractEn}
-TODO: Resumen en inglés, 250-500 palabras.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam malesuada libero auctor sapien volutpat, sed fringilla enim tristique. Aliquam varius lorem in risus tempus egestas. Aenean accumsan elementum diam vel commodo. Nulla lectus sapien, finibus ac mauris non, efficitur venenatis felis. Donec at rutrum dolor, a lobortis arcu. In fermentum hendrerit bibendum. Phasellus eget arcu quam. Maecenas vulputate sapien eu dictum pulvinar. Suspendisse sit amet neque a turpis efficitur dapibus ut et turpis.
+A network probe is a device capable of capturing or injecting network traffic.
+This work is founded on a custom-made FPGA based probe.
+So far, the only possibility to interact with this probe was through the command line, difficulting the management of the probe for people without any previous knowledge of it.
+Another issue present in the probe's control was the existence of many aspects related to its operation that were being handled externally, such as storage, sorting and managing the traces or monitoring the system performance.
 
-Vestibulum commodo faucibus tellus vitae consequat. Donec purus enim, hendrerit vitae feugiat sed, sagittis in tortor. Duis sed ex non ligula cursus dapibus. Etiam pellentesque suscipit dolor, vel facilisis est ornare sed. Nullam eleifend tellus non elementum efficitur. Donec semper felis ac porttitor ultricies. Vestibulum sodales justo nisl, in egestas lacus egestas nec. Fusce faucibus felis lacus, sit amet placerat justo porta vitae. Nullam volutpat viverra lorem quis euismod. Duis felis erat, dictum et sem vitae, fringilla ultrices dui. Morbi mattis arcu at orci accumsan facilisis. Aenean tortor velit, hendrerit id vulputate ac, sagittis nec libero. Donec elementum dolor orci, a mattis augue lobortis nec. Suspendisse vulputate, diam vel accumsan pellentesque, ex purus volutpat ipsum, vel luctus urna sem non turpis. Donec vitae molestie odio.
+The proposed application facilitates the use of the network probe through a web-based graphical interface.
+This interface allows the user to manage the probe without any specific knowledge of its inner workings.
+In addition, it brings together other relevant aspects of the capture and injection of web traffic, such as trace storage, write speed of the disks or trace format conversion.
+The interface implementation follows a responsive design and can be used on mobile devices with a similar user experience.
+The final product provides an elegant interface to manage all the relevant aspects of the probe, which displays the state and additional information of the system visually, using graphs and statistics.
 
-Donec lobortis, eros non sodales dapibus, ex eros sollicitudin tortor, ut vulputate massa nibh sit amet ipsum. Sed a lectus eu diam pretium vestibulum. Pellentesque finibus, felis ac finibus vulputate, libero mauris placerat nulla, ut vestibulum ante metus ut neque. Aliquam tempus tortor ac mauris pulvinar iaculis. Vivamus pretium id libero sed tempus. Donec tincidunt turpis tempor vehicula egestas. Vestibulum elementum, urna non tincidunt tempus, risus ipsum posuere felis, ac suscipit diam nunc et neque. Vestibulum faucibus leo vel nibh tempor tincidunt. Nullam nunc augue, aliquet in congue nec, gravida at risus. Proin semper iaculis nisi vitae imperdiet. Suspendisse sed risus feugiat, dapibus sapien quis, pulvinar turpis.
+This project, however, has not exclusively consisted in the development of a graphical interface.
+A base architecture, which formalizes the management of network probes from a web interface, has also been designed.
+This proposal contemplates how to structure the components so that it is extensible to other network probes, not just the one selected.
+With this goal in mind, the system has been divided into two components, back-end and front-end, which communicate with each other and that can be hosted on different servers.
+Thereby, a REST Web Service has been designed and implemented for the back-end, which formalizes the status and functionality of the FPGA, adding also control over other important aspects mentioned above.
+For the front-end, an ad hoc framework has been created, which has served as a starting point for the web interface.
+It is intended that most of the proposed solution could be reused in similar projects, in which the management of the probes is done through command line.
 
 \end{abstractEn}
 
@@ -25,11 +37,11 @@ web interface, responsive design, web service, API REST, capture and reproductio
 Una sonda de red es un dispositivo capaz de capturar tráfico de red o de inyectarlo.
 Este trabajo está basado en una sonda a medida sobre una FPGA.
 Hasta ahora, la única posibilidad era interaccionar con esta sonda desde la línea de comandos, lo que dificultaba su gestión para personas sin conocimientos previos de la misma.
-Otro problema presente en el control de la sonda era la existencia de numerosos aspectos relacionados con su funcionamiento que se manejaban de forma externa, tales como el almacenamiento, clasificación y gestión de las traza, o la monitorización del rendimiento del sistema.
+Otro problema presente en el control de la sonda era la existencia de numerosos aspectos relacionados con su funcionamiento que se manejaban de forma externa, tales como el almacenamiento, clasificación y gestión de las trazas, o la monitorización del rendimiento del sistema.
 
 La aplicación propuesta facilita la utilización de la sonda de red mediante una interfaz gráfica basada en tecnologías web.
 Esta interfaz permite gestionar la sonda sin tener un conocimiento específico de su funcionamiento interno.
-También agrupa otros aspectos relevantes de la captura y reproducción de tráfico web, como el almacenamiento de las traza, la velocidad de escritura en disco o la conversión entre formatos de traza.
+También agrupa otros aspectos relevantes de la captura y reproducción de tráfico web, como el almacenamiento de las trazas, la velocidad de escritura en disco o la conversión entre formatos de traza.
 La implementación de la interfaz sigue un diseño responsive, pudiendo utilizarse desde dispositivos móviles con una experiencia de usuario similar.
 Se ha conseguido, como producto final, una interfaz elegante que permite gestionar todos los aspectos de la sonda considerados relevantes, presentando el estado e información adicional del sistema de forma visual, mediante gráficos y estadísticas.
 
