@@ -47,7 +47,7 @@ Se ha elegido la segunda opción, ya que evita que pueda haber incoherencias ent
 Además, así el servicio web tendrá que consultar a la sonda solo en caso de que haya una petición dirigida al \gls{back-end}, no utilizando recursos en la monitorización de la \gls{FPGA} si no ha sido invocado.
 Se ha implementado, siguiendo esta segunda opción, un árbol de decisión binario que determina el estado actual de la \gls{FPGA} mediante consultas a la propia sonda y al sistema (ver Figura~\ref{fig:arbol_decision}).
 
-Los archivos de código más relevantes de la implementación del \gls{back-end} se muestran en la Figura~\ref{fig:arbol_codigo}.
+Los archivos de código más relevantes de la implementación del \gls{back-end} se muestran en la Figura~\ref{fig:arbol_codigo:backend}.
 El fichero de código principal es \textit{server.js}, ya que se encarga de lanzar el grupo de procesos que responde a las peticiones del \gls{front-end}, delegándolas según corresponda a uno de los tres módulos existentes.
 Cada uno de estos módulos consta de dos archivos en \textit{JavaScript}.
 El primero, con el nombre del propio módulo, contiene las funciones de la \gls{API} del \gls{back-end} (ver Figura~\ref{fig:arbol_metodos}).
@@ -56,11 +56,11 @@ Por último, las funciones comunes a todos los módulos han sido codificadas en 
 
 \begin{figure}[!htp]
   \begin{center}
-    \includegraphics[width=0.3\textwidth,clip=true]{capturas/arbol_backend}
-    \hspace{1cm}
-    \includegraphics[width=0.25\textwidth,clip=true]{capturas/arbol_frontend}
-  \caption{Árboles con los principales archivos de código del \gls{back-end} (a la izquierda) y del \gls{front-end} (a la derecha).}
-  \label{fig:arbol_codigo}
+    \subfloat[Árbol del \gls{back-end}.\label{fig:arbol_codigo:backend}]{\includegraphics[width=0.3\textwidth,clip=true]{capturas/arbol_backend}}\qquad
+    \hspace{1.5cm}
+    \subfloat[Árbol del \gls{front-end}.\label{fig:arbol_codigo:frontend}]{\includegraphics[width=0.23\textwidth,clip=true]{capturas/arbol_frontend}}\\
+    \caption{Árboles con los principales archivos de código.}
+    \label{fig:arbol_codigo}
   \end{center}
 \end{figure}
 
@@ -88,14 +88,14 @@ Se consigue así que se pueda manejar la sonda de red desde un móvil, no solo d
 \end{figure}
 
 Con la intención de facilitar al usuario el manejo de la interfaz, se ha traducido el \gls{front-end} al español, quedando, por tanto, la interfaz disponible en dos idiomas: inglés y español.
-Para ello, se ha utilizado la librería \textit{gettext}, incluída en el \gls{framework} base, y se ha creado un catálogo con todas las cadenas de texto de la interfaz en español (proceso explicado en la sección~\ref{extra:mvc:i18n}).
+Para ello, se ha utilizado la librería \textit{gettext}, incluida en el \gls{framework} base, y se ha creado un catálogo con todas las cadenas de texto de la interfaz en español (proceso explicado en la sección~\ref{extra:mvc:i18n}).
 
 Otro aspecto que se ha considerado importante, desde el punto de vista de la usabilidad, es que el usuario pueda conocer en todo momento el estado del sistema.
 Con este objetivo en mente, toda acción del usuario tiene como respuesta una confirmación visual del resultado de la misma.
 Las operaciones mayores implican una actualización o cambio de la página actual, mientras que para las acciones menores se han utilizado notificaciones emergentes, para las cuales se han utilizado las librerías \textit{Bootstrap Notify} y \textit{Animate.css}.
 
 Como parte de la configuración que puede ajustar el usuario, se le permite seleccionar un estilo gráfico para la aplicación.
-Esta opción se ha implementado usando \textit{Bootswatch}, una colección de temas para \textit{Bootstrap} (ver Figura~\ref{fig:captura:oscuro}).
+Esta opción se ha implementado usando \textit{Bootswatch}, una colección de temas para \textit{Bootstrap} (ver ejemplo en Figura~\ref{fig:captura:oscuro}).
 
 \begin{figure}[!htp]
   \centering
@@ -105,7 +105,7 @@ Esta opción se ha implementado usando \textit{Bootswatch}, una colección de te
 \end{figure}
 
 Los submódulos (páginas) de la interfaz web se estructuran internamente siguiendo el modelo de arquitectura modelo-vista-controlador, implementado de forma abstracta en el módulo \textit{common}.
-Los archivos de código más relevantes de esta implementación del \gls{front-end} se muestran en la Figura~\ref{fig:arbol_codigo}.
+Los archivos de código más relevantes de esta implementación del \gls{front-end} se muestran en la Figura~\ref{fig:arbol_codigo:frontend}.
 Así, cada uno de los submódulos consta tres archivos de código: \textit{Model}, \textit{View} y \textit{Controller}.
 
 \section{Documentación\label{sec:imp:docs}}
@@ -117,7 +117,7 @@ Estas páginas, en inglés, recogen los aspectos más importantes de la aplicaci
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{graphics/capturas/github_docs}
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/github_docs}
   \caption{Captura de una de las páginas de la wiki del proyecto.}
   \label{fig:captura:wiki}
 \end{figure}
@@ -129,7 +129,7 @@ Por último, en el apéndice~\ref{extra:frameworkDesarrollado} se explican la ar
 
 \begin{figure}[!htp]
   \centering
-  \includegraphics[width=0.95\textwidth,clip=true]{graphics/capturas/docs_frontend}
+  \includegraphics[width=\textwidth,clip=true]{graphics/capturas/docs_frontend}
   \caption{Documentación web del \gls{front-end}.}
   \label{fig:captura:docsfrontend}
 \end{figure}

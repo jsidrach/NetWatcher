@@ -4,20 +4,20 @@ En este capítulo se enumeran los requisitos de la aplicación a desarrollar.
 Para la elaboración de esta lista de requisitos se ha realizado un análisis sobre el problema planteado: diseñar un servicio que permita gestionar y monitorizar una \gls{FPGA} que captura y reproduce tráfico de red.
 Este análisis se ha realizado principalmente mediante la consulta directa con los potenciales usuarios de la aplicación y la evaluación del estado del arte.
 
-Se han agrupado los requistos en dos clases: funcionales y no funcionales.
+Se han agrupado los requisitos en dos clases: funcionales y no funcionales.
 Los primeros describen el comportamiento que tendrá la aplicación, y los segundos los atributos de calidad y restricciones de la misma.
 
 
 \section{Requisitos Funcionales\label{sec:req:rf}}
 
-Los requisitos funcionales que deberá cumplir la aplicación desarrollada son los siguientes:
+Los requisitos funcionales que deberá cumplir la aplicación a desarrollar son los siguientes:
 
 \begin{enumerate}[align=left,before=\itshape,font=\normalfont,label=\bfseries RF. \arabic*]
   \item Se podrá conocer en todo momento el estado actual de la \gls{FPGA}.
   \item Se podrá configurar la \gls{FPGA} para captura de tráfico de red.
   \item Una vez configurada la \gls{FPGA} para captura de tráfico de red, se le podrá ordenar que capture tráfico de red desde un puerto específico de la \gls{FPGA}.
-  Este tráfico se irá guardando en una \gls{traza} en formato \gls{simple}, hasta llegar a un tamaño decidido por el usuario.
-  \item Si existe una captura en curso, el se podrá parar dicha captura, borrándose la \gls{traza} asociada a la captura.
+  Este tráfico se irá guardando en una \gls{traza} en formato \gls{simple}, hasta llegar al tamaño establecido por el usuario.
+  \item Si existe una captura en curso, se podrá parar dicha captura, borrándose la \gls{traza} asociada a la captura.
   \item Si existe una captura en curso, se podrán conocer los parámetros con los que se inició dicha captura, así como el tiempo que ha transcurrido desde el inicio y cuántos bytes se ha capturado hasta el momento.
   \item Se podrá configurar la \gls{FPGA} para la reproducción de una \gls{traza}.
   \item Una vez configurada la \gls{FPGA} para la reproducción de una \gls{traza}, se le podrá ordenar que reproduzca una \gls{traza} concreta en formato \gls{simple}.
@@ -38,12 +38,12 @@ Los requisitos funcionales que deberá cumplir la aplicación desarrollada son l
 
 \section{Requisitos No Funcionales\label{sec:req:rnf}}
 
-Los requisitos no funcionales que deberá cumplir la aplicación desarrollada son los siguientes:
+Los requisitos no funcionales que deberá cumplir la aplicación a desarrollar son los siguientes:
 
 \begin{enumerate}[align=left,before=\itshape,font=\normalfont,label=\bfseries RNF. \arabic*]
-  \item La funcionalidad descrita en la sección~\ref{sec:req:rf} será accesible al usuario mediante una interfaz gráfica.
-  \item Se podrán seleccionar dos idiomas para la interfaz gráfica: inglés y español.
+  \item La funcionalidad descrita en la sección~\ref{sec:req:rf} será accesible mediante una interfaz gráfica.
+  \item Se podrán seleccionar al menos dos idiomas para la interfaz gráfica: inglés y español.
   \item Se podrán seleccionar distintos temas (aspectos visuales) para la interfaz gráfica.
-  \item La interfaz gráfica será una web adaptativa, de forma que se pueda visualizar en distintas resoluciones de pantalla, como las de ordenadores y móviles.
-  \item La interfaz gráfica estará disponible aun cuando haya algún fallo en el servidor que aloja la \gls{FPGA}, e informará del error.
+  \item La interfaz gráfica será una web y podrá ser visualizada en distintas resoluciones de pantalla, como las de ordenadores y móviles, con una experiencia de usuario similar.
+  \item La interfaz gráfica estará disponible aun cuando se produzca algún fallo en el servidor que aloja la \gls{FPGA} y este no se encuentre operativo, e informará del error al usuario.
 \end{enumerate}
