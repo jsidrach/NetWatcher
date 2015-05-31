@@ -4,17 +4,17 @@ En este capítulo se definirán y explicarán el alcance del proyecto, la metodo
 
 \section{Alcance\label{sec:dp:alcance}}
 
-Esta aplicación tiene como objetivo permitir mediante una interfaz web conocer el estado actual de una sonda de red y gestionarla.
-Asímismo, se podrán manejar otros aspectos relacionados con la sonda, como el almacenamiento y manejo de las \glspl{traza} capturadas.
-Estos aspectos son comunes a cualquier sonda, por lo que se estructurará la aplicación de forma que generalice el problema dado, sirviendo de trabajo base para crear interfaces gráficas para otro tipo de sondas.
+Esta aplicación tiene como objetivo permitir, mediante una interfaz web, gestionar una sonda de red y conocer su estado actual.
+Asimismo, posibilitará manejar otros aspectos relacionados con la sonda, como el almacenamiento y gestión de las \glspl{traza} capturadas.
+Estos aspectos son comunes a cualquier sistema de captura y reproducción de tráfico de red, por lo que se estructurará la aplicación de forma que generalice el problema dado, sirviendo como trabajo base para la creación de interfaces gráficas sobre sondas similares.
 
-No se pretende sin embargo, dentro del contexto de este proyecto, que la interfaz web sea capaz de interactuar con cualquier tipo de sonda de captura y reproducción de tráfico de red, sino sólo con la sonda seleccionada.
-Tampoco entra dentro del alcance de este proyecto modificar el funcionamiento interno de la sonda, ni siquiera para mejorar su rendimiento, ya que el objetivo final es simplemente facilitar la gestión de una sonda de red de altas prestaciones y de otros componentes que intervienen en el sistema.
+No se pretende sin embargo, dentro del contexto de este proyecto, que la interfaz web sea capaz de interactuar con cualquier tipo de sonda de captura y reproducción de tráfico de red, sino solo con la sonda seleccionada.
+Tampoco entra dentro del alcance de este proyecto modificar el funcionamiento interno de la sonda, ni siquiera para mejorar su rendimiento, ya que el objetivo principal es facilitar la gestión de una sonda de red de altas prestaciones y de otros componentes que intervienen en el sistema.
 
 \section{Metodología\label{sec:dp:metodologia}}
 
 Para el desarrollo de la aplicación se ha optado por seguir un ciclo de vida en cascada con retroalimentación.
-Este modelo ordena las etapas del proceso de desarrollo de software, de forma que sólo se pueda iniciar una fase cuando se ha finalizado la anterior.
+Este modelo ordena las etapas del proceso de desarrollo software, de forma que solo se pueda iniciar una fase cuando se ha finalizado la anterior.
 Dada la naturaleza de este proyecto, era necesario un periodo amplio de estudio del problema a resolver antes de poder codificar nada, siendo por ello este modelo más recomendable que adoptar alguna metodología ágil.
 Por otra parte, se ha descartado utilizar un modelo iterativo o en espiral dado que conllevaría un mayor tiempo de desarrollo al tener que realizarse por módulos y de forma separada cada una de las fases definidas, en vez de simultáneamente y de forma global.
 Además, el hecho de tener retroalimentación permite volver a etapas anteriores en caso de que sea necesario corregir algún aspecto del sistema.
@@ -133,9 +133,9 @@ Para el desarrollo de este proyecto han sido necesarias herramientas que cubran 
 \end{itemize}
 
 A continuación se especifican las herramientas elegidas, exponiendo su utilidad.
-Se detallan también las librerías externas de las que hace uso la aplicación.
+Se detallan también otras librerías externas de las que hace uso la aplicación.
 
-\subsection*{Control de versiones: git\label{ssec:dp:git}}
+\subsection*{Control de versiones: GitHub\label{ssec:dp:github}}
 
 En todo proyecto software es fundamental, especialmente si se alarga en el tiempo, hacer uso de una herramienta de control de versiones para el código y la documentación.
 Se ha elegido con este propósito utilizar la plataforma \textit{GitHub}~\cite{github}, basada en \textit{git}~\cite{git}, un sistema distribuido de control de versiones.
@@ -167,7 +167,7 @@ Respecto al \gls{front-end}, se ha seleccionado \textit{phpDocumentor}~\cite{php
 Se ha seleccionado \textit{node.js}~\cite{nodejs} como \gls{framework} \gls{back-end}.
 Esta plataforma de código abierto se ha considerado idónea para el proyecto por diversos motivos.
 Para empezar, utiliza \textit{JavaScript}~\cite{javascript}, lenguaje conocido por el estudiante.
-El hecho de que esté en este lenguaje permite además que se reutilice código entre el \gls{back-end} y el \gls{front-end}, ya que es el utilizado por los navegadores web.
+El hecho de que esté en este lenguaje permite además que se reutilice código entre el \gls{back-end} y el \gls{front-end}, ya que es el empleado por los navegadores web.
 Otra ventaja es que detrás de \textit{node.js} existe una comunidad enorme, por lo que existen multitud de librerías también de código abierto disponibles y bien documentadas.
 Por último, es un \gls{framework} de programación asíncrona (en la que no se tenía experiencia), por lo que su aprendizaje ha sido muy enriquecedor.
 

@@ -13,8 +13,8 @@ Estos componentes están conectados por una red interna, y la comunicación entr
 
 La arquitectura propuesta tiene una serie de ventajas respecto a tener todos los elementos del sistema en un mismo servidor físico.
 En primer lugar, se sobrecarga menos el servidor de la sonda de red, minimizando así el impacto que la aplicación pueda tener sobre el rendimiento de la captura y reproducción.
-En segundo lugar, una división clara entre el \gls{back-end} y el \gls{front-end} facilita la adopción de tecnologías distintas en ambos, utilizando en cada uno las que mejor se adapten al problema dado, y sin miedo a incompatibilidades (pues se comunican entre ellos por \gls{HTTP}, que es estándar).
-En tercer lugar, se posibilita el gestionar desde un mismo \gls{front-end} distintas sondas de red que tengan instalado el mismo \gls{back-end}, sin que el usuario tenga que cambiar de página.
+En segundo lugar, una división clara entre el \gls{back-end} y el \gls{front-end} facilita la adopción de tecnologías distintas en sendos componentes, utilizando en cada uno las que mejor se adapten al problema dado, y sin miedo a incompatibilidades (pues se comunican entre ellos por \gls{HTTP}, que es estándar).
+En tercer lugar, se posibilita el gestionar desde un mismo \gls{front-end} distintas sondas de red que tengan instalado el mismo \gls{back-end}, sin que el usuario tenga que cambiar de plataforma.
 Por último, al estar alojados en servidores distintos, la interfaz web podrá informar siempre al usuario del estado del sistema incluso cuando el servicio web no esté disponible.
 
 
@@ -30,7 +30,7 @@ Para ello, recibe peticiones \gls{HTTP} del \gls{front-end} (actuando en este ca
 \end{figure}
 
 La arquitectura de comunicación externa del \gls{back-end} se basa en el modelo de cliente-servidor \gls{REST} (ver Figura~\ref{fig:fpga_rest}).
-Dentro de las directrices que marca este modelo, sólo se han considerado útiles para el problema dado un subconjunto de ellas:
+Dentro de las directrices que marca este modelo, solo se han considerado útiles para el problema dado un subconjunto de ellas:
 \begin{itemize}
   \item El protocolo entre el cliente y el servidor debe ser sin estado: cada mensaje \gls{HTTP} tiene que contener toda la información necesaria para comprender la petición.
   \item Las operaciones se aplican sobre recursos mediante llamadas a métodos \gls{HTTP}: \textit{GET} para obtener información sobre un recurso, \textit{POST}/\textit{PUT} para actualizarlos o crearlos y \textit{DELETE} para borrarlos.
@@ -53,7 +53,7 @@ Internamente, el \gls{back-end} se estructura tal y como se describe en la Figur
 Un supervisor se encarga de vigilar al grupo de procesos que atienden las peticiones del \gls{front-end}, reemplazándolos en caso de que fallen.
 Este grupo tiene tantos procesos como núcleos el servidor, adaptándose así a su arquitectura interna y consiguiendo por tanto una mayor disponibilidad y un menor tiempo de respuesta.
 Por otro lado, con el objetivo de tener información detallada sobre el uso del servicio web, se registran todos los eventos y errores del \gls{back-end} en los \textit{logs} correspondientes.
-Por último, se ha dividido el servicio web en tres módulos, cada uno con una funcialidad asociada: \textit{manager}, \textit{captures} y \textit{statistics}.
+Por último, se ha dividido el servicio web en tres módulos, cada uno con una funcionalidad asociada: \textit{manager}, \textit{captures} y \textit{statistics}.
 
 \subsection{Manager\label{ssec:dis:manager}}
 
@@ -130,7 +130,7 @@ A la derecha se mostrará un panel con posibles acciones a realizar sobre la \gl
 \clearpage
 
 En la Figura~\ref{fig:maqueta:gestor_seleccion} se expone la maqueta de una de las pantallas de la página de gestión, que se mostrará en caso de que no se haya seleccionado aún ningún modo o cuando se quiera seleccionar otro.
-Esta pantalla consta de dos botones, y pulsándo alguno se inicializará la sonda en el modo correspondiente.
+Esta pantalla consta de dos botones, y pulsando alguno se inicializará la sonda en el modo correspondiente.
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{maquetas/maqueta_gestor_seleccion}

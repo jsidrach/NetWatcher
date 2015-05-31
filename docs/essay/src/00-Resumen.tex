@@ -26,7 +26,7 @@ It is intended that most of the proposed solution could be reused in similar pro
 
 % Palabras clave en inglés
 \begin{keywordsEn}
-web interface, responsive design, web service, API REST, capture and reproduction of network's traffic, FPGA.
+web interface, responsive design, web service, API REST, capture and reproduction of network traffic, FPGA.
 \end{keywordsEn}
 
 % Resumen en español
@@ -45,9 +45,9 @@ También agrupa otros aspectos relevantes de la captura y reproducción de tráf
 La implementación de la interfaz sigue un diseño responsive, pudiendo utilizarse desde dispositivos móviles con una experiencia de usuario similar.
 Se ha conseguido, como producto final, una interfaz elegante que permite gestionar todos los aspectos de la sonda considerados relevantes, presentando el estado e información adicional del sistema de forma visual, mediante gráficos y estadísticas.
 
-Este proyecto no ha consistido únicamente en el desarrollo de una interfaz gráfica.
+Este proyecto, sin embargo, no ha consistido únicamente en el desarrollo de una interfaz gráfica.
 Se ha diseñado también una arquitectura base que formaliza la gestión de sondas de red desde una interfaz web.
-Esta propuesta contempla cómo estructurar los componentes de forma que sea extensible a otras sondas de red, no sólo la seleccionada.
+Esta propuesta contempla cómo estructurar los componentes de forma que sea extensible a otras sondas de red, no solo la seleccionada.
 Con este objetivo, se ha dividido el sistema en dos componentes, back-end y front-end, que se comunican entre sí y que pueden estar alojados en un servidor distinto cada uno.
 Así, se ha diseñado e implementado un Servicio Web REST en el back-end, que formaliza el estado y funcionalidad de la FPGA, añadiendo también control sobre otros aspectos relevantes mencionados anteriormente.
 Para el front-end se ha creado un framework propio, que ha servido de punto de partida para la interfaz web.

@@ -1,13 +1,13 @@
 \chapter{Conclusiones\label{cap:conclusiones}}
 
-Este Trabajo de Fin de Grado ha consistido en el desarollo de una interfaz para la gestión de sondas de red de altas prestaciones.
+Este Trabajo de Fin de Grado ha consistido en el desarrollo de una interfaz para la gestión de sondas de red de altas prestaciones.
 Para ello, se ha analizado el problema, estudiado el estado del arte, definido de forma rigurosa y completa el proyecto a realizar, diseñado la solución, implementado la misma, llevado a cabo una verificación y validación del sistema y, por último, se ha ejecutado un mantenimiento correctivo.
 
 La aplicación propuesta facilita la utilización de la sonda de red mediante una interfaz gráfica basada en tecnologías web.
 Esta interfaz puede ser utilizada por cualquier usuario con conocimientos informáticos, sin ser necesario un conocimiento específico de la sonda en sí.
-Se cumple así el objetivo de simplificar el empleo de la sonda seleccionada que anteriormente sólo se podía manejar por línea de comandos.
+Se cumple así el objetivo de simplificar el empleo de la sonda seleccionada que anteriormente solo se podía manejar por línea de comandos.
 También agrupa otros aspectos relevantes de la captura y reproducción de tráfico web, como la gestión del almacenamiento de las \glspl{traza}, la velocidad de escritura en disco o la conversión entre formatos de \gls{traza}.
-La implementación de la interfaz sigue un diseño \textit{responsive}, lo que hace que se pueda utilizar desde dispositivos móviles.
+La implementación de la interfaz sigue un diseño \textit{responsive}, lo que hace que se pueda utilizar desde dispositivos móviles sin empeorar la experiencia de usuario.
 Se ha conseguido, como producto final, una interfaz elegante que permite gestionar todos los aspectos de la sonda considerados relevantes, presentando el estado e información adicional del sistema de forma visual, mediante gráficos y estadísticas.
 
 Sin embargo, este proyecto no ha consistido únicamente en el desarrollo de una interfaz.
@@ -17,7 +17,7 @@ Para el \gls{front-end}, se ha creado un \gls{framework} propio, sobre el que se
 Esta arquitectura de la aplicación cuenta con ciertas ventajas respecto a no separar físicamente el \gls{front-end} y el \gls{back-end}.
 Al monitorizar el estado de la \gls{FPGA}, la interfaz estará disponible aunque el servidor que aloja la sonda no se encuentre operativo.
 Por otra parte, al trasladar la interfaz a un servidor distinto, se libera parte de los recursos del servidor conectado a la sonda de red, afectando menos a su rendimiento.
-Este proyecto, por tanto, proporciona una base sólida sobre la que se pueden incluir otras sondas de red sin partir desde cero, y siendo sólo necesario modificar una parte bien diferenciada del \gls{back-end}.
+Este proyecto, por tanto, proporciona una base sólida sobre la que se puede incluir soporte a otras sondas de red sin partir desde cero, y siendo solo necesario modificar una parte bien diferenciada del \gls{back-end}.
 
 Para la implementación de la aplicación, se han utilizado diversos lenguajes de programación y herramientas, lo que constituye, sin duda, una valiosa experiencia para el futuro profesional del estudiante.
 En el \gls{back-end} se ha empleado \textit{node.js}, una librería para construir aplicaciones de red en \textit{JavaScript} (tradicionalmente utilizado en el cliente, no en el servidor).
