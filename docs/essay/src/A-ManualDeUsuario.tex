@@ -14,7 +14,7 @@ El servidor que aloje el \gls{servicioweb} \gls{FPGA} debe cumplir los siguiente
 \end{itemize}
 
 \subsection*{Instalación}
-Para instalar el \gls{servicioweb} \gls{FPGA}, comprobar que se cumplan todos los requisitos y seguir las instrucciones que se describen a continuación:
+Para instalar el \gls{servicioweb} \gls{FPGA}, es necesario que se cumplan todos los requisitos y que se sigan las instrucciones descritas a continuación:
 \begin{enumerate}
   \item Descargar el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}).
   La instalación se realiza de forma remota, así que no es necesario descargárselo en el propio servidor, aunque sí en un entorno con terminal.
@@ -82,7 +82,7 @@ El servidor que aloje la interfaz web debe cumplir los siguientes requisitos:
 Para instalar la interfaz web, comprobar que se cumplan todos los requisitos y seguir las instrucciones que se describen a continuación:
 \begin{enumerate}
   \item Descargar el código fuente del repositorio del proyecto (\href{https://github.com/JSidrach/NetWatcher/archive/master.zip}{\footnotesize{github.com/JSidrach/NetWatcher}}).
-  \item Descomprimir el \textit{.zip} y mueva la carpeta base \textit{NetWatcher} al directorio público de \textit{Apache} (normalmente \texttt{/var/www/html/}).
+  \item Descomprimir el \textit{.zip} y mover la carpeta base \textit{NetWatcher} al directorio público de \textit{Apache} (normalmente \texttt{/var/www/html/}).
   \item Situarse en la carpeta base \textit{NetWatcher}.
   \item Instalar los paquetes y librerías necesarios ejecutando el siguiente comando:
 
@@ -224,7 +224,7 @@ Por otra parte, el formulario contiene los siguientes campos:
   \item \textbf{Interframe Gap}: pausa temporal entre paquetes (si se deshabilita, tasa original con la que se capturó la \gls{traza}).
 \end{itemize}
 
-Cuando se haya seleccionado una traza de la tabla y todos los campos del formulario sean válidos se activará el botón de \textit{Empezar}, y si se pulsa la \gls{FPGA} comenzará a reproducir la \gls{traza} seleccionada con los parámetros indicados.
+Cuando se haya seleccionado una traza de la tabla y todos los campos del formulario sean válidos se activará el botón de \textit{Empezar} y, si se pulsa, la \gls{FPGA} comenzará a reproducir la \gls{traza} seleccionada con los parámetros indicados.
 
 También es posible, en vez de reproducir tráfico, volver a seleccionar modo pulsando el correspondiente enlace debajo del formulario.
 
@@ -258,12 +258,6 @@ Está compuesta por dos paneles:
 
 \begin{itemize}
 \item \textbf{Estadísticas de espacio (Figura~\ref{fig:captura:espacio})}: este panel muestra estadísticas del espacio total, ocupado y disponible, resumido además en un gráfico circular (en rojo la proporción de disco ocupado y en turquesa la proporción de disco disponible).
-\begin{figure}[!htp]
-  \centering
-  \includegraphics[width=0.9\textwidth,clip=true]{graphics/capturas/almacenamiento_espacio}
-  \caption{Página de almacenamiento, con \gls{RAID} no activo.}
-  \label{fig:captura:espacio}
-\end{figure}
 
 \item \textbf{Estadísticas del \gls{RAID} (Figura~\ref{fig:captura:raid})}: solo se mostrarán estas estadísticas si el sistema de almacenamiento está configurado como un \gls{RAID} (ver sección~\ref{extra:manual:configfpga}).
 En este panel, un gráfico de barras muestra la velocidad de escritura de cada disco del \gls{RAID}.
@@ -271,6 +265,14 @@ Debajo de este gráfico se indica la velocidad global de escritura del \gls{RAID
 El color de esta cifra depende de la velocidad de escritura: verde (velocidad superior a la recomendada), amarillo (velocidad suficiente) o rojo (velocidad por debajo del mínimo aceptable).
 Si la velocidad es insuficiente se mostrará un cuadro de diálogo adicional para formatear y recrear el \gls{RAID} pulsando el botón \textit{Formatear el \gls{RAID}} (cuidado: formatear el \gls{RAID} borrará todos los datos del mismo).
 Este diálogo se puede ocultar pulsando el botón \textit{Descartar}.
+
+\begin{figure}[!htp]
+  \centering
+  \includegraphics[width=0.9\textwidth,clip=true]{graphics/capturas/almacenamiento_espacio}
+  \caption{Página de almacenamiento, con \gls{RAID} no activo.}
+  \label{fig:captura:espacio}
+\end{figure}
+
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.9\textwidth,clip=true]{graphics/capturas/almacenamiento_raid}
@@ -295,7 +297,7 @@ Además, una barra superior asociada a esta tabla permite controlar el contenido
 Pulsando sobre una fila de la tabla se seleccionará la \gls{traza} correspondiente, activándose el panel de acciones.
 Este panel permite, mediante cada uno de sus subpaneles, las siguientes operaciones:
 \begin{itemize}
-  \item \textbf{Convertir}: crea una nueva \gls{traza} a partir de la \gls{traza} seleccionada cambiando el tipo (si la original tiene formato \gls{simple} la convertida tendrá formato \gls{pcap}, y viceversa).
+  \item \textbf{Convertir}: crea una nueva \gls{traza} a partir de la \gls{traza} seleccionada cambiando el tipo (si la original tiene formato \gls{simple}, la convertida tendrá formato \gls{pcap}, y viceversa).
   \item \textbf{Renombrar}: cambia el nombre de la \gls{traza} seleccionada al nuevo nombre introducido.
   \item \textbf{Borrar}: borra del disco la \gls{traza} seleccionada.
 \end{itemize}
