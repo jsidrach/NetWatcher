@@ -16,7 +16,6 @@ Sin embargo, no se ha utilizado para descubrir errores, ya que para eso se ha re
 
 La estrategia seguida ha sido realizar una inspección en cada fichero, una vez ha pasado al menos una semana desde su codificación.
 Así, al no tenerla tan cercana, se ha facilitado el evaluar de manera más objetiva la implementación.
-Como consecuencia de estas inspecciones, se ha refactorizado parte del código, mejorando su estructura interna, claridad y mantenibilidad.
 
 \subsection*{Pruebas de caja blanca\label{ssec:pb:caja_blanca}}
 
@@ -25,7 +24,7 @@ Tienen como objetivo verificar el correcto funcionamiento del código y detectar
 Concretamente, se han llevado a cabo aquellas basadas en la comprobación de los posibles flujos de ejecución de una función, mediante su invocación con valores típicos, aleatorios y límite.
 
 Debido al alto coste temporal de plantear y ejecutar este tipo de pruebas para todo el sistema, se ha decidido aplicarlas en un único submódulo, considerado crítico para la aplicación: la máquina de estados finitos que formaliza el estado de la \gls{FPGA}.
-Como resultado de estas pruebas, se han corregido errores menores que se producían en su mayoría con valores límite.
+De esta forma se ha comprobado, mediante pruebas más exhaustivas que las de caja negra, que la parte esencial de la aplicación tenga el comportamiento esperado.
 
 \subsection*{Pruebas de caja negra\label{ssec:pb:caja_negra}}
 
@@ -46,9 +45,6 @@ De este modo, se ha verificado el funcionamiento del \gls{proxy} haciendo uso de
 Las pruebas de integración tienen como objetivo verificar que los componentes de la aplicación encajan correctamente entre sí.
 Tras las pruebas de caja blanca y caja negra, se ha realizado este tipo de pruebas de forma ascendente, empezando con los componentes más básicos y terminando con la integración entre el \gls{back-end} y el \gls{front-end}.
 
-Como resultado de estas pruebas, se han podido detectar y subsanar errores menores relacionados con la comunicación entre los componentes.
-Otra consecuencia ha sido el descubrimiento y la corrección del hecho de que funcionalidad no esencial implementada en el \gls{back-end} no tuviese correspondencia en el \gls{front-end}, por lo que nunca se llegaba a aprovechar.
-
 \subsection*{Pruebas sobre la interfaz de usuario\label{ssec:pb:interfaz}}
 
 Para la interfaz web se han realizado pruebas basadas en el contenido.
@@ -63,10 +59,23 @@ Se comprueba, por tanto, que cumpla los requisitos especificados en el capítulo
 
 En este contexto, se ha confirmado que existe una forma de satisfacer, mediante la interfaz web, cada uno de los requisitos funcionales.
 Respecto a los requisitos no funcionales, se ha validado uno a uno su cumplimiento, ya que estaban todos relacionados con la interfaz web.
-Por último, se ha evaluado la usabilidad de la aplicación comprobando que el usuario pudiese utilizar toda la funcionalidad ofrecida por interfaz, con la ayuda del manual.
-Para ello, han colaborado personas pertenecientes al grupo de investigación en el que se enmarca este proyecto.
+Adicionalmente, se ha evaluado la usabilidad de la aplicación comprobando que un grupo de usuarios pudiese utilizar toda la funcionalidad ofrecida por interfaz, con la ayuda opcional del manual.
 
-\begin{table}[h]
+Con este propósito se ha determinado, mediante un formulario de respuesta múltiple, con qué facilidad los usuarios pueden completar tareas desde la interfaz (ver Tabla~\ref{sec:pb:test}).
+Han colaborado, para ello, personas pertenecientes al grupo de investigación en el que se enmarca este proyecto.
+Dado que para realizar pruebas se cuenta con una única sonda de red, cada test solo puede comenzar una vez ha terminado el anterior.
+Por este motivo, se ha decidido reducir el conjunto de tareas a las más significativas, disminuyendo el tiempo necesario.
+Destacar que no se especifica en ningún sitio la página concreta a la que debe acceder el usuario para completar cada acción requerida.
+
+La dificultad con la que se completa cada tarea se clasifica en una de las siguientes categorías:
+\begin{itemize}
+  \item \textbf{Fácil}: el usuario ha completado la tarea sin consultar el manual, en menos de un minuto.
+  \item \textbf{Media}: el usuario ha completado la tarea sin consultar el manual, tardando más de un minuto para ello.
+  \item \textbf{Difícil}: el usuario ha completado la tarea consultando el manual.
+  \item \textbf{No lograda}: el usuario ha desistido y no ha conseguido completar la tarea.
+\end{itemize}
+
+\begin{table}[!htp]
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{l|l|l|l|l|}
 \cline{2-5}
@@ -90,21 +99,17 @@ Para ello, han colaborado personas pertenecientes al grupo de investigación en 
 \label{sec:pb:test}
 \end{table}
 
+\section{Resultados\label{sec:pb:resultados}}
 
-No se especifica el módulo/página concreto al que es necesario acceder para completar la acción.
-5 Personas
-en el momento de realizar la prueba se disponía de una única sonda de red, por lo que para minimizar el tiempo (en serie), reducido a un subconjunto que recoge la funcionalidad más significativa de la aplicación.
-Se ha dividido en tareas que deben ser ejecutadas en el orden en el que aparecen en el test
-Manual de usuario, no utilizar si no es necesario
-Medir el tiempo que tardan en realizar cada una de las pruebas
-
-dificultad de cada tarea se evalúa de la siguiente forma
+Las distintas pruebas de verificación han tenido las siguientes consecuencias directas:
 \begin{itemize}
-  \item \textbf{Fácil}:
-  \item \textbf{Media}:
-  \item \textbf{Difífil}:
-  \item \textbf{No lograda}:
+  \item Se ha refactorizado parte de la implementación, mejorando su estructura interna, claridad y mantenibilidad, fruto de las inspecciones de código.
+  \item Se han corregido errores menores gracias a las pruebas de caja blanca y de caja negra.
+  \item Se han podido detectar y subsanar errores menores relacionados con la comunicación entre los componentes, como resultado de las pruebas de integración.
+Otra consecuencia ha sido el descubrimiento y la corrección del hecho de que funcionalidad no esencial implementada en el \gls{back-end} no tuviese correspondencia en el \gls{front-end}, por lo que nunca se llegaba a aprovechar.
 \end{itemize}
 
-
-\section{Resultados\label{sec:pb:resultados}}
+Respecto a las pruebas de validación, el formulario ha permitido comprobar cómo de fácil es manejar la interfaz web.
+Los resultados han sido satisfactorios, ya que si bien no todas las tareas han sido clasificadas como ``Fácil'', ninguna de ellas no ha podido ser completada por el usuario.
+Por lo general, la gran mayoría de tareas ha tenido una dificultad ``Fácil'' o ``Media'', por lo que no han requerido la ayuda del manual de usuario.
+Se cumple así uno de los objetivos del proyecto, simplificar la gestión de la sonda de red.
