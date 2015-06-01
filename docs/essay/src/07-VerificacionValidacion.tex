@@ -39,7 +39,7 @@ Por último, se ha creado y ejecutado un conjunto de pruebas sobre la \gls{API} 
 Esto permite que se puedan replicar fácilmente, ya que pueden ser exportadas a un único fichero de configuración para después importarlo cuando se deseen volver a ejecutar las pruebas.
 
 Para el \gls{front-end}, se ha elegido efectuar pruebas de caja negra sobre un único módulo, ya que se han considerado de más utilidad aplicar pruebas de contenido sobre la interfaz de usuario (ver apartado \ref{ssec:pb:interfaz}).
-Así, se ha verificado el funcionamiento del \gls{proxy} haciendo uso de las mismas pruebas de \textit{Postman} creadas para el \gls{front-end}, comprobando que se obtenía un resultado idéntico.
+De este modo, se ha verificado el funcionamiento del \gls{proxy} haciendo uso de las mismas pruebas de \textit{Postman} creadas para el \gls{front-end}, comprobando que se obtenía un resultado idéntico.
 
 \subsection*{Pruebas de integración\label{ssec:pb:integracion}}
 
@@ -63,5 +63,48 @@ Se comprueba, por tanto, que cumpla los requisitos especificados en el capítulo
 
 En este contexto, se ha confirmado que existe una forma de satisfacer, mediante la interfaz web, cada uno de los requisitos funcionales.
 Respecto a los requisitos no funcionales, se ha validado uno a uno su cumplimiento, ya que estaban todos relacionados con la interfaz web.
-Por último, se ha evaluado la usabilidad de la aplicación comprobando que el usuario pudiese utilizar toda la funcionalidad de la interfaz, con la ayuda del manual.
+Por último, se ha evaluado la usabilidad de la aplicación comprobando que el usuario pudiese utilizar toda la funcionalidad ofrecida por interfaz, con la ayuda del manual.
 Para ello, han colaborado personas pertenecientes al grupo de investigación en el que se enmarca este proyecto.
+
+\begin{table}[h]
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l|l|l|l|l|}
+\cline{2-5}
+\multicolumn{1}{c|}{} & \multicolumn{4}{c|}{\cellcolor[HTML]{EFEFEF}{\bf Dificultad}} \\ \hline
+\multicolumn{1}{|c|}{\cellcolor[HTML]{EFEFEF}{\bf Tarea}} & \cellcolor[HTML]{CAFFC9}{\color[HTML]{333333} {\bf Fácil}} & \cellcolor[HTML]{FFFFC7}{\color[HTML]{333333} {\bf Media}} & \cellcolor[HTML]{FFCCC9}{\color[HTML]{333333} {\bf Difícil}} & \cellcolor[HTML]{333333}{\color[HTML]{FFFFFF} {\bf No lograda}} \\ \hline
+\multicolumn{1}{|l|}{Configurar la interfaz para conectarse a una \gls{URL}} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Programar la sonda en modo reproducción} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Reproducir una \gls{traza} en bucle, por el puerto 0 y IFG 0} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Parar la reproducción de la \gls{traza}} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Reprogramar la sonda en modo captura} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Ordenar capturar una traza de 200 GB por el puerto 3} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Parar la captura de la \gls{traza}} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Convertir una \gls{traza} \gls{simple} a formato \gls{pcap}} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Renombrar una \gls{traza}} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Borrar una \gls{traza}} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Comprobar el espacio de almacenamiento disponible} &  &  &  &  \\ \hline
+\multicolumn{1}{|l|}{Comprobar la velocidad de escritura del \gls{RAID}} &  &  &  &  \\ \hline
+\end{tabular}
+}
+\caption{Conjunto de preguntas que conforman el test de validación.}
+\label{sec:pb:test}
+\end{table}
+
+
+No se especifica el módulo/página concreto al que es necesario acceder para completar la acción.
+5 Personas
+en el momento de realizar la prueba se disponía de una única sonda de red, por lo que para minimizar el tiempo (en serie), reducido a un subconjunto que recoge la funcionalidad más significativa de la aplicación.
+Se ha dividido en tareas que deben ser ejecutadas en el orden en el que aparecen en el test
+Manual de usuario, no utilizar si no es necesario
+Medir el tiempo que tardan en realizar cada una de las pruebas
+
+dificultad de cada tarea se evalúa de la siguiente forma
+\begin{itemize}
+  \item \textbf{Fácil}:
+  \item \textbf{Media}:
+  \item \textbf{Difífil}:
+  \item \textbf{No lograda}:
+\end{itemize}
+
+
+\section{Resultados\label{sec:pb:resultados}}
