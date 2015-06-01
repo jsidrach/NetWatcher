@@ -52,7 +52,7 @@ No seguir estas directrices simplifica además la implementación del \gls{back-
 Internamente, el \gls{back-end} se estructura tal y como se describe en la Figura~\ref{fig:arquitectura_servicio}.
 Un supervisor se encarga de vigilar al grupo de procesos que atienden las peticiones del \gls{front-end}, reemplazándolos en caso de que fallen.
 Este grupo tiene tantos procesos como núcleos el servidor, adaptándose así a su arquitectura interna y consiguiendo por tanto una mayor disponibilidad y un menor tiempo de respuesta.
-Por otro lado, con el objetivo de tener información detallada sobre el uso del servicio web, se registran todos los eventos y errores del \gls{back-end} en los \textit{logs} correspondientes.
+Por otro lado, con el objetivo de tener información detallada sobre el uso del servicio web, se registran todos los eventos y errores del \gls{back-end} en los \glspl{log} correspondientes.
 Por último, se ha dividido el servicio web en tres módulos, cada uno con una funcionalidad asociada: \textit{manager}, \textit{captures} y \textit{statistics}.
 
 \subsection{Manager\label{ssec:dis:manager}}

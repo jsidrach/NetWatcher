@@ -7,24 +7,24 @@ Dado que la finalidad de este proyecto es implementar una interfaz web, se hace 
 
 \section{The Open Source Network Tester\label{sec:eda:osnt}}
 
-\textit{The Open Source Network Tester (OSNT)}~\cite{osnt} es un generador y capturador de tráfico de red.
+\textit{The Open Source Network Tester (OSNT)}~\cite{osntpaper, osntarch, netfpga} es un generador y capturador de tráfico de red.
 Esta aplicación se ejecuta sobre cuatro \textit{NetFPGA-10G} (que, como ya se ha comentado, es el mismo modelo de sonda que el tratado en este proyecto).
 \textit{OSNT} permite generar o capturar paquetes de cualquier tamaño y establecer la tasa a la que se realizan estas operaciones.
 
-Una de los puntos fuertes de \textit{OSNT} es que tanto el diseño \textit{hardware} como el \textit{software} son de código abierto y pueden ser modificados.
+Una de los puntos fuertes de \textit{OSNT} es que tanto el diseño \textit{hardware} como el \textit{software} son de \gls{codigoabierto} y pueden ser modificados~\cite{osnt}.
 Se facilita así extender la aplicación para soportar nuevos protocolos.
 Otra característica relevante es que posee una interfaz gráfica de usuario desde la que manejar la sonda de red (ver Figura~\ref{fig:osnt}).
 Esta interfaz permite configurar la captura o reproducción seleccionando la velocidad de transmisión.
 
 Sin embargo, se han detectado también algunas carencias y aspectos susceptibles de mejora en \textit{OSNT}.
-En primer lugar, no gestiona algunos elementos que están relacionados con la sonda y que podría ser de utilidad.
+En primer lugar, no gestiona algunos elementos que están relacionados con la sonda y que podrían ser de utilidad.
 Por ejemplo, no controla que el sistema de archivos tenga una velocidad de escritura suficiente para la captura, lo que puede afectar al rendimiento y hacer que no se aproveche al máximo la sonda de red.
 Tampoco comprueba que el espacio disponible dentro del disco sea suficiente antes de programar una captura.
 Por último, no permite una gestión activa de las \glspl{traza} almacenadas (clasificación, detalles, borrado de las mismas, etc.).
 
 Respecto a la interfaz, se han identificado algunos aspectos que podrían ser perfeccionados.
 Uno de ellos es que no es posible conocer el estado de la sonda de manera intuitiva, y otro es que tampoco existe una clara separación entre captura/reproducción y módulos adicionales.
-Asimismo, gran parte de la información que se muestra en la interfaz podría ser agrupada en forma de gráficos, visualmente más atractivos.
+Asimismo, gran parte de la información que se muestra en la interfaz podría ser agrupada en forma de gráficos, visualmente más explicativos.
 Se echa de menos además soporte para varios idiomas, algo que facilitaría la utilización de la aplicación a usuarios no angloparlantes.
 En términos de arquitectura, el sistema requiere de acceso físico (o remoto por \textit{ssh}) al servidor para su manejo, cuando podría ser útil exponer la funcionalidad como un servicio accesible desde cualquier dispositivo.
 Finalmente, el hecho de que la interfaz esté sobre el propio servidor de la sonda tiene como consecuencia que si el sistema se saturase, la interfaz podría quedar inutilizable.
@@ -40,8 +40,8 @@ Finalmente, el hecho de que la interfaz esté sobre el propio servidor de la son
 
 \subsection*{tcpdump y libpcap\label{sec:eda:tcpdump}}
 
-La utilidades \textit{tcpdump} y \textit{libpcap}~\cite{tcpdump}, implementadas como librerías, permiten analizar el tráfico que circula por la red.
-Así, el usuario puede capturar y mostrar en tiempo real los paquetes transmitidos y recibidos en una red a la que el ordenador esté conectado.
+Las utilidades \textit{tcpdump} y \textit{libpcap}~\cite{tcpdump}, implementadas como librerías, permiten analizar el tráfico que circula por la red.
+De esta forma, el usuario puede capturar y mostrar en tiempo real los paquetes transmitidos y recibidos en una red a la que el ordenador esté conectado.
 Se suelen utilizar para depurar aplicaciones que envían y reciben tráfico de red, aunque tienen otros usos como leer datos no cifrados enviados por otros ordenadores.
 
 Estas librerías poseen otras características adicionales que las hacen interesantes.
@@ -67,8 +67,8 @@ Analiza todo el tráfico de un enlace de red paquete a paquete, proporcionando s
 Identifica así patrones de actividad, detectando anomalías mediante estos mismos patrones.
 
 Esta herramienta cuenta con una interfaz web intuitiva, por lo que puede ser manejada sin demasiadas complicaciones.
-No obstante, no está enfocado tanto a la captura y reproducción de tráfico de red sino a su análisis, por lo que se desvía un poco del propósito planteado.
-Por último, es un producto que requiere ser contratado, siendo por tanto su público no tan amplio como el del resto de herramientas analizadas.
+No obstante, no está enfocada tanto a la captura y reproducción de tráfico de red sino a su análisis, por lo que se desvía un poco del propósito planteado.
+Por último, es un producto que requiere ser contratado, siendo por tanto su público potencial más reducido el del resto de herramientas analizadas.
 
 \section{Conclusiones\label{sec:eda:conclusiones}}
 
