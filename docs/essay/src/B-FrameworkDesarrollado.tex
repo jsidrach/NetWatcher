@@ -7,7 +7,7 @@ Sirve de base para la organización y desarrollo de la aplicación, proveyéndol
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/framework}
-  \caption{Arquitectura del \gls{framework} desarrollado.}
+  \caption{Arquitectura del \gls{framework} desarrollado}
   \label{fig:framework}
 \end{figure}
 
@@ -20,7 +20,7 @@ Este archivo, a su vez, invoca el método estático \textit{Router->dispatch()}.
 
 El método \textit{Router->dispatch()} divide la \gls{URL} solicitada siguiendo el siguiente formato:
 
-\textit{URL\_BASE\_APLICACIÓN/módulo/método/parámetro1/parámetro2/...}
+\textit{URL\_BASE\_APLICACIÓN/módulo/método/parámetro1/parámetro2/..}
 
 Una vez identificadas las partes de la \gls{URL}, se crea una instancia del módulo correspondiente y se llama al método indicado con los parámetros de la petición (si existiesen), delegándole el control de la solicitud (ver Figura~\ref{fig:router}).
 Por otro lado, si la \gls{URL} acaba en la \gls{URL} base de la aplicación, se cargan el módulo y método por defecto; y si la \gls{URL} acaba en el módulo, se carga el método por defecto (ver sección~\ref{extra:mvc:config}).
@@ -29,7 +29,7 @@ En caso de que la \gls{URL} contenga un módulo o método no existente, se redir
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=\textwidth,clip=true]{graphics/router}
-  \caption{Esquema de flujo del método \textit{Router->dispatch()}.}
+  \caption{Esquema de flujo del método \textit{Router->dispatch()}}
   \label{fig:router}
 \end{figure}
 
@@ -66,7 +66,7 @@ Así, cuando la interfaz web quiera realizar una petición \gls{AJAX} al \gls{se
 \begin{figure}[!htp]
   \centering
   \includegraphics[width=0.6\textwidth,clip=true]{graphics/proxy}
-  \caption{Arquitectura del proxy desarrollado.}
+  \caption{Arquitectura del proxy desarrollado}
   \label{fig:proxy}
 \end{figure}
 
