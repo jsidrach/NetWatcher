@@ -6,4 +6,4 @@ We use gettext, which makes really easy to implement more languages to NetWatche
 * Edit it with a `.po` files editor (e.g. [POEdit](http://poedit.net)), choosing the new language for the catalog
 * Translate all the strings and save the new catalog
 * Edit `config/languages.json` adding in the array the new language (_Name => regional_code.utf8_)
-* Finally, if you want your changes reflected in the repository, submit a pull request.
+* Finally, if you want your changes reflected in the repository, submit a pull request
