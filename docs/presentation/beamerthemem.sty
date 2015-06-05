@@ -9,6 +9,7 @@
 
 \ProvidesPackage{beamerthemem}
 
+\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
 %{{{ --- Options ----------------------
 
 \newif\if@useTitleProgressBar
@@ -125,10 +126,20 @@
     }}
     \fi
 
+    % Tutor
+    \ifx\tutor\@empty\else
+    {{% \tutor is nonempty
+      \usebeamerfont{institute}%
+      \usebeamercolor[fg]{institute}%
+      Tutor: \tutor%
+      \vspace*{0.5em}%
+    }}
+    \fi
+
     \ifx\insertdate\@empty\else
     {{% \insertdate is nonempty
-      \usebeamerfont{date}%
-      \usebeamercolor[fg]{date}%
+      \usebeamerfont{institute}%
+      \usebeamercolor[fg]{institute}%
       \insertdate%
       \par%
     }}
@@ -143,6 +154,28 @@
       \par%
     }}
     \fi
+
+    \vspace{1.25cm}
+    \centering{
+      % Three logos
+      \ifx\logoResearchGroup\@empty\else
+      {{
+        \includegraphics[height=1.25cm, keepaspectratio, valign=c]{\logoResearchGroup}%
+      }}
+      \fi
+      \hspace{0.5cm}
+      \ifx\logoFaculty\@empty\else
+      {{
+        \includegraphics[height=1.25cm, keepaspectratio, valign=c]{\logoFaculty}%
+      }}
+      \fi
+      \hspace{0.5cm}
+      \ifx\logoUniversity\@empty\else
+      {{
+        \includegraphics[height=1.25cm, keepaspectratio, valign=c]{\logoUniversity}
+      }}
+      \fi
+    }
 
     \vfill
     \vspace*{\@mtheme@voffset}
