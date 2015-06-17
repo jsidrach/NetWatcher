@@ -229,6 +229,9 @@ function getDataPlaying(callback) {
           }
           ans.packets_sent = 0;
           scripts.exec('sudo ./bin/readRegisters 2>&1 | grep "total packets" | awk \'{print $5}\'', function(error, stdout, stderr) {
+            console.log(stdout);
+            console.log('----');
+            console.log(stderr);
             if (stdout.length > 0) {
               ans.packets_sent = parseInt(stdout);
             }

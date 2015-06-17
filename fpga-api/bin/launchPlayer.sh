@@ -1,4 +1,4 @@
-#!/bin/sh - 
+#!/bin/sh -
 
 # Launches the player
 # Example of execution: sudo -b nohup ./bin/launchPlayer.sh MASK IFG LOOP SIMPLE_FILE
@@ -10,10 +10,10 @@ fi
 
 if [ "$3" = "0" ]
 then
-  sudo ./bin/writeControl -ifg ${2} -n -1 -l ${1} -r &&
-  sudo ./bin/host2card ${4} 
+  sudo ./bin/writeControl -i ${2} -l ${1} -r &&
+  sudo ./bin/host2card ${4}
 else
-  sudo ./bin/writeControl -ifg ${2} -n -1 -l ${1} -r &&
-  sudo ./bin/host2card ${4} -n -1 
+  sudo ./bin/writeControl -i ${2} -l ${1} -r &&
+  sudo ./bin/host2card ${4} -n -1
 fi
 sleep 5
