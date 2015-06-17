@@ -121,7 +121,7 @@ $(document).ready(function () {
           }), 10000);
         }, 2000);
       },
-      error: function (e) {        
+      error: function (e) {
         if(AjaxQueueHandler.userLeft()) {
           return;
         }
@@ -253,7 +253,7 @@ $(document).ready(function () {
       timeout: 300000,
       success: function (resp) {
         setTimeout(function () {
-          // FPGA driver installed      
+          // FPGA driver installed
           progressBar.css('width', '100%');
           progressBar.removeClass('progress-bar-info').addClass('progress-bar-success');
           progressLabel.text(<?php echo '\'' . _('Driver successfully installed. Refreshing...') . '\''; ?>);
@@ -307,7 +307,7 @@ $(document).ready(function () {
   var captureBytesControl;
   // Input capture name feedback icon
   var captureBytesIcon;
-  // Name regexp 
+  // Name regexp
   var nameRegexp;
   // Bytes regexp
   var bytesRegexp;
@@ -457,7 +457,7 @@ $(document).ready(function () {
   // Bytes total label
   var recordingBytesTotal;
   // Average rate label
-  var recordingAverageRate; 
+  var recordingAverageRate;
   // Current rate label
   var currentRate;
   // % of the progress bar
@@ -686,7 +686,7 @@ $(document).ready(function () {
     toggleRightPanels(false);
     ifgInput.prop('disabled', true);
     // Set AutoRefresh with the check button
-    autoRefresh.change(autoRefreshHandler);    
+    autoRefresh.change(autoRefreshHandler);
     // Refresh button
     refreshButton.off('click').on('click', refreshData);
     // Select row from captures table
@@ -778,7 +778,7 @@ $(document).ready(function () {
     ifgInput.prop('disabled', !checked);
     startButton.prop('disabled', checked);
     if(!checked) {
-      ifgInput.val('');      
+      ifgInput.val('');
       ifgControl.removeClass('has-success has-error');
       ifgIcon.removeClass('glyphicon-ok glyphicon-remove has-success has-error');
     }
@@ -917,7 +917,7 @@ $(document).ready(function () {
         lastRequest.abort();
         lastRequest = null;
       }
-      
+
       var statusURL = baseURL + 'info/status';
       lastRequest = $.ajax({
         type: 'GET',
@@ -926,7 +926,7 @@ $(document).ready(function () {
         timeout: 2500,
         success: function (resp) {
           // Process new data
-          if(resp.status == 'recording') {
+          if(resp.status == 'playing') {
             processPlayingData(resp);
             clearInterval(elapsedInterval);
             elapsedInterval = setInterval(refreshElapsedTime, 1000);
