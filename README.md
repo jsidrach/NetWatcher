@@ -1,6 +1,6 @@
 # NetWatcher
 
-NetWatcher is a web-based interface to manage network traffic capturer FPGAs, developed as an End-of-Degree Project in collaboration with the [High-Performance Computing and Networking](http://www.hpcn.es/) research group. NetWatcher is divided in two parts: a FPGA Web Service to execute commands and monitor them in the FPGA, and a Web Interface to visually make those calls.
+NetWatcher is a web-based interface to manage FPGA-based network probes (devices capable of capturing or injecting network traffic). The project also brings together other relevant aspects of the capture and injection of web traffic, such as trace storage management, write speed of the used disks or trace format detection and conversion. NetWatcher is divided in two parts: a (REST-like) web service to execute commands in the FPGA and monitor it, and a graphical web interface to connect to this service, make calls to it visually and display the results. It was developed as an End-of-Degree Project in collaboration with the [High-Performance Computing and Networking](http://www.hpcn.es/) research group.
 
 ## Table of contents
 
@@ -43,14 +43,15 @@ Installation
 
 #### FPGA Web Service
 1. **Prerequisites**: The host must have installed everything necessary to make the FPGA traffic capturer/recorder work properly (on a linux-x64 OS). In addition, HugePages must be the default selected option in the GRUB menu, in case there are options available to boot without HugePages active
-2. Edit the file `./fpga-api/scripts/update_server.sh` setting the `SERVER_IP` and `SERVER_PATH` vars. **Note**: root user must exist.
+2. Edit the file `./fpga-api/scripts/update_server.sh` setting the `SERVER_IP` and `SERVER_PATH` vars. **Note**: root user must exist.+
 3. Change path to `./fpga-api/`
-4. Deploy the io.js server on the remote host
+4. Copy the appropiate binaries to `./fpga-api/bin/` (you can use the ones in `bin.dagda/` or `bin.berilio` if they fit in your linux kernel)
+5. Deploy the io.js server on the remote host
 
         $ ./scripts/update_server.sh
-5. Log into the FPGA Web Service host
-6. Configure the server (if needed) by editing the `config.js` file ([detailed explanation here](docs/wiki/FPGA_Configuration.md)).
-7. Start the service
+6. Log into the FPGA Web Service host
+7. Configure the server (if needed) by editing the `config.js` file ([detailed explanation here](docs/wiki/FPGA_Configuration.md)).
+8. Start the service
 
         $ sudo service fpga-api start
 
