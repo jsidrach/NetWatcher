@@ -931,7 +931,7 @@ $(document).ready(function () {
             clearInterval(elapsedInterval);
             elapsedInterval = setInterval(refreshElapsedTime, 1000);
           }
-          // Recording has ended
+          // Reproduction has ended
           else {
             playingTitle.text(<?php echo '\'' . _('Capture reproduction has ended') . '\''; ?>)
             stopPlayingButton.prop('disabled', true);
