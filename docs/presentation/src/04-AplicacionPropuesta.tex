@@ -1,7 +1,7 @@
 \section{Aplicación propuesta}
 
-% Arquitectura
-\begin{frame}{Arquitectura}
+% Arquitectura General
+\begin{frame}{Arquitectura General}
   \begin{figure}
     \includegraphics[width=0.9\linewidth]{arquitectura}
   \end{figure}
@@ -26,15 +26,12 @@
 \end{frame}
 
 % Back-End
-\begin{frame}{Back-End}
-  \begin{itemize}[<alert@+>]
-    \item Servicio Web FPGA
-    \item Comunicación con la sonda
-    \item Monitorización del sistema
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{Back-End - Servicio Web FPGA}
+  \begin{itemize}[<alert@+>]
+    \item Formalizar y exponer la funcionalidad de la FPGA
+    \item Permite conocer el estado de la misma y de aspectos relacionados
+    \item Implementación REST-like
+  \end{itemize}
   \begin{figure}
     \includegraphics[width=\linewidth]{fpga_rest}
   \end{figure}
@@ -48,13 +45,9 @@
 
 \begin{frame}{Back-End - FSM Estado FPGA}
   \begin{figure}
-    \includegraphics[width=0.8\linewidth]{fpga_estado}
-  \end{figure}
-\end{frame}
-
-\begin{frame}{Back-End - Determinar estado actual}
-  \begin{figure}
-    \includegraphics[width=\linewidth]{arbol_decision}
+    \includegraphics[width=0.65\linewidth, valign=t]{fpga_estado}
+    \hfill
+    \includegraphics[height=0.7\textheight, valign=t]{arbol_decision_vertical}
   \end{figure}
 \end{frame}
 
