@@ -3,13 +3,13 @@
 % Sondas de red
 \begin{frame}{Sondas de red}
   \begin{itemize}
-    \item\alert<+>{Dispositivos capaces de capturar y/o inyectar tráfico de red}
-    \item\alert<+>{Principales usos}
+    \item Dispositivos capaces de capturar y/o inyectar tráfico de red
+    \item Principales usos
     \begin{itemize}
       \item Análisis de las trazas capturadas por la sonda
       \item Realización de pruebas sobre redes, plataformas y aplicaciones
     \end{itemize}
-    \item\alert<+>{Diferentes tipos sobre ordenadores convencionales}
+    \item Diferentes tipos sobre ordenadores convencionales
     \begin{itemize}
       \item Tarjetas Ethernet estándar
       \item Tarjetas a medida basadas en FPGAs
@@ -18,14 +18,19 @@
 \end{frame}
 
 % Sonda utilizada
-\begin{frame}{Sonda utilizada}
+\begin{frame}{Sonda utilizada - NetFPGA 10G}
   \begin{itemize}
-    \item\alert<+>{Sonda a medida basada en FPGA}
-    \item\alert<+>{Permite capturar y reproducir tráfico de red}
-    \item\alert<+>{Rendimiento máximo de 10 Gbps}
+    \item Sonda a medida basada en FPGA
     \begin{itemize}
-      \item Puede verse limitado por la velocidad del disco
+      \item Modelo Xilinx Virtex-5
+      \item Cuatro interfaces SFP+ de hasta 10Gbps
+      \item Conectada por PCI Express
     \end{itemize}
-    \item\alert<+>{Gestionada por línea de comandos}
+    \item Permite capturar y reproducir tráfico de red
+    \item Rendimiento máximo de 10 Gbps por linea (cuatro en total)
+    \item Gestionada por línea de comandos
   \end{itemize}
+  \begin{figure}
+    \includegraphics[width=0.6\linewidth]{NetFPGA10G}
+  \end{figure}
 \end{frame}
