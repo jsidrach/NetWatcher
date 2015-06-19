@@ -44,6 +44,9 @@
 \end{frame}
 
 \begin{frame}{Back-End - FSM Estado FPGA}
+  \begin{itemize}
+    \item Formaliza el estado de la FPGA de forma no persistente
+  \end{itemize}
   \begin{figure}
     \includegraphics[width=0.65\linewidth, valign=t]{fpga_estado}
     \hfill
@@ -51,34 +54,38 @@
   \end{figure}
 \end{frame}
 
-\begin{frame}{Back-End - API REST}
+\begin{frame}{Back-End - API REST-like}
+  \begin{itemize}
+    \item API REST-like - Métodos accesibles por HTTP
+  \end{itemize}
   \begin{figure}
-    \includegraphics[width=\linewidth]{arbol_metodos}
+    \includegraphics[width=0.9\linewidth]{arbol_metodos}
   \end{figure}
 \end{frame}
 
 % Front-End
-\begin{frame}{Front-End}
-  \begin{itemize}[<alert@+>]
-    \item Comunicación con el back-end (proxy)
-    \item Framework propio
-    \item Diseño \textit{responsive}
-  \end{itemize}
-\end{frame}
-
 \begin{frame}{Front-End - Framework - Arquitectura interna}
+  \begin{itemize}
+    \item Framework propio - únicamente la funcionalidad necesaria
+  \end{itemize}
   \begin{figure}
     \includegraphics[width=\linewidth]{framework}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Front-End - Framework - Router}
+  \begin{itemize}
+    \item Carga el módulo/método correspondiente para cada petición HTTP
+  \end{itemize}
   \begin{figure}
     \includegraphics[width=\linewidth]{router}
   \end{figure}
 \end{frame}
 
 \begin{frame}{Front-End - Framework - Proxy}
+  \begin{itemize}
+    \item Comunicación con el Servicio Web FPGA
+  \end{itemize}
   \begin{figure}
     \includegraphics[width=\linewidth]{proxy}
   \end{figure}
@@ -97,6 +104,9 @@
 \end{frame}
 
 \begin{frame}{Front-End - Diseño - Estado}
+  \begin{itemize}
+    \item Diseño \textit{responsive} - adaptado a cada dispositivo
+  \end{itemize}
   \begin{figure}
     \includegraphics[width=0.3\linewidth]{estado_movil}
   \end{figure}
