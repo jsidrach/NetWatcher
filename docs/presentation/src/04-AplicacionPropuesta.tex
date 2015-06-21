@@ -2,8 +2,18 @@
 
 % Arquitectura General
 \begin{frame}{Arquitectura General}
+  Separación física y lógica entre Front-End y Back-End
+  \begin{itemize}
+    \item Conectados entre sí por una red interna
+  \end{itemize}
+  Ventajas
+  \begin{itemize}
+    \item Un mismo Front-End puede comunicarse con varios Back-End
+    \item Back-End aislado, no accesible directamente desde el exterior
+    \item Interfaz disponible aun cuando el Back-End no está operativo
+  \end{itemize}
   \begin{figure}
-    \includegraphics[width=0.9\linewidth]{arquitectura}
+    \includegraphics[width=0.5\linewidth]{arquitectura}
   \end{figure}
 \end{frame}
 
@@ -65,8 +75,10 @@
 
 % Front-End
 \begin{frame}{Front-End - Framework - Arquitectura interna}
+  Framework propio
   \begin{itemize}
-    \item Framework propio - únicamente la funcionalidad necesaria
+    \item Únicamente la funcionalidad necesaria
+    \item Mayor control sobre el funcionamiento interno del mismo
   \end{itemize}
   \begin{figure}
     \includegraphics[width=\linewidth]{framework}

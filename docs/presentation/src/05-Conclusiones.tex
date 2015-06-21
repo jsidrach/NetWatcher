@@ -5,30 +5,41 @@
     \item Gestión del sistema completo mediante una interfaz web
     \begin{itemize}
       \item Control de la FPGA de forma intuitiva
-      \item Administración de las trazas
     \end{itemize}
     \item Trabajo extensible a otras sondas de red
     \begin{itemize}
       \item Arquitectura base
       \item Módulos independientes del modelo de sonda
+      \begin{itemize}
+        \item Clasificación y conversión de trazas
+        \item Almacenamiento
+        \item Velocidad del disco
+        \item Estado global del sistema
+      \end{itemize}
     \end{itemize}
+    \item Se registra el uso tanto del Back-End como del Front-End
+    \item Se cumplen todos los objetivos propuestos
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Contribuciones}
   \begin{itemize}
-    \item Proyecto disponible en GitHub
-    \begin{itemize}
-      \item Liberado bajo licencia MIT
-      \item Documentación extensiva
-    \end{itemize}
     \item Proyecto europeo de federación Fed4FIRE
     \begin{itemize}
-      \item Integración con el testbed de la FPGA
+      \item Desarrollado de forma paralela al TFG
+      \item Back-End utilizado en la integración del testbed de la FPGA
+      \begin{itemize}
+        \item Permite exponer la funcionalidad de la sonda de red sin que el usuario tenga acceso al servidor al que está conectada
+      \end{itemize}
     \end{itemize}
     \item The Open Source Network Tester
     \begin{itemize}
       \item Posible incorporación de la interfaz desarrollada
+    \end{itemize}
+    \item Proyecto disponible en GitHub
+    \begin{itemize}
+      \item Liberado bajo licencia MIT
+      \item Documentación extensiva
     \end{itemize}
   \end{itemize}
 \end{frame}
