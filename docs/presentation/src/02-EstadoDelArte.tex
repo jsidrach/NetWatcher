@@ -4,20 +4,21 @@
 \begin{frame}{The Open Source Network Tester}
   \begin{itemize}
     \item Sistema de captura y reproducción de código abierto
-    \item Basado en una FPGA del mismo modelo que la empleada en este TFG
+    \item Utiliza una FPGA del mismo modelo que este TFG
     \item Gestionada desde una interfaz sobre el propio servidor
     \item Se han identificado algunos aspectos mejorables
-    \item El rendimiento puede verse limitado por la velocidad del disco
     \begin{itemize}
-      \item Provee información exclusivamente de la FPGA
-      \item Interfaz poco intuitiva
+      \item Provee información exlusivamente de la FPGA
+      \item Rendimiento puede estar limitado por la velocidad del disco
+      \begin{itemize}
+        \item No alerta al usuario de ello
+      \end{itemize}
       \item Se maneja desde el propio servidor
-    \end{itemize}
-    \item Otras aplicaciones consideradas
-    \begin{itemize}
-      \item tcpdump/libpcap
-      \item Wireshark
-      \item Detect-Pro
+      \begin{itemize}
+        \item No es accesible por terceros sin ceder el uso completo de la máquina
+        \item Problema si se satura y la interfaz deja de responder
+      \end{itemize}
+      \item No resuelve la conversión entre formatos de trazas
     \end{itemize}
   \end{itemize}
 \end{frame}
