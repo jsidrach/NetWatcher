@@ -71,4 +71,4 @@ NetWatcher's web interface documentation is built with [phpDocumentor](https://w
 
 Bugs and feature requests
 ----
-New features can be requested opening a GitHub Issue. If you have found a bug and you have a *tested* fix for it, feel encouraged to submit a pull request.
+No new features are going to be added (project has finished). However, if you have found a bug and you have a *tested* fix for it, feel encouraged to submit a pull request.
