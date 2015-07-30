@@ -32,7 +32,7 @@ exports.logTimestamped.displayName = prettyName(__filename, 'logTimestamped');
 // debug messages will only appear if DEBUG_ON is true
 function logDebug(msg) {
   if (DEBUG_ON) {
-    logTimestamped(msg, 'DEBUG');
+    logTimestamped(logDebug.caller.displayName + ' ' + msg, 'DEBUG');
   }
 };
 exports.logDebug = logDebug;
@@ -40,20 +40,21 @@ exports.logDebug.displayName = prettyName(__filename, 'logDebug');
 
 // rewrite console.log to write to stdout
 function log(msg) {
-  logTimestamped(msg, 'INFO');
+  logTimestamped(logDebug.caller.displayName + ' ' + msg, 'INFO');
 };
 exports.log = log;
 exports.log.displayName = prettyName(__filename, 'log');
 
 // rewrite console.error to write to stdout
 function logError(msg) {
-  logTimestamped(msg, 'ERROR');
+  logTimestamped(logDebug.caller.displayName + ' ' + msg, 'ERROR');
 };
 exports.logError = logError;
 exports.logError.displayName = prettyName(__filename, 'logError');
 
 // Checks the timestamp and discard not valid requests
 function handleRequest(req, res, next) {
+  logDebug('');
   if (!validTimestamp(req)) {
     process.nextTick(function() {
       res.sendStatus(408);
@@ -69,6 +70,7 @@ exports.handleRequest.displayName = prettyName(__filename, 'handleRequest');
 
 // Reads a json in the messages folder
 function readJSON(file, callback) {
+  logDebug('');
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
   fs.readFile(filePath, 'utf8', function(err, data) {
     var obj;
@@ -88,6 +90,7 @@ exports.readJSON.displayName = prettyName(__filename, 'readJSON');
 
 // Sends a json as a response
 function sendJSON(file, res, code) {
+  logDebug('');
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
   fs.readFile(filePath, 'utf8', function(err, data) {
     var obj;
@@ -107,6 +110,7 @@ exports.sendJSON.displayName = prettyName(__filename, 'sendJSON');
 
 // Sends a jsonp as a response
 function sendJSONP(file, res, code) {
+  logDebug('');
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
   fs.readFile(filePath, 'utf8', function(err, data) {
     var obj;
@@ -126,6 +130,7 @@ exports.sendJSONP.displayName = prettyName(__filename, 'sendJSONP');
 
 // Parses an etime string to the number of seconds it represents
 function etime2seconds(etime) {
+  logDebug('');
   // The format for etime is [[dd-]hh:]mm:ss
   var parts = etime.trim().split(':');
   var parts_length = parts.length;
@@ -145,6 +150,7 @@ exports.etime2seconds.displayName = prettyName(__filename, 'etime2seconds');
 
 // Parses a mtime into a string
 function mtime2string(mtime) {
+  logDebug('');
   return mtime.toISOString().replace('T', ' ').substr(0, 19);
 };
 exports.mtime2string = mtime2string;
@@ -152,6 +158,7 @@ exports.mtime2string.displayName = prettyName(__filename, 'mtime2string');
 
 // Gets the delay (in seconds) between the petition timestamp and the petition
 function getDelay(req) {
+  logDebug('');
   if (typeof req.headers.timestamp === 'undefined') {
     return false;
   }
