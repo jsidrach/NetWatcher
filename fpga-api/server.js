@@ -1,3 +1,5 @@
+// Common module
+var common = require('./routes/_common.js');
 // Cluster module
 var cluster = require('cluster');
 
@@ -14,7 +16,7 @@ if (cluster.isMaster) {
   // Listen for dying workers
   cluster.on('exit', function(worker) {
     // Replace the dead worker
-    console.log('Replacing worker (id: ' + worker.id + ')');
+    common.log('Replacing worker (id: ' + worker.id + ')');
     cluster.fork();
   });
   return;
@@ -29,8 +31,6 @@ var app = express();
 
 // Config module
 var config = require('./config.js');
-// Common module
-var common = require('./routes/_common.js');
 // Functions module for each petition
 var manager = require('./routes/manager.js');
 var statistics = require('./routes/statistics.js');
@@ -110,7 +110,7 @@ defError.get('*', function(req, res) {
 
 // All of our correct routes will be prefixed with /fpga/api
 app.use(config.BASE_PREFIX, router)
-  // Other routes will return 404 - Not Found 
+  // Other routes will return 404 - Not Found
 app.use('/', defError);
 
 // Start the server

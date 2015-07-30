@@ -13,6 +13,7 @@ var common = require('./_common.js');
 
 // Gets an array of captures info from the CAPTURES_DIR
 function dataCaptures(simple, pcap, res) {
+  common.logDebug('');
   // Validator callback
   var validator;
   if (simple && pcap) {
@@ -61,9 +62,11 @@ function dataCaptures(simple, pcap, res) {
   });
 };
 exports.dataCaptures = dataCaptures;
+exports.dataCaptures.displayName = common.prettyName(__filename, 'dataCaptures');
 
 // Checks if a new name is available and valid
 function validNewName(name, callback) {
+  common.logDebug('');
   // Valid name
   if (!validName(name)) {
     process.nextTick(function() {
@@ -77,9 +80,11 @@ function validNewName(name, callback) {
   });
 };
 exports.validNewName = validNewName;
+exports.validNewName.displayName = common.prettyName(__filename, 'validNewName');
 
 // Checks if a capture has a valid simple format
 function validSimpleCapture(name, callback) {
+  common.logDebug('');
   // TODO: Use something different (testSimple?) to determine if its a valid simple capture with the #packets at the end
   if (!validName(name)) {
     process.nextTick(function() {
@@ -91,6 +96,7 @@ function validSimpleCapture(name, callback) {
   var buff = new Buffer([0x00, 0x00]);
   fs.open(config.CAPTURES_DIR + name, 'r', function(err, fd) {
     if (err) {
+      common.logDebug('error opening "' + config.CAPTURES_DIR + name + '"');
       callback(false);
     } else {
       fs.read(fd, buff, 0, 2, 2, function(error, bytes, buffer) {
@@ -105,9 +111,11 @@ function validSimpleCapture(name, callback) {
   });
 };
 exports.validSimpleCapture = validSimpleCapture;
+exports.validSimpleCapture.displayName = common.prettyName(__filename, 'validSimpleCapture');
 
 // Checks if a capture has a valid pcap format
 function validPcapCapture(name, callback) {
+  common.logDebug('');
   if (!validName(name)) {
     process.nextTick(function() {
       callback(false);
@@ -127,9 +135,11 @@ function validPcapCapture(name, callback) {
   });
 };
 exports.validPcapCapture = validPcapCapture;
+exports.validPcapCapture.displayName = common.prettyName(__filename, 'validPcapCapture');
 
 // Checks if a capture exists with a given name (full name)
 function validCapture(name, callback) {
+  common.logDebug('');
   validSimpleCapture(name, function(validSimple) {
     if (validSimple) {
       callback(true);
@@ -141,9 +151,11 @@ function validCapture(name, callback) {
   });
 };
 exports.validCapture = validCapture;
+exports.validCapture.displayName = common.prettyName(__filename, 'validCapture');
 
 // Checks if a capture is in use
 function inUse(name, callback) {
+  common.logDebug('');
   var capturePath = path.normalize(config.CAPTURES_DIR + name);
   var command = 'sudo lsof "' + capturePath + '"';
   scripts.exec(command).on('exit', function(code) {
@@ -151,6 +163,7 @@ function inUse(name, callback) {
   });
 };
 exports.inUse = inUse;
+exports.inUse.displayName = common.prettyName(__filename, 'inUse');
 
 
 // Internal functions
