@@ -8,12 +8,27 @@ if [ "$#" -ne 4 ]; then
     exit 1;
 fi
 
+# http://www.cyberciti.biz/tips/shell-root-user-check-script.html
+# Make sure only root can run our script
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 if [ "$3" = "0" ]
 then
-  sudo ./bin/writeControl -i ${2} -l ${1} -r &&
-  sudo ./bin/host2card ${4}
+  ./bin/writeControl -i ${2} -l ${1} -r &&
+  ./bin/host2card ${4}
 else
-  sudo ./bin/writeControl -i ${2} -l ${1} -r &&
-  sudo ./bin/host2card ${4} -n -1
+  ./bin/writeControl -i ${2} -l ${1} -r &&
+  ./bin/host2card ${4} -n -1
 fi
+
 sleep 5
+status=$?
+
+sleep 5
+
+# Reset FPGA
+./bin/writeControl -r
+exit $status
