@@ -5,8 +5,38 @@ var fs = require('fs');
 var path = require('path');
 var config = require('../config.js');
 
+// logging utilities
+var util = require('util');
+var log_stdout = process.stdout;
 
 // Module exports
+
+// Enables debugging messages
+var DEBUG_ON = true;
+
+function logTimestamped(msg, type) {
+  log_stdout.write('[' + new Date().toISOString() + '] ' + type + ': ' + util.format(msg) + '\n');
+};
+
+// debug messages will only appear if DEBUG_ON is true
+function logDebug(msg) {
+  if (DEBUG_ON) {
+    logTimestamped(msg, 'DEBUG');
+  }
+};
+exports.logDebug = logDebug;
+
+// rewrite console.log to write to stdout
+function log(msg) {
+  logTimestamped(msg, 'INFO');
+};
+exports.log = log;
+
+// rewrite console.error to write to stdout
+function logError(msg) {
+  logTimestamped(msg, 'ERROR');
+};
+exports.logError = logError;
 
 // Checks the timestamp and discard not valid requests
 function handleRequest(req, res, next) {
@@ -21,13 +51,6 @@ function handleRequest(req, res, next) {
   }
 };
 exports.handleRequest = handleRequest;
-
-// Logs an error with a date
-function logError(string) {
-  var logHeader = '[' + new Date().toUTCString() + ']: ';
-  console.error(logHeader + string);
-};
-exports.logError = logError;
 
 // Reads a json in the messages folder
 function readJSON(file, callback) {
