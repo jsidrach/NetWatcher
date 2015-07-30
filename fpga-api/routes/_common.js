@@ -38,6 +38,16 @@ function logDebug(msg) {
 exports.logDebug = logDebug;
 exports.logDebug.displayName = prettyName(__filename, 'logDebug');
 
+// debug messages will only appear if DEBUG_ON is true
+// use this version in anonymous callbacks
+function logDebug2(msg) {
+  if (DEBUG_ON) {
+    logTimestamped(msg, 'DEBUG');
+  }
+};
+exports.logDebug2 = logDebug2;
+exports.logDebug2.displayName = prettyName(__filename, 'logDebug2');
+
 // log to stdout
 function log(msg) {
   logTimestamped(logDebug.caller.displayName + ' ' + msg, 'INFO');

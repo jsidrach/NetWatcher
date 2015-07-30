@@ -59,9 +59,10 @@ exports.rename = function(req, res) {
   common.logDebug('');
   // Valid params
   captures_utils.validNewName(req.params.newname, function(valid) {
+    common.logDebug2('executing callback');
     if (!valid) {
       common.sendJSON('captures_rename_error', res, 400);
-      console.log('asd1');
+      common.logDebug2('not valid name');
       return;
     }
     captures_utils.validCapture(req.params.oldname, function(validCpt) {
@@ -72,7 +73,7 @@ exports.rename = function(req, res) {
       // Check if it is being used
       captures_utils.inUse(req.params.oldname, function(flag) {
         if (flag) {
-      console.log('asd3');
+          common.logDebug2('FPGA is busy');
           return;
         }
         // Rename
