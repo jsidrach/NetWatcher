@@ -167,7 +167,7 @@ exports.startPlaying.displayName = common.prettyName(__filename, 'startPlaying')
 // Stops the player (in loop)
 function stopLoopPlayer(req, res) {
   common.logDebug('');
-  scripts.exec('sudo pkill -SIGINT launchPlayer; sudo pkill -SIGINT host2card').on('exit', function(code) {
+  scripts.exec('sudo pkill -SIGINT launchPlayer; sudo pkill -SIGINT host2card; pkill -SIGTSTP host2card; pkill -SIGCONT host2card').on('exit', function(code) {
     statistics_utils.runningFPGA(false, function(isRunning) {
       // Recursion
       if (isRunning) {
@@ -186,7 +186,7 @@ exports.stopLoopPlayer.displayName = common.prettyName(__filename, 'stopLoopPlay
 // Stops the recorder (in loop)
 function stopLoopRecorder(req, res, capturename) {
   common.logDebug('');
-  scripts.exec('sudo pkill -SIGINT launchRecorder; sudo pkill -SIGINT card2host').on('exit', function(code) {
+  scripts.exec('sudo pkill -SIGINT launchRecorder; sudo pkill -SIGINT card2host; pkill -SIGTSTP card2host; pkill -SIGCONT card2host').on('exit', function(code) {
     statistics_utils.runningFPGA(true, function(isRunning) {
       // Recursion
       if (isRunning) {
