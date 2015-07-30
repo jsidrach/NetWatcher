@@ -38,14 +38,14 @@ function logDebug(msg) {
 exports.logDebug = logDebug;
 exports.logDebug.displayName = prettyName(__filename, 'logDebug');
 
-// rewrite console.log to write to stdout
+// log to stdout
 function log(msg) {
   logTimestamped(logDebug.caller.displayName + ' ' + msg, 'INFO');
 };
 exports.log = log;
 exports.log.displayName = prettyName(__filename, 'log');
 
-// rewrite console.error to write to stdout
+// log errors to stdout
 function logError(msg) {
   logTimestamped(logDebug.caller.displayName + ' ' + msg, 'ERROR');
 };
