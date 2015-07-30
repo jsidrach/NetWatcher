@@ -25,3 +25,8 @@ else
 fi
 
 sleep 5
+status=$?
+
+sleep 5
+
+exit $status
