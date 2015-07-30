@@ -1,6 +1,6 @@
 // Manager module
 
-// Package dependencies) 
+// Package dependencies)
 var scripts = require('child_process');
 var async = require('async');
 var config = require('../config.js');
@@ -15,6 +15,7 @@ var manager_utils = require('./manager_utils.js');
 // /system/reboot
 // Reboots the system
 exports.reboot = function(req, res) {
+  common.logDebug('');
   // Check the FPGA is not running
   statistics_utils.runningAny(function(isRunning) {
     if (isRunning) {
@@ -33,46 +34,60 @@ exports.reboot = function(req, res) {
     });
   });
 };
+exports.reboot.displayName = common.prettyName(__filename, 'reboot');
 
 // /player/init
 // Programs the FPGA as a player and reboots the system
 exports.initPlayer = function(req, res) {
+  common.logDebug('');
   manager_utils.initFPGA(req, res, false);
 };
+exports.initPlayer.displayName = common.prettyName(__filename, 'initPlayer');
 
 // /recorder/init
 // Programs the FPGA as a recorder and reboots the system
 exports.initRecorder = function(req, res) {
+  common.logDebug('');
   manager_utils.initFPGA(req, res, true);
 };
+exports.initRecorder.displayName = common.prettyName(__filename, 'initRecorder');
 
 // /player/install
 // Installs the driver and mounts the FPGA as a player
 exports.installPlayer = function(req, res) {
+  common.logDebug('');
   manager_utils.installFPGA(req, res, false);
 };
+exports.installPlayer.displayName = common.prettyName(__filename, 'installPlayer');
 
 // /recorder/install
 // Installs the driver and mounts the FPGA as a recorder
 exports.installRecorder = function(req, res) {
+  common.logDebug('');
   manager_utils.installFPGA(req, res, true);
 };
+exports.installRecorder.displayName = common.prettyName(__filename, 'installRecorder');
 
 // /player/start/:capturename/:mask/:ifg
 // Reproduces a capture
 exports.startPlayer = function(req, res) {
+  common.logDebug('');
   manager_utils.startPlaying(req, res, false);
 };
+exports.startPlayer.displayName = common.prettyName(__filename, 'startPlayer');
 
 // /player/start/loop/:capturename/:mask/:ifg
 // Reproduces a capture in loop
 exports.startPlayerLoop = function(req, res) {
+  common.logDebug('');
   manager_utils.startPlaying(req, res, true);
 };
+exports.startPlayerLoop.displayName = common.prettyName(__filename, 'startPlayerLoop');
 
 // /recorder/start/:capturename/:port/:bytes
 // Records a capture
 exports.startRecorder = function(req, res) {
+  common.logDebug('');
   statistics_utils.modeFPGA(5, function(ans) {
     // FPGA must be programmed as a recorder
     if (ans != 'recorder') {
@@ -128,10 +143,12 @@ exports.startRecorder = function(req, res) {
     });
   });
 };
+exports.startRecorder.displayName = common.prettyName(__filename, 'startRecorder');
 
 // /player/stop
 // Stops the player
 exports.stopPlayer = function(req, res) {
+  common.logDebug('');
   statistics_utils.runningFPGA(false, function(isRunning) {
     // Error if the player is not running
     if (!isRunning) {
@@ -145,10 +162,12 @@ exports.stopPlayer = function(req, res) {
     manager_utils.stopLoopPlayer(req, res);
   });
 };
+exports.stopPlayer.displayName = common.prettyName(__filename, 'stopPlayer');
 
 // /recorder/stop
 // Stops the recorder
 exports.stopRecorder = function(req, res) {
+  common.logDebug('');
   statistics_utils.runningFPGA(true, function(isRunning) {
     // Error if the recorder is not running
     if (!isRunning) {
@@ -168,10 +187,12 @@ exports.stopRecorder = function(req, res) {
     });
   });
 };
+exports.stopRecorder.displayName = common.prettyName(__filename, 'stopRecorder');
 
 // /storage/raid
 // Deletes (format and reset) the storage raid
 exports.deleteRaid = function(req, res) {
+  common.logDebug('');
   // Do not allow to reset the raid if RAID flag is not set or the FPGA is running
   if (!config.RAID) {
     common.sendJSON('raid_delete_error', res, 412);
@@ -234,3 +255,4 @@ exports.deleteRaid = function(req, res) {
     }
   );
 };
+exports.deleteRaid.displayName = common.prettyName(__filename, 'deleteRaid');

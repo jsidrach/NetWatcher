@@ -11,13 +11,16 @@ var statistics_utils = require('./statistics_utils.js');
 
 // /ping
 // Simple ping
-exports.ping = function (req, res) {
+exports.ping = function(req, res) {
+  common.logDebug('');
   common.sendJSON('statistics_ping', res, 200);
 };
+exports.ping.displayName = prettyName(__filename, 'ping');
 
 // /delay
 // Seconds of delay between the client and the server (of timestamps)
-exports.delay = function (req, res) {
+exports.delay = function(req, res) {
+  common.logDebug('');
   var delay = common.getDelay(req);
   if (delay === false) {
     res.sendStatus(400);
@@ -29,10 +32,12 @@ exports.delay = function (req, res) {
     });
   }
 };
+exports.delay.displayName = prettyName(__filename, 'delay');
 
 // /status
 // Status of the FPGA
-exports.status = function (req, res) {
+exports.status = function(req, res) {
+  common.logDebug('');
   // Finite State Machine. Every transition to a new status (state) is checked with a callback test function
   statistics_utils.nextCallback(res, [
     statistics_utils.hugePagesOn,
@@ -41,10 +46,12 @@ exports.status = function (req, res) {
     statistics_utils.statusFPGA
   ]);
 };
+exports.status.displayName = prettyName(__filename, 'status');
 
 // /storage/stats
 // Statistics of the storage
-exports.storageStats = function (req, res) {
+exports.storageStats = function(req, res) {
+  common.logDebug('');
   common.readJSON('storage_stats', function (ans) {
     var command = 'df "' + config.CAPTURES_DIR + '" | tail -n1 | awk \'{print $2" "$3}\'';
     scripts.exec(command, function (error, stdout, stderr) {
@@ -81,3 +88,4 @@ exports.storageStats = function (req, res) {
     });
   });
 };
+exports.storageStats.displayName = prettyName(__filename, 'storageStats');
