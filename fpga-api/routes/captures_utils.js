@@ -11,7 +11,7 @@ var common = require('./_common.js');
 
 // Module exports
 
-// Gets an array of captures info from the CAPTURES_DIR 
+// Gets an array of captures info from the CAPTURES_DIR
 function dataCaptures(simple, pcap, res) {
   // Validator callback
   var validator;
@@ -23,7 +23,7 @@ function dataCaptures(simple, pcap, res) {
     validator = validPcapCapture;
   }
 
-  // Gets all the files in the CAPTURES_DIR 
+  // Gets all the files in the CAPTURES_DIR
   fs.readdir(config.CAPTURES_DIR, function(err, files) {
     if (err) {
       common.logError(err);
@@ -92,15 +92,16 @@ function validSimpleCapture(name, callback) {
   fs.open(config.CAPTURES_DIR + name, 'r', function(err, fd) {
     if (err) {
       callback(false);
+    } else {
+      fs.read(fd, buff, 0, 2, 2, function(error, bytes, buffer) {
+        fs.close(fd);
+        if (bytes != magicNumber.length) {
+          callback(false);
+        } else {
+          callback((magicNumber[0] == buffer[0]) && (magicNumber[1] == buffer[1]));
+        }
+      });
     }
-    fs.read(fd, buff, 0, 2, 2, function(error, bytes, buffer) {
-      fs.close(fd);
-      if (bytes != magicNumber.length) {
-        callback(false);
-      } else {
-        callback((magicNumber[0] == buffer[0]) && (magicNumber[1] == buffer[1]));
-      }
-    });
   });
 };
 exports.validSimpleCapture = validSimpleCapture;
