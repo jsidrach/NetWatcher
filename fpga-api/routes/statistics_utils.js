@@ -26,6 +26,7 @@ function nextCallback(res, callbackList) {
   }
 };
 exports.nextCallback = nextCallback;
+exports.nextCallback.displayName = common.prettyName(__filename, 'nextCallback');
 
 // HugePages active
 function hugePagesOn(res, callbackList) {
@@ -40,6 +41,7 @@ function hugePagesOn(res, callbackList) {
   });
 };
 exports.hugePagesOn = hugePagesOn;
+exports.hugePagesOn.displayName = common.prettyName(__filename, 'hugePagesOn');
 
 // FPGA initialized checker
 function initializedFPGA(res, callbackList) {
@@ -54,6 +56,7 @@ function initializedFPGA(res, callbackList) {
   });
 };
 exports.initializedFPGA = initializedFPGA;
+exports.initializedFPGA.displayName = common.prettyName(__filename, 'initializedFPGA');
 
 // FPGA mounted checker
 function mountedFPGA(res, callbackList) {
@@ -68,6 +71,7 @@ function mountedFPGA(res, callbackList) {
   });
 };
 exports.mountedFPGA = mountedFPGA;
+exports.mountedFPGA.displayName = common.prettyName(__filename, 'mountedFPGA');
 
 // Status of the FPGA (after being mounted)
 function statusFPGA(res, callbackList) {
@@ -118,6 +122,7 @@ function statusFPGA(res, callbackList) {
   });
 };
 exports.statusFPGA = statusFPGA;
+exports.statusFPGA.displayName = common.prettyName(__filename, 'statusFPGA');
 
 // Gets the mode of the FPGA (player/recorder/error)
 function modeFPGA(tries, callback) {
@@ -143,6 +148,7 @@ function modeFPGA(tries, callback) {
   });
 };
 exports.modeFPGA = modeFPGA;
+exports.modeFPGA.displayName = common.prettyName(__filename, 'modeFPGA');
 
 // Gets a boolean value that represents if the FPGA is running in a specific mode (true: yes, false: no)
 function runningFPGA(recorder, callback) {
@@ -152,6 +158,7 @@ function runningFPGA(recorder, callback) {
   });
 };
 exports.runningFPGA = runningFPGA;
+exports.runningFPGA.displayName = common.prettyName(__filename, 'runningFPGA');
 
 // Gets a boolean value that represents if the FPGA is running in any mode
 function runningAny(callback) {
@@ -161,6 +168,7 @@ function runningAny(callback) {
   });
 };
 exports.runningAny = runningAny;
+exports.runningAny.displayName = common.prettyName(__filename, 'runningAny');
 
 // Gets the current recording info
 function getDataRecording(callback) {
@@ -201,6 +209,7 @@ function getDataRecording(callback) {
   });
 };
 exports.getDataRecording = getDataRecording;
+exports.getDataRecording.displayName = common.prettyName(__filename, 'getDataRecording');
 
 // Gets the current playing info
 function getDataPlaying(callback) {
@@ -243,6 +252,7 @@ function getDataPlaying(callback) {
   });
 };
 exports.getDataPlaying = getDataPlaying;
+exports.getDataPlaying.displayName = common.prettyName(__filename, 'getDataPlaying');
 
 // Get raid statistics
 function getRaidStats(res, ans) {
@@ -283,3 +293,4 @@ function getRaidStats(res, ans) {
   });
 };
 exports.getRaidStats = getRaidStats;
+exports.getRaidStats.displayName = common.prettyName(__filename, 'getRaidStats');

@@ -16,18 +16,21 @@ var captures_utils = require('./captures_utils.js');
 exports.all = function(req, res) {
   captures_utils.dataCaptures(true, true, res);
 };
+exports.all.displayName = common.prettyName(__filename, 'all');
 
 // /captures/simple
-// Gets the simple captures in the CAPTURES_DIR 
+// Gets the simple captures in the CAPTURES_DIR
 exports.simple = function(req, res) {
   captures_utils.dataCaptures(true, false, res);
 };
+exports.simple.displayName = common.prettyName(__filename, 'simple');
 
 // /captures/pcap
-// Gets the pcap captures in the CAPTURES_DIR 
+// Gets the pcap captures in the CAPTURES_DIR
 exports.pcap = function(req, res) {
   captures_utils.dataCaptures(false, true, res);
 };
+exports.pcap.displayName = common.prettyName(__filename, 'pcap');
 
 // /captures/path
 // Gets the path where the captures are stored
@@ -44,6 +47,7 @@ exports.path = function(req, res) {
     res.status(200).json(ans);
   });
 };
+exports.path.displayName = common.prettyName(__filename, 'path');
 
 // /captures/rename/:oldname/:newname
 // Renames a capture in the CAPTURES_DIR
@@ -79,6 +83,7 @@ exports.rename = function(req, res) {
     });
   });
 };
+exports.rename.displayName = common.prettyName(__filename, 'rename');
 
 // /captures/simple/pcap/:name/:convertedname
 // Coverts a capture from simple to pcap
@@ -108,6 +113,7 @@ exports.convertToPcap = function(req, res) {
     });
   });
 };
+exports.convertToPcap.displayName = common.prettyName(__filename, 'convertToPcap');
 
 // /captures/pcap/simple/:name/:convertedname
 // Converts a capture from pcap to simple
@@ -139,6 +145,7 @@ exports.convertToSimple = function(req, res) {
     });
   });
 };
+exports.convertToSimple.displayName = common.prettyName(__filename, 'convertToSimple');
 
 // /captures/delete/:name
 // Deletes a capture in the CAPTURES_DIR
@@ -168,3 +175,4 @@ exports.delete = function(req, res) {
     }
   });
 };
+exports.delete.displayName = common.prettyName(__filename, 'delete');

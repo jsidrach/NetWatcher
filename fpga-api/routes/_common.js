@@ -11,12 +11,23 @@ var log_stdout = process.stdout;
 
 // Module exports
 
+// sources: http://stackoverflow.com/a/16713639
+// http://stackoverflow.com/questions/8128894/remove-prefix-from-a-list-of-strings
+function prettyName(path, funcName) {
+  // strips the CWD prefix to the file path and add the function name as a suffix
+  return path.replace(process.cwd() + '/', '') + ':' + funcName + '()';
+};
+exports.prettyName = prettyName;
+exports.prettyName.displayName = prettyName(__filename, 'prettyName');
+
 // Enables debugging messages
 var DEBUG_ON = true;
 
 function logTimestamped(msg, type) {
   log_stdout.write('[' + new Date().toISOString() + '] ' + type + ': ' + util.format(msg) + '\n');
 };
+exports.logTimestamped = logTimestamped;
+exports.logTimestamped.displayName = prettyName(__filename, 'logTimestamped');
 
 // debug messages will only appear if DEBUG_ON is true
 function logDebug(msg) {
@@ -25,18 +36,21 @@ function logDebug(msg) {
   }
 };
 exports.logDebug = logDebug;
+exports.logDebug.displayName = prettyName(__filename, 'logDebug');
 
 // rewrite console.log to write to stdout
 function log(msg) {
   logTimestamped(msg, 'INFO');
 };
 exports.log = log;
+exports.log.displayName = prettyName(__filename, 'log');
 
 // rewrite console.error to write to stdout
 function logError(msg) {
   logTimestamped(msg, 'ERROR');
 };
 exports.logError = logError;
+exports.logError.displayName = prettyName(__filename, 'logError');
 
 // Checks the timestamp and discard not valid requests
 function handleRequest(req, res, next) {
@@ -51,6 +65,7 @@ function handleRequest(req, res, next) {
   }
 };
 exports.handleRequest = handleRequest;
+exports.handleRequest.displayName = prettyName(__filename, 'handleRequest');
 
 // Reads a json in the messages folder
 function readJSON(file, callback) {
@@ -69,6 +84,7 @@ function readJSON(file, callback) {
   });
 };
 exports.readJSON = readJSON;
+exports.readJSON.displayName = prettyName(__filename, 'readJSON');
 
 // Sends a json as a response
 function sendJSON(file, res, code) {
@@ -87,6 +103,7 @@ function sendJSON(file, res, code) {
   });
 };
 exports.sendJSON = sendJSON;
+exports.sendJSON.displayName = prettyName(__filename, 'sendJSON');
 
 // Sends a jsonp as a response
 function sendJSONP(file, res, code) {
@@ -105,6 +122,7 @@ function sendJSONP(file, res, code) {
   });
 };
 exports.sendJSONP = sendJSONP;
+exports.sendJSONP.displayName = prettyName(__filename, 'sendJSONP');
 
 // Parses an etime string to the number of seconds it represents
 function etime2seconds(etime) {
@@ -123,12 +141,14 @@ function etime2seconds(etime) {
   }
 };
 exports.etime2seconds = etime2seconds;
+exports.etime2seconds.displayName = prettyName(__filename, 'etime2seconds');
 
 // Parses a mtime into a string
 function mtime2string(mtime) {
   return mtime.toISOString().replace('T', ' ').substr(0, 19);
 };
 exports.mtime2string = mtime2string;
+exports.mtime2string.displayName = prettyName(__filename, 'mtime2string');
 
 // Gets the delay (in seconds) between the petition timestamp and the petition
 function getDelay(req) {
@@ -149,6 +169,7 @@ function getDelay(req) {
   return delay;
 };
 exports.getDelay = getDelay;
+exports.getDelay.displayName = prettyName(__filename, 'getDelay');
 
 
 

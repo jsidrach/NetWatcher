@@ -48,6 +48,7 @@ function initFPGA(req, res, recorder) {
   });
 };
 exports.initFPGA = initFPGA;
+exports.initFPGA.displayName = common.prettyName(__filename, 'initFPGA');
 
 // Mounts the FPGA
 function installFPGA(req, res, recorder) {
@@ -98,6 +99,7 @@ function installFPGA(req, res, recorder) {
   });
 };
 exports.installFPGA = installFPGA;
+exports.installFPGA.displayName = common.prettyName(__filename, 'installFPGA');
 
 // Starts the player
 function startPlaying(req, res, loop) {
@@ -157,6 +159,7 @@ function startPlaying(req, res, loop) {
   });
 };
 exports.startPlaying = startPlaying;
+exports.startPlaying.displayName = common.prettyName(__filename, 'startPlaying');
 
 // Stops the player (in loop)
 function stopLoopPlayer(req, res) {
@@ -174,6 +177,7 @@ function stopLoopPlayer(req, res) {
   });
 };
 exports.stopLoopPlayer = stopLoopPlayer;
+exports.stopLoopPlayer.displayName = common.prettyName(__filename, 'stopLoopPlayer');
 
 // Stops the recorder (in loop)
 function stopLoopRecorder(req, res, capturename) {
@@ -193,6 +197,7 @@ function stopLoopRecorder(req, res, capturename) {
   });
 };
 exports.stopLoopRecorder = stopLoopRecorder;
+exports.stopLoopRecorder.displayName = common.prettyName(__filename, 'stopLoopRecorder');
 
 
 

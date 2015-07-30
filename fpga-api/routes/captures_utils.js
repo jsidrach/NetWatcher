@@ -11,7 +11,7 @@ var common = require('./_common.js');
 
 // Module exports
 
-// Gets an array of captures info from the CAPTURES_DIR 
+// Gets an array of captures info from the CAPTURES_DIR
 function dataCaptures(simple, pcap, res) {
   // Validator callback
   var validator;
@@ -23,7 +23,7 @@ function dataCaptures(simple, pcap, res) {
     validator = validPcapCapture;
   }
 
-  // Gets all the files in the CAPTURES_DIR 
+  // Gets all the files in the CAPTURES_DIR
   fs.readdir(config.CAPTURES_DIR, function(err, files) {
     if (err) {
       common.logError(err);
@@ -61,6 +61,7 @@ function dataCaptures(simple, pcap, res) {
   });
 };
 exports.dataCaptures = dataCaptures;
+exports.dataCaptures.displayName = common.prettyName(__filename, 'dataCaptures');
 
 // Checks if a new name is available and valid
 function validNewName(name, callback) {
@@ -77,6 +78,7 @@ function validNewName(name, callback) {
   });
 };
 exports.validNewName = validNewName;
+exports.validNewName.displayName = common.prettyName(__filename, 'validNewName');
 
 // Checks if a capture has a valid simple format
 function validSimpleCapture(name, callback) {
@@ -104,6 +106,7 @@ function validSimpleCapture(name, callback) {
   });
 };
 exports.validSimpleCapture = validSimpleCapture;
+exports.validSimpleCapture.displayName = common.prettyName(__filename, 'validSimpleCapture');
 
 // Checks if a capture has a valid pcap format
 function validPcapCapture(name, callback) {
@@ -126,6 +129,7 @@ function validPcapCapture(name, callback) {
   });
 };
 exports.validPcapCapture = validPcapCapture;
+exports.validPcapCapture.displayName = common.prettyName(__filename, 'validPcapCapture');
 
 // Checks if a capture exists with a given name (full name)
 function validCapture(name, callback) {
@@ -140,6 +144,7 @@ function validCapture(name, callback) {
   });
 };
 exports.validCapture = validCapture;
+exports.validCapture.displayName = common.prettyName(__filename, 'validCapture');
 
 // Checks if a capture is in use
 function inUse(name, callback) {
@@ -150,6 +155,7 @@ function inUse(name, callback) {
   });
 };
 exports.inUse = inUse;
+exports.inUse.displayName = common.prettyName(__filename, 'inUse');
 
 
 // Internal functions
