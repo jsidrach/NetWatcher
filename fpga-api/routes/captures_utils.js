@@ -96,13 +96,16 @@ function validSimpleCapture(name, callback) {
   var buff = new Buffer([0x00, 0x00]);
   fs.open(config.CAPTURES_DIR + name, 'r', function(err, fd) {
     if (err) {
+      common.logDebug('error opening "' + config.CAPTURES_DIR + name + '"');
       callback(false);
     }
     fs.read(fd, buff, 0, 2, 2, function(error, bytes, buffer) {
       fs.close(fd);
       if (bytes != magicNumber.length) {
+        common.logDebug('no magic found :(');
         callback(false);
       } else {
+        common.logDebug('magic found :)');
         callback((magicNumber[0] == buffer[0]) && (magicNumber[1] == buffer[1]));
       }
     });

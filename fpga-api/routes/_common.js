@@ -82,7 +82,9 @@ exports.handleRequest.displayName = prettyName(__filename, 'handleRequest');
 function readJSON(file, callback) {
   logDebug('');
   var filePath = path.resolve(__dirname, '../messages/', file + '.json');
+  logDebug('filePath = ' + filePath);
   fs.readFile(filePath, 'utf8', function(err, data) {
+    logDebug2('fs.readFile()\'s callback');
     var obj;
     if (err) {
       logError('Unable to read ' + filePath);
