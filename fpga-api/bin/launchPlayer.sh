@@ -29,4 +29,6 @@ status=$?
 
 sleep 5
 
+# Reset FPGA
+./bin/writeControl -r
 exit $status
