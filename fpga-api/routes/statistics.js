@@ -15,7 +15,7 @@ exports.ping = function(req, res) {
   common.logDebug('');
   common.sendJSON('statistics_ping', res, 200);
 };
-exports.ping.displayName = prettyName(__filename, 'ping');
+exports.ping.displayName = common.prettyName(__filename, 'ping');
 
 // /delay
 // Seconds of delay between the client and the server (of timestamps)
@@ -32,7 +32,7 @@ exports.delay = function(req, res) {
     });
   }
 };
-exports.delay.displayName = prettyName(__filename, 'delay');
+exports.delay.displayName = common.prettyName(__filename, 'delay');
 
 // /status
 // Status of the FPGA
@@ -46,7 +46,7 @@ exports.status = function(req, res) {
     statistics_utils.statusFPGA
   ]);
 };
-exports.status.displayName = prettyName(__filename, 'status');
+exports.status.displayName = common.prettyName(__filename, 'status');
 
 // /storage/stats
 // Statistics of the storage
@@ -88,4 +88,4 @@ exports.storageStats = function(req, res) {
     });
   });
 };
-exports.storageStats.displayName = prettyName(__filename, 'storageStats');
+exports.storageStats.displayName = common.prettyName(__filename, 'storageStats');
