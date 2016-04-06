@@ -90,6 +90,8 @@ function validSimpleCapture(name, callback) {
     process.nextTick(function() {
       callback(false);
     });
+
+    return ;
   }
   // 3rd and 4th byte are 0x69
   var magicNumber = new Buffer([0x69, 0x69]);
