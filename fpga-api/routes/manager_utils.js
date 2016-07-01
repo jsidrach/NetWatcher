@@ -21,6 +21,7 @@ exports.rebootCommand = rebootCommand;
 
 // Checks the state and programs and mounts the FPGA as a player or recorder
 function initFPGA(req, res, recorder) {
+  common.logDebug('');
   var bitstream = recorder ? recorderBitStream : playerBitStream;
   // Prequisite: HugePages on
   // 0 if huge pages is not active, 1 if hugepages is active
@@ -48,9 +49,11 @@ function initFPGA(req, res, recorder) {
   });
 };
 exports.initFPGA = initFPGA;
+exports.initFPGA.displayName = common.prettyName(__filename, 'initFPGA');
 
 // Mounts the FPGA
 function installFPGA(req, res, recorder) {
+  common.logDebug('');
   // Check if the FPGA is programmed
   scripts.exec(statistics_utils.checkInitFPGAOn).on('exit', function(code) {
     if (code != 0) {
@@ -98,9 +101,11 @@ function installFPGA(req, res, recorder) {
   });
 };
 exports.installFPGA = installFPGA;
+exports.installFPGA.displayName = common.prettyName(__filename, 'installFPGA');
 
 // Starts the player
 function startPlaying(req, res, loop) {
+  common.logDebug('');
   statistics_utils.modeFPGA(5, function(ans) {
     // FPGA must be programmed as a recorder
     if (ans != 'player') {
@@ -157,10 +162,12 @@ function startPlaying(req, res, loop) {
   });
 };
 exports.startPlaying = startPlaying;
+exports.startPlaying.displayName = common.prettyName(__filename, 'startPlaying');
 
 // Stops the player (in loop)
 function stopLoopPlayer(req, res) {
-  scripts.exec('sudo pkill -SIGINT launchPlayer; sudo pkill -SIGINT host2card').on('exit', function(code) {
+  common.logDebug('');
+  scripts.exec('sudo pkill -SIGINT launchPlayer; sudo pkill -SIGINT host2card; pkill -SIGTSTP host2card; pkill -SIGCONT host2card').on('exit', function(code) {
     statistics_utils.runningFPGA(false, function(isRunning) {
       // Recursion
       if (isRunning) {
@@ -174,10 +181,12 @@ function stopLoopPlayer(req, res) {
   });
 };
 exports.stopLoopPlayer = stopLoopPlayer;
+exports.stopLoopPlayer.displayName = common.prettyName(__filename, 'stopLoopPlayer');
 
 // Stops the recorder (in loop)
 function stopLoopRecorder(req, res, capturename) {
-  scripts.exec('sudo pkill -SIGINT launchRecorder; sudo pkill -SIGINT card2host').on('exit', function(code) {
+  common.logDebug('');
+  scripts.exec('sudo pkill -SIGINT launchRecorder; sudo pkill -SIGINT card2host; pkill -SIGTSTP card2host; pkill -SIGCONT card2host').on('exit', function(code) {
     statistics_utils.runningFPGA(true, function(isRunning) {
       // Recursion
       if (isRunning) {
@@ -193,6 +202,7 @@ function stopLoopRecorder(req, res, capturename) {
   });
 };
 exports.stopLoopRecorder = stopLoopRecorder;
+exports.stopLoopRecorder.displayName = common.prettyName(__filename, 'stopLoopRecorder');
 
 
 

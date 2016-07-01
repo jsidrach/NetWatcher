@@ -21,14 +21,17 @@ exports.checkFPGAMountedOn = checkFPGAMountedOn;
 
 // Executes the next callback
 function nextCallback(res, callbackList) {
+  common.logDebug('');
   if (callbackList[0] instanceof Function) {
     callbackList[0](res, callbackList.slice(1));
   }
 };
 exports.nextCallback = nextCallback;
+exports.nextCallback.displayName = common.prettyName(__filename, 'nextCallback');
 
 // HugePages active
 function hugePagesOn(res, callbackList) {
+  common.logDebug('');
   var status_json = 'status_1_hugepages_off';
   // 0 if huge pages is not active, 1 if hugepages is active
   scripts.exec(checkHugePagesOff).on('exit', function(code) {
@@ -40,9 +43,11 @@ function hugePagesOn(res, callbackList) {
   });
 };
 exports.hugePagesOn = hugePagesOn;
+exports.hugePagesOn.displayName = common.prettyName(__filename, 'hugePagesOn');
 
 // FPGA initialized checker
 function initializedFPGA(res, callbackList) {
+  common.logDebug('');
   var status_json = 'status_2_init_off';
   // 0 if FPGA initialized, 1 otherwise
   scripts.exec(checkInitFPGAOn).on('exit', function(code) {
@@ -54,9 +59,11 @@ function initializedFPGA(res, callbackList) {
   });
 };
 exports.initializedFPGA = initializedFPGA;
+exports.initializedFPGA.displayName = common.prettyName(__filename, 'initializedFPGA');
 
 // FPGA mounted checker
 function mountedFPGA(res, callbackList) {
+  common.logDebug('');
   var status_json = 'status_3_mount_off';
   // 0 if fpga is mounted, 1 otherwise
   scripts.exec(checkFPGAMountedOn).on('exit', function(code) {
@@ -68,9 +75,11 @@ function mountedFPGA(res, callbackList) {
   });
 };
 exports.mountedFPGA = mountedFPGA;
+exports.mountedFPGA.displayName = common.prettyName(__filename, 'mountedFPGA');
 
 // Status of the FPGA (after being mounted)
 function statusFPGA(res, callbackList) {
+  common.logDebug('');
   modeFPGA(5, function(ans) {
     // Set the type (player/recorder)
     if (ans == 'recorder') {
@@ -118,9 +127,11 @@ function statusFPGA(res, callbackList) {
   });
 };
 exports.statusFPGA = statusFPGA;
+exports.statusFPGA.displayName = common.prettyName(__filename, 'statusFPGA');
 
 // Gets the mode of the FPGA (player/recorder/error)
 function modeFPGA(tries, callback) {
+  common.logDebug('');
   scripts.exec('cat /proc/nfp/nfp_report | tail -n 1', function(error, stdout, stderr) {
     var ans;
     // Set the type (player/recorder)
@@ -143,27 +154,33 @@ function modeFPGA(tries, callback) {
   });
 };
 exports.modeFPGA = modeFPGA;
+exports.modeFPGA.displayName = common.prettyName(__filename, 'modeFPGA');
 
 // Gets a boolean value that represents if the FPGA is running in a specific mode (true: yes, false: no)
 function runningFPGA(recorder, callback) {
+  common.logDebug('');
   var command = recorder ? 'pgrep launchRecorder || pgrep card2host' : 'pgrep launchPlayer || pgrep host2card';
   scripts.exec(command).on('exit', function(code) {
     callback(code == 0);
   });
 };
 exports.runningFPGA = runningFPGA;
+exports.runningFPGA.displayName = common.prettyName(__filename, 'runningFPGA');
 
 // Gets a boolean value that represents if the FPGA is running in any mode
 function runningAny(callback) {
+  common.logDebug('');
   var command = 'pgrep launchRecorder || pgrep card2host || pgrep launchPlayer || pgrep host2card';
   scripts.exec(command).on('exit', function(code) {
     callback(code == 0);
   });
 };
 exports.runningAny = runningAny;
+exports.runningAny.displayName = common.prettyName(__filename, 'runningAny');
 
 // Gets the current recording info
 function getDataRecording(callback) {
+  common.logDebug('');
   common.readJSON('status_4_2_recording', function(ans) {
     scripts.exec('ps -eo etime,command | grep launchRecorder.sh | grep -v grep | head -n 1', function(error, stdout, stderr) {
       if (error) {
@@ -201,9 +218,11 @@ function getDataRecording(callback) {
   });
 };
 exports.getDataRecording = getDataRecording;
+exports.getDataRecording.displayName = common.prettyName(__filename, 'getDataRecording');
 
 // Gets the current playing info
 function getDataPlaying(callback) {
+  common.logDebug('');
   common.readJSON('status_4_2_playing', function(ans) {
     scripts.exec('ps -eo etime,command | grep launchPlayer.sh | grep -v grep | head -n 1', function(error, stdout, stderr) {
       if (error) {
@@ -243,9 +262,11 @@ function getDataPlaying(callback) {
   });
 };
 exports.getDataPlaying = getDataPlaying;
+exports.getDataPlaying.displayName = common.prettyName(__filename, 'getDataPlaying');
 
 // Get raid statistics
 function getRaidStats(res, ans) {
+  common.logDebug('');
   var command = 'dd if="' + config.RAID_DEV + '" of=/dev/null bs=16MB  count=256  iflag=direct 2>&1 | tail -n1 | awk \'{print int($1/($6+1))}\'';
   scripts.exec(command, function(error, stdout, stderr) {
     if (error) {
@@ -283,3 +304,4 @@ function getRaidStats(res, ans) {
   });
 };
 exports.getRaidStats = getRaidStats;
+exports.getRaidStats.displayName = common.prettyName(__filename, 'getRaidStats');
