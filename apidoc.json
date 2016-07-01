@@ -1,6 +1,6 @@
 {
   "name": "FPGA Web Service API",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Web Service to manage a traffic player/recorder FPGA",
   "title": "FPGA Web Service API documentation",
   "url": "proxy.php?csurl=",
