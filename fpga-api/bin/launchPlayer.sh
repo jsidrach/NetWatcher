@@ -24,7 +24,6 @@ else
   ./bin/host2card ${4} -n -1
 fi
 
-sleep 5
 status=$?
 
 sleep 5
